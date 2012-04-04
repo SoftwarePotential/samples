@@ -5,3 +5,5 @@ obj
 *resharper*
 *.user
 *.cache
+
+Sp.Samples.Agent.WpfApplicationWithInstaller/Sp.Samples.Agent.WpfApplication/SpAgent.Permutation.cs

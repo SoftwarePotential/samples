@@ -2,7 +2,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <Fragment>
     <?define ReferencedProjectTargetDir = $(var.Sp.Samples.Agent.WpfApplication.TargetDir) ?>
-    <?include SpAgent.wxi ?>
+    <?include SpAgent.Product.wxi ?>
     <!-- Sp.Agent binaries with local license store support -->
     <DirectoryRef Id="INSTALLLOCATION">
       <Component Id="SpAgent.BaseBinaries" Guid="{5F5B0805-B902-4256-A5FD-1AA12A5BA9FD}">
