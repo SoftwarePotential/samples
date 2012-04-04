@@ -12,18 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSBuild Items", "MSBuild It
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://tfs:8080/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Sp.Samples.Agent.WpfApplication\\Sp.Samples.Agent.WpfApplication.csproj
-		SccProjectName1 = Sp.Samples.Agent.WpfApplication
-		SccLocalPath1 = Sp.Samples.Agent.WpfApplication
-		SccProjectUniqueName2 = Sp.Samples.Agent.WpfApplicationInstaller\\Sp.Samples.Agent.WpfApplicationInstaller.wixproj
-		SccProjectName2 = Sp.Samples.Agent.WpfApplicationInstaller
-		SccLocalPath2 = Sp.Samples.Agent.WpfApplicationInstaller
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
 		Release|x86 = Release|x86
