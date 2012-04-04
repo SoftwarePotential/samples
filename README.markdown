@@ -1,4 +1,6 @@
-This is the master repository for the Software Potential Samples
+This is the master repository for the Software Potential Samples.
+
+At present, there is just a single sample. As more are added, this information will be migrated to the invidual Sample directories.
 
 # Documentation 
 
