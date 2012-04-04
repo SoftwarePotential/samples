@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sp.Samples.Agent.WpfApplication", "Sp.Samples.Agent.WpfApplication\Sp.Samples.Agent.WpfApplication.csproj", "{9842A4BC-A16E-4F18-BE85-A486EA4EF577}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Sp.Samples.Agent.WpfApplicationInstaller", "Sp.Samples.Agent.WpfApplicationInstaller\Sp.Samples.Agent.WpfApplicationInstaller.wixproj", "{F7D679E4-5C7D-48D4-99A3-9028597E3E03}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSBuild Items", "MSBuild Items", "{698696AB-B376-4B58-92A4-EC827036468D}"
+	ProjectSection(SolutionItems) = preProject
+		Sp.targets = Sp.targets
+		Sp.Wix.targets = Sp.Wix.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs:8080/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Sp.Samples.Agent.WpfApplication\\Sp.Samples.Agent.WpfApplication.csproj
+		SccProjectName1 = Sp.Samples.Agent.WpfApplication
+		SccLocalPath1 = Sp.Samples.Agent.WpfApplication
+		SccProjectUniqueName2 = Sp.Samples.Agent.WpfApplicationInstaller\\Sp.Samples.Agent.WpfApplicationInstaller.wixproj
+		SccProjectName2 = Sp.Samples.Agent.WpfApplicationInstaller
+		SccLocalPath2 = Sp.Samples.Agent.WpfApplicationInstaller
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9842A4BC-A16E-4F18-BE85-A486EA4EF577}.Debug|x86.ActiveCfg = Debug|x86
+		{9842A4BC-A16E-4F18-BE85-A486EA4EF577}.Debug|x86.Build.0 = Debug|x86
+		{9842A4BC-A16E-4F18-BE85-A486EA4EF577}.Release|x86.ActiveCfg = Release|x86
+		{9842A4BC-A16E-4F18-BE85-A486EA4EF577}.Release|x86.Build.0 = Release|x86
+		{F7D679E4-5C7D-48D4-99A3-9028597E3E03}.Debug|x86.ActiveCfg = Debug|x86
+		{F7D679E4-5C7D-48D4-99A3-9028597E3E03}.Debug|x86.Build.0 = Debug|x86
+		{F7D679E4-5C7D-48D4-99A3-9028597E3E03}.Release|x86.ActiveCfg = Release|x86
+		{F7D679E4-5C7D-48D4-99A3-9028597E3E03}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
