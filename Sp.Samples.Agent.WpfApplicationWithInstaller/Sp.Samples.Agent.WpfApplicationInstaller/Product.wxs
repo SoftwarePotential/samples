@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <?include SpAgent.wxi ?>
+  <?include SpAgent.Product.wxi ?>
   <Product Id="fc7445bb-7e1d-4e36-a42a-cfa56263e453" Name="$(var.SpAgent.ProductDirectoryPrefix) $(var.SpAgent.ProductName)" Language="1033" Version="1.0.0.0" Manufacturer="Inish Technologies Ventures Limited" UpgradeCode="5f9fc94e-cf12-4919-b28a-c5fe220afb9a">
     <Package InstallerVersion="200" Compressed="yes" />
     <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
