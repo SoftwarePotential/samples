@@ -13,7 +13,7 @@ IF [%1]==[] GOTO :NOPERMUTATIONID
 IF ERRORLEVEL 1 GOTO :ERROR
 
 echo Sp.Samples.Agent.WpfApplication has been configured for use with Software Potential permutation %1.
-echo If you have your solution open in Visual Studio, please re-open it.
+echo If you have your solution open in Visual Studio, please Close and re-open it now (Visual Studio caches .targets files that were modified during this operation)
 GOTO :EOF
 
 :NOPERMUTATIONID
@@ -30,4 +30,3 @@ ECHO ON
 EXIT /b %ERRORLEVEL%
 
 :EOF
-ECHO ON
