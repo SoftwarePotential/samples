@@ -19,7 +19,7 @@ GOTO :EOF
 :NOPERMUTATIONID
 ECHO Usage: %0 ^<PermutationId^>
 ECHO Example: %0 12a87dc3-09a4-ff31-8a22-235f87a09ce9
-GOTO :ERROR
+GOTO :EOF
 
 :NODOTNET
 ECHO Error: Could not locate MSBuild. Looked in %DotNetDir%
