@@ -7,3 +7,4 @@ obj
 *.cache
 
 Sp.Samples.Agent.WpfApplicationWithInstaller/Sp.Samples.Agent.WpfApplication/SpAgent.Permutation.cs
+Sp.Samples.Agent.WpfApplicationWithInstaller/Sp.Samples.Agent.WpfApplication/SpAgent.props
