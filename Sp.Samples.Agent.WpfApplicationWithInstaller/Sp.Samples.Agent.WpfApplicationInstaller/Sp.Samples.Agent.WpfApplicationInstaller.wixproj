@@ -34,7 +34,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SpAgent.wxi" />
+    <Content Include="SpAgent.Product.wxi" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <!--

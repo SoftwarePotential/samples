@@ -63,12 +63,18 @@
     </Compile>
     <Compile Include="Activation\ActivationModel.cs" />
     <Compile Include="BusinessLogic\MyAlgorithms.cs" />
-    <Compile Include="SpAgent.Product.cs" />
     <Compile Include="Licenses\LicenseListDialog.xaml.cs">
       <DependentUpon>LicenseListDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SpAgent.cs" />
-    <Compile Include="SpAgent.Permutation.cs" />
+    <Compile Include="SpAgent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SpAgent.Permutation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SpAgent.Product.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Page Include="Activation\ActivationDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -110,21 +116,20 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="ConfigureSample.cmd">
-     
+      <SubType>Designer</SubType>
     </None>
     <None Include="ResetSampleConfiguration.cmd">
-    
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="SpAgent.props" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Sp.Samples.Agent.WpfApplication.SLMCfg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-
     </None>
   </ItemGroup>
   <ItemGroup>
