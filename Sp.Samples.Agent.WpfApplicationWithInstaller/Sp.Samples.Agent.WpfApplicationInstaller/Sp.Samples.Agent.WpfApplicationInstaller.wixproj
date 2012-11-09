@@ -46,5 +46,5 @@
 	<Target Name="AfterBuild">
 	</Target>
 	-->
-  <Import Project="..\Sp.Wix.targets" />
+  <Import Project="..\..\build\Sp.Wix.targets" />
 </Project>

@@ -137,5 +137,5 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Include SP Agent build targets -->
-  <Import Project="..\Sp.targets" />
+  <Import Project="..\..\build\Sp.targets" />
 </Project>
