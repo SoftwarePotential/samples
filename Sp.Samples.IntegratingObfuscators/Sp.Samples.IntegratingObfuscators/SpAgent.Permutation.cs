@@ -1,4 +1,4 @@
-namespace Sp.Samples.Agent.WpfApplication
+namespace Sp.Samples.IntegratingObfuscators
 {
 	partial class SpAgent
 	{
