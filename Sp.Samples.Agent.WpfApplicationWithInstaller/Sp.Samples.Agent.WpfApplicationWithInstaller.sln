@@ -7,7 +7,7 @@ Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Sp.Samples.Agent.WpfApplica
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSBuild Items", "MSBuild Items", "{698696AB-B376-4B58-92A4-EC827036468D}"
 	ProjectSection(SolutionItems) = preProject
-		..\build\Sp.targets = ..\build\Sp.targets
+		..\build\Sp.Samples.targets = ..\build\Sp.Samples.targets
 		..\build\Sp.Wix.targets = ..\build\Sp.Wix.targets
 	EndProjectSection
 EndProject
