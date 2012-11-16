@@ -1,0 +1,31 @@
+﻿<ps:ProtectSettingsDs xmlns:ps="http://www.microsoft.com/slps/ProtectSettingsDs.xsd">
+  <ProtectedAssembly xmlns="http://www.microsoft.com/slps/ProtectSettingsDs.xsd">
+    <ModuleName>SAK</ModuleName>
+    <NoLicenseHandlerType>None</NoLicenseHandlerType>
+    <EmbedGenericLicense>true</EmbedGenericLicense>
+    <ModuleType>Assembly</ModuleType>
+    <SkipResign>true</SkipResign>
+  </ProtectedAssembly>
+  <Global xmlns="http://www.microsoft.com/slps/ProtectSettingsDs.xsd">
+    <TargetCLRVersion>SAK</TargetCLRVersion>
+    <ProductName>WPF Sample</ProductName>
+    <ProductVersion>1.0</ProductVersion>
+    <VendorName>SAK</VendorName>
+    <OutputDir>SAK</OutputDir>
+    <InputDir>SAK</InputDir>
+    <CopyProtectedFilesOnly>false</CopyProtectedFilesOnly>
+    <CopyRedistFiles>true</CopyRedistFiles>
+    <Permutation>SAK</Permutation>
+    <TransformationSettings/>
+    <EnableOneWayTransformation>true</EnableOneWayTransformation>
+    <KeepIntermediateFiles>false</KeepIntermediateFiles>
+    <ReferencePaths />
+    <UseVersionedRedist>false</UseVersionedRedist>
+    <CompatibleTextRenderingDefault />
+    <CloakMethodCalls>true</CloakMethodCalls>
+    <CloakCrossAssemblyCallsToo>false</CloakCrossAssemblyCallsToo>
+    <DropMetadata>true</DropMetadata>
+    <SuppressAutomaticMethodExclusion>true</SuppressAutomaticMethodExclusion>
+    <SuppressAutomaticVirtualMethodWrapping>false</SuppressAutomaticVirtualMethodWrapping>
+  </Global>
+</ps:ProtectSettingsDs>

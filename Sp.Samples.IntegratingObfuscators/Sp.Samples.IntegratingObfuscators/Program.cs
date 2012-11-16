@@ -15,7 +15,7 @@ namespace Sp.Samples.IntegratingObfuscators
             MainObfuscatable();
 
             AssertObfuscated( MethodOf( () => MainObfuscatable() ) );
-            
+            AssertProtected( MethodOf( () => MainObfuscatable() ) );
             Console.ReadLine();
         }
 
@@ -37,8 +37,14 @@ namespace Sp.Samples.IntegratingObfuscators
 
         private static void AssertObfuscated( MethodInfo method )
         {
-            if (method.Name == "MainObfuscatable")
-                Console.WriteLine( "MainObfuscatable() was not obfuscated" );
+            bool isObfuscated = method.Name != "MainObfuscatable";
+            Console.WriteLine( "MainObfuscatable() is obfuscated: " + isObfuscated );
+        }
+
+        private static void AssertProtected( MethodInfo method )
+        {
+            bool isProtected = method.GetCustomAttribute( typeof( FeatureAttribute ) ) == null;
+            Console.WriteLine( "MainObfuscatable() is protected: " + isProtected );
         }
     }
 }
