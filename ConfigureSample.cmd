@@ -10,11 +10,12 @@ IF [%1]==[] GOTO :NOPERMUTATIONID
 
 %MSBuildExe% Sp.Samples.Agent.WpfApplicationWithInstaller/Sp.Samples.Agent.WpfApplication/Sp.Samples.Agent.WpfApplication.csproj /t:ConfigurePermutationInfo /p:SlpsRuntimePermutationId=%1
 %MSBuildExe% Sp.Samples.IntegratingObfuscators\Sp.Samples.IntegratingObfuscators/Sp.Samples.IntegratingObfuscators.csproj /t:ConfigurePermutationInfo /p:SlpsRuntimePermutationId=%1
-
+%MSBuildExe% Sp.Samples.IntegratingObfuscators\Sp.Samples.IntegratingObfuscators.Library/Sp.Samples.IntegratingObfuscators.Library.csproj /t:ConfigurePermutationInfo /p:SlpsRuntimePermutationId=%1
 IF ERRORLEVEL 1 GOTO :ERROR
 
 echo Sp.Samples.Agent.WpfApplication has been configured for use with Software Potential permutation %1.
 echo Sp.Samples.IntegratingObfuscators has been configured for use with Software Potential permutation %1.
+
 
 echo If you have your solution open in Visual Studio, please Close and re-open it now (Visual Studio caches .targets files that were modified during this operation)
 GOTO :EOF

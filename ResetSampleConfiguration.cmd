@@ -8,6 +8,7 @@ IF NOT EXIST "%MSBuildExe%" GOTO :NODOTNET
 
 %MSBuildExe% Sp.Samples.Agent.WpfApplicationWithInstaller/Sp.Samples.Agent.WpfApplication/Sp.Samples.Agent.WpfApplication.csproj /t:StripPermutationInfo
 %MSBuildExe% Sp.Samples.IntegratingObfuscators\Sp.Samples.IntegratingObfuscators/Sp.Samples.IntegratingObfuscators.csproj /t:StripPermutationInfo
+%MSBuildExe% Sp.Samples.IntegratingObfuscators\Sp.Samples.IntegratingObfuscators.Library/Sp.Samples.IntegratingObfuscators.Library.csproj /t:StripPermutationInfo
 
 IF ERRORLEVEL 1 GOTO :ERROR
 
