@@ -10,6 +10,17 @@ namespace Sp.Samples.IntegratingObfuscators
 {
     class Program
     {
+        // TODO: Choose an Obfuscator by including the appropriate Sp.Obfuscation.*.targets in the csproj files.
+        // Some Obfuscators need to be installed on your machine to work with the provided .targets files.
+        
+        // Currently provided samples for Obfuscator Integration:
+        // - Babel (http://babelfor.net/)
+
+        // Notes:
+        // Each assembly (the exe and the library) are Protected and Obfuscated separately after they are compiled. 
+        // The bin folder will always contain the obfuscated and protected assemblies.
+        // Some Obfuscators support features (e.g. supressing ILdasm on the output assemblies) that prevent Code Protection - these must be disabled
+        
         static void Main( string[] args )
         {
             MethodStatus.PrintOf( () => MainObfuscatable(), "MainObfuscatable" );

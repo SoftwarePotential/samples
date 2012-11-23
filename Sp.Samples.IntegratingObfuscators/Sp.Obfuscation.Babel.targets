@@ -18,12 +18,12 @@ PublicKeyToken=138d17b5bd621ab7" />
     <ObfuscateXaml>false</ObfuscateXaml>
     <VerboseLevel>2</VerboseLevel>
     <ObfuscateProperties>true</ObfuscateProperties>
-    <SuppressIldasm>false</SuppressIldasm> <!--Must be false-->
+    <SuppressIldasm>false</SuppressIldasm> <!--Must be false to allow protection-->
     <ObfuscateFields>true</ObfuscateFields>
     <GenerateDebug>false</GenerateDebug>
     <ObfuscateMethods>true</ObfuscateMethods>
     <EnableObfuscationAgent>true</EnableObfuscationAgent>
-    <SuppressReflection>false</SuppressReflection> <!--Must be false-->
+    <SuppressReflection>false</SuppressReflection> <!--Must be false to allow protection-->
     <ControlFlowObfuscation>
       true;token=false;underflow=false;goto=true;if=true;switch=true;case=true
     </ControlFlowObfuscation>
@@ -31,7 +31,7 @@ PublicKeyToken=138d17b5bd621ab7" />
     <ObfuscateEvents>true</ObfuscateEvents>
     <ObfuscateTypes>true</ObfuscateTypes>
     <ResourceEncryption>false</ResourceEncryption>
-    <UnicodeNormalization>false</UnicodeNormalization> <!--Must be false-->
+    <UnicodeNormalization>false</UnicodeNormalization> <!--Must be false to allow protection-->
   </PropertyGroup>
 
   <ItemGroup>
