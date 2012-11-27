@@ -1,8 +1,13 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<!--
+* Copyright (c) Inish Technology Ventures Limited.  All rights reserved.
+*
+* This code is licensed under the BSD 3-Clause License included with this source
+*
+* ALSO SEE: https://github.com/SoftwarePotential/samples/wiki/License -->
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-
-  <UsingTask TaskName="Babel" AssemblyName="Babel.Build, Version=6.0.0.0, Culture=neutral,
-PublicKeyToken=138d17b5bd621ab7" />
+  <!--Babel installs Babel.Build into the GAC - we do not redistribute it for licensing reasons-->
+  <UsingTask TaskName="Babel" AssemblyName="Babel.Build, Version=6.0.0.0, Culture=neutral, PublicKeyToken=138d17b5bd621ab7" />
 
   <PropertyGroup>
     <OverloadedRenaming>true</OverloadedRenaming>
@@ -18,20 +23,21 @@ PublicKeyToken=138d17b5bd621ab7" />
     <ObfuscateXaml>false</ObfuscateXaml>
     <VerboseLevel>2</VerboseLevel>
     <ObfuscateProperties>true</ObfuscateProperties>
-    <SuppressIldasm>false</SuppressIldasm> <!--Must be false to allow protection-->
+    <SuppressIldasm>false</SuppressIldasm>
+    <!--Must be false to allow protection-->
     <ObfuscateFields>true</ObfuscateFields>
     <GenerateDebug>false</GenerateDebug>
     <ObfuscateMethods>true</ObfuscateMethods>
     <EnableObfuscationAgent>true</EnableObfuscationAgent>
-    <SuppressReflection>false</SuppressReflection> <!--Must be false to allow protection-->
-    <ControlFlowObfuscation>
-      true;token=false;underflow=false;goto=true;if=true;switch=true;case=true
-    </ControlFlowObfuscation>
+    <SuppressReflection>false</SuppressReflection>
+    <!--Must be false to allow protection-->
+    <ControlFlowObfuscation>true;token=false;underflow=false;goto=true;if=true;switch=true;case=true</ControlFlowObfuscation>
     <VirtualFunctions>true</VirtualFunctions>
     <ObfuscateEvents>true</ObfuscateEvents>
     <ObfuscateTypes>true</ObfuscateTypes>
     <ResourceEncryption>false</ResourceEncryption>
-    <UnicodeNormalization>false</UnicodeNormalization> <!--Must be false to allow protection-->
+    <UnicodeNormalization>false</UnicodeNormalization>
+    <!--Must be false to allow protection-->
   </PropertyGroup>
 
   <ItemGroup>
@@ -44,42 +50,37 @@ PublicKeyToken=138d17b5bd621ab7" />
     <!--<RuleFile Include="babelRules.xml" />-->
   </ItemGroup>
 
-
-  <!--Babel installs Babel.Build into the GAC - we do not redistribute it for licensing reasons-->
-  <UsingTask TaskName="Babel" AssemblyName="Babel.Build, Version=6.0.0.0, Culture=neutral, PublicKeyToken=138d17b5bd621ab7" />
   <Target Name="Slps_Obfuscate">
-
     <Message Text="Obfuscating $(BabelInputFile)..." />
-    <Babel 
-      InputFile="$(Slps_Obfuscate_Input)" 
-      OutputFile="$(Slps_Obfuscate_Output)" 
-      MergeAssemblies="@(MergeAssembly)" 
-      RulesFiles="@(RuleFile)" 
-      ShowLogo="$(ShowLogo)" 
-      EnableObfuscationAgent="$(EnableObfuscationAgent)" 
-      FlattenNamespaces="$(FlattenNamespaces)" 
-      UnicodeNormalization="$(UnicodeNormalization)" 
-      ObfuscateTypes="$(ObfuscateTypes)" 
-      ObfuscateEvents="$(ObfuscateEvents)" 
-      ObfuscateMethods="$(ObfuscateMethods)" 
-      ObfuscateProperties="$(ObfuscateProperties)" 
-      ObfuscateFields="$(ObfuscateFields)" 
-      ObfuscateXaml="$(ObfuscateXaml)" 
-      VirtualFunctions="$(VirtualFunctions)" 
-      OverloadedRenaming="$(OverloadedRenaming)" 
-      ControlFlowObfuscation="$(ControlFlowObfuscation)" 
-      ILIterations="$(ILIterations)" 
-      StringEncryption="$(StringEncryption)" 
-      MsilEncryption="$(MsilEncryption)" 
-      DynamicProxy="$(DynamicProxy)" 
-      ResourceEncryption="$(ResourceEncryption)" 
-      SuppressIldasm="$(SuppressIldasm)" 
-      SuppressReflection="$(SuppressReflection)" 
-      SealClasses="$(SealClasses)" 
-      DeadCodeElimination="$(DeadCodeElimination)" 
-      GenerateDebug="$(GenerateDebug)" 
-      VerboseLevel="$(VerboseLevel)" 
+    <Babel
+      InputFile="$(Slps_Obfuscate_Input)"
+      OutputFile="$(Slps_Obfuscate_Output)"
+      MergeAssemblies="@(MergeAssembly)"
+      RulesFiles="@(RuleFile)"
+      ShowLogo="$(ShowLogo)"
+      EnableObfuscationAgent="$(EnableObfuscationAgent)"
+      FlattenNamespaces="$(FlattenNamespaces)"
+      UnicodeNormalization="$(UnicodeNormalization)"
+      ObfuscateTypes="$(ObfuscateTypes)"
+      ObfuscateEvents="$(ObfuscateEvents)"
+      ObfuscateMethods="$(ObfuscateMethods)"
+      ObfuscateProperties="$(ObfuscateProperties)"
+      ObfuscateFields="$(ObfuscateFields)"
+      ObfuscateXaml="$(ObfuscateXaml)"
+      VirtualFunctions="$(VirtualFunctions)"
+      OverloadedRenaming="$(OverloadedRenaming)"
+      ControlFlowObfuscation="$(ControlFlowObfuscation)"
+      ILIterations="$(ILIterations)"
+      StringEncryption="$(StringEncryption)"
+      MsilEncryption="$(MsilEncryption)"
+      DynamicProxy="$(DynamicProxy)"
+      ResourceEncryption="$(ResourceEncryption)"
+      SuppressIldasm="$(SuppressIldasm)"
+      SuppressReflection="$(SuppressReflection)"
+      SealClasses="$(SealClasses)"
+      DeadCodeElimination="$(DeadCodeElimination)"
+      GenerateDebug="$(GenerateDebug)"
+      VerboseLevel="$(VerboseLevel)"
       ShowStatistics="$(ShowStatistics)"/>
   </Target>
-
 </Project>

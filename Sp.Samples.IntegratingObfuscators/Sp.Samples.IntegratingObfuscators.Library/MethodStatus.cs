@@ -1,40 +1,45 @@
-using Slps.ProtectionAttributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
-
+/*
+ * Copyright (c) Inish Technology Ventures Limited.  All rights reserved.
+ * 
+ * This code is licensed under the BSD 3-Clause License included with this source
+ * 
+ * ALSO SEE: https://github.com/SoftwarePotential/samples/wiki/License
+ * 
+ */
 namespace Sp.Samples.IntegratingObfuscators.Library
 {
-    public class MethodStatus
-    {
-        public static void PrintOf<T>( Expression<Func<T>> expression, string unobfuscatedName )
-        {
-            var method = MethodOf( expression );
-            PrintInfoOfMethod( method, unobfuscatedName );
-        }
+	using Slps.ProtectionAttributes;
+	using System;
+	using System.Linq.Expressions;
+	using System.Reflection;
 
-        public static void PrintOf( Expression<Action> expression, string unobfuscatedName )
-        {
-            var method = MethodOf( expression );
-            PrintInfoOfMethod( method, unobfuscatedName );
-        }
+	public class MethodStatus
+	{
+		public static void PrintOf<T>( Expression<Func<T>> expression, string unobfuscatedName )
+		{
+			var method = MethodOf( expression );
+			PrintInfoOfMethod( method, unobfuscatedName );
+		}
 
-        private static MethodInfo MethodOf<T>( Expression<T> expression )
-        {
-            MethodCallExpression body = (MethodCallExpression)expression.Body;
-            return body.Method;
-        }
+		public static void PrintOf( Expression<Action> expression, string unobfuscatedName )
+		{
+			var method = MethodOf( expression );
+			PrintInfoOfMethod( method, unobfuscatedName );
+		}
 
-        private static void PrintInfoOfMethod( MethodInfo method, string unobfuscatedName )
-        {
-            bool isObfuscated = method.Name != unobfuscatedName;
-            Console.WriteLine( unobfuscatedName + " is obfuscated: " + isObfuscated );
+		static MethodInfo MethodOf<T>( Expression<T> expression )
+		{
+			MethodCallExpression body = (MethodCallExpression)expression.Body;
+			return body.Method;
+		}
 
-            bool isProtected = method.GetCustomAttribute( typeof( FeatureAttribute ) ) == null;
-            Console.WriteLine( unobfuscatedName + " is protected: " + isProtected );
-        }
-    }
+		static void PrintInfoOfMethod( MethodInfo method, string unobfuscatedName )
+		{
+			bool isObfuscated = method.Name != unobfuscatedName;
+			Console.WriteLine( unobfuscatedName + " is obfuscated: " + isObfuscated );
+
+			bool isProtected = method.GetCustomAttributes( typeof( FeatureAttribute ), true ).Length == 0;
+			Console.WriteLine( unobfuscatedName + " is protected: " + isProtected );
+		}
+	}
 }

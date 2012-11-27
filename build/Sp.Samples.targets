@@ -1,3 +1,9 @@
+<!--
+* Copyright (c) Inish Technology Ventures Limited.  All rights reserved.
+*
+* This code is licensed under the BSD 3-Clause License included with this source
+*
+* ALSO SEE: https://github.com/SoftwarePotential/samples/wiki/License -->
 <?xml version="1.0" encoding="utf-8" ?>
 <Project ToolsVersion="4.0" InitialTargets="ValidateSdkPath"  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 

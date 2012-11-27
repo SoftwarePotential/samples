@@ -1,21 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<!--
+* Copyright (c) Inish Technology Ventures Limited.  All rights reserved.
+*
+* This code is licensed under the BSD 3-Clause License included with this source
+*
+* ALSO SEE: https://github.com/SoftwarePotential/samples/wiki/License -->
+<?xml version="1.0" encoding="utf-8" ?>
 <Project ToolsVersion="4.0" InitialTargets="ValidateSdkPath"  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <!-- Override this target if you plan to hook in a custom Obfuscator -->
-  <!-- The input assembly is at $(Slps_Obfuscate_Input), in $(Slps_Obfuscate_BeforePath), the output must be written to $(Slps_Obfuscate_Output) in $(Slps_Obfuscate_AfterPath) -->
+  
+  <!-- When the target is invoked,
+   - the input assembly is at $(Slps_Obfuscate_Input), in $(Slps_Obfuscate_BeforePath)
+   - the output must be written to $(Slps_Obfuscate_Output) in $(Slps_Obfuscate_AfterPath) -->
   <Target Name="Slps_Obfuscate">
-
-    <Warning Text="Override this target to hook in an Obfuscator. You can also check a sample by including the appropriate Sp.Obfuscation.*.targets in the csproj files instead of this target."></Warning>
+    <Warning Text="Override this target to hook in an Obfuscator of your choice. NB there are some pre-defined Sp.Obfuscation.*.targets alongside this file which can be included into your .csproj file with a simple Import statement."/>
     <Copy
         SourceFiles="$(Slps_Obfuscate_Input)"
         DestinationFiles="$(Slps_Obfuscate_Output)"
         SkipUnchangedFiles="true"/>
+    <!--If a valid PDB is available, Code Protector will work from there too-->
     <Copy
         SourceFiles="$(Slps_Obfuscate_Input).pdb"
         DestinationFiles="$(Slps_Obfuscate_Output).pdb"
         SkipUnchangedFiles="true"
         Condition="Exists('$(Slps_Obfuscate_Input).pdb')"/>
-
   </Target>
-
 </Project>

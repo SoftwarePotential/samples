@@ -1,11 +1,16 @@
-﻿using Slps.ProtectionAttributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
+﻿/*
+ * Copyright (c) Inish Technology Ventures Limited.  All rights reserved.
+ * 
+ * This code is licensed under the BSD 3-Clause License included with this source
+ * 
+ * ALSO SEE: https://github.com/SoftwarePotential/samples/wiki/License
+ * 
+ */
 namespace Sp.Samples.IntegratingObfuscators.Library
 {
-    public class AnswerService
+	using Slps.ProtectionAttributes;
+
+	public class AnswerService
     {
         public string GetAnswer()
         {
