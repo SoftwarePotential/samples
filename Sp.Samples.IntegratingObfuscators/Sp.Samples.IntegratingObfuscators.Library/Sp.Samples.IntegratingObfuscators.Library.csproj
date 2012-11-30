@@ -30,6 +30,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>libraryKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
@@ -38,6 +44,7 @@
     <Compile Include="MethodStatus.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="libraryKey.snk" />
     <None Include="Sp.Samples.IntegratingObfuscators.Library.SLMCfg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

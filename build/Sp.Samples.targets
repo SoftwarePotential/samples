@@ -23,7 +23,7 @@
 
   <Target Name="ValidatePermutationId">
     <Message Text="Metrics: $(ShortId.Length) $(SlpsRuntimePermutationId.Length) " />
-    <Error Text="This Sample has not yet been customized for your Software Potential Permutation Id. Please run ConfigureSample.cmd." 
+    <Error Text="This Sample has not yet been customized for your Software Potential Permutation Id. Please run ConfigureSample.cmd."
       Condition=" $(ShortId.Length) != 5 OR $(SlpsRuntimePermutationId.Length) != 36 " />
   </Target>
 
@@ -34,6 +34,15 @@
     <PropertyGroup>
       <_CsContent>
         <![CDATA[
+/*
+ * Copyright (c) Inish Technology Ventures Limited.  All rights reserved.
+ * 
+ * This code is licensed under the BSD 3-Clause License included with this source
+ * 
+ * ALSO SEE: https://github.com/SoftwarePotential/samples/wiki/License
+ * 
+ */
+
 namespace $(RootNamespace)
 {
 	partial class SpAgent
@@ -51,10 +60,10 @@ namespace $(RootNamespace)
             Query="/msb:Project/msb:PropertyGroup/msb:SlpsRuntimePermutationId"
             Value="TODO - Please run ConfigureSample.cmd" />
 
-      <XmlPoke Namespaces="&lt;Namespace Prefix='msb' Uri='http://schemas.microsoft.com/developer/msbuild/2003'/&gt;"
-              XmlInputPath="SpAgent.props"
-              Query="/msb:Project/msb:PropertyGroup/msb:ShortId"
-              Value="TODO - Please run ConfigureSample.cmd" />
+    <XmlPoke Namespaces="&lt;Namespace Prefix='msb' Uri='http://schemas.microsoft.com/developer/msbuild/2003'/&gt;"
+            XmlInputPath="SpAgent.props"
+            Query="/msb:Project/msb:PropertyGroup/msb:ShortId"
+            Value="TODO - Please run ConfigureSample.cmd" />
     <WriteLinesToFile File="$(MSBuildProjectDirectory)\SpAgent.Permutation.cs" Lines="$(_CsContent)" Overwrite="true" />
   </Target>
 

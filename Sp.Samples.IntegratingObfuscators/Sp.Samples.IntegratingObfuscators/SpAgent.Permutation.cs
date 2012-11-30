@@ -6,6 +6,7 @@
  * ALSO SEE: https://github.com/SoftwarePotential/samples/wiki/License
  * 
  */
+
 namespace Sp.Samples.IntegratingObfuscators
 {
 	partial class SpAgent
