@@ -1,6 +1,6 @@
-This is the master repository for the Software Potential Samples.
+This is the master repository for Samples provided by the Software Potential support team.
 
-At present, there is just a single sample. As more are added, this information will be migrated to the invidual Sample directories.
+There are indivual per-sample walk-throughs in individual Sample directories - this README only covers general topics around configuring and compiling the samples.
 
 # Documentation 
 
@@ -8,17 +8,17 @@ Please refer to [the Samples wiki](https://github.com/SoftwarePotential/samples/
 
 # Before you start
 
-## 1. Linking the sample to your permutation
+## 1. Linking the samples to your permutation
 
 The repository just contains the source and relies on Code Protector and the Runtime DLLs from within your `.SLMPermutation` file. To link the sample to your specific Permutation, it is necessary to first embed the id into the build files by executing a batch file from the command prompt :- <code>ConfigureSample.cmd &lt;your permutation id number></code>
 
 Example:
-    <code>&lt;work area>\Sp.Samples.Agent.WpfApplicationWithInstaller\Sp.Samples.Agent.WpfApplication> ConfigureSample.cmd 90c24107-d181-4542-a210-82112983711d</code>
+    <code>&lt;work area> ConfigureSample.cmd 90c24107-d181-4542-a210-82112983711d</code>
 
-**NB if you have the solution open in Visual Studio, you MUST close and reopen the solution as MSBuild .targets files are cached in VS2010 and later.**
+**NB if you have the solution open in Visual Studio, you MUST close and reopen the _Solution_ as MSBuild .targets files are cached. This note applies to all versions of Visual Studio from 2008 up.**
 
 
-## 2. Executing the sample
+## 2. Executing the WPF sample
 
 Because the code is intended to be reliant on a shared license store, it is necessary for an appropriate folder to be created and shared under elevated permissions prior to the first run of the application. For this reason, you should build and execute the installer project prior to running the sample:-
 
