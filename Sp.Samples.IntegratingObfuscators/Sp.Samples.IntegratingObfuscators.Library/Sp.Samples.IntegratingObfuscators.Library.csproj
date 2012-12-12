@@ -45,9 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="libraryKey.snk" />
-    <None Include="Sp.Samples.IntegratingObfuscators.Library.SLMCfg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="Sp.Samples.IntegratingObfuscators.Library.SLMCfg" />
     <None Include="SpAgent.props">
       <SubType>Designer</SubType>
     </None>
