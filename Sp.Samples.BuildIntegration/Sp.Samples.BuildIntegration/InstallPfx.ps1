@@ -14,7 +14,7 @@ $keyContainerName = "SpSampleCspContainer"
 $PWD
 
 $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
-$cert.Import($pfx, "SpSample", [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]::Exportable)
+$cert.Import($pfx, $password, [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]::Exportable)
 $exportPrivateKeyInformation = $true
 $certXml = $cert.PrivateKey.ToXmlString($exportPrivateKeyInformation)
 
