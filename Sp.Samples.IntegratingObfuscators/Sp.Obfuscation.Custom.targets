@@ -7,22 +7,12 @@
 * ALSO SEE: https://github.com/SoftwarePotential/samples/wiki/License -->
 <Project ToolsVersion="4.0" InitialTargets="ValidateSdkPath"  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <!-- Override this target if you plan to hook in a custom Obfuscator -->
-  
-  <!-- When the target is invoked,
-   - the input assembly is at $(SpObfuscateInput), in $(SpObfuscateBeforePath)
-   - the output must be written to $(SpObfuscateOutput) in $(SpObfuscateAfterPath) -->
-  <Target Name="SpObfuscate">
-    <Warning Text="Override this target to hook in an Obfuscator of your choice. NB there are some pre-defined Sp.Obfuscation.*.targets alongside this file which can be included into your .csproj file with a simple Import statement."/>
-    <Copy
-        SourceFiles="$(SpObfuscateInput)"
-        DestinationFiles="$(SpObfuscateOutput)"
-        SkipUnchangedFiles="true"/>
-    <!--If a valid PDB is available, Code Protector will work from there too-->
-    <Copy
-        SourceFiles="$(SpObfuscateInput).pdb"
-        DestinationFiles="$(SpObfuscateOutput).pdb"
-        SkipUnchangedFiles="true"
-        Condition="Exists('$(SpObfuscateInput).pdb')"/>
+
+  <!--This is the hook we use to obfuscate an assembly before it is protected-->
+  <Target Name="BeforeSpProtect">
+
+    <Warning Text="TODO: Obfuscate @(SpProtectInputAssembly) here and/or remove this warning. Check out the Sp.Obfuscation.*.targets for examples." />
+
   </Target>
+
 </Project>

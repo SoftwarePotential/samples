@@ -5,7 +5,7 @@
 * This code is licensed under the BSD 3-Clause License included with this source
 *
 * ALSO SEE: https://github.com/SoftwarePotential/samples/wiki/License -->
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" InitialTargets="ValidateSdkPath"  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <!--Babel installs Babel.Build into the GAC - we do not redistribute it for licensing reasons-->
   <UsingTask TaskName="Babel" AssemblyName="Babel.Build, Version=6.0.0.0, Culture=neutral, PublicKeyToken=138d17b5bd621ab7" />
@@ -51,11 +51,19 @@
     <!--<RuleFile Include="babelRules.xml" />-->
   </ItemGroup>
 
-  <Target Name="Slps_Obfuscate">
-    <Message Text="Obfuscating $(BabelInputFile)..." />
+  <!--This is the hook we use to obfuscate an assembly before it is protected-->
+  <Target Name="BeforeSpProtect">
+
+    <Message Text="Obfuscating $(SpProtectInputAssembly)..." />
+
+    <!-- We invoke Babel in a Sub-MSBuild Task because Babel sometimes does not properly release its file handles, not allowing ProtectCmd to run properly -->
+    <MSBuild Projects="$(MSBuildThisFileFullPath)" Targets="InvokeBabel"></MSBuild>
+  </Target>
+
+  <Target Name="InvokeBabel">
     <Babel
-      InputFile="$(Slps_Obfuscate_Input)"
-      OutputFile="$(Slps_Obfuscate_Output)"
+      InputFile="@(SpProtectInputAssembly)"
+      OutputFile="@(SpProtectInputAssembly)"
       MergeAssemblies="@(MergeAssembly)"
       RulesFiles="@(RuleFile)"
       ShowLogo="$(ShowLogo)"
@@ -84,4 +92,5 @@
       VerboseLevel="$(VerboseLevel)"
       ShowStatistics="$(ShowStatistics)"/>
   </Target>
+
 </Project>
