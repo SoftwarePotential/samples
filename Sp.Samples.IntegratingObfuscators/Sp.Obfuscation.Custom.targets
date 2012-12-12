@@ -10,19 +10,19 @@
   <!-- Override this target if you plan to hook in a custom Obfuscator -->
   
   <!-- When the target is invoked,
-   - the input assembly is at $(Slps_Obfuscate_Input), in $(Slps_Obfuscate_BeforePath)
-   - the output must be written to $(Slps_Obfuscate_Output) in $(Slps_Obfuscate_AfterPath) -->
-  <Target Name="Slps_Obfuscate">
+   - the input assembly is at $(SpObfuscateInput), in $(SpObfuscateBeforePath)
+   - the output must be written to $(SpObfuscateOutput) in $(SpObfuscateAfterPath) -->
+  <Target Name="SpObfuscate">
     <Warning Text="Override this target to hook in an Obfuscator of your choice. NB there are some pre-defined Sp.Obfuscation.*.targets alongside this file which can be included into your .csproj file with a simple Import statement."/>
     <Copy
-        SourceFiles="$(Slps_Obfuscate_Input)"
-        DestinationFiles="$(Slps_Obfuscate_Output)"
+        SourceFiles="$(SpObfuscateInput)"
+        DestinationFiles="$(SpObfuscateOutput)"
         SkipUnchangedFiles="true"/>
     <!--If a valid PDB is available, Code Protector will work from there too-->
     <Copy
-        SourceFiles="$(Slps_Obfuscate_Input).pdb"
-        DestinationFiles="$(Slps_Obfuscate_Output).pdb"
+        SourceFiles="$(SpObfuscateInput).pdb"
+        DestinationFiles="$(SpObfuscateOutput).pdb"
         SkipUnchangedFiles="true"
-        Condition="Exists('$(Slps_Obfuscate_Input).pdb')"/>
+        Condition="Exists('$(SpObfuscateInput).pdb')"/>
   </Target>
 </Project>
