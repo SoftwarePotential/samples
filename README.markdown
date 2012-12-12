@@ -13,7 +13,7 @@ The repository just contains the source and relies on Code Protector and the Run
 Example:
     <code>&lt;work area> configure.cmd 90c24107-d181-4542-a210-82112983711d</code>
 
-**NB if you have the solution open in Visual Studio, you MUST close and reopen the _Solution_ as MSBuild .targets files are cached. This note applies to all versions of Visual Studio earlier than VS2012.**
+**NB if you have the solution open in Visual Studio 2010, you MUST close and reopen the solution as MSBuild .targets files are cached (does not apply to VS 2012 or 2008).**
 
 ## 2. Setup a machine License Store
 

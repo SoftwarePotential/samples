@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+* Copyright (c) Inish Technology Ventures Limited.  All rights reserved.
+*
+* This code is licensed under the BSD 3-Clause License included with this source
+*
+* ALSO SEE: https://github.com/SoftwarePotential/samples/wiki/License -->
+<Project ToolsVersion="4.0" InitialTargets="ValidateSdkPath"  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!--Babel installs Babel.Build into the GAC - we do not redistribute it for licensing reasons-->
+  <UsingTask TaskName="Babel" AssemblyName="Babel.Build, Version=6.0.0.0, Culture=neutral, PublicKeyToken=138d17b5bd621ab7" />
+
+  <PropertyGroup>
+    <OverloadedRenaming>true</OverloadedRenaming>
+    <StringEncryption>false</StringEncryption>
+    <FlattenNamespaces>true</FlattenNamespaces>
+    <DeadCodeElimination>false</DeadCodeElimination>
+    <ILIterations>3</ILIterations>
+    <DynamicProxy>None</DynamicProxy>
+    <SealClasses>false</SealClasses>
+    <ShowLogo>false</ShowLogo>
+    <MsilEncryption>false</MsilEncryption>
+    <ShowStatistics>false</ShowStatistics>
+    <ObfuscateXaml>false</ObfuscateXaml>
+    <VerboseLevel>2</VerboseLevel>
+    <ObfuscateProperties>true</ObfuscateProperties>
+    <SuppressIldasm>false</SuppressIldasm>
+    <!--Must be false to allow protection-->
+    <ObfuscateFields>true</ObfuscateFields>
+    <GenerateDebug>false</GenerateDebug>
+    <ObfuscateMethods>true</ObfuscateMethods>
+    <EnableObfuscationAgent>true</EnableObfuscationAgent>
+    <SuppressReflection>false</SuppressReflection>
+    <!--Must be false to allow protection-->
+    <ControlFlowObfuscation>true;token=false;underflow=false;goto=true;if=true;switch=true;case=true</ControlFlowObfuscation>
+    <VirtualFunctions>true</VirtualFunctions>
+    <ObfuscateEvents>true</ObfuscateEvents>
+    <ObfuscateTypes>true</ObfuscateTypes>
+    <ResourceEncryption>false</ResourceEncryption>
+    <UnicodeNormalization>false</UnicodeNormalization>
+    <!--Must be false to allow protection-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--Specify assemblies to merge-->
+    <!--<MergeAssembly Include="Sp.Samples.IntegratingObfuscators.Library.dll" />-->
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--Link your custom babel rules file here-->
+    <!--<RuleFile Include="babelRules.xml" />-->
+  </ItemGroup>
+
+  <!--This is the hook we use to obfuscate an assembly before it is protected-->
+  <Target Name="BeforeSpProtect">
+
+    <Message Text="Obfuscating $(SpProtectInputAssembly)..." />
+
+    <!-- We invoke Babel in a Sub-MSBuild Task because Babel sometimes does not properly release its file handles, not allowing ProtectCmd to run properly -->
+    <MSBuild Projects="$(MSBuildThisFileFullPath)" Targets="InvokeBabel"></MSBuild>
+  </Target>
+
+  <Target Name="InvokeBabel">
+    <Babel
+      InputFile="@(SpProtectInputAssembly)"
+      OutputFile="@(SpProtectInputAssembly)"
+      MergeAssemblies="@(MergeAssembly)"
+      RulesFiles="@(RuleFile)"
+      ShowLogo="$(ShowLogo)"
+      EnableObfuscationAgent="$(EnableObfuscationAgent)"
+      FlattenNamespaces="$(FlattenNamespaces)"
+      UnicodeNormalization="$(UnicodeNormalization)"
+      ObfuscateTypes="$(ObfuscateTypes)"
+      ObfuscateEvents="$(ObfuscateEvents)"
+      ObfuscateMethods="$(ObfuscateMethods)"
+      ObfuscateProperties="$(ObfuscateProperties)"
+      ObfuscateFields="$(ObfuscateFields)"
+      ObfuscateXaml="$(ObfuscateXaml)"
+      VirtualFunctions="$(VirtualFunctions)"
+      OverloadedRenaming="$(OverloadedRenaming)"
+      ControlFlowObfuscation="$(ControlFlowObfuscation)"
+      ILIterations="$(ILIterations)"
+      StringEncryption="$(StringEncryption)"
+      MsilEncryption="$(MsilEncryption)"
+      DynamicProxy="$(DynamicProxy)"
+      ResourceEncryption="$(ResourceEncryption)"
+      SuppressIldasm="$(SuppressIldasm)"
+      SuppressReflection="$(SuppressReflection)"
+      SealClasses="$(SealClasses)"
+      DeadCodeElimination="$(DeadCodeElimination)"
+      GenerateDebug="$(GenerateDebug)"
+      VerboseLevel="$(VerboseLevel)"
+      ShowStatistics="$(ShowStatistics)"/>
+  </Target>
+
+</Project>

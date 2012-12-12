@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+* Copyright (c) Inish Technology Ventures Limited.  All rights reserved.
+*
+* This code is licensed under the BSD 3-Clause License included with this source
+*
+* ALSO SEE: https://github.com/SoftwarePotential/samples/wiki/License -->
+<Project ToolsVersion="4.0" InitialTargets="ValidateSdkPath"  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+
+  <!--This is the hook we use to obfuscate an assembly before it is protected-->
+  <Target Name="BeforeSpProtect">
+
+    <Warning Text="TODO: Obfuscate @(SpProtectInputAssembly) here and/or remove this warning. Check out the Sp.Obfuscation.*.targets for examples." />
+
+  </Target>
+
+</Project>
