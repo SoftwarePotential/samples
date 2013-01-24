@@ -1,0 +1,20 @@
+# Sample Online Sales Application using Software Potential’s Web APIs
+The purpose of this ASP.NET MVC 4 web application sample is to demonstrate the use of the [Software Potential](srv.softwarepotential.com) Web APIs. 
+
+The application facilitates assignment of Software Potential SKU Ids to Vendor’s products for sale through their web sites. On purchase of a product, your customer is provided with information pertaining to a newly created license based on the SKU Id associated with the purchased product. This is achieved through use of the Software Potential Web Service.
+
+## Prerequisites
+* This sample requires .NET 4.0 on your development machine
+* The solution supports Visual Studio 2010 or later
+* To adjust the sample to reflect your business and your products, you’ll need to have a functioning Software Potential account, which contains products and SKUs defined for products that you provide. However, the application as it is, uses credentials and products from a demo Software Potential account and so it will work without any modification.
+
+### 0.  Download the sample code onto your machine
+* You can take it as a ZIP from [here](https://github.com/SoftwarePotential/samples)
+* You can get it via Git at [ADDRESS](https://github.com/SoftwarePotential/samples)
+
+### 1.	Adjusting the sample for your Software Potential account
+This application will work without any adjustments. However, some adustments will be required for you to make use of the web service based on your own Software Potential account details.
+* Replace the user credentials contained within the 'PurchaseService.cs' class to those of your own Software Potential account
+* Create or edit the catalog entries contained within the Site Administration section of the application to reflect the products you have set up as Skus at the Software Potential Service 
+	* It is important that you use valid Sku Ids from your own account so that the application
+	* You may need to set up new products on the Software Potential service, and this process is outlined here
