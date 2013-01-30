@@ -8,7 +8,7 @@ Please refer to [the Samples wiki](https://github.com/SoftwarePotential/samples/
 
 ## 1. Linking the samples to your permutation
 
-The repository just contains the source and relies on Code Protector and the Runtime DLLs from within your `.SLMPermutation` file. To link the sample to your specific Permutation, it is necessary to first embed the id into the build files by executing a batch file from the command prompt :- <code>ConfigureSample.cmd &lt;your permutation id number></code>
+The repository just contains the source and relies on Code Protector and the Runtime DLLs from within your `.SLMPermutation` file. To link the sample to your specific Permutation, it is necessary to first embed the id into the build files by executing a batch file from the command prompt :- <code>configure.cmd &lt;your permutation id number></code>
 
 Example:
     <code>&lt;work area> configure.cmd 90c24107-d181-4542-a210-82112983711d</code>
