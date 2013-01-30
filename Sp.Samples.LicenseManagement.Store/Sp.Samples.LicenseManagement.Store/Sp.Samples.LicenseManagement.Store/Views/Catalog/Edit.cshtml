@@ -1,0 +1,65 @@
+﻿@model Sp.Samples.LicenseManagement.Store.Models.CatalogEntry
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>CatalogEntry</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductName)
+            @Html.ValidationMessageFor(model => model.ProductName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductVersion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductVersion)
+            @Html.ValidationMessageFor(model => model.ProductVersion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SkuId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SkuId)
+            @Html.ValidationMessageFor(model => model.SkuId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Blurb)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Blurb)
+            @Html.ValidationMessageFor(model => model.Blurb)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Sp.Samples.LicenseManagement.Store.Models.CatalogEntry>
+
+@{
+    ViewBag.Title = "Buy";
+}
+
+<h2>Buy</h2>
+
+
+@foreach (var item in Model) {
+    <section class="catalog">
+        <header>
+            <h3>Catalog Item:  @item.ProductName, @item.ProductVersion</h3>
+        </header>
+        <p>
+            <b>Description:</b> @item.Blurb
+        </p>        
+        <p>
+            @Html.ActionLink("Buy license for this product", "Purchase", new {id=item.Id})
+        </p>
+    </section>
+}
+

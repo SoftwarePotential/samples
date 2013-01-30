@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Sp.Samples.LicenseManagement.Store.Models.CatalogEntry>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Add a new item to the catalog", "Create")
+</p>
+
+@foreach (var item in Model) {  
+    
+    <section class="catalog">
+        <header>
+            <h3>Catalog Item:  @item.ProductName, @item.ProductVersion</h3>
+        </header>
+        <p>
+            <b>Description:</b> @item.Blurb
+        </p>
+        <p>
+            <b>Software Potential SKU ID:</b> @item.SkuId
+        </p>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new {id=item.Id}) | 
+            @Html.ActionLink("Delete", "Delete", new {id=item.Id})
+        </p>
+    </section>
+}

@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - Online Store Application</title>
+        <link href="@Url.Content("~/Content/Style.css")" rel="stylesheet" type="text/css" />
+        <script src="@Url.Content("~/Scripts/jquery-1.9.0.min.js")" type="text/javascript" ></script>        
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("Online Store Application", "Index", "Home")</p>
+                </div>
+                <div class="float-right">                    
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Buy", "Buy", "Catalog")</li>                            
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>        
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>@Html.ActionLink("Admin", "Index", "Catalog")</p>
+                    <p>&copy; @DateTime.Now.Year - Online Store Application</p>
+                </div>                
+            </div>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,64 @@
+﻿@model Sp.Samples.LicenseManagement.Store.Models.CatalogEntry
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>CatalogEntry</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductName)
+            @Html.ValidationMessageFor(model => model.ProductName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductVersion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductVersion)
+            @Html.ValidationMessageFor(model => model.ProductVersion)
+        </div>
+
+        <div class="editor-label">
+            <p>@Html.LabelFor(model => model.SkuId)
+            This value must correlate to a valid SkuId from the Software Potential Service</p>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SkuId)
+            @Html.ValidationMessageFor(model => model.SkuId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Blurb)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Blurb)
+            @Html.ValidationMessageFor(model => model.Blurb)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

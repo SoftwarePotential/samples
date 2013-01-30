@@ -1,0 +1,55 @@
+
+-- --------------------------------------------------
+-- Entity Designer DDL Script for SQL Server Compact Edition
+-- --------------------------------------------------
+-- Date Created: 01/30/2013 11:54:14
+-- Generated from EDMX file: D:\PC-Dev\Sp.Samples.LicenseManagement.Store\Sp.Samples.LicenseManagement.Store\Models\StoreModel.edmx
+-- --------------------------------------------------
+
+
+-- --------------------------------------------------
+-- Dropping existing FOREIGN KEY constraints
+-- NOTE: if the constraint does not exist, an ignorable error will be reported.
+-- --------------------------------------------------
+
+
+-- --------------------------------------------------
+-- Dropping existing tables
+-- NOTE: if the table does not exist, an ignorable error will be reported.
+-- --------------------------------------------------
+
+    DROP TABLE [CatalogEntries];
+GO
+
+-- --------------------------------------------------
+-- Creating all tables
+-- --------------------------------------------------
+
+-- Creating table 'CatalogEntries'
+CREATE TABLE [CatalogEntries] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [ProductName] nvarchar(4000)  NOT NULL,
+    [ProductVersion] nvarchar(4000)  NOT NULL,
+    [SkuId] nchar(36)  NOT NULL,
+    [Blurb] nvarchar(4000)  NOT NULL,
+    [Price] decimal(18,0)  NULL
+);
+GO
+
+-- --------------------------------------------------
+-- Creating all PRIMARY KEY constraints
+-- --------------------------------------------------
+
+-- Creating primary key on [Id] in table 'CatalogEntries'
+ALTER TABLE [CatalogEntries]
+ADD CONSTRAINT [PK_CatalogEntries]
+    PRIMARY KEY ([Id] );
+GO
+
+-- --------------------------------------------------
+-- Creating all FOREIGN KEY constraints
+-- --------------------------------------------------
+
+-- --------------------------------------------------
+-- Script has ended
+-- --------------------------------------------------

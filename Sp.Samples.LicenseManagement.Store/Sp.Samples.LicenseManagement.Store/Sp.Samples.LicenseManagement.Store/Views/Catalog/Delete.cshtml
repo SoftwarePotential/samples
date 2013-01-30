@@ -1,0 +1,53 @@
+﻿@model Sp.Samples.LicenseManagement.Store.Models.CatalogEntry
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this catalog item?</h3>
+<fieldset>
+    <legend>CatalogEntry</legend>
+
+    <div class="display-label">
+         <b>@Html.DisplayNameFor(model => model.ProductName)</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProductName)
+    </div>
+
+    <div class="display-label">
+         <b>@Html.DisplayNameFor(model => model.ProductVersion)</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProductVersion)
+    </div>
+
+    <div class="display-label">
+         <b>@Html.DisplayNameFor(model => model.SkuId)</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SkuId)
+    </div>
+
+    <div class="display-label">
+         <b>@Html.DisplayNameFor(model => model.Blurb)</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Blurb)
+    </div>
+
+    <div class="display-label">
+         <b>@Html.DisplayNameFor(model => model.Price)</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
