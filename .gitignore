@@ -8,10 +8,5 @@ obj
 _Teamcity.*
 Sp.Samples.Agent.WpfApplicationWithInstaller/Sp.Samples.Agent.WpfApplication/SpAgent.Permutation.cs
 Sp.Samples.Agent.WpfApplicationWithInstaller/Sp.Samples.Agent.WpfApplication/SpAgent.props
-<<<<<<< HEAD
 NuGet.exe
 packages
-=======
-Sp.Samples.LicenseManagement.Store/Sp.Samples.LicenseManagement.Store/.nuget/NuGet.exe
-Sp.Samples.LicenseManagement.Store/Sp.Samples.LicenseManagement.Store/packages
->>>>>>> dc721f0fcb3ec71150954ba3e8cd29150cd864d1
