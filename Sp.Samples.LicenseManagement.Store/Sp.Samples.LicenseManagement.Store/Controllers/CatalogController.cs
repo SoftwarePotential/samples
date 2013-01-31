@@ -33,7 +33,7 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 			var sqlRepository = new SqlCatalogRepository( ConfigurationManager.ConnectionStrings[ "StoreDbEntities" ].ConnectionString );
 			_catalogService = new CatalogService( sqlRepository );
 		}
-		
+
 		public ActionResult Index()
 		{
 			return View( _catalogService.ListAll() );
@@ -43,38 +43,41 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 		{
 			return View( _catalogService.ListAll() );
 		}
-		
+
 		public ActionResult Details( int id = 0 )
 		{
 			CatalogEntry catalogEntry = _catalogService.TryGet( id );
+			CatalogEntryModel catalogEntryModel = catalogEntry.ToViewModel();
 			if ( catalogEntry == null )
 				return HttpNotFound();
-			return View( catalogEntry );
+			return View( catalogEntryModel );
 		}
-		
+
 		public ActionResult Create()
 		{
 			return View();
 		}
-				
+
 		[HttpPost]
-		public ActionResult Create( CatalogEntry catalogEntry )
+		public ActionResult Create( CatalogEntryModel catalogEntryModel )
 		{
+			CatalogEntry entry = catalogEntryModel.ToServiceModel();
+
 			if ( ModelState.IsValid )
 			{
-				_catalogService.Add( catalogEntry );
+				_catalogService.Add( entry );
 				return RedirectToAction( "Index" );
 			}
-
-			return View( catalogEntry );
+			return View( entry );
 		}
-				
+
 		public ActionResult Edit( int id = 0 )
 		{
 			CatalogEntry catalogEntry = _catalogService.TryGet( id );
+			CatalogEntryModel catalogEntryModel = catalogEntry.ToViewModel();
 			if ( catalogEntry == null )
 				return HttpNotFound();
-			return View( catalogEntry );
+			return View( catalogEntryModel );
 		}
 
 		[HttpPost]
@@ -87,15 +90,16 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 			}
 			return View( catalogEntry );
 		}
-				
+
 		public ActionResult Delete( int id = 0 )
 		{
 			CatalogEntry catalogEntry = _catalogService.TryGet( id );
+			CatalogEntryModel catalogEntryModel = catalogEntry.ToViewModel();
 			if ( catalogEntry == null )
 				return HttpNotFound();
-			return View( catalogEntry );
+			return View( catalogEntryModel );
 		}
-				
+
 		[HttpPost, ActionName( "Delete" )]
 		public ActionResult DeleteConfirmed( int id )
 		{
@@ -110,6 +114,36 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 			ViewBag.Message = "Page under construction.";
 
 			return View();
+		}
+	}
+
+	static class CatalogEntryConversionExtensions
+	{
+		public static CatalogEntryModel ToViewModel( this CatalogEntry model )
+		{
+			CatalogEntryModel catalogEntryModel = new CatalogEntryModel
+			{
+				Id = model.Id,
+				ProductName = model.ProductName,
+				ProductVersion = model.ProductVersion,
+				Blurb = model.Blurb,
+				Price = model.Price,
+				SkuId = model.SkuId
+			};
+			return catalogEntryModel;
+		}
+
+		public static CatalogEntry ToServiceModel( this CatalogEntryModel model )
+		{
+			CatalogEntry entry = new CatalogEntry
+			{
+				ProductName = model.ProductName,
+				ProductVersion = model.ProductVersion,
+				Blurb = model.Blurb,
+				Price = model.Price,
+				SkuId = model.SkuId
+			};
+			return entry;
 		}
 	}
 }

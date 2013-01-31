@@ -90,6 +90,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CatalogEntryModel.cs" />
     <Compile Include="Models\ICatalogRepository.cs" />
     <Compile Include="Models\SqlCatalogRepository.cs" />
     <Compile Include="Services\CatalogEntry.cs">
