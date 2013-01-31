@@ -68,7 +68,7 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 				_catalogService.Add( entry );
 				return RedirectToAction( "Index" );
 			}
-			return View( entry );
+			return View( catalogEntryModel );
 		}
 
 		public ActionResult Edit( int id = 0 )
