@@ -13,6 +13,7 @@
 // PARTICULAR PURPOSE.
 
 using System.Collections.Generic;
+using Sp.Samples.LicenseManagement.Store.Services;
 
 namespace Sp.Samples.LicenseManagement.Store.Models
 {

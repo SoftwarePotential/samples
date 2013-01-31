@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server Compact Edition
 -- --------------------------------------------------
--- Date Created: 01/30/2013 11:54:14
--- Generated from EDMX file: D:\PC-Dev\Sp.Samples.LicenseManagement.Store\Sp.Samples.LicenseManagement.Store\Models\StoreModel.edmx
+-- Date Created: 01/31/2013 10:56:21
+-- Generated from EDMX file: D:\Code\Slps\GitHub\samples\Sp.Samples.LicenseManagement.Store\Sp.Samples.LicenseManagement.Store\Services\StoreModel.edmx
 -- --------------------------------------------------
 
 
@@ -28,11 +28,11 @@ GO
 -- Creating table 'CatalogEntries'
 CREATE TABLE [CatalogEntries] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [ProductName] nvarchar(4000)  NOT NULL,
-    [ProductVersion] nvarchar(4000)  NOT NULL,
-    [SkuId] nchar(36)  NOT NULL,
-    [Blurb] nvarchar(4000)  NOT NULL,
-    [Price] decimal(18,0)  NULL
+    [ProductName] nvarchar(100)  NOT NULL,
+    [ProductVersion] nvarchar(100)  NOT NULL,
+    [Blurb] nvarchar(100)  NOT NULL,
+    [SkuId] nchar(36)  NULL,
+    [Price] decimal(19,4)  NULL
 );
 GO
 

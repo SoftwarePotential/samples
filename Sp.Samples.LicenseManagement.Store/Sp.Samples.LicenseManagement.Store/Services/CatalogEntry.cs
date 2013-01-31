@@ -7,21 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sp.Samples.LicenseManagement.Store.Models
+namespace Sp.Samples.LicenseManagement.Store.Services
 {
     using System;
     using System.Collections.Generic;
-	using System.ComponentModel.DataAnnotations;
     
     public partial class CatalogEntry
     {
-		public int Id { get; set; }
-		[Display( Name = "Product Name" )]
-		public string ProductName { get; set; }
-		[Display( Name = "Product Version" )]
-		public string ProductVersion { get; set; }
-		public string SkuId { get; set; }
-		public string Blurb { get; set; }
-		public Nullable<decimal> Price { get; set; }
+        public int Id { get; set; }
+        public string ProductName { get; set; }
+        public string ProductVersion { get; set; }
+        public string Blurb { get; set; }
+        public string SkuId { get; set; }
+        public Nullable<decimal> Price { get; set; }
     }
 }

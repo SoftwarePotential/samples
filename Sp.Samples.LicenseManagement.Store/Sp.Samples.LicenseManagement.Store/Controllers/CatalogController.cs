@@ -30,7 +30,7 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 
 		public CatalogController()
 		{
-			var sqlRepository = new SqlCatalogRepository( ConfigurationManager.ConnectionStrings[ "StoreModelContainer" ].ConnectionString );
+			var sqlRepository = new SqlCatalogRepository( ConfigurationManager.ConnectionStrings[ "StoreDbEntities" ].ConnectionString );
 			_catalogService = new CatalogService( sqlRepository );
 		}
 		

@@ -15,6 +15,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using Sp.Samples.LicenseManagement.Store.Services;
 
 namespace Sp.Samples.LicenseManagement.Store.Models
 {
@@ -24,12 +25,12 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 
 		public SqlCatalogRepository( string connString )
 		{
-			this._connString = connString;
+			_connString = connString;
 		}
 
-		private StoreModelContainer CreateContext()
+		private StoreDbEntities CreateContext()
 		{
-			return new StoreModelContainer();
+			return new StoreDbEntities();
 		}
 
 		public IEnumerable<CatalogEntry> GetCatalogEntries()

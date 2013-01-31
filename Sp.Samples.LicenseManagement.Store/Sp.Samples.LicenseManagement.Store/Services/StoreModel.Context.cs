@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sp.Samples.LicenseManagement.Store.Models
+namespace Sp.Samples.LicenseManagement.Store.Services
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class StoreModelContainer : DbContext
+    public partial class StoreDbEntities : DbContext
     {
-        public StoreModelContainer()
-            : base("name=StoreModelContainer")
+        public StoreDbEntities()
+            : base("name=StoreDbEntities")
         {
         }
     
