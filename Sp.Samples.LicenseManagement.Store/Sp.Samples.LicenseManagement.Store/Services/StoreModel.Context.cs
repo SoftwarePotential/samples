@@ -26,5 +26,6 @@ namespace Sp.Samples.LicenseManagement.Store.Services
         }
     
         public DbSet<CatalogEntry> CatalogEntries { get; set; }
+        public DbSet<PurchaseRecord> PurchaseRecords { get; set; }
     }
 }

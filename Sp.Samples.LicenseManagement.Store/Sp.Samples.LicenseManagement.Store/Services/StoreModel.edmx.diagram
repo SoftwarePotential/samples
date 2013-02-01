@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="bb2e1932e6224f1083f2470013f902c3" Name="Diagram1">
         <EntityTypeShape EntityType="StoreDbModel.CatalogEntry" Width="1.5" PointX="5.875" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreDbModel.PurchaseRecord" Width="1.5" PointX="8.125" PointY="1.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

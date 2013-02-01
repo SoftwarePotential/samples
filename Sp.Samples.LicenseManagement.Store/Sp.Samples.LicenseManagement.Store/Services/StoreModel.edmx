@@ -5,26 +5,29 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="StoreDbModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-  <EntityContainer Name="StoreDbModelStoreContainer">
-    <EntitySet Name="CatalogEntries" EntityType="StoreDbModel.Store.CatalogEntries" store:Type="Tables" Schema="dbo" />
-  </EntityContainer>
-  <EntityType Name="CatalogEntries">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ProductName" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="ProductVersion" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="Blurb" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="SkuId" Type="nchar" Nullable="true" MaxLength="36" />
-    <Property Name="Price" Type="decimal" Nullable="true" Precision="19" Scale="4" />
-  </EntityType>
-</Schema></edmx:StorageModels>
+        <EntityContainer Name="StoreDbModelStoreContainer">
+          <EntitySet Name="PurchaseRecord" EntityType="StoreDbModel.Store.PurchaseRecord" store:Type="Tables" />
+        </EntityContainer>
+        <EntityType Name="PurchaseRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="CatalogEntryId" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="ProductVersion" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="LicenseId" Type="nvarchar" MaxLength="100" />
+          <Property Name="ActivationKey" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StoreDbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="StoreDbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CatalogEntries" EntityType="StoreDbModel.CatalogEntry" />
+          <EntitySet Name="PurchaseRecords" EntityType="StoreDbModel.PurchaseRecord" />
         </EntityContainer>
         <EntityType Name="CatalogEntry">
           <Key>
@@ -37,25 +40,40 @@
           <Property Name="SkuId" Type="String" MaxLength="36" Unicode="true" FixedLength="true" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
+        <EntityType Name="PurchaseRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Quantity" />
+          <Property Type="Int32" Name="CatalogEntryId" Nullable="false" />
+          <Property Type="String" Name="ProductName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProductVersion" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LicenseId" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ActivationKey" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="StoreDbModelStoreContainer" CdmEntityContainer="StoreDbEntities">
-    <EntitySetMapping Name="CatalogEntries">
-      <EntityTypeMapping TypeName="IsTypeOf(StoreDbModel.CatalogEntry)">
-        <MappingFragment StoreEntitySet="CatalogEntries">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-          <ScalarProperty Name="Blurb" ColumnName="Blurb" />
-          <ScalarProperty Name="SkuId" ColumnName="SkuId" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-  </EntityContainerMapping>
+  <EntitySetMapping Name="PurchaseRecords">
+            <EntityTypeMapping TypeName="StoreDbModel.PurchaseRecord">
+              <MappingFragment StoreEntitySet="PurchaseRecord">
+                <ScalarProperty Name="ActivationKey" ColumnName="ActivationKey" />
+                <ScalarProperty Name="LicenseId" ColumnName="LicenseId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="CatalogEntryId" ColumnName="CatalogEntryId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
