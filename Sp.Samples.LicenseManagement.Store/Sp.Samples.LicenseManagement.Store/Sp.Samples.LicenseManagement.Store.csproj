@@ -92,7 +92,10 @@
     </Compile>
     <Compile Include="Models\CatalogEntryModel.cs" />
     <Compile Include="Models\ICatalogRepository.cs" />
+    <Compile Include="Models\IPurchaseRecordRepository.cs" />
+    <Compile Include="Models\PurchaseRecordModel.cs" />
     <Compile Include="Models\SqlCatalogRepository.cs" />
+    <Compile Include="Models\SqlPurchaseRecordRepository.cs" />
     <Compile Include="Services\CatalogEntry.cs">
       <DependentUpon>StoreModel.tt</DependentUpon>
     </Compile>
