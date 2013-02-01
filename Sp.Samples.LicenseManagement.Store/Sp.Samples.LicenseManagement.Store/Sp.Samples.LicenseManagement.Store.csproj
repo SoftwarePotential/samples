@@ -97,6 +97,9 @@
       <DependentUpon>StoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\CatalogService.cs" />
+    <Compile Include="Services\PurchaseRecord.cs">
+      <DependentUpon>StoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Services\StoreModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
