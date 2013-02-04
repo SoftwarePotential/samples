@@ -1,0 +1,20 @@
+﻿@model Sp.Samples.LicenseManagement.Store.Models.CatalogEntryModel
+
+@{
+    ViewBag.Title = "SelectedProduct";
+}
+
+<h2>Selected Product</h2>
+
+        <header>
+            <h3>Catalog Item:  @Html.DisplayFor(model=>model.ProductName), @Html.DisplayFor(model=>model.ProductVersion) </h3>
+        </header>
+        <p>
+            <b>Description:</b> @Html.DisplayFor(model=>model.Blurb)
+        </p>     
+ @using (Html.BeginForm()) {      
+        <p>
+            <input type="submit" value="Buy license" /> | 
+            @Html.ActionLink("Back to list", "../Catalog/Buy")
+        </p>
+ }

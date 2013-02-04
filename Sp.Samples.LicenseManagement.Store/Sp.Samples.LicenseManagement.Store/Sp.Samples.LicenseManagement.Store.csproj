@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PurchaseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -103,6 +104,7 @@
     <Compile Include="Services\PurchaseRecord.cs">
       <DependentUpon>StoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Services\PurchaseService.cs" />
     <Compile Include="Services\StoreModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -204,6 +206,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Services\StoreModel.edmx.sqlce" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Purchase\SelectedProduct.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Purchase\ShowPurchasedInfo.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -13,9 +13,7 @@
 // PARTICULAR PURPOSE.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace Sp.Samples.LicenseManagement.Store.Models
 {
@@ -23,11 +21,16 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 	{
 		public int Id { get; set; }
 		public Nullable<int> Quantity { get; set; }
+		[ Display( Name="Catalog Entry" ) ]
 		public int CatalogEntryId { get; set; }
+		[ Display( Name="Product Name" ) ]
 		public string ProductName { get; set; }
+		[Display( Name = "Product Version" )]
 		public string ProductVersion { get; set; }
 		public string Description { get; set; }
+		[Display( Name = "License Id" )]
 		public string LicenseId { get; set; }
+		[Display( Name = "Activation Key" )]
 		public string ActivationKey { get; set; }
 	}
 }

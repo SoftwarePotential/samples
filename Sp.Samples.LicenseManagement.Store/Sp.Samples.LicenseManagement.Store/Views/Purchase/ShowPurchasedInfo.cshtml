@@ -1,0 +1,44 @@
+﻿@model Sp.Samples.LicenseManagement.Store.Models.PurchaseRecordModel
+
+@{
+    ViewBag.Title = "Purchase Details";
+}
+
+<h2>Purchase Details</h2>
+
+<fieldset>
+    <legend>PurchaseRecordModel</legend>
+
+    @*<div class="display-label">
+         <b>@Html.DisplayNameFor(model => model.Quantity)</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Quantity)
+    </div>*@
+
+    <p>
+         <b>@Html.DisplayNameFor(model => model.CatalogEntryId): </b>@Html.DisplayFor(model => model.CatalogEntryId)
+    </p>
+
+    <p>
+        <b>@Html.DisplayNameFor(model => model.ProductName): </b>@Html.DisplayFor(model => model.ProductName)
+    </p>
+
+    <p>
+        <b>@Html.DisplayNameFor(model => model.ProductVersion): </b>@Html.DisplayFor(model => model.ProductVersion)
+    </p>
+
+    <div class="display-label">
+         <b>@Html.DisplayNameFor(model => model.Description)</b>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <p><b>@Html.DisplayNameFor(model => model.LicenseId): </b>LICENSING API STEP NOT YET COMPLETED!</p>
+         
+    <p><b>@Html.DisplayNameFor(model => model.ActivationKey): </b>LICENSING API STEP NOT YET COMPLETED!</p>
+</fieldset>
+<p>    
+    @Html.ActionLink("Make another purchase", "../Catalog/Buy")
+</p>

@@ -108,13 +108,6 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 				_catalogService.Delete( catalogEntry );
 			return RedirectToAction( "Index" );
 		}
-
-		public ActionResult Purchase()
-		{
-			ViewBag.Message = "Page under construction.";
-
-			return View();
-		}
 	}
 
 	static class CatalogEntryConversionExtensions
