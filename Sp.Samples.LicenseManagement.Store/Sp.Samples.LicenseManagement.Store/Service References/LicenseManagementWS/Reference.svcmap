@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="15afd360-aa8c-406d-b3d7-4c368d25c9fd" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://srv.softwarepotential.com/SLMServerWS/LicenseManagementWS.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="LicenseManagementWS.disco" MetadataType="Disco" ID="3a7f2bf9-098f-4687-8f5d-ad6b5a8ab28b" SourceId="1" SourceUrl="https://srv.softwarepotential.com/SLMServerWS/LicenseManagementWS.svc?disco" />
+    <MetadataFile FileName="LicenseManagementWS.wsdl" MetadataType="Wsdl" ID="9efaa243-95b0-4fc3-a755-ea5763b3bb7f" SourceId="1" SourceUrl="https://srv.softwarepotential.com/SLMServerWS/LicenseManagementWS.svc?wsdl" />
+    <MetadataFile FileName="LicenseManagementWS1.wsdl" MetadataType="Wsdl" ID="4183d107-a329-42cd-8cf1-7ab382e14076" SourceId="1" SourceUrl="https://srv.softwarepotential.com/SLMServerWS/LicenseManagementWS.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="LicenseManagementWS.xsd" MetadataType="Schema" ID="516d86f2-e903-4f81-8b6a-671e30b99fb9" SourceId="1" SourceUrl="https://srv.softwarepotential.com/SLMServerWS/LicenseManagementWS.svc?xsd=xsd0" />
+    <MetadataFile FileName="LicenseManagementWS1.xsd" MetadataType="Schema" ID="4aab42df-4179-4305-9416-1def87a66441" SourceId="1" SourceUrl="https://srv.softwarepotential.com/SLMServerWS/LicenseManagementWS.svc?xsd=xsd3" />
+    <MetadataFile FileName="LicenseManagementWS2.xsd" MetadataType="Schema" ID="7d448cd1-6f99-481b-a276-959ffd946157" SourceId="1" SourceUrl="https://srv.softwarepotential.com/SLMServerWS/LicenseManagementWS.svc?xsd=xsd2" />
+    <MetadataFile FileName="LicenseManagementWS3.xsd" MetadataType="Schema" ID="b9b132b2-37d9-43ba-8e74-43c27b180b6d" SourceId="1" SourceUrl="https://srv.softwarepotential.com/SLMServerWS/LicenseManagementWS.svc?xsd=xsd4" />
+    <MetadataFile FileName="LicenseManagementWS4.xsd" MetadataType="Schema" ID="d3d2f02c-ccfa-4493-95ba-368ff1c15b2f" SourceId="1" SourceUrl="https://srv.softwarepotential.com/SLMServerWS/LicenseManagementWS.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
