@@ -14,6 +14,7 @@
 
 using Sp.Samples.LicenseManagement.Store.Models;
 using System;
+using System.Collections.Generic;
 
 namespace Sp.Samples.LicenseManagement.Store.Services
 {
@@ -38,6 +39,13 @@ namespace Sp.Samples.LicenseManagement.Store.Services
 			PurchaseRecord record = new PurchaseRecord();
 			record = _purchaseRecordRepository.TryGet( id );
 			return record;
+		}
+
+		public IEnumerable<PurchaseRecord> GetPurchaseRecords()
+		{
+			var items = _purchaseRecordRepository.GetPurchaseRecords();
+
+			return items;
 		}
 
 		public int RecordPurchase( CatalogEntry entry )

@@ -57,6 +57,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -97,6 +98,11 @@
     <Compile Include="Models\PurchaseRecordModel.cs" />
     <Compile Include="Models\SqlCatalogRepository.cs" />
     <Compile Include="Models\SqlPurchaseRecordRepository.cs" />
+    <Compile Include="Service References\LicenseManagementWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Services\CatalogEntry.cs">
       <DependentUpon>StoreModel.tt</DependentUpon>
     </Compile>
@@ -140,6 +146,13 @@
     <Content Include="Images\orderedList7.png" />
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
+    <Content Include="Service References\LicenseManagementWS\LicenseManagementWS.disco" />
+    <Content Include="Service References\LicenseManagementWS\configuration91.svcinfo" />
+    <Content Include="Service References\LicenseManagementWS\configuration.svcinfo" />
+    <Content Include="Service References\LicenseManagementWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -153,8 +166,42 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Catalog\Buy.cshtml" />
+    <Content Include="Views\Purchase\Buy.cshtml" />
     <Content Include="Views\Catalog\Purchase.cshtml" />
+    <Content Include="Service References\LicenseManagementWS\LicenseManagementWS.wsdl" />
+    <None Include="Service References\LicenseManagementWS\LicenseManagementWS.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Service References\LicenseManagementWS\LicenseManagementWS1.wsdl" />
+    <None Include="Service References\LicenseManagementWS\LicenseManagementWS1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LicenseManagementWS\LicenseManagementWS2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LicenseManagementWS\LicenseManagementWS3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LicenseManagementWS\LicenseManagementWS4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Service References\LicenseManagementWS\Sp.Samples.LicenseManagement.Store.LicenseManagementWS.Activation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LicenseManagementWS\Sp.Samples.LicenseManagement.Store.LicenseManagementWS.License.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LicenseManagementWS\Sp.Samples.LicenseManagement.Store.LicenseManagementWS.LicenseSummary.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LicenseManagementWS\Sp.Samples.LicenseManagement.Store.LicenseManagementWS.Product.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\LicenseManagementWS\Sp.Samples.LicenseManagement.Store.LicenseManagementWS.Sku.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Views\Purchase\ListPurchases.cshtml" />
+    <Content Include="Views\Purchase\PurchaseDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
@@ -212,6 +259,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Purchase\ShowPurchasedInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\LicenseManagementWS\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

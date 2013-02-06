@@ -15,7 +15,11 @@
                 <div class="float-right">                    
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink("Buy", "Buy", "Catalog")</li>                            
+                            <li>@Html.ActionLink("Buy", "Buy", "Purchase")</li>                            
+                            <li>@Html.ActionLink("Admin", "Index", "Catalog")</li>
+                        </ul>
+                        <ul>
+
                         </ul>
                     </nav>
                 </div>
@@ -30,7 +34,6 @@
         <footer>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p>@Html.ActionLink("Admin", "Index", "Catalog")</p>
                     <p>&copy; @DateTime.Now.Year - Online Store Application</p>
                 </div>                
             </div>

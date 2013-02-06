@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Sp.Samples.LicenseManagement.Store.Services.PurchaseRecord>
+
+@{
+    ViewBag.Title = "List of Purchases";
+}
+
+<h2>List of Purchases</h2>
+
+<table>
+    @foreach ( var item in Model )
+    {
+        <tr>
+            <td>
+                <h4>Purchase Record @Html.DisplayFor(modelItem => item.Id)</h4>
+                <p>Product: @Html.DisplayFor(modelItem=>item.ProductName) @Html.DisplayFor(modelItem=>item.ProductVersion)</p>
+                <p>Description: @Html.DisplayFor(modelItem=>item.Description)</p>
+                <p>LicenseId: @Html.DisplayFor(modelItem=>item.LicenseId)</p>
+                <p>Activation Key: @Html.DisplayFor(modelItem=>item.ActivationKey)</p>
+            </td>
+            <td>
+                @Html.ActionLink( "Details of this purchase", "PurchaseDetails", new { id=item.Id } )
+            </td>
+        </tr>
+    }
+</table>

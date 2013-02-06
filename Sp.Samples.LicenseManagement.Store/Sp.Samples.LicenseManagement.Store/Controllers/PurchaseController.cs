@@ -33,6 +33,25 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 			_catalogService = new CatalogService( sqlCatalogRepository );
 		}
 
+		public ActionResult Buy()
+		{
+			return View( _catalogService.ListAll() );
+		}
+
+		public ActionResult PurchaseDetails( int id = 0 )
+		{
+			PurchaseRecord purchaseRecord = _purchaseService.TryGet( id );
+			PurchaseRecordModel purchaseRecordModel = purchaseRecord.ToViewModel();
+			if ( purchaseRecord == null )
+				return HttpNotFound();
+			return View( purchaseRecordModel );
+		}
+
+		public ActionResult ListPurchases()
+		{
+			return View( _purchaseService.GetPurchaseRecords() );
+		}
+
 		public ActionResult SelectedProduct( int id )
 		{
 			CatalogEntry entry = _catalogService.TryGet( id );

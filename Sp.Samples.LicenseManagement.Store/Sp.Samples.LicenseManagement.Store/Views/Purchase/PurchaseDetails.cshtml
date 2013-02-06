@@ -1,0 +1,22 @@
+﻿@model Sp.Samples.LicenseManagement.Store.Models.PurchaseRecordModel
+
+@{
+    ViewBag.Title = "Purchase Details";
+}
+
+<h2>Purchase Details</h2>
+
+<fieldset>
+    <legend>PurchaseRecordModel</legend>
+
+    <p><b>Quantity: </b>@Html.DisplayFor(model => model.Quantity)</p>
+    <p><b>Catalog Entry Id: </b>@Html.DisplayFor(model => model.CatalogEntryId)</p>
+    <p><b>Product: </b>@Html.DisplayFor(model => model.ProductName), @Html.DisplayFor(model => model.ProductVersion)</p>
+    <p><b>Description: </b>@Html.DisplayFor(model => model.Description)</p>
+    <p><b>License Id: </b>@Html.DisplayFor(model => model.LicenseId)</p>
+    <p><b>Activation Key: </b>@Html.DisplayFor(model => model.ActivationKey)</p>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Back to List", "ListPurchases")
+</p>
