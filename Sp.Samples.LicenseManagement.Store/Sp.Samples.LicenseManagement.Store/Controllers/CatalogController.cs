@@ -37,12 +37,7 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 		public ActionResult Index()
 		{
 			return View( _catalogService.ListAll() );
-		}
-
-		public ActionResult Buy()
-		{
-			return View( _catalogService.ListAll() );
-		}
+		}		
 
 		public ActionResult Details( int id = 0 )
 		{
