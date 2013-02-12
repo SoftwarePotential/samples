@@ -84,6 +84,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CatalogController.cs" />
@@ -107,6 +108,7 @@
       <DependentUpon>StoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\CatalogService.cs" />
+    <Compile Include="Services\LicensingService.cs" />
     <Compile Include="Services\PurchaseRecord.cs">
       <DependentUpon>StoreModel.tt</DependentUpon>
     </Compile>
@@ -126,6 +128,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StoreModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="SoftwarePotentialConfiguration.cs" />
+    <Compile Include="SoftwarePotentialConfigurationFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -202,6 +206,9 @@
     </Content>
     <Content Include="Views\Purchase\ListPurchases.cshtml" />
     <Content Include="Views\Purchase\PurchaseDetails.cshtml" />
+    <Content Include="App_Data\SoftwarePotential.config" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\ConfigurationError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

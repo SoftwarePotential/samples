@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2013 (c) Inish Technology Ventures Limited.  All rights reserved.
  * 
  * This code is licensed under the BSD 3-Clause License included with this source
@@ -12,21 +12,22 @@
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
 // PARTICULAR PURPOSE.
 
-using System.Web.Mvc;
+using System.Web.Hosting;
 
-namespace Sp.Samples.LicenseManagement.Store.Controllers
+namespace Sp.Samples.LicenseManagement.Store
 {
-	[HandleError( ExceptionType = typeof( CredentialsNotConfiguredException ), View="ConfigurationError" )]
-	public class HomeController : Controller
+	public static class SoftwarePotentialConfiguration
 	{
-        public ActionResult Index()
-		{
-			#region Test for Credentials for on opening home page
-			var file = SoftwarePotentialConfiguration.File;
-			var credentials = file.ReadCredentials();	
-			#endregion
+		static readonly SoftwarePotentialConfigurationFile _configFile;
 
-			return View();
-        }
-    }
+		static SoftwarePotentialConfiguration()
+		{
+			_configFile = new SoftwarePotentialConfigurationFile( HostingEnvironment.MapPath( "~/App_Data/SoftwarePotential.config" ) );
+		}
+
+		public static SoftwarePotentialConfigurationFile File
+		{
+			get { return _configFile; }
+		}
+	}
 }
