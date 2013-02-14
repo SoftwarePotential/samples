@@ -12,20 +12,34 @@
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
 // PARTICULAR PURPOSE.
 
+using Sp.Samples.LicenseManagement.Store.Models;
 using System.Web.Mvc;
 
 namespace Sp.Samples.LicenseManagement.Store.Controllers
 {
-	[HandleError( ExceptionType = typeof( CredentialsNotConfiguredException ), View="ConfigurationError" )]
-	public class HomeController : Controller
-	{
+    public class AdminController : Controller
+    {
         public ActionResult Index()
-		{
-			#region Test for Credentials for on opening home page
-			var file = SoftwarePotentialConfiguration.File;
-			file.TestCredentials();	
-			#endregion
-			return View();
+        {
+            return View();
         }
+
+		public ActionResult SetCredentials()
+		{
+			var credentials = new CredentialsModel();
+			return View( credentials );
+		}
+
+		[HttpPost]
+		public ActionResult SetCredentials( CredentialsModel credentials )
+		{
+			if ( ModelState.IsValid )
+			{
+				var file = SoftwarePotentialConfiguration.File;
+				file.WriteCredentials( credentials.Username, credentials.Password );
+				return RedirectToAction( "Index", "Home" );
+			}
+			return View( credentials );
+		}
     }
 }

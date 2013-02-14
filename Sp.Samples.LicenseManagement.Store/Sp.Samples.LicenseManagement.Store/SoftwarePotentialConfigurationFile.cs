@@ -33,9 +33,14 @@ namespace Sp.Samples.LicenseManagement.Store
 			var appSettings = configurationNode.Element( "appSettings" );
 			string username = GetAppSettingsValueOrDefault( "username", appSettings );
 			string password = GetAppSettingsValueOrDefault( "password", appSettings );
-			if ( username == null || password == null )
+			if ( String.IsNullOrEmpty( username ) || password == null )
 				throw new CredentialsNotConfiguredException();
 			return new Credentials( username, password );
+		}
+
+		public void TestCredentials()
+		{
+			ReadCredentials();
 		}
 
 		static string GetAppSettingsValueOrDefault( string settingName, XElement appSettingsElement )
@@ -57,7 +62,16 @@ namespace Sp.Samples.LicenseManagement.Store
 
 		static void SetAppSettingsValue( string value, string settingName, XElement appSettingsElement )
 		{
-			ValueAttributeForSetting( settingName, appSettingsElement ).Value = value;
+			var key = SettingKey( settingName );
+			try
+			{
+				XElement appSettingAddElement = AppSettingAddElementKeyedBy( key, appSettingsElement );
+				appSettingAddElement.SetAttributeValue( "value", value );
+			}
+			catch ( Exception ex )
+			{
+				throw new Exception( String.Format( "There has been a problem setting the 'value' associated with the configuration/appSettings/add with key ='{0}'. Please ensure settings are specified in standard .NET appSettings format.", key ), ex );
+			}
 		}
 
 		static XAttribute ValueAttributeForSetting( string settingName, XElement appSettingsElement )
