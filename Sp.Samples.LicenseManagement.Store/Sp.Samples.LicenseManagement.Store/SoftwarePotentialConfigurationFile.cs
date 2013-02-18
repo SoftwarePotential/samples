@@ -38,7 +38,8 @@ namespace Sp.Samples.LicenseManagement.Store
 			return new Credentials( username, password );
 		}
 
-		public void TestCredentials()
+		// TOCONSIDER: Move top a higher level wrapper class which also supplies client proxies etc.
+		public void VerifyCredentialsAreConfigured()
 		{
 			ReadCredentials();
 		}

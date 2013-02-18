@@ -24,14 +24,15 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
             return View();
         }
 
-		public ActionResult SetCredentials()
+
+		public ActionResult SoftwarePotentialCredentials()
 		{
 			var credentials = new CredentialsModel();
 			return View( credentials );
 		}
 
 		[HttpPost]
-		public ActionResult SetCredentials( CredentialsModel credentials )
+		public ActionResult SoftwarePotentialCredentials( CredentialsModel credentials )
 		{
 			if ( ModelState.IsValid )
 			{

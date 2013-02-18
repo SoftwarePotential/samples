@@ -208,10 +208,12 @@
     </Content>
     <Content Include="Views\Purchase\ListPurchases.cshtml" />
     <Content Include="Views\Purchase\PurchaseDetails.cshtml" />
-    <Content Include="App_Data\SoftwarePotential.config" />
+    <Content Include="App_Data\SoftwarePotential.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\ConfigurationError.cshtml" />
-    <Content Include="Views\Admin\SetCredentials.cshtml" />
+    <Content Include="Views\Admin\SoftwarePotentialCredentials.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -16,16 +16,20 @@ using System.Web.Mvc;
 
 namespace Sp.Samples.LicenseManagement.Store.Controllers
 {
+	// If TriggerReroutingToConfigurationErrorPageIfNecessaryByTriggeringConfigurationException triggers an exception, we want to redirect to the configuration info page
+	// In a larger application, one would wish to apply this exception management on a more global basis in the FilterConfig
 	[HandleError( ExceptionType = typeof( CredentialsNotConfiguredException ), View="ConfigurationError" )]
 	public class HomeController : Controller
 	{
         public ActionResult Index()
 		{
-			#region Test for Credentials for on opening home page
-			var file = SoftwarePotentialConfiguration.File;
-			file.TestCredentials();	
-			#endregion
+			TriggerReroutingToConfigurationErrorPageIfNecessaryByTriggeringConfigurationException();
 			return View();
         }
-    }
+
+		static void TriggerReroutingToConfigurationErrorPageIfNecessaryByTriggeringConfigurationException()
+		{
+			SoftwarePotentialConfiguration.File.VerifyCredentialsAreConfigured();
+		}
+	}
 }

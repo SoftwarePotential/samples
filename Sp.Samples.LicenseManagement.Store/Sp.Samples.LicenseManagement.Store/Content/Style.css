@@ -340,8 +340,10 @@ textarea {
     input[type="submit"],
     input[type="button"],
     button {
-        background-color: #d3dce0;
-        border: 1px solid #787878;
+        background-color: #0066FF;
+        border: 1px solid #F5F5F5;
+        color: #F5F5F5;
+        border-radius: 10px;
         cursor: pointer;
         font-size: 1.2em;
         font-weight: 600;
