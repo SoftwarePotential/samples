@@ -7,6 +7,6 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 	{
 		IEnumerable<PurchaseRecord> GetPurchaseRecords();
 		PurchaseRecord TryGet( int id );
-		void Add( PurchaseRecord purchaseRecord );
+		PurchaseRecord Add( PurchaseRecord purchaseRecord );
 	}
 }

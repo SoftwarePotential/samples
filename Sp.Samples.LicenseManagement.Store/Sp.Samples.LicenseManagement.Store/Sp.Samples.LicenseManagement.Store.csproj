@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CatalogController.cs" />
+    <Compile Include="CredentialsNotConfiguredException.cs" />
     <Compile Include="Models\CredentialsModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PurchaseController.cs" />
@@ -110,6 +111,7 @@
       <DependentUpon>StoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\CatalogService.cs" />
+    <Compile Include="Credentials.cs" />
     <Compile Include="Services\LicensingService.cs" />
     <Compile Include="Services\PurchaseRecord.cs">
       <DependentUpon>StoreModel.tt</DependentUpon>

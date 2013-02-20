@@ -90,14 +90,15 @@ h5, h6 {
     background-color: #DCDCDC;
     clear: both;
     padding-bottom: 35px;
+    overflow-y:scroll;
+    scrollbar-base-color:#DCDCDC;
 }
 
     .main-content {
             background: url("../Images/accent.png") no-repeat;
             padding-left: 10px;
             padding-top: 30px;
-            min-height:400px;
-            height: auto;
+            height:450px;
     }
 
     .featured + .main-content {

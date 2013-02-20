@@ -12,6 +12,7 @@
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
 // PARTICULAR PURPOSE.
 
+using Sp.Samples.LicenseManagement.Store.LicenseManagementWS;
 using Sp.Samples.LicenseManagement.Store.Models;
 using Sp.Samples.LicenseManagement.Store.Services;
 using System.Configuration;
@@ -23,6 +24,7 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
     {
 		readonly PurchaseService _purchaseService;
         readonly CatalogService _catalogService;
+		readonly LicensingService _licensingService;
 
 		public PurchaseController()
 		{
@@ -31,6 +33,8 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 
 			var sqlCatalogRepository = new SqlCatalogRepository( ConfigurationManager.ConnectionStrings[ "StoreDbEntities" ].ConnectionString );
 			_catalogService = new CatalogService( sqlCatalogRepository );
+
+			_licensingService = new LicensingService( SoftwarePotentialConfiguration.File.ReadCredentials() );
 		}
 
 		public ActionResult Buy()
@@ -63,10 +67,12 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 		public ActionResult SelectedProductConfirmed( int id )
         {
 			var itemDetails = _catalogService.TryGet( id );
+			string skuId = itemDetails.SkuId;
 
-			int purchaseRecordId = _purchaseService.RecordPurchase( itemDetails );
+			License license = _licensingService.CreateLicenseFromSkuId( skuId );
 
-			var purchaseRecord = _purchaseService.TryGet( purchaseRecordId );
+			var purchaseRecord = _purchaseService.RecordPurchase( itemDetails, license );
+
 			var purchaseRecordModel = purchaseRecord.ToViewModel();
 
 			return RedirectToAction( "ShowPurchasedInfo", new { id = purchaseRecordModel.Id } );

@@ -12,6 +12,7 @@
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
 // PARTICULAR PURPOSE.
 
+using Sp.Samples.LicenseManagement.Store.LicenseManagementWS;
 using Sp.Samples.LicenseManagement.Store.Models;
 using System;
 using System.Collections.Generic;
@@ -29,9 +30,10 @@ namespace Sp.Samples.LicenseManagement.Store.Services
 			_purchaseRecordRepository = purchaseRecordRepository;
 		}
 
-		public void Add( PurchaseRecord record )
+		public PurchaseRecord Add( PurchaseRecord record )
 		{
 			_purchaseRecordRepository.Add( record );
+			return record;
 		}
 
 		public PurchaseRecord TryGet( int id )
@@ -48,19 +50,19 @@ namespace Sp.Samples.LicenseManagement.Store.Services
 			return items;
 		}
 
-		public int RecordPurchase( CatalogEntry entry )
+		public PurchaseRecord RecordPurchase( CatalogEntry entry, License license )
 		{
-			PurchaseRecord purchaseRecord = new PurchaseRecord();
-			purchaseRecord.CatalogEntryId = entry.Id;
-			purchaseRecord.ProductName = entry.ProductName;
-			purchaseRecord.ProductVersion = entry.ProductVersion;
-			purchaseRecord.Description = entry.Blurb;
-			//purchaseRecord.ActivationKey = activationKey;
-			//purchaseRecord.LicenseId = licenseId;
-			//purchaseRecord.Quantity = quantity;
+			PurchaseRecord purchaseRecord = new PurchaseRecord() 
+			{ 
+				CatalogEntryId = entry.Id, 
+				ProductName = entry.ProductName, 
+				ProductVersion = entry.ProductVersion, 
+				Description = entry.Blurb, 
+				ActivationKey = license.ActivationKey, 
+				LicenseId = license.LicenseId
+			};
 						
-			Add( purchaseRecord );
-			return purchaseRecord.Id;
+			return Add( purchaseRecord );
 		}
 	}
 }

@@ -35,9 +35,9 @@
         @Html.DisplayFor(model => model.Description)
     </div>
 
-    <p><b>@Html.DisplayNameFor(model => model.LicenseId): </b>LICENSING API STEP NOT YET COMPLETED!</p>
+    <p><b>@Html.DisplayNameFor(model => model.LicenseId): </b>@Html.DisplayFor(model => model.LicenseId)</p>
          
-    <p><b>@Html.DisplayNameFor(model => model.ActivationKey): </b>LICENSING API STEP NOT YET COMPLETED!</p>
+    <p><b>@Html.DisplayNameFor(model => model.ActivationKey): </b>@Html.DisplayFor(model => model.ActivationKey)</p>
 </fieldset>
 <p>    
     @Html.ActionLink("Make another purchase", "../Catalog/Buy")

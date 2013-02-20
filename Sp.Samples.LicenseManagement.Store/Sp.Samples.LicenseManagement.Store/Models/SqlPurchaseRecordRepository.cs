@@ -42,12 +42,13 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 			return recordsList;
 		}
 
-		public void Add( PurchaseRecord record )
+		public PurchaseRecord Add( PurchaseRecord record )
 		{
 			using (var context = CreateContext(  ) )
 			{
 				context.PurchaseRecords.Add( record );
 				context.SaveChanges();
+				return record;
 			}
 		}
 
