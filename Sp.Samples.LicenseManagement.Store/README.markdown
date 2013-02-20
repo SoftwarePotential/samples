@@ -12,10 +12,10 @@ This sample is intended to illustrate the required components of an application 
 
 # Using the Sample
 ## Initial Set-up
-* This sample currently uses credentials and products from a demonstration account on the Software Potential service.
-* To get most out of this sample, however, it may be more appropriate to adjust the application to reflect your business, and some of your own products that you have created at the Software Potential service.
-	* Include your Software Potential user credentials in the PurchaseService.cs class
-	* Navigate through to the site administration section of the application and either create new catalogue entries to reflect your existing SKUs, or modify the catalogue entries currently stored as part of the application.
+* A valid set of Software Potentials credentials must be configured within this application in order to commence working with it. These credentials may be configured in one of the following ways:-
+	* Open the SoftwarePotential.config file and manually enter 'value' attributes for both username and password to the respective 'add' elements
+	* Run the application in your browser and follow the instructions at the error page to a credentials entry page, and insert your username and password in the relevant text boxes
+	* Execute the configureSoftwarePotentialCredentials.ps1 file(a PowerShell Script ) and enter your username and password when prompted.
 
 ## Buying a product / Obtaining License Info
 * Navigate to the ‘Buy’ section of the site
@@ -25,5 +25,5 @@ This sample is intended to illustrate the required components of an application 
 # Troubleshooting
 The most common problems reported with the sample are:
 ### License information is not obtained
-* Ensure the user credentials you include in the 'PurchaseService.cs' class are accurate and for a valid Software Potential account
+* Ensure the user credentials you provide to the application are accurate and for a valid Software Potential account
 * Ensure that the account for which you included user credentials contains valid products and SKUs to make use of the Web APIs
