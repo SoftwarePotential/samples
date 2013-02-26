@@ -15,11 +15,15 @@
 using System;
 using System.Linq;
 using System.Xml.Linq;
+using System.Security.Cryptography;
+using System.IO;
+using System.Text;
 
 namespace Sp.Samples.LicenseManagement.Store
 {
 	public class SoftwarePotentialConfigurationFile
 	{
+		const string SharedSecret = "12345";
 		readonly string _path;
 
 		public SoftwarePotentialConfigurationFile( string path )
@@ -35,7 +39,9 @@ namespace Sp.Samples.LicenseManagement.Store
 			string password = GetAppSettingsValueOrDefault( "password", appSettings );
 			if ( String.IsNullOrEmpty( username ) || password == null )
 				throw new CredentialsNotConfiguredException();
-			return new Credentials( username, password );
+			//Decrypt password string at this point - AES/Rijndael decrypt function
+			string decryptedPassword = Encryption.DecryptString( password, SharedSecret );
+			return new Credentials( username, decryptedPassword );
 		}
 
 		// TOCONSIDER: Move top a higher level wrapper class which also supplies client proxies etc.
@@ -56,8 +62,10 @@ namespace Sp.Samples.LicenseManagement.Store
 		{
 			var configurationNode = XElement.Load( _path, LoadOptions.PreserveWhitespace );
 			var appSettings = configurationNode.Element( "appSettings" );
+			//Encrypting password string before setting the value
+			string encryptedPassword = Encryption.EncryptString( password, SharedSecret );
 			SetAppSettingsValue( username, "username", appSettings );
-			SetAppSettingsValue( password, "password", appSettings );
+			SetAppSettingsValue( encryptedPassword, "password", appSettings );
 			configurationNode.Save( _path );
 		}
 
@@ -97,31 +105,89 @@ namespace Sp.Samples.LicenseManagement.Store
 		{
 			return "SoftwarePotential.LicenseManagement.Credentials." + settingName;
 		}
-
-		public class Credentials
-		{
-			public Credentials( string username, string password )
-			{
-				Username = username;
-				Password = password;
-			}
-
-			public string Username { get; set; }
-			public string Password { get; set; }
-		}
 	}
 
-	public class CredentialsNotConfiguredException : Exception
+	public static class Encryption
 	{
-		public CredentialsNotConfiguredException()
-			: base( FormatMessage() )
+		//For further information on this encryption class, see
+		//http://stackoverflow.com/questions/202011/encrypt-decrypt-string-in-net
+
+		static byte[] _salt = Encoding.ASCII.GetBytes( "o4865465sdK5c3" );
+
+		public static string EncryptString( string plainText, string sharedSecret )
 		{
+			if ( string.IsNullOrEmpty( plainText ) )
+				throw new ArgumentNullException( "plainText" );
+			if ( string.IsNullOrEmpty( sharedSecret ) )
+				throw new ArgumentNullException( "sharedSecret" );
+			
+			using ( var aesAlg = new RijndaelManaged() )
+			{
+				//Generate a key from the shared secret and the salt
+				Rfc2898DeriveBytes key = new Rfc2898DeriveBytes( sharedSecret, _salt );
+
+				aesAlg.Key = key.GetBytes( aesAlg.KeySize / 8 );
+
+				//Create an encryptor to perform the stream transform
+				ICryptoTransform encryptor = aesAlg.CreateEncryptor( aesAlg.Key, aesAlg.IV );
+
+				//Create the streams used for encryption
+				using ( var msEncrypt = new MemoryStream() )
+				{
+					//Prepend the Initialization Vector
+					msEncrypt.Write( BitConverter.GetBytes( aesAlg.IV.Length ), 0, sizeof( int ) );
+					msEncrypt.Write( aesAlg.IV, 0, aesAlg.IV.Length );
+					using ( var csEncrypt = new CryptoStream( msEncrypt, encryptor, CryptoStreamMode.Write ) )
+					{
+						using ( var swEncrypt = new StreamWriter( csEncrypt ) )
+							//Write all data to the stream
+							swEncrypt.Write( plainText );
+						return Convert.ToBase64String( msEncrypt.ToArray() );
+					}
+				}
+			}
 		}
 
-		static string FormatMessage()
+		public static string DecryptString( string cipherText, string sharedSecret )
 		{
-			return String.Format( @"The Software Potential API credentials (appSettings values for {0} and/or {1}) have not been initialized).
-Please ensure the credentials are provisioned correctly", SoftwarePotentialConfigurationFile.SettingKey( "username" ), SoftwarePotentialConfigurationFile.SettingKey( "password" ) );
+			if ( string.IsNullOrEmpty( cipherText ) )
+				throw new ArgumentNullException( "cipherText" );
+			if ( string.IsNullOrEmpty( sharedSecret ) )
+				throw new ArgumentNullException( "sharedSecret" );
+			
+			using ( var aesAlg = new RijndaelManaged() )
+			{
+				//Generate a key from the shared secret and the salt
+				Rfc2898DeriveBytes key = new Rfc2898DeriveBytes( sharedSecret, _salt );
+
+				//Create streams used for decryption
+				byte[] bytes = Convert.FromBase64String( cipherText );
+				using ( var msDecrypt = new MemoryStream( bytes ) )
+				{
+					aesAlg.Key = key.GetBytes( aesAlg.KeySize / 8 );
+					//Get the initialization vector from the encrypted stream
+					aesAlg.IV = ReadByteArray( msDecrypt );
+
+					//Create a decryptor to perform the stream transform
+					ICryptoTransform decryptor = aesAlg.CreateDecryptor( aesAlg.Key, aesAlg.IV );
+					using ( var csDecrypt = new CryptoStream( msDecrypt, decryptor, CryptoStreamMode.Read ) )
+					using ( var srDecrypt = new StreamReader( csDecrypt ) )
+						return srDecrypt.ReadToEnd();
+				}
+			}
+		}
+		
+		static byte[] ReadByteArray( Stream s )
+		{
+			byte[] rawLength = new byte[ sizeof( int ) ];
+			if ( s.Read( rawLength, 0, rawLength.Length ) != rawLength.Length )
+				throw new SystemException( "Stream did not contain properly formatted byte array" );
+
+			byte[] buffer = new byte[ BitConverter.ToInt32( rawLength, 0 ) ];
+			if ( s.Read( buffer, 0, buffer.Length ) != buffer.Length )
+				throw new SystemException( "Did not read byte array properly" );
+
+			return buffer;
 		}
 	}
 }
