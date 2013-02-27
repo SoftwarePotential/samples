@@ -30,5 +30,7 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 		[Required( ErrorMessage = "A SkuId is required. Visit srv.softwarepotential.com to obtain/create a valid SkuId for this product." )]
 		public string SkuId { get; set; }
 		public Nullable<decimal> Price { get; set; }
+		[ Display( Name="License Type" ) ]
+		public string LicenseType { get; set; }
 	}
 }

@@ -116,7 +116,8 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 				ProductVersion = model.ProductVersion,
 				Blurb = model.Blurb,
 				Price = model.Price,
-				SkuId = model.SkuId
+				SkuId = model.SkuId,
+				LicenseType = model.LicenseType
 			};
 			return catalogEntryModel;
 		}
@@ -129,7 +130,8 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 				ProductVersion = model.ProductVersion,
 				Blurb = model.Blurb,
 				Price = model.Price,
-				SkuId = model.SkuId
+				SkuId = model.SkuId,
+				LicenseType = model.LicenseType
 			};
 			return entry;
 		}
