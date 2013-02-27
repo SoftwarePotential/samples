@@ -217,6 +217,23 @@
     <Content Include="Views\Shared\ConfigurationError.cshtml" />
     <Content Include="Views\Admin\SoftwarePotentialCredentials.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <EntityDeploy Include="Services\StoreModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>StoreModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Services\StoreModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StoreModel.edmx</DependentUpon>
+      <LastGenOutput>StoreModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Services\StoreModel.edmx.diagram">
+      <DependentUpon>StoreModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Services\StoreModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StoreModel.edmx</DependentUpon>
+      <LastGenOutput>StoreModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
@@ -244,27 +261,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Catalog\Delete.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="Services\StoreModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>StoreModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Services\StoreModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StoreModel.edmx</DependentUpon>
-      <LastGenOutput>StoreModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Services\StoreModel.edmx.diagram">
-      <DependentUpon>StoreModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Services\StoreModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StoreModel.edmx</DependentUpon>
-      <LastGenOutput>StoreModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Services\StoreModel.edmx.sqlce" />

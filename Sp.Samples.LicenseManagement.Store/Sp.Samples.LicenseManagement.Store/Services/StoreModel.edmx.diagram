@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bb2e1932e6224f1083f2470013f902c3" Name="Diagram1">
-        <EntityTypeShape EntityType="StoreDbModel.PurchaseRecord" Width="1.5" PointX="8.125" PointY="1.125" />
-        <EntityTypeShape EntityType="StoreDbModel.CatalogEntry" Width="1.5" PointX="5.75" PointY="1.125" />
+      <Diagram DiagramId="a0b56998313d4b108c129a0f44b6868c" Name="Diagram1">
+        <EntityTypeShape EntityType="StoreDbModel.CatalogEntry" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreDbModel.PurchaseRecord" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
