@@ -10,7 +10,7 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>CatalogEntry</legend>
+        <legend>CatalogEntryModel</legend>
 
         @Html.HiddenFor(model => model.Id)
 
@@ -31,19 +31,19 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.SkuId)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.SkuId)
-            @Html.ValidationMessageFor(model => model.SkuId)
-        </div>
-
-        <div class="editor-label">
             @Html.LabelFor(model => model.Blurb)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Blurb)
             @Html.ValidationMessageFor(model => model.Blurb)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SkuId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SkuId)
+            @Html.ValidationMessageFor(model => model.SkuId)
         </div>
 
         <div class="editor-label">

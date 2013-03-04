@@ -323,6 +323,15 @@ input, textarea {
     width: 300px;
 }
 
+select {
+    border: 1px solid #e2e2e2;
+    background: #fff;
+    color: #333;
+    font-size: 1.2em;
+    width:300px;
+    padding: 5px;
+}
+
 textarea {
     font-family: inherit;
     width: 500px;

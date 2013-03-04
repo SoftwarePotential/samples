@@ -1,7 +1,7 @@
 ﻿@model Sp.Samples.LicenseManagement.Store.Models.CatalogEntryModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Add a Catalog Entry";
 }
 
 <h2>Add a Catalog Entry</h2>
@@ -11,54 +11,99 @@
 
     <fieldset>
         <legend>CatalogEntry</legend>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductName)
-            @Html.ValidationMessageFor(model => model.ProductName)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductVersion)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductVersion)
-            @Html.ValidationMessageFor(model => model.ProductVersion)
-        </div>
-
-        <div class="editor-label">
-            <p>@Html.LabelFor(model => model.SkuId)
-            This value must correlate to a valid SkuId from the Software Potential Service</p>
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.SkuId)
-            @Html.ValidationMessageFor(model => model.SkuId)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Blurb)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Blurb)
-            @Html.ValidationMessageFor(model => model.Blurb)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Price)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Price)
-            @Html.ValidationMessageFor(model => model.Price)
-        </div>
-
-        <p>
-            <input type="submit" value="Add Entry" />
-        </p>
+        <table>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ProductName)
+                    </div>                    
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.ProductName)
+                        @Html.ValidationMessageFor(model => model.ProductName)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ProductVersion)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.ProductVersion)
+                        @Html.ValidationMessageFor(model => model.ProductVersion)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.SkuId)                        
+                    </div>
+                    
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.SkuId)
+                        @Html.ValidationMessageFor(model => model.SkuId)
+                    </div>                    
+                    SKU Id value must correlate to a valid SKU Id from the Software Potential Service
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.LicenseType)                        
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(l=>l.LicenseType, new SelectList(ViewBag.LicenseType, Model), "---Select License Type---")
+                        @Html.ValidationMessageFor(model => model.LicenseType)
+                    </div>
+                    License Type must correlate to a license definition at the Software Potential Service
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Blurb)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Blurb)
+                        @Html.ValidationMessageFor(model => model.Blurb)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Price)
+                    </div>                    
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Price)
+                        @Html.ValidationMessageFor(model => model.Price)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Add Catalog Entry" />
+                </td>
+                <td>
+                    <div>
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                </td>
+            </tr>   
+        </table>
     </fieldset>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

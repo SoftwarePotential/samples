@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Sp.Samples.LicenseManagement.Store.Services.CatalogEntry>
+﻿@model IEnumerable<Sp.Samples.LicenseManagement.Store.Models.CatalogEntryModel>
 
 @{
     ViewBag.Title = "Index";
@@ -21,6 +21,9 @@
         </p>
         <p>
             <b>Software Potential SKU ID:</b> @item.SkuId
+        </p>
+        <p>
+            <b>License Type:</b> @item.LicenseType
         </p>
         <p>
             @Html.ActionLink("Edit", "Edit", new {id=item.Id}) | 
