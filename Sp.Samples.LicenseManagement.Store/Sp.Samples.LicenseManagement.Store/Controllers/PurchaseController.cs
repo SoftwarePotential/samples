@@ -15,6 +15,8 @@
 using Sp.Samples.LicenseManagement.Store.LicenseManagementWS;
 using Sp.Samples.LicenseManagement.Store.Models;
 using Sp.Samples.LicenseManagement.Store.Services;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Web.Mvc;
 
@@ -39,7 +41,16 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 
 		public ActionResult Buy()
 		{
-			return View( _catalogService.ListAll() );
+			List<CatalogEntryModel> catalogEntryModels = new List<CatalogEntryModel>();
+
+			foreach ( CatalogEntry entry in _catalogService.ListAll() )
+			{
+				var catalogEntryViewModel = entry.ToViewModel();
+				if ( String.IsNullOrEmpty( catalogEntryViewModel.LicenseType ) )
+					catalogEntryViewModel.LicenseType = "N/A";
+				catalogEntryModels.Add( catalogEntryViewModel );
+			}
+			return View( catalogEntryModels );
 		}
 
 		public ActionResult PurchaseDetails( int id = 0 )
@@ -53,7 +64,17 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 
 		public ActionResult ListPurchases()
 		{
-			return View( _purchaseService.GetPurchaseRecords() );
+			List<PurchaseRecordModel> purchaseRecordModels = new List<PurchaseRecordModel>();
+
+			foreach ( PurchaseRecord record in _purchaseService.GetPurchaseRecords() )
+			{
+				var purchaseRecordViewModel = record.ToViewModel();
+				if ( String.IsNullOrEmpty( purchaseRecordViewModel.LicenseType ) )
+					purchaseRecordViewModel.LicenseType = "N/A";
+				purchaseRecordModels.Add( purchaseRecordViewModel );
+			}
+
+			return View( purchaseRecordModels );
 		}
 
 		public ActionResult SelectedProduct( int id )
@@ -98,6 +119,7 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 				ProductName = model.ProductName,
 				ProductVersion = model.ProductVersion,
 				Description = model.Description,
+				LicenseType = model.LicenseType,
 				ActivationKey = model.ActivationKey,
 				LicenseId = model.LicenseId
 			};
@@ -114,6 +136,7 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 				ProductName = model.ProductName,
 				ProductVersion = model.ProductVersion,
 				Description = model.Description,
+				LicenseType = model.LicenseType,
 				ActivationKey = model.ActivationKey,
 				LicenseId = model.LicenseId
 			};

@@ -112,6 +112,7 @@
     </Compile>
     <Compile Include="Services\CatalogService.cs" />
     <Compile Include="Credentials.cs" />
+    <Compile Include="Services\LicenseTypeService.cs" />
     <Compile Include="Services\LicensingService.cs" />
     <Compile Include="Services\PurchaseRecord.cs">
       <DependentUpon>StoreModel.tt</DependentUpon>
@@ -217,6 +218,7 @@
     <Content Include="Views\Shared\ConfigurationError.cshtml" />
     <Content Include="Views\Admin\SoftwarePotentialCredentials.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Catalog\Edit.cshtml" />
     <EntityDeploy Include="Services\StoreModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>StoreModel.Designer.cs</LastGenOutput>
@@ -255,9 +257,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Catalog\Create.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Catalog\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Catalog\Delete.cshtml" />

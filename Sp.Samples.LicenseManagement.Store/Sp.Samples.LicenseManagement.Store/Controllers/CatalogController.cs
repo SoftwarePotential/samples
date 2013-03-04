@@ -16,6 +16,8 @@ using System.Web.Mvc;
 using Sp.Samples.LicenseManagement.Store.Models;
 using Sp.Samples.LicenseManagement.Store.Services;
 using System.Configuration;
+using System.Collections.Generic;
+using System;
 
 namespace Sp.Samples.LicenseManagement.Store.Controllers
 {
@@ -27,17 +29,29 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 	public class CatalogController : Controller
 	{
 		readonly CatalogService _catalogService;
+		readonly LicenseTypeService _licenseTypeService;
 
 		public CatalogController()
 		{
 			var sqlRepository = new SqlCatalogRepository( ConfigurationManager.ConnectionStrings[ "StoreDbEntities" ].ConnectionString );
 			_catalogService = new CatalogService( sqlRepository );
+
+			_licenseTypeService = new LicenseTypeService();
 		}
 
 		public ActionResult Index()
 		{
-			return View( _catalogService.ListAll() );
-		}		
+			List<CatalogEntryModel> catalogEntryModels = new List<CatalogEntryModel>();
+
+			foreach ( CatalogEntry entry in _catalogService.ListAll() )
+			{
+				var catalogEntryViewModel = entry.ToViewModel();
+				if ( String.IsNullOrEmpty( catalogEntryViewModel.LicenseType ) )
+					catalogEntryViewModel.LicenseType = "N/A";
+				catalogEntryModels.Add( catalogEntryViewModel );
+			}
+			return View( catalogEntryModels );
+		}
 
 		public ActionResult Details( int id = 0 )
 		{
@@ -50,6 +64,8 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 
 		public ActionResult Create()
 		{
+			ViewBag.LicenseType = LicenseTypeService.GetLicenseTypes();
+
 			return View();
 		}
 
@@ -63,6 +79,8 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 				_catalogService.Add( entry );
 				return RedirectToAction( "Index" );
 			}
+
+			ViewBag.LicenseType = LicenseTypeService.GetLicenseTypes();
 			return View( catalogEntryModel );
 		}
 
