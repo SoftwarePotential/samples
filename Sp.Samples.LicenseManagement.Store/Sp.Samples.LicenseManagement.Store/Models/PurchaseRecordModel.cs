@@ -28,6 +28,8 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 		[Display( Name = "Product Version" )]
 		public string ProductVersion { get; set; }
 		public string Description { get; set; }
+		[Display( Name = "License Type" )]
+		public string LicenseType { get; set; }
 		[Display( Name = "License Id" )]
 		public string LicenseId { get; set; }
 		[Display( Name = "Activation Key" )]

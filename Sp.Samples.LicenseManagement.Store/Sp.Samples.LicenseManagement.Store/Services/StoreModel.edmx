@@ -33,6 +33,7 @@
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
           <Property Name="LicenseId" Type="nvarchar" MaxLength="100" />
           <Property Name="ActivationKey" Type="nvarchar" MaxLength="100" />
+          <Property Name="LicenseType" Type="nvarchar" MaxLength="100" />
         </EntityType>
       </Schema>
     </edmx:StorageModels>
@@ -67,6 +68,7 @@
           <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="LicenseId" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="ActivationKey" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="LicenseType" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -98,6 +100,7 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="LicenseId" ColumnName="LicenseId" />
                 <ScalarProperty Name="ActivationKey" ColumnName="ActivationKey" />
+                <ScalarProperty Name="LicenseType" ColumnName="LicenseType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

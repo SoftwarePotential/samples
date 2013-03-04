@@ -26,11 +26,14 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 		[ Display( Name="Product Version" ) ]
 		[ Required ]
 		public string ProductVersion { get; set; }
+		[DataType( DataType.MultilineText )]
 		public string Blurb { get; set; }
-		[Required( ErrorMessage = "A SkuId is required. Visit srv.softwarepotential.com to obtain/create a valid SkuId for this product." )]
+		[Display( Name = "SKU Id" )]
+		[Required( ErrorMessage = "A valid SKU Id is required." )]
 		public string SkuId { get; set; }
 		public Nullable<decimal> Price { get; set; }
 		[ Display( Name="License Type" ) ]
+		[Required( ErrorMessage = "You must select a License Type." )]
 		public string LicenseType { get; set; }
 	}
 }
