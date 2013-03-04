@@ -3,6 +3,7 @@
 This sample is intended to illustrate the required components of an application which:
 * Facilitates an administrator to create, read, update/edit and delete entries to a catalogue of products 
 	* The administrator must assign a valid Software Potential Sku Id to each catalogue entry. As such, the product details and associated Sku Id should relate to a similar product SKU created at the Software Potential portal.
+	* The administrator can assign a License type to the catalog entries
 * Facilitates a customer to view a list of products, select a product of interest and to ‘buy’ this product	
 	* At the point of sale of a product, the Software Potential Web APIs are utilised to provide the customer with licensing information (Activation Key and License Id)
 
@@ -13,9 +14,10 @@ This sample is intended to illustrate the required components of an application 
 # Using the Sample
 ## Initial Set-up
 * A valid set of Software Potentials credentials must be configured within this application in order to commence working with it. These credentials may be configured in one of the following ways:-
-	* Open the SoftwarePotential.config file and manually enter 'value' attributes for both username and password to the respective 'add' elements
 	* Run the application in your browser and follow the instructions at the error page to a credentials entry page, and insert your username and password in the relevant text boxes
-	* Execute the configureSoftwarePotentialCredentials.ps1 file(a PowerShell Script ) and enter your username and password when prompted.
+	* Execute the configureSoftwarePotentialCredentials.ps1 file( a PowerShell Script ) and enter your username and password when prompted.
+	* Note: On entering the user credentials using these methods, the password is encrypted in the SoftwarePotential.config file and as such, you should not edit add the username and password values in the SoftwarePotential.config file manually.
+	
 
 ## Buying a product / Obtaining License Info
 * Navigate to the ‘Buy’ section of the site
