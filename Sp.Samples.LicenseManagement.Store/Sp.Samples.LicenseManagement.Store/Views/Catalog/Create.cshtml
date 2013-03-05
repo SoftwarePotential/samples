@@ -56,15 +56,14 @@
             <tr>
                 <td>
                     <div class="editor-label">
-                        @Html.LabelFor(model => model.LicenseType)                        
+                        @Html.LabelFor(model => model.LicensingBasis)                        
                     </div>
                 </td>
                 <td>
                     <div class="editor-field">
-                        @Html.DropDownListFor(l=>l.LicenseType, new SelectList(ViewBag.LicenseType, Model), "---Select License Type---")
-                        @Html.ValidationMessageFor(model => model.LicenseType)
+                        @Html.DropDownListFor(l=>l.LicensingBasis, new SelectList(Model.LicensingBases, Model), "---Select License Type---")
+                        @Html.ValidationMessageFor(model => model.LicensingBasis)
                     </div>
-                    License Type must correlate to a license definition at the Software Potential Service
                 </td>
             </tr>
             <tr>

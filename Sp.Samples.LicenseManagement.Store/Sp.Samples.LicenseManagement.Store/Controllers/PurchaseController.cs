@@ -46,8 +46,8 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 			foreach ( CatalogEntry entry in _catalogService.ListAll() )
 			{
 				var catalogEntryViewModel = entry.ToViewModel();
-				if ( String.IsNullOrEmpty( catalogEntryViewModel.LicenseType ) )
-					catalogEntryViewModel.LicenseType = "N/A";
+				if ( String.IsNullOrEmpty( catalogEntryViewModel.LicensingBasis ) )
+					catalogEntryViewModel.LicensingBasis = "N/A";
 				catalogEntryModels.Add( catalogEntryViewModel );
 			}
 			return View( catalogEntryModels );

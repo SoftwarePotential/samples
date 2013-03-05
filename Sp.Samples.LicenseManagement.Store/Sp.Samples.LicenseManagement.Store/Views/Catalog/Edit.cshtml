@@ -11,55 +11,99 @@
 
     <fieldset>
         <legend>CatalogEntryModel</legend>
-
         @Html.HiddenFor(model => model.Id)
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductName)
-            @Html.ValidationMessageFor(model => model.ProductName)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductVersion)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductVersion)
-            @Html.ValidationMessageFor(model => model.ProductVersion)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Blurb)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Blurb)
-            @Html.ValidationMessageFor(model => model.Blurb)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.SkuId)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.SkuId)
-            @Html.ValidationMessageFor(model => model.SkuId)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Price)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Price)
-            @Html.ValidationMessageFor(model => model.Price)
-        </div>
-
-        <p>
-            <input type="submit" value="Save" />
-        </p>
+        <table>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ProductName)
+                    </div>            
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.ProductName)
+                        @Html.ValidationMessageFor(model => model.ProductName)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.ProductVersion)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.ProductVersion)
+                        @Html.ValidationMessageFor(model => model.ProductVersion)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Blurb)
+                    </div>            
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Blurb)
+                        @Html.ValidationMessageFor(model => model.Blurb)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.LicensingBasis)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.DropDownListFor(l=>l.LicensingBasis, new SelectList(Model.LicensingBases, Model.LicensingBasis), "---Select License Type---")
+                        @Html.ValidationMessageFor(model => model.LicensingBasis)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.SkuId)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.SkuId)
+                        @Html.ValidationMessageFor(model => model.SkuId)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Price)
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Price)
+                        @Html.ValidationMessageFor(model => model.Price)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        <input type="submit" value="Save" />
+                    </p>
+                </td>
+                <td>
+                    <div>
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                </td>
+            </tr>            
+        </table>
     </fieldset>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

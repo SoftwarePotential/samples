@@ -29,14 +29,14 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 	public class CatalogController : Controller
 	{
 		readonly CatalogService _catalogService;
-		readonly LicenseTypeService _licenseTypeService;
+		readonly LicensingBasisService _licenseTypeService;
 
 		public CatalogController()
 		{
 			var sqlRepository = new SqlCatalogRepository( ConfigurationManager.ConnectionStrings[ "StoreDbEntities" ].ConnectionString );
 			_catalogService = new CatalogService( sqlRepository );
 
-			_licenseTypeService = new LicenseTypeService();
+			_licenseTypeService = new LicensingBasisService();
 		}
 
 		public ActionResult Index()
@@ -46,8 +46,8 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 			foreach ( CatalogEntry entry in _catalogService.ListAll() )
 			{
 				var catalogEntryViewModel = entry.ToViewModel();
-				if ( String.IsNullOrEmpty( catalogEntryViewModel.LicenseType ) )
-					catalogEntryViewModel.LicenseType = "N/A";
+				if ( String.IsNullOrEmpty( catalogEntryViewModel.LicensingBasis ) )
+					catalogEntryViewModel.LicensingBasis = "N/A";
 				catalogEntryModels.Add( catalogEntryViewModel );
 			}
 			return View( catalogEntryModels );
@@ -64,44 +64,45 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 
 		public ActionResult Create()
 		{
-			ViewBag.LicenseType = LicenseTypeService.GetLicenseTypes();
-
-			return View();
+			CatalogEntryModel catalogEntryModel = new CatalogEntryModel();
+			catalogEntryModel.LicensingBases = _licenseTypeService.GetLicensingBases();
+			return View( catalogEntryModel );
 		}
 
 		[HttpPost]
 		public ActionResult Create( CatalogEntryModel catalogEntryModel )
 		{
 			CatalogEntry entry = catalogEntryModel.ToServiceModel();
-
 			if ( ModelState.IsValid )
 			{
 				_catalogService.Add( entry );
 				return RedirectToAction( "Index" );
 			}
-
-			ViewBag.LicenseType = LicenseTypeService.GetLicenseTypes();
+			catalogEntryModel.LicensingBases = _licenseTypeService.GetLicensingBases();
 			return View( catalogEntryModel );
 		}
 
 		public ActionResult Edit( int id = 0 )
 		{
 			CatalogEntry catalogEntry = _catalogService.TryGet( id );
-			CatalogEntryModel catalogEntryModel = catalogEntry.ToViewModel();
 			if ( catalogEntry == null )
 				return HttpNotFound();
+			CatalogEntryModel catalogEntryModel = catalogEntry.ToViewModel();
+			catalogEntryModel.LicensingBases = _licenseTypeService.GetLicensingBases();
 			return View( catalogEntryModel );
 		}
 
 		[HttpPost]
-		public ActionResult Edit( CatalogEntry catalogEntry )
+		public ActionResult Edit( CatalogEntryModel catalogEntryModel )
 		{
+			CatalogEntry entry = catalogEntryModel.ToServiceModel();
 			if ( ModelState.IsValid )
 			{
-				_catalogService.Update( catalogEntry );
+				_catalogService.Update( entry );
 				return RedirectToAction( "Index" );
 			}
-			return View( catalogEntry );
+			catalogEntryModel.LicensingBases = _licenseTypeService.GetLicensingBases();
+			return View( catalogEntryModel );
 		}
 
 		public ActionResult Delete( int id = 0 )
@@ -135,7 +136,7 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 				Blurb = model.Blurb,
 				Price = model.Price,
 				SkuId = model.SkuId,
-				LicenseType = model.LicenseType
+				LicensingBasis = model.LicensingBasis
 			};
 			return catalogEntryModel;
 		}
@@ -144,12 +145,13 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 		{
 			CatalogEntry entry = new CatalogEntry
 			{
+				Id = model.Id,
 				ProductName = model.ProductName,
 				ProductVersion = model.ProductVersion,
 				Blurb = model.Blurb,
 				Price = model.Price,
 				SkuId = model.SkuId,
-				LicenseType = model.LicenseType
+				LicensingBasis = model.LicensingBasis
 			};
 			return entry;
 		}
