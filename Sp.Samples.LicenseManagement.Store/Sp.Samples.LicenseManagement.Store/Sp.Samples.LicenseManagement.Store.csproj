@@ -176,7 +176,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Purchase\Buy.cshtml" />
-    <Content Include="Views\Catalog\Purchase.cshtml" />
     <Content Include="Service References\LicenseManagementWS\LicenseManagementWS.wsdl" />
     <None Include="Service References\LicenseManagementWS\LicenseManagementWS.xsd">
       <SubType>Designer</SubType>

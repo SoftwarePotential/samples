@@ -22,6 +22,6 @@ namespace Sp.Samples.LicenseManagement.Store.Services
         public string Description { get; set; }
         public string LicenseId { get; set; }
         public string ActivationKey { get; set; }
-        public string LicenseType { get; set; }
+        public string LicensingBasis { get; set; }
     }
 }

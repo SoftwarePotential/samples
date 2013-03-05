@@ -69,8 +69,8 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 			foreach ( PurchaseRecord record in _purchaseService.GetPurchaseRecords() )
 			{
 				var purchaseRecordViewModel = record.ToViewModel();
-				if ( String.IsNullOrEmpty( purchaseRecordViewModel.LicenseType ) )
-					purchaseRecordViewModel.LicenseType = "N/A";
+				if ( String.IsNullOrEmpty( purchaseRecordViewModel.LicensingBasis ) )
+					purchaseRecordViewModel.LicensingBasis = "N/A";
 				purchaseRecordModels.Add( purchaseRecordViewModel );
 			}
 
@@ -119,7 +119,7 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 				ProductName = model.ProductName,
 				ProductVersion = model.ProductVersion,
 				Description = model.Description,
-				LicenseType = model.LicenseType,
+				LicensingBasis = model.LicensingBasis,
 				ActivationKey = model.ActivationKey,
 				LicenseId = model.LicenseId
 			};
@@ -136,7 +136,7 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 				ProductName = model.ProductName,
 				ProductVersion = model.ProductVersion,
 				Description = model.Description,
-				LicenseType = model.LicenseType,
+				LicensingBasis = model.LicensingBasis,
 				ActivationKey = model.ActivationKey,
 				LicenseId = model.LicenseId
 			};
