@@ -20,6 +20,6 @@ namespace Sp.Samples.LicenseManagement.Store.Services
         public string Blurb { get; set; }
         public string SkuId { get; set; }
         public Nullable<decimal> Price { get; set; }
-        public string LicenseType { get; set; }
+        public string LicensingBasis { get; set; }
     }
 }

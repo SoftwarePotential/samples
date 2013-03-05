@@ -13,6 +13,7 @@
 // PARTICULAR PURPOSE.
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Sp.Samples.LicenseManagement.Store.Models
@@ -32,8 +33,10 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 		[Required( ErrorMessage = "A valid SKU Id is required." )]
 		public string SkuId { get; set; }
 		public Nullable<decimal> Price { get; set; }
-		[ Display( Name="License Type" ) ]
-		[Required( ErrorMessage = "You must select a License Type." )]
-		public string LicenseType { get; set; }
+		[ Display( Name="Licensing Basis" ) ]
+		[Required( ErrorMessage = "You must select a Licensing Basis." )]
+		public string LicensingBasis { get; set; }
+
+		public List<string> LicensingBases { get; set; }
 	}
 }

@@ -112,7 +112,7 @@
     </Compile>
     <Compile Include="Services\CatalogService.cs" />
     <Compile Include="Credentials.cs" />
-    <Compile Include="Services\LicenseTypeService.cs" />
+    <Compile Include="Services\LicensingBasisService.cs" />
     <Compile Include="Services\LicensingService.cs" />
     <Compile Include="Services\PurchaseRecord.cs">
       <DependentUpon>StoreModel.tt</DependentUpon>

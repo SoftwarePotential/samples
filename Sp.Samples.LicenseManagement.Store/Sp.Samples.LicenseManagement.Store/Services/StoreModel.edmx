@@ -19,7 +19,7 @@
           <Property Name="Blurb" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="SkuId" Type="nchar" MaxLength="36" />
           <Property Name="Price" Type="money" />
-          <Property Name="LicenseType" Type="nvarchar" MaxLength="100" />
+          <Property Name="LicensingBasis" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="PurchaseRecord">
           <Key>
@@ -54,7 +54,7 @@
           <Property Name="Blurb" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="SkuId" Type="String" MaxLength="36" Unicode="true" FixedLength="true" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="LicenseType" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="LicensingBasis" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="PurchaseRecord">
           <Key>
@@ -85,7 +85,7 @@
                 <ScalarProperty Name="Blurb" ColumnName="Blurb" />
                 <ScalarProperty Name="SkuId" ColumnName="SkuId" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="LicenseType" ColumnName="LicenseType" />
+                <ScalarProperty Name="LicensingBasis" ColumnName="LicensingBasis" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
