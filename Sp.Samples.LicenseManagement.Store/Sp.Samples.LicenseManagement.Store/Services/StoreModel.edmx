@@ -7,7 +7,12 @@
       <Schema Namespace="StoreDbModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="StoreDbModelStoreContainer">
           <EntitySet Name="CatalogEntries" EntityType="StoreDbModel.Store.CatalogEntries" store:Type="Tables" />
+          <EntitySet Name="OrderItem" EntityType="StoreDbModel.Store.OrderItem" store:Type="Tables" />
           <EntitySet Name="PurchaseRecord" EntityType="StoreDbModel.Store.PurchaseRecord" store:Type="Tables" />
+          <AssociationSet Name="PurchaseRecord-OrderItem" Association="StoreDbModel.Store.PurchaseRecord-OrderItem">
+            <End Role="PurchaseRecord" EntitySet="PurchaseRecord" />
+            <End Role="OrderItem" EntitySet="OrderItem" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="CatalogEntries">
           <Key>
@@ -21,12 +26,22 @@
           <Property Name="Price" Type="money" />
           <Property Name="LicensingBasis" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PurchaseRecordId" Type="int" Nullable="false" />
+          <Property Name="ActivationKey" Type="nvarchar" MaxLength="100" />
+          <Property Name="LicenseId" Type="nvarchar" MaxLength="100" />
+          <Property Name="ExceptionDetails" Type="nvarchar" />
+        </EntityType>
         <EntityType Name="PurchaseRecord">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Quantity" Type="int" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="CatalogEntryId" Type="int" Nullable="false" />
           <Property Name="ProductName" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="ProductVersion" Type="nvarchar" Nullable="false" MaxLength="100" />
@@ -35,6 +50,20 @@
           <Property Name="ActivationKey" Type="nvarchar" MaxLength="100" />
           <Property Name="LicensingBasis" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <Association Name="PurchaseRecord-OrderItem">
+          <End Role="PurchaseRecord" Type="StoreDbModel.Store.PurchaseRecord" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderItem" Type="StoreDbModel.Store.OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseRecord">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="PurchaseRecordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
@@ -42,7 +71,12 @@
       <Schema Namespace="StoreDbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="StoreDbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CatalogEntries" EntityType="StoreDbModel.CatalogEntry" />
+          <EntitySet Name="OrderItems" EntityType="StoreDbModel.OrderItem" />
           <EntitySet Name="PurchaseRecords" EntityType="StoreDbModel.PurchaseRecord" />
+          <AssociationSet Name="PurchaseRecord_OrderItem" Association="StoreDbModel.PurchaseRecord_OrderItem">
+            <End Role="PurchaseRecord" EntitySet="PurchaseRecords" />
+            <End Role="OrderItem" EntitySet="OrderItems" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="CatalogEntry">
           <Key>
@@ -56,12 +90,23 @@
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="LicensingBasis" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
         </EntityType>
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PurchaseRecordId" Type="Int32" Nullable="false" />
+          <Property Name="ActivationKey" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="LicenseId" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ExceptionDetails" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="PurchaseRecord" Relationship="StoreDbModel.PurchaseRecord_OrderItem" FromRole="OrderItem" ToRole="PurchaseRecord" />
+        </EntityType>
         <EntityType Name="PurchaseRecord">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="CatalogEntryId" Type="Int32" Nullable="false" />
           <Property Name="ProductName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
@@ -69,7 +114,22 @@
           <Property Name="LicenseId" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="ActivationKey" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="LicensingBasis" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="OrderItems" Relationship="StoreDbModel.PurchaseRecord_OrderItem" FromRole="PurchaseRecord" ToRole="OrderItem" />
         </EntityType>
+        <Association Name="PurchaseRecord_OrderItem">
+          <End Role="PurchaseRecord" Type="StoreDbModel.PurchaseRecord" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderItem" Type="StoreDbModel.OrderItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseRecord">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="PurchaseRecordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -86,6 +146,17 @@
                 <ScalarProperty Name="SkuId" ColumnName="SkuId" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="LicensingBasis" ColumnName="LicensingBasis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderItems">
+            <EntityTypeMapping TypeName="StoreDbModel.OrderItem">
+              <MappingFragment StoreEntitySet="OrderItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PurchaseRecordId" ColumnName="PurchaseRecordId" />
+                <ScalarProperty Name="ActivationKey" ColumnName="ActivationKey" />
+                <ScalarProperty Name="LicenseId" ColumnName="LicenseId" />
+                <ScalarProperty Name="ExceptionDetails" ColumnName="ExceptionDetails" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
