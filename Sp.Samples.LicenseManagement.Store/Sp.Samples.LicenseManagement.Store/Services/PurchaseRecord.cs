@@ -14,8 +14,13 @@ namespace Sp.Samples.LicenseManagement.Store.Services
     
     public partial class PurchaseRecord
     {
+        public PurchaseRecord()
+        {
+            this.OrderItems = new HashSet<OrderItem>();
+        }
+    
         public int Id { get; set; }
-        public Nullable<int> Quantity { get; set; }
+        public int Quantity { get; set; }
         public int CatalogEntryId { get; set; }
         public string ProductName { get; set; }
         public string ProductVersion { get; set; }
@@ -23,5 +28,7 @@ namespace Sp.Samples.LicenseManagement.Store.Services
         public string LicenseId { get; set; }
         public string ActivationKey { get; set; }
         public string LicensingBasis { get; set; }
+    
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }

@@ -12,7 +12,6 @@
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
 // PARTICULAR PURPOSE.
 
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Sp.Samples.LicenseManagement.Store.Models
@@ -20,7 +19,7 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 	public class PurchaseRecordModel
 	{
 		public int Id { get; set; }
-		public Nullable<int> Quantity { get; set; }
+		public int Quantity { get; set; }
 		[ Display( Name="Catalog Entry" ) ]
 		public int CatalogEntryId { get; set; }
 		[ Display( Name="Product Name" ) ]
@@ -30,9 +29,7 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 		public string Description { get; set; }
 		[Display( Name = "Licensing Basis" )]
 		public string LicensingBasis { get; set; }
-		[Display( Name = "License Id" )]
-		public string LicenseId { get; set; }
-		[Display( Name = "Activation Key" )]
-		public string ActivationKey { get; set; }
+
+		public OrderItemModel[  ] OrderItemModels { get; set; }
 	}
 }

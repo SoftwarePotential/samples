@@ -13,10 +13,8 @@
 // PARTICULAR PURPOSE.
 
 using Sp.Samples.LicenseManagement.Store.Services;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Sp.Samples.LicenseManagement.Store.Models
 {
@@ -38,7 +36,9 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 		{
 			var recordsList = new List<PurchaseRecord>();
 			using ( var context = CreateContext() )
-				recordsList = context.PurchaseRecords.ToList();
+				recordsList = context.PurchaseRecords
+					.Include( "OrderItems" )
+					.ToList();
 			return recordsList;
 		}
 
@@ -56,7 +56,9 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 		{
 			using (var context = CreateContext(  ) )
 			{
-				PurchaseRecord record = context.PurchaseRecords.Find( id );
+				PurchaseRecord record = context.PurchaseRecords
+					.Include( "OrderItems" )					
+					.SingleOrDefault( r => r.Id == id );
 				return record;
 			}
 		}
