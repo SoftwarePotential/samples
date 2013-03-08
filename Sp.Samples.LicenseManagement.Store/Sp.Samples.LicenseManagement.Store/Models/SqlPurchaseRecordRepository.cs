@@ -13,6 +13,7 @@
 // PARTICULAR PURPOSE.
 
 using Sp.Samples.LicenseManagement.Store.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,22 +21,17 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 {
 	public class SqlPurchaseRecordRepository:IPurchaseRecordRepository
 	{
-		string _connString;
+		readonly Func<StoreDbEntities> _createContext;
 
-		public SqlPurchaseRecordRepository( string connString )
+		public SqlPurchaseRecordRepository(Func<StoreDbEntities> createContext)
 		{
-			_connString = connString;
-		}
-
-		private StoreDbEntities CreateContext()
-		{
-			return new StoreDbEntities();
+			_createContext = createContext;
 		}
 
 		public IEnumerable<PurchaseRecord> GetPurchaseRecords()
 		{
 			var recordsList = new List<PurchaseRecord>();
-			using ( var context = CreateContext() )
+			using ( var context = _createContext() )
 				recordsList = context.PurchaseRecords
 					.Include( "OrderItems" )
 					.ToList();
@@ -44,7 +40,7 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 
 		public PurchaseRecord Add( PurchaseRecord record )
 		{
-			using (var context = CreateContext(  ) )
+			using ( var context = _createContext() )
 			{
 				context.PurchaseRecords.Add( record );
 				context.SaveChanges();
@@ -54,7 +50,7 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 
 		public PurchaseRecord TryGet( int id )
 		{
-			using (var context = CreateContext(  ) )
+			using ( var context = _createContext() )
 			{
 				PurchaseRecord record = context.PurchaseRecords
 					.Include( "OrderItems" )					

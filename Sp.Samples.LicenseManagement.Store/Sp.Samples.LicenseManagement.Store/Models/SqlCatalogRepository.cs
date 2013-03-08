@@ -16,34 +16,30 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Sp.Samples.LicenseManagement.Store.Services;
+using System;
 
 namespace Sp.Samples.LicenseManagement.Store.Models
 {
 	public class SqlCatalogRepository : ICatalogRepository
 	{
-		readonly string _connString;
+		readonly Func<StoreDbEntities> _createStoreContext;
 
-		public SqlCatalogRepository( string connString )
+		public SqlCatalogRepository( Func<StoreDbEntities> createStoreContext )
 		{
-			_connString = connString;
-		}
-
-		private StoreDbEntities CreateContext()
-		{
-			return new StoreDbEntities();
+			_createStoreContext = createStoreContext;
 		}
 
 		public IEnumerable<CatalogEntry> GetCatalogEntries()
 		{
 			var catEntriesModel = new List<CatalogEntry>();
-			using ( var context = CreateContext() )
+			using ( var context = _createStoreContext() )
 				catEntriesModel = context.CatalogEntries.ToList();
 			return catEntriesModel;
 		}
 
 		public CatalogEntry TryGet( int id )
 		{
-			using (var context = CreateContext(  ))
+			using ( var context = _createStoreContext() )
 			{
 				CatalogEntry entry = context.CatalogEntries.Find( id );
 				return entry;
@@ -52,7 +48,7 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 
 		public void Add( CatalogEntry entry )
 		{
-			using (var context = CreateContext(  ))
+			using ( var context = _createStoreContext() )
 			{
 				context.CatalogEntries.Add( entry );
 				context.SaveChanges();
@@ -61,7 +57,7 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 
 		public void Delete( CatalogEntry entry )
 		{
-			using (var context = CreateContext(  ))
+			using ( var context = _createStoreContext() )
 			{
 				context.CatalogEntries.Attach( entry );
 				context.CatalogEntries.Remove( entry );
@@ -71,7 +67,7 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 
 		public bool Update( CatalogEntry entry )
 		{
-			using (var context = CreateContext(  ))
+			using ( var context = _createStoreContext() )
 			{
 				context.Entry( entry ).State = EntityState.Modified;
 				context.SaveChanges();

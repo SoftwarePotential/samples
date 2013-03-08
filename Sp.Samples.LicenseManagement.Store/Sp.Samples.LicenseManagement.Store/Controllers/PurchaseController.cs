@@ -32,15 +32,16 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 
 		public PurchaseController()
 		{
-			var sqlRepository = new SqlPurchaseRecordRepository( ConfigurationManager.ConnectionStrings[ "StoreDbEntities" ].ConnectionString );
+			Func<StoreDbEntities> createStoreContext = (  )=> new StoreDbEntities(  );
+			var sqlRepository = new SqlPurchaseRecordRepository( createStoreContext );
 			_purchaseService = new PurchaseService( sqlRepository );
 
-			var sqlCatalogRepository = new SqlCatalogRepository( ConfigurationManager.ConnectionStrings[ "StoreDbEntities" ].ConnectionString );
+			var sqlCatalogRepository = new SqlCatalogRepository( createStoreContext );
 			_catalogService = new CatalogService( sqlCatalogRepository );
 
 			_licensingService = new LicensingService( SoftwarePotentialConfiguration.File.ReadCredentials() );
 
-			var sqlOrderItemRepository = new SqlOrderItemRepository( ConfigurationManager.ConnectionStrings[ "StoreDbEntities" ].ConnectionString );
+			var sqlOrderItemRepository = new SqlOrderItemRepository( createStoreContext );
 			_orderItemService = new OrderItemService( sqlOrderItemRepository );
 		}
 
@@ -128,7 +129,6 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 			{
 				Id = model.Id,
 				Quantity = model.Quantity,
-				CatalogEntryId = model.CatalogEntryId,
 				ProductName = model.ProductName,
 				ProductVersion = model.ProductVersion,
 				Description = model.Description,

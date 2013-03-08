@@ -13,6 +13,7 @@
 // PARTICULAR PURPOSE.
 
 using Sp.Samples.LicenseManagement.Store.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,29 +21,24 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 {
 	public class SqlOrderItemRepository:IOrderItemRepository
 	{
-		static string _connString;
+		readonly Func<StoreDbEntities> _createContext;
 
-		public SqlOrderItemRepository( string connString )
+		public SqlOrderItemRepository( Func<StoreDbEntities> createContext )
 		{
-			_connString = connString;
-		}
-
-		private StoreDbEntities CreateContext()
-		{
-			return new StoreDbEntities();
+			_createContext = createContext;
 		}
 
 		public IEnumerable<OrderItem> GetOrderItems()
 		{
 			var orderItemsList = new List<OrderItem>();
-			using ( var context = CreateContext() )
+			using ( var context = _createContext() )
 				orderItemsList = context.OrderItems.ToList();
 			return orderItemsList;
 		}
 
 		public OrderItem TryGet( int id )
 		{
-			using ( var context = CreateContext() )
+			using ( var context = _createContext() )
 			{
 				OrderItem orderItem = context.OrderItems.Find( id );
 				return orderItem;
@@ -51,7 +47,7 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 
 		public OrderItem Add( OrderItem orderItem )
 		{
-			using ( var context = CreateContext() )
+			using ( var context = _createContext() )
 			{
 				context.OrderItems.Add( orderItem );
 				context.SaveChanges();

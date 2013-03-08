@@ -33,7 +33,8 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 
 		public CatalogController()
 		{
-			var sqlRepository = new SqlCatalogRepository( ConfigurationManager.ConnectionStrings[ "StoreDbEntities" ].ConnectionString );
+			Func<StoreDbEntities> createStoreContext = () => new StoreDbEntities();
+			var sqlRepository = new SqlCatalogRepository( createStoreContext );
 			_catalogService = new CatalogService( sqlRepository );
 
 			_licenseTypeService = new LicensingBasisService();
