@@ -89,7 +89,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CatalogController.cs" />
-    <Compile Include="Controllers\OrderItemService.cs" />
+    <Compile Include="Services\OrderItemService.cs" />
     <Compile Include="CredentialsNotConfiguredException.cs" />
     <Compile Include="Models\CredentialsModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
