@@ -19,14 +19,16 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace Sp.Samples.LicenseManagement.Store.Controllers
 {
-    public class PurchaseController : Controller
-    {
+	public class PurchaseController : Controller
+	{
 		readonly PurchaseService _purchaseService;
-        readonly CatalogService _catalogService;
+		readonly CatalogService _catalogService;
 		readonly LicensingService _licensingService;
+		readonly OrderItemService _orderItemService;
 
 		public PurchaseController()
 		{
@@ -37,6 +39,9 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 			_catalogService = new CatalogService( sqlCatalogRepository );
 
 			_licensingService = new LicensingService( SoftwarePotentialConfiguration.File.ReadCredentials() );
+
+			var sqlOrderItemRepository = new SqlOrderItemRepository( ConfigurationManager.ConnectionStrings[ "StoreDbEntities" ].ConnectionString );
+			_orderItemService = new OrderItemService( sqlOrderItemRepository );
 		}
 
 		public ActionResult Buy()
@@ -56,22 +61,20 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 		public ActionResult PurchaseDetails( int id = 0 )
 		{
 			PurchaseRecord purchaseRecord = _purchaseService.TryGet( id );
-			PurchaseRecordModel purchaseRecordModel = purchaseRecord.ToViewModel();
 			if ( purchaseRecord == null )
 				return HttpNotFound();
+			PurchaseRecordModel purchaseRecordModel = purchaseRecord.ToViewModel();
 			return View( purchaseRecordModel );
 		}
 
 		public ActionResult ListPurchases()
 		{
+			IEnumerable<PurchaseRecord> purchaseRecords = _purchaseService.GetPurchaseRecords();
 			List<PurchaseRecordModel> purchaseRecordModels = new List<PurchaseRecordModel>();
 
-			foreach ( PurchaseRecord record in _purchaseService.GetPurchaseRecords() )
+			foreach ( PurchaseRecord record in purchaseRecords )
 			{
-				var purchaseRecordViewModel = record.ToViewModel();
-				if ( String.IsNullOrEmpty( purchaseRecordViewModel.LicensingBasis ) )
-					purchaseRecordViewModel.LicensingBasis = "N/A";
-				purchaseRecordModels.Add( purchaseRecordViewModel );
+				purchaseRecordModels.Add( record.ToViewModel() );
 			}
 
 			return View( purchaseRecordModels );
@@ -85,27 +88,37 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 		}
 
 		[HttpPost, ActionName( "SelectedProduct" )]
-		public ActionResult SelectedProductConfirmed( int id )
-        {
-			var itemDetails = _catalogService.TryGet( id );
-			string skuId = itemDetails.SkuId;
+		public ActionResult SelectedProductConfirmed( int id, CatalogEntryModel model )
+		{
+			int quantity = model.Quantity;
+			CatalogEntry entry = _catalogService.TryGet( id );
+			model = entry.ToViewModel();
+			string skuId = entry.SkuId;
 
-			License license = _licensingService.CreateLicenseFromSkuId( skuId );
+			if ( ModelState.IsValid )
+			{
+				var purchaseRecord = _purchaseService.RecordPurchase( entry, quantity );
 
-			var purchaseRecord = _purchaseService.RecordPurchase( itemDetails, license );
+				for ( int i = 0; i < quantity; i++ )
+				{
+					License license = _licensingService.CreateLicenseFromSkuId( skuId );
+					_orderItemService.RecordOrderItem( license, purchaseRecord );
+				}
 
-			var purchaseRecordModel = purchaseRecord.ToViewModel();
+				var purchaseRecordModel = purchaseRecord.ToViewModel();
 
-			return RedirectToAction( "ShowPurchasedInfo", new { id = purchaseRecordModel.Id } );
-        }
+				return RedirectToAction( "ShowPurchasedInfo", new { id = purchaseRecordModel.Id } );
+			}
+			return View( model );
+		}
 
 		public ActionResult ShowPurchasedInfo( int id )
-        {
+		{
 			var purchaseRecord = _purchaseService.TryGet( id );
 			var purchaseRecordModel = purchaseRecord.ToViewModel();
 			return View( purchaseRecordModel );
-        }
-    }
+		}
+	}
 
 	static class PurchaseRecordConversionExtensions
 	{
@@ -120,27 +133,17 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 				ProductVersion = model.ProductVersion,
 				Description = model.Description,
 				LicensingBasis = model.LicensingBasis,
-				ActivationKey = model.ActivationKey,
-				LicenseId = model.LicenseId
+				OrderItemModels = (
+					from oi in model.OrderItems
+					select new OrderItemModel
+					{
+						Id = oi.Id,
+						ActivationKey = oi.ActivationKey,
+						LicenseId = oi.LicenseId,
+						ExceptionDetails = oi.ExceptionDetails
+					}).ToArray()
 			};
 			return purchaseRecordModel;
-		}
-
-		public static PurchaseRecord ToServiceModel( this PurchaseRecordModel model )
-		{
-			PurchaseRecord record = new PurchaseRecord
-			{
-				Id = model.Id,
-				Quantity = model.Quantity,
-				CatalogEntryId = model.CatalogEntryId,
-				ProductName = model.ProductName,
-				ProductVersion = model.ProductVersion,
-				Description = model.Description,
-				LicensingBasis = model.LicensingBasis,
-				ActivationKey = model.ActivationKey,
-				LicenseId = model.LicenseId
-			};
-			return record;
 		}
 	}
 }

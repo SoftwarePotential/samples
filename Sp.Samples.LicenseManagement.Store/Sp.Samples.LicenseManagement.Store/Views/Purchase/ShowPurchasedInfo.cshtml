@@ -8,24 +8,16 @@
 
 <fieldset>
     <legend>PurchaseRecordModel</legend>
-
-    @*<div class="display-label">
-         <b>@Html.DisplayNameFor(model => model.Quantity)</b>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Quantity)
-    </div>*@
-
     <p>
          <b>@Html.DisplayNameFor(model => model.CatalogEntryId): </b>@Html.DisplayFor(model => model.CatalogEntryId)
     </p>
 
     <p>
-        <b>@Html.DisplayNameFor(model => model.ProductName): </b>@Html.DisplayFor(model => model.ProductName)
+        <b>Product: </b>@Html.DisplayFor(model => model.ProductName), @Html.DisplayFor(model => model.ProductVersion)
     </p>
 
     <p>
-        <b>@Html.DisplayNameFor(model => model.ProductVersion): </b>@Html.DisplayFor(model => model.ProductVersion)
+        <b>@Html.DisplayNameFor(model => model.Quantity): </b>@Html.DisplayFor(model => model.Quantity)
     </p>
 
     <div class="display-label">
@@ -34,11 +26,17 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Description)
     </div>
-
-    <p><b>@Html.DisplayNameFor(model => model.LicenseId): </b>@Html.DisplayFor(model => model.LicenseId)</p>
-         
-    <p><b>@Html.DisplayNameFor(model => model.ActivationKey): </b>@Html.DisplayFor(model => model.ActivationKey)</p>
+    @foreach ( var item in Model.OrderItemModels )
+    {
+        <h4>Order Item Reference No.: @Html.DisplayFor(modelItem => item.Id)</h4>
+        <p>
+            <b>@Html.DisplayNameFor(modelItem => item.ActivationKey): </b>@Html.DisplayFor(modelItem => item.ActivationKey)
+        </p>
+        <p>
+            <b>@Html.DisplayNameFor(modelItem => item.LicenseId): </b>@Html.DisplayFor(modelItem => item.LicenseId)
+        </p>
+    }
 </fieldset>
 <p>    
-    @Html.ActionLink("Make another purchase", "../Catalog/Buy")
+    @Html.ActionLink("Make another purchase", "../Purchase/Buy")
 </p>
