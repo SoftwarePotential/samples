@@ -8,13 +8,9 @@
 
 <fieldset>
     <legend>PurchaseRecordModel</legend>
-    <p>
-         <b>@Html.DisplayNameFor(model => model.CatalogEntryId): </b>@Html.DisplayFor(model => model.CatalogEntryId)
-    </p>
-
-    <p>
-        <b>Product: </b>@Html.DisplayFor(model => model.ProductName), @Html.DisplayFor(model => model.ProductVersion)
-    </p>
+    <h3>
+        Product: @Html.DisplayFor(model => model.ProductName), @Html.DisplayFor(model => model.ProductVersion)
+    </h3>
 
     <p>
         <b>@Html.DisplayNameFor(model => model.Quantity): </b>@Html.DisplayFor(model => model.Quantity)
@@ -28,7 +24,7 @@
     </div>
     @foreach ( var item in Model.OrderItemModels )
     {
-        <h4>Order Item Reference No.: @Html.DisplayFor(modelItem => item.Id)</h4>
+        <h4>Order Item Reference No.: PR @Html.DisplayFor(modelItem => item.PurchaseRecordId)-@Html.DisplayFor(modelItem => item.OrderItemNo)</h4>
         <p>
             <b>@Html.DisplayNameFor(modelItem => item.ActivationKey): </b>@Html.DisplayFor(modelItem => item.ActivationKey)
         </p>

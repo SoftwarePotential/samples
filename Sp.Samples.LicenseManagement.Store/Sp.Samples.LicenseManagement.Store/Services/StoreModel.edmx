@@ -28,9 +28,10 @@
         </EntityType>
         <EntityType Name="OrderItem">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="OrderItemNo" />
+            <PropertyRef Name="PurchaseRecordId" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="OrderItemNo" Type="int" Nullable="false" />
           <Property Name="PurchaseRecordId" Type="int" Nullable="false" />
           <Property Name="ActivationKey" Type="nvarchar" MaxLength="100" />
           <Property Name="LicenseId" Type="nvarchar" MaxLength="100" />
@@ -42,12 +43,9 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="CatalogEntryId" Type="int" Nullable="false" />
           <Property Name="ProductName" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="ProductVersion" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
-          <Property Name="LicenseId" Type="nvarchar" MaxLength="100" />
-          <Property Name="ActivationKey" Type="nvarchar" MaxLength="100" />
           <Property Name="LicensingBasis" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <Association Name="PurchaseRecord-OrderItem">
@@ -92,9 +90,10 @@
         </EntityType>
         <EntityType Name="OrderItem">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="OrderItemNo" />
+            <PropertyRef Name="PurchaseRecordId" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderItemNo" Type="Int32" Nullable="false" />
           <Property Name="PurchaseRecordId" Type="Int32" Nullable="false" />
           <Property Name="ActivationKey" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="LicenseId" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
@@ -107,12 +106,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="CatalogEntryId" Type="Int32" Nullable="false" />
           <Property Name="ProductName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="LicenseId" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="ActivationKey" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="LicensingBasis" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="OrderItems" Relationship="StoreDbModel.PurchaseRecord_OrderItem" FromRole="PurchaseRecord" ToRole="OrderItem" />
         </EntityType>
@@ -152,7 +148,7 @@
           <EntitySetMapping Name="OrderItems">
             <EntityTypeMapping TypeName="StoreDbModel.OrderItem">
               <MappingFragment StoreEntitySet="OrderItem">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OrderItemNo" ColumnName="OrderItemNo" />
                 <ScalarProperty Name="PurchaseRecordId" ColumnName="PurchaseRecordId" />
                 <ScalarProperty Name="ActivationKey" ColumnName="ActivationKey" />
                 <ScalarProperty Name="LicenseId" ColumnName="LicenseId" />
@@ -165,12 +161,9 @@
               <MappingFragment StoreEntitySet="PurchaseRecord">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="CatalogEntryId" ColumnName="CatalogEntryId" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="LicenseId" ColumnName="LicenseId" />
-                <ScalarProperty Name="ActivationKey" ColumnName="ActivationKey" />
                 <ScalarProperty Name="LicensingBasis" ColumnName="LicensingBasis" />
               </MappingFragment>
             </EntityTypeMapping>

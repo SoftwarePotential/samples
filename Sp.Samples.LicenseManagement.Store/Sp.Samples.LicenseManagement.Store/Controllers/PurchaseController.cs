@@ -103,7 +103,7 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 				for ( int i = 0; i < quantity; i++ )
 				{
 					License license = _licensingService.CreateLicenseFromSkuId( skuId );
-					_orderItemService.RecordOrderItem( license, purchaseRecord );
+					_orderItemService.RecordOrderItem( license, purchaseRecord, i+1 );
 				}
 
 				var purchaseRecordModel = purchaseRecord.ToViewModel();
@@ -137,7 +137,8 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 					from oi in model.OrderItems
 					select new OrderItemModel
 					{
-						Id = oi.Id,
+						OrderItemNo = oi.OrderItemNo,
+						PurchaseRecordId = oi.PurchaseRecordId,
 						ActivationKey = oi.ActivationKey,
 						LicenseId = oi.LicenseId,
 						ExceptionDetails = oi.ExceptionDetails

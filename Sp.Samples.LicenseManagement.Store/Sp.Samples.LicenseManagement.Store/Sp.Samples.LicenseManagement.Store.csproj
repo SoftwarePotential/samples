@@ -89,6 +89,12 @@
   <ItemGroup>
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CatalogController.cs" />
+    <Compile Include="Services\CatalogEntry.cs">
+      <DependentUpon>StoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\OrderItem.cs">
+      <DependentUpon>StoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Services\OrderItemService.cs" />
     <Compile Include="CredentialsNotConfiguredException.cs" />
     <Compile Include="Models\CredentialsModel.cs" />
@@ -111,16 +117,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Services\CatalogEntry.cs">
-      <DependentUpon>StoreModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Services\CatalogService.cs" />
     <Compile Include="Credentials.cs" />
     <Compile Include="Services\LicensingBasisService.cs" />
     <Compile Include="Services\LicensingService.cs" />
-    <Compile Include="Services\OrderItem.cs">
-      <DependentUpon>StoreModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Services\PurchaseRecord.cs">
       <DependentUpon>StoreModel.tt</DependentUpon>
     </Compile>

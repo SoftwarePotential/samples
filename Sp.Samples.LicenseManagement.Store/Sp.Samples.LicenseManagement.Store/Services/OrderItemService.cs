@@ -29,10 +29,11 @@ namespace Sp.Samples.LicenseManagement.Store.Services
 			_orderItemRepository = orderItemRepository;
 		}
 
-		public OrderItem RecordOrderItem( License license, PurchaseRecord purchaseRecord )
+		public OrderItem RecordOrderItem( License license, PurchaseRecord purchaseRecord, int itemNumber )
 		{
 			OrderItem item = new OrderItem() 
 			{ 
+				OrderItemNo = itemNumber,
 				PurchaseRecordId = purchaseRecord.Id,
 				ActivationKey = license.ActivationKey,
 				LicenseId = license.LicenseId 

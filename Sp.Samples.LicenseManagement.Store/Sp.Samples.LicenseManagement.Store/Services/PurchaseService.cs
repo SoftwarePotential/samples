@@ -54,7 +54,6 @@ namespace Sp.Samples.LicenseManagement.Store.Services
 		{
 			PurchaseRecord purchaseRecord = new PurchaseRecord() 
 			{ 
-				CatalogEntryId = entry.Id, 
 				ProductName = entry.ProductName, 
 				ProductVersion = entry.ProductVersion, 
 				Description = entry.Blurb, 

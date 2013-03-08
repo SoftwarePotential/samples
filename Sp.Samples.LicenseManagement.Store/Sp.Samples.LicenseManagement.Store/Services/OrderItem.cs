@@ -14,7 +14,7 @@ namespace Sp.Samples.LicenseManagement.Store.Services
     
     public partial class OrderItem
     {
-        public int Id { get; set; }
+        public int OrderItemNo { get; set; }
         public int PurchaseRecordId { get; set; }
         public string ActivationKey { get; set; }
         public string LicenseId { get; set; }
