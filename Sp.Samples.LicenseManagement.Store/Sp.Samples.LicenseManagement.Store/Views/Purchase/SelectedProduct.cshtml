@@ -1,20 +1,56 @@
 ﻿@model Sp.Samples.LicenseManagement.Store.Models.CatalogEntryModel
 
 @{
-    ViewBag.Title = "SelectedProduct";
+    ViewBag.Title = "Selected Product";
 }
 
 <h2>Selected Product</h2>
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
 
+        @Html.HiddenFor(model=>model.ProductName)
+        @Html.HiddenFor(model=>model.ProductVersion)
+        @Html.HiddenFor(model=>model.SkuId)
+        @Html.HiddenFor(model=>model.LicensingBasis)
+        
         <header>
             <h3>Catalog Item:  @Html.DisplayFor(model=>model.ProductName), @Html.DisplayFor(model=>model.ProductVersion) </h3>
         </header>
-        <p>
-            <b>Description:</b> @Html.DisplayFor(model=>model.Blurb)
-        </p>     
- @using (Html.BeginForm()) {      
-        <p>
-            <input type="submit" value="Buy license" /> | 
-            @Html.ActionLink("Back to list", "../Purchase/Buy")
-        </p>
+<table>
+    <tr>
+        <td>
+            <b>@Html.DisplayNameFor(model => model.Blurb):</b>
+        </td>
+        <td>
+            @Html.DisplayFor(model=>model.Blurb)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>@Html.DisplayNameFor(model => model.LicensingBasis):</b>
+        </td>
+        <td>
+            @Html.DisplayFor(model=>model.LicensingBasis)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <b>@Html.DisplayNameFor(model => model.Quantity):</b>
+        </td>
+        <td>
+            @Html.EditorFor(model => model.Quantity)
+            @Html.ValidationMessageFor(model => model.Quantity)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p>
+                <input type="submit" value="Buy license" />
+            </p>
+        </td>
+        <td>
+             @Html.ActionLink("Back to list", "../Purchase/Buy")
+        </td>
+    </tr>    
+</table>
  }

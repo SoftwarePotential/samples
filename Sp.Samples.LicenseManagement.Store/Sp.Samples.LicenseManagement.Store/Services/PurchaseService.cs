@@ -50,7 +50,7 @@ namespace Sp.Samples.LicenseManagement.Store.Services
 			return items;
 		}
 
-		public PurchaseRecord RecordPurchase( CatalogEntry entry, License license )
+		public PurchaseRecord RecordPurchase( CatalogEntry entry, int quantity )
 		{
 			PurchaseRecord purchaseRecord = new PurchaseRecord() 
 			{ 
@@ -58,8 +58,8 @@ namespace Sp.Samples.LicenseManagement.Store.Services
 				ProductName = entry.ProductName, 
 				ProductVersion = entry.ProductVersion, 
 				Description = entry.Blurb, 
-				ActivationKey = license.ActivationKey, 
-				LicenseId = license.LicenseId
+				LicensingBasis = entry.LicensingBasis,
+				Quantity = quantity
 			};
 						
 			return Add( purchaseRecord );

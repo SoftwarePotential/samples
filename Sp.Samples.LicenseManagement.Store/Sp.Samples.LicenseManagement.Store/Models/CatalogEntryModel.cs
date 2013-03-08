@@ -38,5 +38,8 @@ namespace Sp.Samples.LicenseManagement.Store.Models
 		public string LicensingBasis { get; set; }
 
 		public List<string> LicensingBases { get; set; }
+
+		[ Range( 1, Int32.MaxValue, ErrorMessage="Value must be greater than zero." ) ]
+		public int Quantity { get; set; }
 	}
 }
