@@ -35,7 +35,6 @@
           <Property Name="PurchaseRecordId" Type="int" Nullable="false" />
           <Property Name="ActivationKey" Type="nvarchar" MaxLength="100" />
           <Property Name="LicenseId" Type="nvarchar" MaxLength="100" />
-          <Property Name="ExceptionDetails" Type="nvarchar" />
         </EntityType>
         <EntityType Name="PurchaseRecord">
           <Key>
@@ -97,7 +96,6 @@
           <Property Name="PurchaseRecordId" Type="Int32" Nullable="false" />
           <Property Name="ActivationKey" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="LicenseId" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="ExceptionDetails" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="PurchaseRecord" Relationship="StoreDbModel.PurchaseRecord_OrderItem" FromRole="OrderItem" ToRole="PurchaseRecord" />
         </EntityType>
         <EntityType Name="PurchaseRecord">
@@ -152,7 +150,6 @@
                 <ScalarProperty Name="PurchaseRecordId" ColumnName="PurchaseRecordId" />
                 <ScalarProperty Name="ActivationKey" ColumnName="ActivationKey" />
                 <ScalarProperty Name="LicenseId" ColumnName="LicenseId" />
-                <ScalarProperty Name="ExceptionDetails" ColumnName="ExceptionDetails" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

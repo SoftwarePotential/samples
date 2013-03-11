@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CatalogController.cs" />
+    <Compile Include="Models\SelectedProductModel.cs" />
     <Compile Include="Services\CatalogEntry.cs">
       <DependentUpon>StoreModel.tt</DependentUpon>
     </Compile>

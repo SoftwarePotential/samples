@@ -1,21 +1,16 @@
-﻿@model Sp.Samples.LicenseManagement.Store.Models.CatalogEntryModel
+﻿@model Sp.Samples.LicenseManagement.Store.Models.SelectedProductModel
 
 @{
     ViewBag.Title = "Selected Product";
 }
 
 <h2>Selected Product</h2>
-@using (Html.BeginForm()) {
-    @Html.ValidationSummary(true)
 
-        @Html.HiddenFor(model=>model.ProductName)
-        @Html.HiddenFor(model=>model.ProductVersion)
-        @Html.HiddenFor(model=>model.SkuId)
-        @Html.HiddenFor(model=>model.LicensingBasis)
         
         <header>
             <h3>Catalog Item:  @Html.DisplayFor(model=>model.ProductName), @Html.DisplayFor(model=>model.ProductVersion) </h3>
         </header>
+@using (Html.BeginForm()) {
 <table>
     <tr>
         <td>
@@ -33,6 +28,8 @@
             @Html.DisplayFor(model=>model.LicensingBasis)
         </td>
     </tr>
+
+@Html.ValidationSummary(true)
     <tr>
         <td>
             <b>@Html.DisplayNameFor(model => model.Quantity):</b>
@@ -51,6 +48,7 @@
         <td>
              @Html.ActionLink("Back to list", "../Purchase/Buy")
         </td>
-    </tr>    
+    </tr>
+  
 </table>
- }
+}  

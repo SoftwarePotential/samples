@@ -12,7 +12,6 @@
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
 // PARTICULAR PURPOSE.
 
-using Sp.Samples.LicenseManagement.Store.LicenseManagementWS;
 using Sp.Samples.LicenseManagement.Store.Models;
 using System;
 using System.Collections.Generic;
@@ -53,10 +52,10 @@ namespace Sp.Samples.LicenseManagement.Store.Services
 		public PurchaseRecord RecordPurchase( CatalogEntry entry, int quantity )
 		{
 			PurchaseRecord purchaseRecord = new PurchaseRecord() 
-			{ 
-				ProductName = entry.ProductName, 
-				ProductVersion = entry.ProductVersion, 
-				Description = entry.Blurb, 
+			{
+				ProductName = entry.ProductName,
+				ProductVersion = entry.ProductVersion,
+				Description = entry.Blurb,
 				LicensingBasis = entry.LicensingBasis,
 				Quantity = quantity
 			};

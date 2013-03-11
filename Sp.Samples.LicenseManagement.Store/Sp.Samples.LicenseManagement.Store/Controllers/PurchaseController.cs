@@ -17,9 +17,8 @@ using Sp.Samples.LicenseManagement.Store.Models;
 using Sp.Samples.LicenseManagement.Store.Services;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Web.Mvc;
 using System.Linq;
+using System.Web.Mvc;
 
 namespace Sp.Samples.LicenseManagement.Store.Controllers
 {
@@ -57,6 +56,40 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 				catalogEntryModels.Add( catalogEntryViewModel );
 			}
 			return View( catalogEntryModels );
+		}		
+
+		public ActionResult SelectedProduct( int id )
+		{
+			CatalogEntry entry = _catalogService.TryGet( id );
+			SelectedProductModel model = entry.ToSelectedProductModel();
+			return View( model );
+		}
+
+		[HttpPost, ActionName( "SelectedProduct" )]
+		public ActionResult SelectedProductConfirmed( SelectedProductModel model )
+		{
+			if ( !ModelState.IsValid )
+			{
+				return SelectedProduct(model.Id);
+			}
+
+			var entry = _catalogService.TryGet( model.Id );
+			var purchaseRecord = _purchaseService.RecordPurchase( entry, model.Quantity );
+
+			for ( int i = 0; i < model.Quantity; i++ )
+			{
+				License license = _licensingService.CreateLicenseFromSkuId( entry.SkuId );
+				_orderItemService.RecordOrderItem( license, purchaseRecord, i + 1 );
+			}
+
+			return RedirectToAction( "ShowPurchasedInfo", new { id = purchaseRecord.Id } );
+		}
+
+		public ActionResult ShowPurchasedInfo( int id )
+		{
+			var purchaseRecord = _purchaseService.TryGet( id );
+			var purchaseRecordModel = purchaseRecord.ToViewModel();
+			return View( purchaseRecordModel );
 		}
 
 		public ActionResult PurchaseDetails( int id = 0 )
@@ -80,47 +113,7 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 
 			return View( purchaseRecordModels );
 		}
-
-		public ActionResult SelectedProduct( int id )
-		{
-			CatalogEntry entry = _catalogService.TryGet( id );
-			CatalogEntryModel model = entry.ToViewModel();
-			return View( model );
-		}
-
-		[HttpPost, ActionName( "SelectedProduct" )]
-		public ActionResult SelectedProductConfirmed( int id, CatalogEntryModel model )
-		{
-			int quantity = model.Quantity;
-			CatalogEntry entry = _catalogService.TryGet( id );
-			model = entry.ToViewModel();
-			string skuId = entry.SkuId;
-
-			if ( ModelState.IsValid )
-			{
-				var purchaseRecord = _purchaseService.RecordPurchase( entry, quantity );
-
-				for ( int i = 0; i < quantity; i++ )
-				{
-					License license = _licensingService.CreateLicenseFromSkuId( skuId );
-					_orderItemService.RecordOrderItem( license, purchaseRecord, i+1 );
-				}
-
-				var purchaseRecordModel = purchaseRecord.ToViewModel();
-
-				return RedirectToAction( "ShowPurchasedInfo", new { id = purchaseRecordModel.Id } );
-			}
-			return View( model );
-		}
-
-		public ActionResult ShowPurchasedInfo( int id )
-		{
-			var purchaseRecord = _purchaseService.TryGet( id );
-			var purchaseRecordModel = purchaseRecord.ToViewModel();
-			return View( purchaseRecordModel );
-		}
 	}
-
 	static class PurchaseRecordConversionExtensions
 	{
 		public static PurchaseRecordModel ToViewModel( this PurchaseRecord model )
@@ -140,11 +133,27 @@ namespace Sp.Samples.LicenseManagement.Store.Controllers
 						OrderItemNo = oi.OrderItemNo,
 						PurchaseRecordId = oi.PurchaseRecordId,
 						ActivationKey = oi.ActivationKey,
-						LicenseId = oi.LicenseId,
-						ExceptionDetails = oi.ExceptionDetails
+						LicenseId = oi.LicenseId
 					}).ToArray()
 			};
 			return purchaseRecordModel;
+		}
+	}
+	static class CatalogEntryToSelectedProductConversionExtension
+	{
+		public static SelectedProductModel ToSelectedProductModel( this CatalogEntry entry )
+		{
+			SelectedProductModel selectedProductModel = new SelectedProductModel
+			{
+				Id = entry.Id,
+				Blurb = entry.Blurb,
+				LicensingBasis = entry.LicensingBasis,
+				Price = entry.Price,
+				ProductName = entry.ProductName,
+				ProductVersion = entry.ProductVersion,
+				SkuId = entry.SkuId
+			};
+			return selectedProductModel;
 		}
 	}
 }

@@ -18,7 +18,6 @@ namespace Sp.Samples.LicenseManagement.Store.Services
         public int PurchaseRecordId { get; set; }
         public string ActivationKey { get; set; }
         public string LicenseId { get; set; }
-        public string ExceptionDetails { get; set; }
     
         public virtual PurchaseRecord PurchaseRecord { get; set; }
     }

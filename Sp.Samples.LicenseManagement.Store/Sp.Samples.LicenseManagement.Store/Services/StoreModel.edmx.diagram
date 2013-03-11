@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="085fa73d20174428a9f0d2050e0e3a7e" Name="Diagram1">
+      <Diagram DiagramId="c590c151f0a84f9fbea6d19a11910488" Name="Diagram1">
         <EntityTypeShape EntityType="StoreDbModel.CatalogEntry" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StoreDbModel.OrderItem" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoreDbModel.OrderItem" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="StoreDbModel.PurchaseRecord" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="StoreDbModel.PurchaseRecord_OrderItem" ManuallyRouted="false" />
       </Diagram>

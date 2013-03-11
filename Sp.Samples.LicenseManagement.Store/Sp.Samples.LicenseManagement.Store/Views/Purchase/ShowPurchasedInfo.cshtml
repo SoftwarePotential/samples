@@ -16,12 +16,10 @@
         <b>@Html.DisplayNameFor(model => model.Quantity): </b>@Html.DisplayFor(model => model.Quantity)
     </p>
 
-    <div class="display-label">
-         <b>@Html.DisplayNameFor(model => model.Description)</b>
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Description)
-    </div>
+    <p>
+        <b>@Html.DisplayNameFor(model => model.Description): </b>@Html.DisplayFor(model => model.Description)
+    </p>
+
     @foreach ( var item in Model.OrderItemModels )
     {
         <h4>Order Item Reference No.: PR @Html.DisplayFor(modelItem => item.PurchaseRecordId)-@Html.DisplayFor(modelItem => item.OrderItemNo)</h4>
