@@ -21,6 +21,14 @@
 * Navigate to the Sp.Samples.Consume directory
 * Run .\configure -username:YourUserName -password:YourPassword
 
-## 3. The rest is on the wiki
+### 3. Using The Sample
+
+* Run the application from a command prompt 
+* Select one of the following two options
+* CreateOrUpdate ExternalId CustomerName
+* Delete ExternalId CustomerName
+* e.g. Sp.Samples.Consume.CustomerSync CreateOrUpdate ID1234 AcmeInc
+
+## 4. The rest is on the wiki
 
 Further details are available on the wiki at https://github.com/SoftwarePotential/samples/wiki/Customer-Sync-Sample
