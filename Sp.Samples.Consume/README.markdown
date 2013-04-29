@@ -10,6 +10,17 @@
 * you can [take it as a ZIP from here](https://github.com/SoftwarePotential/samples/zipball/master) 
 * you can get it via git at https://github.com/SoftwarePotential/samples/
 
+### 1. Build the sample
+
+* Launch powershell 
+* Navigate to the Sp.Samples.Consume directory
+* Run .\build
+
+### 2. Configure the sample
+* Launch powershell 
+* Navigate to the Sp.Samples.Consume directory
+* Run .\configure -username:YourUserName -password:YourPassword
+
 ## 3. The rest is on the wiki
 
 Further details are available on the wiki at https://github.com/SoftwarePotential/samples/wiki/Customer-Sync-Sample
