@@ -45,8 +45,7 @@ namespace Sp.Samples.Consume.CustomerSync
 				throw new Exception( string.Format( "Customer: {0} failed to update with status code {1}", existingCustomer.ExternalId, response.StatusCode ) );
 		}
 
-		/// <summary>
-		/// Given a batch of customerSumarries imported from a csv 
+		/// <summary>		
 		/// Retrieve the existing customer from the server using its externalId as a unique identifier
 		/// Send a delete httpRequest to the self link contained within the retieved customer
 		/// </summary>

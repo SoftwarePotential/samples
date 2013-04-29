@@ -16,19 +16,19 @@ namespace Sp.Samples.Consume.CustomerSync
 
 		internal IRestResponse<CustomerSummaryPage> GetCustomerList()
 		{
-			var request = new RestRequest( "/Consume" );
+			var request = new RestRequest( "Consume" );
 			return Execute<CustomerSummaryPage>( request );
 		}
 
 		internal IRestResponse<CustomerSummaryPage> GetCustomerList( string query )
 		{
-			var request = new RestRequest( "/Consume/customer?" + query );
+			var request = new RestRequest( "Consume/customer?" + query );
 			return Execute<CustomerSummaryPage>( request );
 		}
 
 		internal IRestResponse CreateCustomer( CustomerSummary customer )
 		{
-			var request = new RestRequest( "/Consume/customer", Method.POST );
+			var request = new RestRequest( "Consume/customer", Method.POST );
 			request.RequestFormat = DataFormat.Json;
 			request.AddBody( customer );
 			return Execute( request );

@@ -17,7 +17,7 @@
 * Run .\build
 * Run .\configure -username:YourUserName -password:YourPassword
 
-### 3. Using The Sample
+### 2. Using The Sample
 
 * Run the application from a command prompt 
 * Select one of the following two options
@@ -25,6 +25,6 @@
 * Delete ExternalId CustomerName
 * e.g. Sp.Samples.Consume.CustomerSync.exe CreateOrUpdate ID1234 AcmeInc
 
-## 4. More details available on the wiki
+## 3. More details available on the wiki
 
 Further details are available on the wiki at https://github.com/SoftwarePotential/samples/wiki/Customer-Sync-Sample
