@@ -52,7 +52,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpCustomerApi.cs" />
-    <Compile Include="Wrappers\RelativePathAwareCustomRestClient.cs" />
     <Compile Include="Wrappers\RestResponseCookieExtensions.cs" />
     <Compile Include="Wrappers\SpApi.cs" />
     <Compile Include="Wrappers\SpApiConfiguration.cs" />

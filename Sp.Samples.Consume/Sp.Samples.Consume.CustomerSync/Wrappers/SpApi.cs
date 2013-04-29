@@ -21,7 +21,7 @@ namespace Sp.Samples.Consume.CustomerSync.Wrappers
 
 		public SpApi()
 		{
-			_client = new RelativePathAwareCustomRestClient( SpApiConfiguration.BaseUrl )
+			_client = new RestClient( SpApiConfiguration.BaseUrl )
 			{
 				Authenticator = new WSFederationAuthenticator()
 			};
@@ -39,7 +39,7 @@ namespace Sp.Samples.Consume.CustomerSync.Wrappers
 
 		public IRestResponse SignOff()
 		{
-			var signOffRequest = new RestRequest( "Home/Authentication/LogOff", Method.GET );
+			var signOffRequest = new RestRequest( "/Home/Authentication/LogOff", Method.GET );
 			return _client.Execute( signOffRequest );
 		}
 	}

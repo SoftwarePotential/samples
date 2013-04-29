@@ -29,7 +29,7 @@ namespace Sp.Samples.Consume.CustomerSync.Wrappers
 
 		public static string BaseUrl
 		{
-			get { return ConfigurationManager.AppSettings[ "BaseUrl" ]; }
+			get { return "https://srv.softwarepotential.com"; }
 		}
 	}
 }

@@ -33,7 +33,7 @@ namespace Sp.Samples.Consume.CustomerSync
 		{
 			var newCustomer = new SpCustomerApi.CustomerSummary { ExternalId = externalId, Name = name, RequestId = Guid.NewGuid() };
 			IRestResponse response = Retry( () => _customerApi.CreateCustomer( newCustomer ) );
-			if ( response.StatusCode != HttpStatusCode.OK )
+			if ( response.StatusCode != HttpStatusCode.Accepted )
 				throw new Exception( string.Format( "Customer: {0} failed to create with status code {1}", externalId, response.StatusCode ) );
 		}
 
@@ -72,14 +72,14 @@ namespace Sp.Samples.Consume.CustomerSync
 
 		/// <summary>
 		/// Retry wrapper for calls to apis.
-		/// The Software Potential Customer Management APIs return 200 OK or 202 Accepted 
+		/// The Software Potential Customer Management APIs return 202 Accepted 
 		/// </summary>
 		static T Retry<T>( Func<T> func, int retryCount = 3 ) where T : IRestResponse
 		{
 			while ( true )
 			{
 				var result = func();
-				if ( result.StatusCode == HttpStatusCode.OK || result.StatusCode == HttpStatusCode.Accepted || retryCount == 0 )
+				if ( result.StatusCode == HttpStatusCode.Accepted || retryCount == 0 )
 					return result;
 				retryCount--;
 				Thread.Sleep( 500 );
