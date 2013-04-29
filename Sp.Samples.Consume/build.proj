@@ -38,7 +38,7 @@
   <!--CUSTOMIZING-->
 
   <PropertyGroup>
-    <_Instructions>Need to run "./configure.ps1" from the root folder before running the tests.</_Instructions>
+    <_Instructions>Need to run "./configure.ps1" from the root folder before running the samples.</_Instructions>
 
     <TestAppConfigUsername Condition=" '' == '$(TestAppConfigUsername)'">INSERT USERNAME HERE - $(_Instructions)</TestAppConfigUsername>
     <TestAppConfigPassword Condition=" '' == '$(TestAppConfigPassword)'">INSERT PASSWORD HERE - $(_Instructions)</TestAppConfigPassword>
@@ -73,11 +73,6 @@
       XmlInputPath="%(_ConfigFilesToCustomize.Identity)"
       Query="%(_ConfigFilesToCustomize.ReplacementQuery)"
       Value="%(_ConfigFilesToCustomize.ReplacementValue)"/>
-  </Target>
-
-  <!--See http://nuget.codeplex.com/discussions/365785 for any updates on whether this is necessary and/or can be improved upon -->
-  <Target Name="NuGetPackageRestoreSolutionLevelPackagesWorkaround"  Condition=" '' == '$(XunitPath)'">
-    <Exec WorkingDirectory="$(MSBuildThisFileDirectory)" LogStandardErrorAsError="true" Command=".nuget\nuget.exe install .nuget\packages.config -o packages" />
   </Target>
 
 </Project>

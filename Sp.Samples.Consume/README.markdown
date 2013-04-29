@@ -2,8 +2,8 @@
 
 ## Prerequisites
 
-* The sample requires .NET 4.5 on both your development machine and the end-user's machine
-* The solution supports Visual Studio 2012 or later
+* The sample requires .NET 4.0 on both your development machine and the end-user's machine
+* The solution supports Visual Studio 2010 or later
 
 ### 0. Download the sample code onto your machine 
 

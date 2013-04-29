@@ -1,4 +1,4 @@
-Build started 29/04/2013 10:14:27.
+Build started 29/04/2013 15:05:52.
      1>Project "F:\Slps\Github\samples\Sp.Samples.Consume\build.proj" on node 1 (Build target(s)).
      1>Building with tools version "4.0".
      1>Target "Build" in project "F:\Slps\Github\samples\Sp.Samples.Consume\build.proj" (entry point):
@@ -59,7 +59,7 @@ Build started 29/04/2013 10:14:27.
        Task "Error" skipped, due to false condition; ('$(IntermediateOutputPath)' != '' and !HasTrailingSlash('$(IntermediateOutputPath)')) was evaluated as ('obj\Debug\' != '' and !HasTrailingSlash('obj\Debug\')).
      3>Done building target "_CheckForInvalidConfigurationAndPlatform" in project "Sp.Samples.Consume.CustomerSync.csproj".
      3>Target "CheckPrerequisites" in file "F:\Slps\Github\samples\Sp.Samples.Consume\.nuget\nuget.targets" from project "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\Sp.Samples.Consume.CustomerSync.csproj" (target "RestorePackages" depends on it):
-       Task "Error" skipped, due to false condition; ('$(DownloadNuGetExe)' != 'true' AND !Exists('$(NuGetExePath)')) was evaluated as ('false' != 'true' AND !Exists('F:\Slps\Github\samples\Sp.Samples.Consume\.nuget\nuget.exe')).
+       Task "Error" skipped, due to false condition; ('$(DownloadNuGetExe)' != 'true' AND !Exists('$(NuGetExePath)')) was evaluated as ('true' != 'true' AND !Exists('F:\Slps\Github\samples\Sp.Samples.Consume\.nuget\nuget.exe')).
        Initializing task factory "CodeTaskFactory" from assembly "C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Build.Tasks.v4.0.dll".
        Using "SetEnvironmentVariable" task from the task factory "Code Task Factory".
        Task "SetEnvironmentVariable"
@@ -70,7 +70,7 @@ Build started 29/04/2013 10:14:27.
      3>Project "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\Sp.Samples.Consume.CustomerSync.csproj" (3) is building "F:\Slps\Github\samples\Sp.Samples.Consume\.nuget\nuget.targets" (4) on node 1 (_DownloadNuGet target(s)).
      4>Building with tools version "4.0".
      4>Target "_DownloadNuGet" in project "F:\Slps\Github\samples\Sp.Samples.Consume\.nuget\nuget.targets" (entry point):
-       Task "DownloadNuGet" skipped, due to false condition; ( '$(DownloadNuGetExe)' == 'true' AND !Exists('$(NuGetExePath)')) was evaluated as ( 'false' == 'true' AND !Exists('F:\Slps\Github\samples\Sp.Samples.Consume\.nuget\nuget.exe')).
+       Task "DownloadNuGet" skipped, due to false condition; ( '$(DownloadNuGetExe)' == 'true' AND !Exists('$(NuGetExePath)')) was evaluated as ( 'true' == 'true' AND !Exists('F:\Slps\Github\samples\Sp.Samples.Consume\.nuget\nuget.exe')).
      4>Done building target "_DownloadNuGet" in project "nuget.targets".
      4>Done Building Project "F:\Slps\Github\samples\Sp.Samples.Consume\.nuget\nuget.targets" (_DownloadNuGet target(s)).
      3>Done executing task "MsBuild".
@@ -92,9 +92,7 @@ Build started 29/04/2013 10:14:27.
      3>Done building target "GetFrameworkPaths" in project "Sp.Samples.Consume.CustomerSync.csproj".
        Target "GetWinFXPath" skipped, due to false condition; (('@(Page)' != '' or '@(ApplicationDefinition)' != '' or '@(Resource)' != '') and ('$(GetWinFXNativePath)' != '' or '$(GetWinFXWoWPath)' != '' )) was evaluated as (('' != '' or '' != '' or '' != '') and ('' != '' or '' != '' )).
      3>Target "GetReferenceAssemblyPaths" in file "C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.targets" from project "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\Sp.Samples.Consume.CustomerSync.csproj" (target "PrepareForBuild" depends on it):
-       Using "GetReferenceAssemblyPaths" task from assembly "Microsoft.Build.Tasks.v4.0, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
-       Task "GetReferenceAssemblyPaths"
-       Done executing task "GetReferenceAssemblyPaths".
+       Task "GetReferenceAssemblyPaths" skipped, due to false condition; ('$(TargetFrameworkMoniker)' != '' and ('$(_TargetFrameworkDirectories)' == '' or '$(_FullFrameworkReferenceAssemblyPaths)' == '')) was evaluated as ('.NETFramework,Version=v4.0,Profile=Client' != '' and ('C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client' == '' or 'C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0' == '')).
      3>Done building target "GetReferenceAssemblyPaths" in project "Sp.Samples.Consume.CustomerSync.csproj".
      3>Target "PrepareForBuild" in file "C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.targets" from project "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\Sp.Samples.Consume.CustomerSync.csproj" (target "CoreBuild" depends on it):
        Using "FindAppConfigFile" task from assembly "Microsoft.Build.Tasks.v4.0, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
@@ -142,9 +140,9 @@ Build started 29/04/2013 10:14:27.
        Using "ResolveAssemblyReference" task from assembly "Microsoft.Build.Tasks.v4.0, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "ResolveAssemblyReference"
          TargetFrameworkMoniker:
-             .NETFramework,Version=v4.5
+             .NETFramework,Version=v4.0,Profile=Client
          TargetFrameworkMonikerDisplayName:
-             .NET Framework 4.5
+             .NET Framework 4 Client Profile
          TargetedRuntimeVersion:
              v4.0.30319
          Assemblies:
@@ -154,17 +152,13 @@ Build started 29/04/2013 10:14:27.
                  HintPath = '..\packages\RestSharp.104.1\lib\net4\RestSharp.dll'
              System
              System.configuration
-             System.Xml.Linq
-             System.Data.DataSetExtensions
-             Microsoft.CSharp
-             System.Data
-             System.Xml
+             System.XML
              System.Core
          AssemblyFiles:
-             C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll
+             C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\mscorlib.dll
          CandidateAssemblyFiles:
          TargetFrameworkDirectories:
-             C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\,C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\
+             C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client
          InstalledAssemblyTables:
          IgnoreInstalledAssemblyTable:
              False
@@ -173,7 +167,7 @@ Build started 29/04/2013 10:14:27.
              {CandidateAssemblyFiles}
              {HintPathFromItem}
              {TargetFrameworkDirectory}
-             {Registry:Software\Microsoft\.NETFramework,v4.5,AssemblyFoldersEx}
+             {Registry:Software\Microsoft\.NETFramework,v4.0,AssemblyFoldersEx}
              {AssemblyFolders}
              {GAC}
              {RawFileName}
@@ -205,14 +199,15 @@ Build started 29/04/2013 10:14:27.
          FullTargetFrameworkSubsetNames:
              Full
          ProfileName:
-             
+             Client
          FullFrameworkFolders:
-             C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\
+             C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0
          LatestTargetFrameworkDirectories:
          ProfileTablesLocation:
+         A TargetFramework profile exclusion list will be generated.
          Primary reference "mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089".
-             Resolved file path is "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll".
-             Reference found at search path location "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll".
+             Resolved file path is "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\mscorlib.dll".
+             Reference found at search path location "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\mscorlib.dll".
              This reference is not "CopyLocal" because it's a prerequisite file.
              The ImageRuntimeVersion for this reference is "v4.0.30319".
          Primary reference "HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a".
@@ -235,91 +230,63 @@ Build started 29/04/2013 10:14:27.
              Found related file "F:\Slps\Github\samples\Sp.Samples.Consume\packages\RestSharp.104.1\lib\net4\RestSharp.xml".
              The ImageRuntimeVersion for this reference is "v4.0.30319".
          Primary reference "System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089".
-             Resolved file path is "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll".
+             Resolved file path is "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.dll".
              Reference found at search path location "{TargetFrameworkDirectory}".
                  For SearchPath "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies".
                  Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.winmd", but it didn't exist.
                  Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.dll", but it didn't exist.
                  Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.exe", but it didn't exist.
                  For SearchPath "{TargetFrameworkDirectory}".
-                 Considered "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.winmd", but it didn't exist.
+                 Considered "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.winmd", but it didn't exist.
              This reference is not "CopyLocal" because it's a prerequisite file.
              The ImageRuntimeVersion for this reference is "v4.0.30319".
          Primary reference "System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
-             Resolved file path is "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Configuration.dll".
+             Resolved file path is "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Configuration.dll".
              Reference found at search path location "{TargetFrameworkDirectory}".
                  For SearchPath "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies".
                  Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.configuration.winmd", but it didn't exist.
                  Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.configuration.dll", but it didn't exist.
                  Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.configuration.exe", but it didn't exist.
                  For SearchPath "{TargetFrameworkDirectory}".
-                 Considered "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Configuration.winmd", but it didn't exist.
-             This reference is not "CopyLocal" because it's a prerequisite file.
-             The ImageRuntimeVersion for this reference is "v4.0.30319".
-         Primary reference "System.Xml.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089".
-             Resolved file path is "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.Linq.dll".
-             Reference found at search path location "{TargetFrameworkDirectory}".
-                 For SearchPath "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies".
-                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.Xml.Linq.winmd", but it didn't exist.
-                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.Xml.Linq.dll", but it didn't exist.
-                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.Xml.Linq.exe", but it didn't exist.
-                 For SearchPath "{TargetFrameworkDirectory}".
-                 Considered "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.Linq.winmd", but it didn't exist.
-             This reference is not "CopyLocal" because it's a prerequisite file.
-             The ImageRuntimeVersion for this reference is "v4.0.30319".
-         Primary reference "System.Data.DataSetExtensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089".
-             Resolved file path is "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.DataSetExtensions.dll".
-             Reference found at search path location "{TargetFrameworkDirectory}".
-                 For SearchPath "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies".
-                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.Data.DataSetExtensions.winmd", but it didn't exist.
-                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.Data.DataSetExtensions.dll", but it didn't exist.
-                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.Data.DataSetExtensions.exe", but it didn't exist.
-                 For SearchPath "{TargetFrameworkDirectory}".
-                 Considered "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.DataSetExtensions.winmd", but it didn't exist.
-             This reference is not "CopyLocal" because it's a prerequisite file.
-             The ImageRuntimeVersion for this reference is "v4.0.30319".
-         Primary reference "Microsoft.CSharp, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
-             Resolved file path is "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Microsoft.CSharp.dll".
-             Reference found at search path location "{TargetFrameworkDirectory}".
-                 For SearchPath "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies".
-                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\Microsoft.CSharp.winmd", but it didn't exist.
-                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\Microsoft.CSharp.dll", but it didn't exist.
-                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\Microsoft.CSharp.exe", but it didn't exist.
-                 For SearchPath "{TargetFrameworkDirectory}".
-                 Considered "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Microsoft.CSharp.winmd", but it didn't exist.
-             This reference is not "CopyLocal" because it's a prerequisite file.
-             The ImageRuntimeVersion for this reference is "v4.0.30319".
-         Primary reference "System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089".
-             Resolved file path is "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll".
-             Reference found at search path location "{TargetFrameworkDirectory}".
-                 For SearchPath "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies".
-                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.Data.winmd", but it didn't exist.
-                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.Data.dll", but it didn't exist.
-                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.Data.exe", but it didn't exist.
-                 For SearchPath "{TargetFrameworkDirectory}".
-                 Considered "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.winmd", but it didn't exist.
+                 Considered "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Configuration.winmd", but it didn't exist.
              This reference is not "CopyLocal" because it's a prerequisite file.
              The ImageRuntimeVersion for this reference is "v4.0.30319".
          Primary reference "System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089".
-             Resolved file path is "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll".
+             Resolved file path is "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Xml.dll".
              Reference found at search path location "{TargetFrameworkDirectory}".
                  For SearchPath "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies".
-                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.Xml.winmd", but it didn't exist.
-                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.Xml.dll", but it didn't exist.
-                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.Xml.exe", but it didn't exist.
+                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.XML.winmd", but it didn't exist.
+                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.XML.dll", but it didn't exist.
+                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.XML.exe", but it didn't exist.
                  For SearchPath "{TargetFrameworkDirectory}".
-                 Considered "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.winmd", but it didn't exist.
+                 Considered "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Xml.winmd", but it didn't exist.
              This reference is not "CopyLocal" because it's a prerequisite file.
              The ImageRuntimeVersion for this reference is "v4.0.30319".
          Primary reference "System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089".
-             Resolved file path is "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Core.dll".
+             Resolved file path is "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Core.dll".
              Reference found at search path location "{TargetFrameworkDirectory}".
                  For SearchPath "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies".
                  Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.Core.winmd", but it didn't exist.
                  Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.Core.dll", but it didn't exist.
                  Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.Core.exe", but it didn't exist.
                  For SearchPath "{TargetFrameworkDirectory}".
-                 Considered "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Core.winmd", but it didn't exist.
+                 Considered "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Core.winmd", but it didn't exist.
+             This reference is not "CopyLocal" because it's a prerequisite file.
+             The ImageRuntimeVersion for this reference is "v4.0.30319".
+         Dependency "System.Xml.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089".
+             Resolved file path is "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Xml.Linq.dll".
+             Reference found at search path location "{TargetFrameworkDirectory}".
+                 For SearchPath "F:\Slps\Github\samples\Sp.Samples.Consume\packages\RestSharp.104.1\lib\net4".
+                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\packages\RestSharp.104.1\lib\net4\System.Xml.Linq.winmd", but it didn't exist.
+                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\packages\RestSharp.104.1\lib\net4\System.Xml.Linq.dll", but it didn't exist.
+                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\packages\RestSharp.104.1\lib\net4\System.Xml.Linq.exe", but it didn't exist.
+                 For SearchPath "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies".
+                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.Xml.Linq.winmd", but it didn't exist.
+                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.Xml.Linq.dll", but it didn't exist.
+                 Considered "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\FakesAssemblies\System.Xml.Linq.exe", but it didn't exist.
+                 For SearchPath "{TargetFrameworkDirectory}".
+                 Considered "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Xml.Linq.winmd", but it didn't exist.
+             Required by "RestSharp".
              This reference is not "CopyLocal" because it's a prerequisite file.
              The ImageRuntimeVersion for this reference is "v4.0.30319".
        Done executing task "ResolveAssemblyReference".
@@ -327,29 +294,16 @@ Build started 29/04/2013 10:14:27.
        Target "ResolveComReferences" skipped, due to false condition; ('@(COMReference)'!='' or '@(COMFileReference)'!='') was evaluated as (''!='' or ''!='').
      3>Target "AfterResolveReferences" in file "C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.targets" from project "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\Sp.Samples.Consume.CustomerSync.csproj" (target "ResolveReferences" depends on it):
      3>Done building target "AfterResolveReferences" in project "Sp.Samples.Consume.CustomerSync.csproj".
-       Target "GetReferenceAssemblyPaths" skipped. Previously built successfully.
-     3>Target "ImplicitlyExpandDesignTimeFacades" in file "C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.NETFramework.targets" from project "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\Sp.Samples.Consume.CustomerSync.csproj" (target "ResolveReferences" depends on it):
-       Task "Message" skipped, due to false condition; ('%(ReferencePath.ResolvedFrom)' == 'ImplicitlyExpandDesignTimeFacades') was evaluated as ('{HintPathFromItem}' == 'ImplicitlyExpandDesignTimeFacades').
-       Task "Message" skipped, due to false condition; ('%(ReferencePath.ResolvedFrom)' == 'ImplicitlyExpandDesignTimeFacades') was evaluated as ('{TargetFrameworkDirectory}' == 'ImplicitlyExpandDesignTimeFacades').
-       Task "Message" skipped, due to false condition; ('%(ReferencePath.ResolvedFrom)' == 'ImplicitlyExpandDesignTimeFacades') was evaluated as ('C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll' == 'ImplicitlyExpandDesignTimeFacades').
-     3>Done building target "ImplicitlyExpandDesignTimeFacades" in project "Sp.Samples.Consume.CustomerSync.csproj".
+       Target "ImplicitlyExpandDesignTimeFacades" skipped, due to false condition; ('$(ImplicitlyExpandDesignTimeFacades)' == 'true') was evaluated as ('' == 'true').
        Target "ResolveTestReferences" skipped, due to false condition; ('@(Shadow)'!='') was evaluated as (''!='').
      3>Target "ResolveReferences" in file "C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.targets" from project "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\Sp.Samples.Consume.CustomerSync.csproj" (target "CoreBuild" depends on it):
      3>Done building target "ResolveReferences" in project "Sp.Samples.Consume.CustomerSync.csproj".
-     3>Target "ValidationExtension" in file "C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.WorkflowBuildExtensions.targets" from project "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\Sp.Samples.Consume.CustomerSync.csproj" (target "PrepareResources" depends on it):
-       Task "WorkflowBuildMessageTask" skipped, due to false condition; ('$(SkipWorkflowValidation)'!='' and '$(SkipWorkflowValidation)'!='true' and '$(SkipWorkflowValidation)'!='false') was evaluated as (''!='' and ''!='true' and ''!='false').
-     3>Done building target "ValidationExtension" in project "Sp.Samples.Consume.CustomerSync.csproj".
-     3>Target "ExpressionBuildExtension" in file "C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.WorkflowBuildExtensions.targets" from project "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\Sp.Samples.Consume.CustomerSync.csproj" (target "PrepareResources" depends on it):
-       Task "WorkflowBuildMessageTask" skipped, due to false condition; ('$(DisableWorkflowCompiledExpressions)'!='' and '$(DisableWorkflowCompiledExpressions)'!='true' and '$(DisableWorkflowCompiledExpressions)'!='false') was evaluated as (''!='' and ''!='true' and ''!='false').
-     3>Done building target "ExpressionBuildExtension" in project "Sp.Samples.Consume.CustomerSync.csproj".
        Target "XamlMarkupCompilePass1" skipped, due to false condition; ('@(XamlPage)' != '' or '@(XamlAppDef)' != '') was evaluated as ('' != '' or '' != '').
        Target "XamlMarkupCompileReadGeneratedFileList" skipped, due to false condition; ('@(XamlPage)' != '' or '@(XamlAppDef)' != '') was evaluated as ('' != '' or '' != '').
        Target "XamlMarkupCompileAddFilesGenerated" skipped, due to false condition; ('@(XamlPage)' != '' or '@(XamlAppDef)' != '') was evaluated as ('' != '' or '' != '').
        Target "XamlMarkupCompilePass2" skipped, due to false condition; ('$(XamlRequiresCompilationPass2)' == 'true' ) was evaluated as ('false' == 'true' ).
        Target "XamlMarkupCompileReadPass2Flag" skipped, due to false condition; ('@(XamlPage)' != '' or '@(XamlAppDef)' != '') was evaluated as ('' != '' or '' != '').
        Target "XamlMarkupCompileAddExtensionFilesGenerated" skipped, due to false condition; ('@(XamlPage)' != '' or '@(XamlAppDef)' != '') was evaluated as ('' != '' or '' != '').
-       Target "AddDeferredValidationErrorsFileToFileWrites" skipped, due to false condition; (Exists('$(DeferredValidationErrorsFileName)')) was evaluated as (Exists('obj\Debug\\AC2C1ABA-CCF6-44D4-8127-588FD4D0A860-DeferredValidationErrors.xml')).
-       Target "ReportValidationBuildExtensionErrors" skipped, due to false condition; ('$(SkipWorkflowValidation)' != 'true' and ('@(XamlPage)' != '' or '@(XamlAppDef)' != '')) was evaluated as ('' != 'true' and ('' != '' or '' != '')).
        Target "MarkupCompilePass1" skipped, due to false condition; ('@(Page)' != '' or '@(ApplicationDefinition)' != '' ) was evaluated as ('' != '' or '' != '' ).
      3>Target "AfterMarkupCompilePass1" in file "C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.WinFX.targets" from project "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\Sp.Samples.Consume.CustomerSync.csproj" (target "PrepareResources" depends on it):
      3>Done building target "AfterMarkupCompilePass1" in project "Sp.Samples.Consume.CustomerSync.csproj".
@@ -433,7 +387,7 @@ Build started 29/04/2013 10:14:27.
      3>Target "GenerateTargetFrameworkMonikerAttribute" in file "C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.targets" from project "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\Sp.Samples.Consume.CustomerSync.csproj" (target "BeforeCompile" depends on it):
        Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
        Input files: C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.targets
-       Output files: C:\Users\sconnell\AppData\Local\Temp\.NETFramework,Version=v4.5.AssemblyAttributes.cs
+       Output files: C:\Users\sconnell\AppData\Local\Temp\.NETFramework,Version=v4.0,Profile=Client.AssemblyAttributes.cs
      3>Done building target "GenerateTargetFrameworkMonikerAttribute" in project "Sp.Samples.Consume.CustomerSync.csproj".
        Target "GenerateAdditionalSources" skipped, due to false condition; ('@(AssemblyAttributes)' != '' and '$(GenerateAdditionalSources)' == 'true') was evaluated as ('' != '' and '' == 'true').
      3>Target "BeforeCompile" in file "C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.targets" from project "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\Sp.Samples.Consume.CustomerSync.csproj" (target "Compile" depends on it):
@@ -452,9 +406,18 @@ Build started 29/04/2013 10:14:27.
      3>Done building target "PreXsdCodeGen" in project "Sp.Samples.Consume.CustomerSync.csproj".
        Target "XsdCodeGen" skipped, due to false condition; ( '$(XsdCodeGenPreCondition)' == 'True' ) was evaluated as ( 'False' == 'True' ).
      3>Target "CoreCompile" in file "C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.CSharp.targets" from project "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\Sp.Samples.Consume.CustomerSync.csproj" (target "Compile" depends on it):
-       Skipping target "CoreCompile" because all output files are up-to-date with respect to the input files.
-       Input files: Program.cs;Properties\AssemblyInfo.cs;SpCustomerApi.cs;Wrappers\RelativePathAwareCustomRestClient.cs;Wrappers\RestResponseCookieExtensions.cs;Wrappers\SpApi.cs;Wrappers\SpApiConfiguration.cs;Wrappers\UriHelper.cs;Wrappers\WSFederationAuthenticator.cs;C:\Users\sconnell\AppData\Local\Temp\.NETFramework,Version=v4.5.AssemblyAttributes.cs;F:\Slps\Github\samples\Sp.Samples.Consume\packages\HtmlAgilityPack.1.4.6\lib\Net40\HtmlAgilityPack.dll;C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Microsoft.CSharp.dll;C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll;F:\Slps\Github\samples\Sp.Samples.Consume\packages\RestSharp.104.1\lib\net4\RestSharp.dll;C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Configuration.dll;C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Core.dll;C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.DataSetExtensions.dll;C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll;C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll;C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll;C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.Linq.dll;C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.CSharp.targets;C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.NETFramework.props;F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\Sp.Samples.Consume.CustomerSync.csproj;C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.targets;C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.NETFramework.targets;C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Xaml.targets
-       Output files: obj\Debug\Sp.Samples.Consume.CustomerSync.exe;obj\Debug\Sp.Samples.Consume.CustomerSync.pdb
+       Building target "CoreCompile" completely.
+       Input file "ExternalIdBasedCustomerList.cs" is newer than output file "obj\Debug\Sp.Samples.Consume.CustomerSync.pdb".
+       Using "Csc" task from assembly "Microsoft.Build.Tasks.v4.0, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+       Task "Csc"
+         C:\Windows\Microsoft.NET\Framework\v4.0.30319\Csc.exe /noconfig /nowarn:1701,1702 /nostdlib+ /platform:AnyCPU /errorreport:prompt /warn:4 /define:DEBUG;TRACE /highentropyva- /reference:F:\Slps\Github\samples\Sp.Samples.Consume\packages\HtmlAgilityPack.1.4.6\lib\Net40\HtmlAgilityPack.dll /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\mscorlib.dll" /reference:F:\Slps\Github\samples\Sp.Samples.Consume\packages\RestSharp.104.1\lib\net4\RestSharp.dll /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Configuration.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Core.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Xml.dll" /debug+ /debug:full /filealign:512 /optimize- /out:obj\Debug\Sp.Samples.Consume.CustomerSync.exe /target:exe /utf8output ExternalIdBasedCustomerList.cs Program.cs Properties\AssemblyInfo.cs SpCustomerApi.cs Wrappers\RelativePathAwareCustomRestClient.cs Wrappers\RestResponseCookieExtensions.cs Wrappers\SpApi.cs Wrappers\SpApiConfiguration.cs Wrappers\UriHelper.cs Wrappers\WSFederationAuthenticator.cs "C:\Users\sconnell\AppData\Local\Temp\.NETFramework,Version=v4.0,Profile=Client.AssemblyAttributes.cs"
+         Microsoft (R) Visual C# Compiler version 4.0.30319.17929
+         
+         for Microsoft (R) .NET Framework 4.5
+         Copyright (C) Microsoft Corporation. All rights reserved.
+         
+       Done executing task "Csc".
+       Task "CallTarget" skipped, due to false condition; ('$(TargetsTriggeredByCompilation)' != '') was evaluated as ('' != '').
      3>Done building target "CoreCompile" in project "Sp.Samples.Consume.CustomerSync.csproj".
        Target "_TimeStampAfterCompile" skipped, due to false condition; ('$(RunPostBuildEvent)'=='OnOutputUpdated' or ('$(RegisterForComInterop)'=='true' and '$(OutputType)'=='library')) was evaluated as (''=='OnOutputUpdated' or (''=='true' and 'Exe'=='library')).
      3>Target "AfterCompile" in file "C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.targets" from project "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\Sp.Samples.Consume.CustomerSync.csproj" (target "Compile" depends on it):
@@ -467,7 +430,6 @@ Build started 29/04/2013 10:14:27.
      3>Done building target "_AfterCompileWinFXInternal" in project "Sp.Samples.Consume.CustomerSync.csproj".
      3>Target "Compile" in file "C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.targets" from project "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\Sp.Samples.Consume.CustomerSync.csproj" (target "CoreBuild" depends on it):
      3>Done building target "Compile" in project "Sp.Samples.Consume.CustomerSync.csproj".
-       Target "DeferredValidation" skipped, due to false condition; ('$(SkipWorkflowValidation)' != 'true' and ('@(XamlPage)' != '' or '@(XamlAppDef)' != '')) was evaluated as ('' != 'true' and ('' != '' or '' != '')).
        Target "ExportWindowsMDFile" skipped, due to false condition; ('$(ExportWinMDFile)' == 'true') was evaluated as ('' == 'true').
        Target "UnmanagedUnregistration" skipped, due to false condition; ((('$(_AssemblyTimestampBeforeCompile)' != '$(_AssemblyTimestampAfterCompile)' or '$(RegisterForComInterop)' != 'true' or '$(OutputType)' != 'library') or
                            ('$(_AssemblyTimestampBeforeCompile)' == '')) and
@@ -523,7 +485,7 @@ Build started 29/04/2013 10:14:27.
        Target "_SGenCheckForOutputs" skipped, due to false condition; ('$(_SGenGenerateSerializationAssembliesConfig)' == 'On' or ('@(WebReferenceUrl)'!='' and '$(_SGenGenerateSerializationAssembliesConfig)' == 'Auto')) was evaluated as ('Off' == 'On' or (''!='' and 'Off' == 'Auto')).
      3>Target "CopyFilesToOutputDirectory" in file "C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.Common.targets" from project "F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\Sp.Samples.Consume.CustomerSync.csproj" (target "PrepareForRun" depends on it):
        Task "Copy"
-         Did not copy from file "obj\Debug\Sp.Samples.Consume.CustomerSync.exe" to file "bin\Debug\Sp.Samples.Consume.CustomerSync.exe" because the "SkipUnchangedFiles" parameter was set to "true" in the project and the files' sizes and timestamps match.
+         Copying file from "obj\Debug\Sp.Samples.Consume.CustomerSync.exe" to "bin\Debug\Sp.Samples.Consume.CustomerSync.exe".
        Done executing task "Copy".
        Task "Message"
          Sp.Samples.Consume.CustomerSync -> F:\Slps\Github\samples\Sp.Samples.Consume\Sp.Samples.Consume.CustomerSync\bin\Debug\Sp.Samples.Consume.CustomerSync.exe
@@ -531,7 +493,7 @@ Build started 29/04/2013 10:14:27.
        Task "Copy" skipped, due to false condition; ('@(AddModules)' != '') was evaluated as ('' != '').
        Task "Copy" skipped, due to false condition; ('$(_SGenDllCreated)'=='true') was evaluated as ('false'=='true').
        Task "Copy"
-         Did not copy from file "obj\Debug\Sp.Samples.Consume.CustomerSync.pdb" to file "bin\Debug\Sp.Samples.Consume.CustomerSync.pdb" because the "SkipUnchangedFiles" parameter was set to "true" in the project and the files' sizes and timestamps match.
+         Copying file from "obj\Debug\Sp.Samples.Consume.CustomerSync.pdb" to "bin\Debug\Sp.Samples.Consume.CustomerSync.pdb".
        Done executing task "Copy".
        Task "Copy" skipped, due to false condition; ('$(_DocumentationFileProduced)'=='true') was evaluated as ('false'=='true').
        Task "Copy" skipped, due to false condition; ('@(IntermediateSatelliteAssembliesWithTargetPath)' != '') was evaluated as ('' != '').
@@ -598,4 +560,4 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:00.97
+Time Elapsed 00:00:01.17
