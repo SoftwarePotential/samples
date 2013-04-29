@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2012 Inish Technology Ventures Limited.  All rights reserved.
+  
+  This code is licensed under the BSD 3-Clause License included with this source
+  
+  FOR DETAILS, SEE https://github.com/InishTech/Sp.Api/wiki/License -->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!--BUILDING-->
+
+  <Choose>
+    <When Condition=" '' != '$(Solution)' ">
+      <ItemGroup>
+        <Solution Include="$(Solution)" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Solution Include="*.sln" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+
+  <Target Name="Build">
+    <MSBuild Projects="@(Solution)" Targets="Build"/>
+  </Target>
+  <Target Name="Rebuild">
+    <MSBuild Projects="@(Solution)" Targets="Rebuild"/>
+  </Target>
+  <Target Name="Clean">
+    <MSBuild Projects="@(Solution)" Targets="Clean"/>
+  </Target>
+
+  <Target Name="FinalClean" AfterTargets="Clean" DependsOnTargets="CustomizeAppConfigs">
+    <RemoveDir Directories="$(SolutionDir)packages"/>
+  </Target>
+
+  <!--CUSTOMIZING-->
+
+  <PropertyGroup>
+    <_Instructions>Need to run "./configure.ps1" from the root folder before running the tests.</_Instructions>
+
+    <TestAppConfigUsername Condition=" '' == '$(TestAppConfigUsername)'">INSERT USERNAME HERE - $(_Instructions)</TestAppConfigUsername>
+    <TestAppConfigPassword Condition=" '' == '$(TestAppConfigPassword)'">INSERT PASSWORD HERE - $(_Instructions)</TestAppConfigPassword>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <TestAppConfigParam Include="Username">
+      <Value>$(TestAppConfigUsername)</Value>
+    </TestAppConfigParam>
+    <TestAppConfigParam Include="Password">
+      <Value>$(TestAppConfigPassword)</Value>
+    </TestAppConfigParam>
+  </ItemGroup>
+
+  <Target Name="CustomizeAppConfigs">
+    <ItemGroup>
+      <_Replacements Include="%(Identity)">
+        <Query>configuration/appSettings/add[@key='%(TestAppConfigParam.Identity)']/@value</Query>
+        <Value>%(TestAppConfigParam.Value)</Value>
+      </_Replacements>
+    </ItemGroup>
+    <ItemGroup>
+      <!--The replacements can work either against app.configs (which propagate through to the .dll.config files on compilation), or after the fact (e.g. this is used for monitoring or testing using precompiled artifacts from a build)-->
+      <_ConfigFilesToCustomize Include="**\*.config">
+        <ReplacementQuery>%(_Replacements.Query)</ReplacementQuery>
+        <ReplacementValue>%(_Replacements.Value)</ReplacementValue>
+      </_ConfigFilesToCustomize>
+    </ItemGroup>
+
+    <XmlPoke
+      XmlInputPath="%(_ConfigFilesToCustomize.Identity)"
+      Query="%(_ConfigFilesToCustomize.ReplacementQuery)"
+      Value="%(_ConfigFilesToCustomize.ReplacementValue)"/>
+  </Target>
+
+  <!--See http://nuget.codeplex.com/discussions/365785 for any updates on whether this is necessary and/or can be improved upon -->
+  <Target Name="NuGetPackageRestoreSolutionLevelPackagesWorkaround"  Condition=" '' == '$(XunitPath)'">
+    <Exec WorkingDirectory="$(MSBuildThisFileDirectory)" LogStandardErrorAsError="true" Command=".nuget\nuget.exe install .nuget\packages.config -o packages" />
+  </Target>
+
+</Project>
