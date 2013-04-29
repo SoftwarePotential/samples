@@ -69,7 +69,6 @@ namespace Sp.Samples.Consume.CustomerSync
 			public int _version { get; set; }
 			public Links _links { get; set; }
 
-			public JsonSignature _signature { get; set; }
 
 			public _Embedded _embedded { get; set; }
 
@@ -77,31 +76,17 @@ namespace Sp.Samples.Consume.CustomerSync
 			{
 				public Guid Id { get; set; }
 				public Guid VendorId { get; set; }
-				public InviteStatus Invitation { get; set; }
 			}
-
-			public class InviteStatus
-			{
-				public string State { get; set; }
-				public string LastEmailSentTo { get; set; }
-			}
-
+						
 			public class Links
 			{
 				public Link self { get; set; }
-				public Link inviteStatus { get; set; }
-				public Link organizationAdd { get; set; }
 			}
 		}
 
 		public class Link
 		{
 			public string href { get; set; }
-		}
-
-		public class JsonSignature
-		{
-			public string Value { get; set; }
 		}
 	}
 }
