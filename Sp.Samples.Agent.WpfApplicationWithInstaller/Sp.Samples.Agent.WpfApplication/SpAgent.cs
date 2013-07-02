@@ -12,8 +12,6 @@ namespace Sp.Samples.Agent.WpfApplication
 	using System.IO;
 	using Sp.Agent;
 	using Sp.Agent.Configuration;
-	using Sp.Agent.Storage.Internal;
-	using Sp.Agent.Configuration.Internal;
 
 	static partial class SpAgent
 	{
@@ -28,7 +26,7 @@ namespace Sp.Samples.Agent.WpfApplication
 			_agent = AgentContext.For( PermutationShortId );	
 			_agent.Configure( x => x
 				// NOTE: Sp.Agent expects this folder to be initialized, i.e. your .msi installer needs to create and permission this folder
-				.WithLocalSharedStore( SharedDirectoryInitializedByInstaller().FullName )				
+				.WithExternallyInitializedStore( SharedDirectoryInitializedByInstaller().FullName )				
 				.CompleteWithDefaults() );
 
 			_product = _agent.ProductContextFor( ProductName,ProductVersion ); 
