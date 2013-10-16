@@ -1,0 +1,42 @@
+﻿@model Sp.Samples.Agent.Mvc.Models.LicenseModel[]
+
+@{
+	ViewBag.Title = "Licenses";
+}
+
+	
+<h2>Licenses</h2>
+@if ( Model.Length > 0 )
+{
+	<table>
+		<thead>
+			<tr>
+				<th>Activation Key</th>
+				<th>Expiration Date</th>
+				<th>Features</th>
+				<th id="removeLink">Actions</th>
+			</tr>
+		</thead>
+		@foreach ( var m in Model )
+		{
+			<tr>
+				<td>@m.ActivationKey</td>
+				<td>@m.ExpirationDate</td>
+				<td>@m.Features</td>
+				<td headers="removeLink">@Html.ActionLink( "Remove", "Delete", new RouteValueDictionary {{"activationKey", @m.ActivationKey}} )</td>
+			</tr>
+		}
+	</table>
+}
+else
+{
+	<p>No Licenses found</p>
+}
+<p>@Html.ActionLink("Back to Home Page", "Index", "Home")</p>
+<script type="text/javascript">
+	$(function () {
+		$("td[headers=removeLink] a").click(function () {
+			return window.confirm("Are you sure you want to remove this license?");
+		});
+	});
+</script>

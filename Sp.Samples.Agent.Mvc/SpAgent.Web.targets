@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+  <PropertyGroup>
+    <MSDeployPublishDependsOn>
+      $(MSDeployPublishDependsOn);
+      _ValidateSkipExtraFilesOnServerProperty;
+    </MSDeployPublishDependsOn>
+    <PackageUsingManifestDependsOn>
+      $(PackageUsingManifestDependsOn);
+      _GenerateCustomSkipRulesForAppData;
+    </PackageUsingManifestDependsOn>
+  </PropertyGroup>
+  <Target Name="_ValidateSkipExtraFilesOnServerProperty" >
+    <!--NB - SkipExtraFilesOnServer property is needed when Visual Studio Publish Web dialog is used for the actual deployment (as it doesn't support skip rules)  -->
+    <!-- This property is needed to prevent deletion of licenses from App_Data folder on the destination server -->
+    <Error Text="When deploying using Publish Web dialog from Visual Studio, you need to set SkipExtraFilesOnServer property to prevent licenses from being deleted from App_Data folder on the destination server. You can do it by:
+VS2010: Check 'Leave extra files on destination (do not delete)' option (in Publish Web dialog) 
+VS2012/2013: Uncheck 'Remove additional files at destination' option (in Publish Web dialog) 
+" Condition=" 'true' != '$(SkipExtraFilesOnServer)' " />
+  </Target>
+  <Target Name="_GenerateCustomSkipRulesForAppData">
+    <!--NB - skip rules are only honored when msdeploy.exe is being used to perform the actual deployment (and not the built-in Visual Studio Publish Web dialog) -->
+    <!--Skip rules for App_Data folder are needed to prevent deletion of licenses from App_Data folder on the destination server -->
+    <!-- The rules below get embedded in {packageName}.deploy.cmd file and are passed as -skip parameters to msdeploy.exe-->
+    <ItemGroup>
+      <MsDeploySkipRules Include="SkipDeleteAppData">
+        <SkipAction>Delete</SkipAction>
+        <ObjectName>filePath</ObjectName>
+        <AbsolutePath>$(_Escaped_PackageTempDir)\\App_Data\\Licenses\\.*</AbsolutePath>
+        <XPath>
+        </XPath>
+      </MsDeploySkipRules>
+      <MsDeploySkipRules Include="SkipDeleteAppData">
+        <SkipAction>Delete</SkipAction>
+        <ObjectName>dirPath</ObjectName>
+        <AbsolutePath>$(_Escaped_PackageTempDir)\\App_Data\\Licenses\\.*</AbsolutePath>
+        <XPath>
+        </XPath>
+      </MsDeploySkipRules>
+    </ItemGroup>
+  </Target>
+</Project>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- NB - this file contains changes from SP version 3.2.1947 -->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<SpAgentPermutedDll Include="$(MSBuildThisFileDirectory)Sp.Agent.62340.dll" />
+	</ItemGroup>
+
+	<Target Name="_IncludeSpAgentPermutedDllsInOutputDirectory" AfterTargets="ResolveReferences" >
+    <ItemGroup>
+       <None Include="@(SpAgentPermutedDll)" >
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+	</Target>
+</Project>

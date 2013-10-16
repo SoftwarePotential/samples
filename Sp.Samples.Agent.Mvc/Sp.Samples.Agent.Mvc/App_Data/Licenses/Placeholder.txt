@@ -1,0 +1,2 @@
+﻿This placeholder file is necessary so that Web Deploy can include this folder in the deployment package
+(empty folder would be ignored by Web Deploy).

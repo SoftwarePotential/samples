@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")" type="text/javascript"></script>
+</head>
+
+<body>
+	<div id="wrapper">
+		<header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("Demo Sample", "Index", "Home")</p>
+                </div>
+                <div class="float-right">                    
+                    <nav>
+                        <ul id="menu">
+                           <li>@Html.ActionLink("Licenses", "Licensing", "Home" )</li>
+                        </ul>
+                        <ul>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+		<div id="body">
+			 <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+		</div>
+		<footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - Demo Sample</p>
+                </div>                
+            </div>
+        </footer>
+	</div>
+</body>
+</html>
