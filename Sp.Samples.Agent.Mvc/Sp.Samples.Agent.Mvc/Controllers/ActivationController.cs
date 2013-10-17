@@ -43,15 +43,18 @@ namespace Sp.Samples.Agent.Mvc.Controllers
 
 			try
 			{
-				//TODO - use OnlineActivate() once it's fixed
+#if ONLINE_ACTIVATE_WORKS_CONSISTENTLY
+				SpAgent.Product.Activation.OnlineActivate( model.ActivationKey );
+#else
+				//TODO - switch back to OnlineActivate() once it's proven to work consistently in all environments
 				SpAgent.Product.Activation.OnlineActivateAsync( model.ActivationKey ).Wait();
-				//SpAgent.Product.Activation.OnlineActivate( model.ActivationKey );
+#endif
 			}
 			catch ( Exception ex )
 			{
 				string exceptionMessage = ex is AggregateException ? ex.InnerException.Message : ex.Message;
 				ModelState.AddModelError( "", string.Format( Resource.Controllers.ActivationController.FailureMessage, model.ActivationKey, exceptionMessage ) );
-				// Re-render the page (with a new PostToken so that a form resubmission will pass the LastRequestToken validation)
+				// Re-render the page (with a new PostToken so that a form resubmission will pass the PostToken validation)
 				return View( new ActivationModel { PostToken = Guid.NewGuid(), ActivationKey = model.ActivationKey } );
 			}
 
