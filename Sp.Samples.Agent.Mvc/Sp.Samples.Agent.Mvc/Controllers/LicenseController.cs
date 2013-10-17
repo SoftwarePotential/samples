@@ -24,7 +24,6 @@ namespace Sp.Samples.Agent.Mvc.Controllers
 
 			return RedirectToAction( "Index" );
 		}
-
 	}
 
 	static class LicenseModelExtensions

@@ -50,7 +50,6 @@ namespace Sp.Samples.Agent.Mvc.Controllers
 		{
 			return View();
 		}
-
 	}
 
 	class NotLicensedRedirectToCustomPageAttribute : NotLicensedRedirectAttribute
