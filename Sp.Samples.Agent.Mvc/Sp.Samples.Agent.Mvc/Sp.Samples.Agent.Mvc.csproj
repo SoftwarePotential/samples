@@ -73,7 +73,6 @@
       <HintPath>..\packages\WebActivatorEx.2.0.3\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Compile Include="SoftwarePotential\Customizations.cs" />
     <Compile Include="SoftwarePotential\SpAgent.Configuration.cs" />
@@ -101,7 +100,6 @@
     </Compile>
     <Compile Include="Models\ActivationModels.cs" />
     <Compile Include="Models\LicenseModel.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SoftwarePotential\SpAgent.Configuration.Local.Customizations.cs" />
   </ItemGroup>
   <ItemGroup>
