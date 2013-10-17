@@ -100,7 +100,6 @@
     </Compile>
     <Compile Include="Models\ActivationModels.cs" />
     <Compile Include="Models\LicenseModel.cs" />
-    <Compile Include="SoftwarePotential\SpAgent.Configuration.Local.Customizations.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Licenses\Placeholder.txt" />
