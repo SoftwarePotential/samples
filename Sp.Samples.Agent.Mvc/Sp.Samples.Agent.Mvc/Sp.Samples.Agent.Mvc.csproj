@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\SoftwarePotential.Protection-62340.3.2.1947.2\build\SoftwarePotential.Protection-62340.props" Condition="Exists('..\packages\SoftwarePotential.Protection-62340.3.2.1947.2\build\SoftwarePotential.Protection-62340.props')" />
+  <Import Project="..\packages\Sp.Permutation-62340.3.2.1947.2\build\Sp.Permutation-62340.props" Condition="Exists('..\packages\Sp.Permutation-62340.3.2.1947.2\build\Sp.Permutation-62340.props')" />
+  <Import Project="..\packages\Sp.Protector.3.2.1947\build\Sp.Protector.props" Condition="Exists('..\packages\Sp.Protector.3.2.1947\build\Sp.Protector.props')" />
   <Import Project="..\packages\SoftwarePotential.Licensing-Demoapp_10.1.0.1.0\build\SoftwarePotential.Licensing-Demoapp_10.props" Condition="Exists('..\packages\SoftwarePotential.Licensing-Demoapp_10.1.0.1.0\build\SoftwarePotential.Licensing-Demoapp_10.props')" />
-  <Import Project="..\packages\SoftwarePotential.Protection-62340.3.2.1946.1\build\SoftwarePotential.Protection-62340.props" Condition="Exists('..\packages\SoftwarePotential.Protection-62340.3.2.1946.1\build\SoftwarePotential.Protection-62340.props')" />
-  <Import Project="..\packages\Sp.Permutation-62340.3.2.1946.1\build\Sp.Permutation-62340.props" Condition="Exists('..\packages\Sp.Permutation-62340.3.2.1946.1\build\Sp.Permutation-62340.props')" />
-  <Import Project="..\packages\Sp.Protector.3.2.1946\build\Sp.Protector.props" Condition="Exists('..\packages\Sp.Protector.3.2.1946\build\Sp.Protector.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -42,15 +42,15 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Sp.Agent, Version=3.2.1946.18, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Sp.Agent.3.2.1946\lib\net40\Sp.Agent.dll</HintPath>
-    </Reference>
-    <Reference Include="Sp.Agent.Local, Version=3.2.1946.18, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Sp.Agent.Local.3.2.1946\lib\net40\Sp.Agent.Local.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Sp.Agent, Version=3.2.1947.13, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Sp.Agent.3.2.1947\lib\net40\Sp.Agent.dll</HintPath>
+    </Reference>
+    <Reference Include="Sp.Agent.Local, Version=3.2.1947.13, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Sp.Agent.Local.3.2.1947\lib\net40\Sp.Agent.Local.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -95,13 +95,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SoftwarePotential\Customizations.cs" />
+    <Compile Include="App_Start\SpAgent.Web.AppStart.cs" />
+    <Compile Include="SoftwarePotential\SpAgent.AspNetAppDataStorageCustomizations.cs" />
     <Compile Include="SoftwarePotential\SpAgent.Configuration.cs" />
-    <Compile Include="SoftwarePotential\SpAgent.Configuration.Local.SingleUser.cs" />
+    <Compile Include="SoftwarePotential\SpAgent.Configuration.Local.cs" />
+    <Compile Include="SoftwarePotential\SpAgent.Configuration.Web.AspNetAppDataStorageStrategy.cs" />
+    <Compile Include="SoftwarePotential\SpAgent.Configuration.Web.cs" />
     <Compile Include="SoftwarePotential\SpAgent.Permutation.cs" />
+    <Compile Include="SoftwarePotential\SpAgent.ProductCustomizations.cs" />
     <Compile Include="SoftwarePotential\SpAgent.Product.cs" />
     <Compile Include="SoftwarePotential\SpProduct.cs" />
-    <Compile Include="SpAgent.Web.AppStart.cs" />
     <Compile Include="App_LocalResources\Controllers\ActivationController.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -179,7 +182,6 @@
     <Content Include="Views\LicensedFeatures\NotLicensed.cshtml" />
     <Content Include="Views\LicensedFeatures\Feature.cshtml" />
     <Content Include="Views\License\Index.cshtml" />
-    <Compile Include="SpAgent.Configuration.Web.Customizations.cs" />
     <Content Include="Views\Home\Licensing.cshtml" />
     <Content Include="Sp.Protect.config" />
   </ItemGroup>
@@ -212,8 +214,8 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="..\SpAgent.Web.targets" />
-  <Import Project="..\packages\Sp.Agent-62340.3.2.1946.1\build\net40\Sp.Agent-62340.targets" Condition="Exists('..\packages\Sp.Agent-62340.3.2.1946.1\build\net40\Sp.Agent-62340.targets')" />
-  <Import Project="..\packages\Sp.Agent.Local-62340.3.2.1946.1\build\net40\Sp.Agent.Local-62340.targets" Condition="Exists('..\packages\Sp.Agent.Local-62340.3.2.1946.1\build\net40\Sp.Agent.Local-62340.targets')" />
-  <Import Project="..\packages\Sp.Protector.3.2.1946\build\Sp.Protector.targets" Condition="Exists('..\packages\Sp.Protector.3.2.1946\build\Sp.Protector.targets')" />
+  <Import Project="..\packages\Sp.Protector.3.2.1947\build\Sp.Protector.targets" Condition="Exists('..\packages\Sp.Protector.3.2.1947\build\Sp.Protector.targets')" />
+  <Import Project="..\packages\Sp.Agent.Local-62340.3.2.1947.2\build\net40\Sp.Agent.Local-62340.targets" Condition="Exists('..\packages\Sp.Agent.Local-62340.3.2.1947.2\build\net40\Sp.Agent.Local-62340.targets')" />
+  <Import Project="..\packages\Sp.Agent-62340.3.2.1947.2\build\net40\Sp.Agent-62340.targets" Condition="Exists('..\packages\Sp.Agent-62340.3.2.1947.2\build\net40\Sp.Agent-62340.targets')" />
+  <Import Project="..\packages\SoftwarePotential.Configuration.Web-62340.3.2.1947.2\build\net40\SoftwarePotential.Configuration.Web-62340.targets" Condition="Exists('..\packages\SoftwarePotential.Configuration.Web-62340.3.2.1947.2\build\net40\SoftwarePotential.Configuration.Web-62340.targets')" />
 </Project>
