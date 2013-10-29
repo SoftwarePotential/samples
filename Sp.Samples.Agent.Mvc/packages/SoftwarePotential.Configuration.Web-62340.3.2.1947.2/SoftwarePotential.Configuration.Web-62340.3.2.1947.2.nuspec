@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+  <metadata minClientVersion="2.5">
+    <id>SoftwarePotential.Configuration.Web-62340</id>
+    <version>3.2.1947.2</version>
+    <authors>Inish Technology Ventures Limited</authors>
+    <owners>Inish Technology Ventures Limited</owners>
+    <licenseUrl>https://srv.softwarepotential.com/SLPSTermsOfUse.htm</licenseUrl>
+    <projectUrl>https://srv.softwarepotential.com/</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Software Potential Store Configuration for Web Applications for Permutation: 95c1d (Fourth); 
+Runtime Version: 3.2.1947; 
+Permutation Revision: 2; 
+Permutation Id: 62340; 
+Vendor Name: InishTech</description>
+    <dependencies>
+      <dependency id="SoftwarePotential.Configuration-62340" version="[3.2.1947.2]" />
+      <dependency id="Sp.Agent.Local-62340" version="[3.2.1947.2]" />
+      <dependency id="WebActivatorEx" version="2.0" />
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,2 @@
+﻿This placeholder file is necessary to have Web Deploy to generate and correctly permission the corresponding folder as part of a Deployment.
+(NB DO NOT DELETE this file; having just the folder is not enough - Web Deploy ignores empty folders)
