@@ -1,0 +1,86 @@
+﻿' NB This file is auto-generated via the SoftwarePotential.Configuration.Web-XXYYY NuGet package.
+' For more details see the README at http://docs.softwarepotential.com/Configuration.Web-README.html
+' THE CODE SHOULD BE OVERWRITTEN BY PACKAGE UPDATES - IT IS RECOMMENDED TO DEFINE ANY EXTENSIONS YOU MAY DESIRE ELSEWHERE
+
+Imports System
+
+''' <summary>
+''' This portion of the partial class configures licenses to be stored 
+''' in a directory that is guaranteed to have been created and permissioned 
+''' externally during application deployment (e.g., by the WebDeploy tool / 
+''' Visual Studio Publish process).
+''' 
+''' The default implementation will configures licenses to be stored under 
+''' a path of the following format: 
+''' <c>C:\inetpub\wwwroot\APPLICATION\App_Data\Licenses</c>.
+''' 
+''' NB THIS STRATEGY REQUIRES A DEPLOYMENT PROCESS THAT GUARANTEES THE ASP.NET
+''' SPECIAL FOLDER 'App_Data' IS PRESENT AND CORRECTLY PERMISSIONED FOR THE 
+''' USER ASSOCIATED WITH ALL YOUR APPLICATION APP POOLS TO BE ABLE TO READ AND
+''' WRITE AS NECESSARY TO WORK CORRECTLY (The package has been configured in 
+''' such a manner as to ensure that WebDeploy/Visual Studio Publish fulfill this).
+''' </summary>
+''' <remarks>
+''' It is assumed that all execution of the Application will be under a
+''' user that, via the installation process, will have been granted appropriate 
+''' access to be able to write, update and delete licenses within the 
+''' aforementioned area as necessary.
+''' 
+''' See the documentation for <c>WithExternallyInitializedStore()</c> in 
+''' <c>Sp.Agent.Local</c> and <c>AspNetAppDataStorageStrategy</c> for further detail.
+'''
+''' See <c>SoftwarePotential.Configuration.Local.MultiUser</c> if you need 
+''' to address this restriction [e.g., by having an installer create and 
+''' permission a shared area elsewhere on the file system [potentially outside 
+''' App_Data]].
+'''
+''' If you change the default settings, your installation strategy will need to 
+''' fulfill the key prerequisites noted into account.
+''' 
+''' TODO: CUSTOMIZE THE LOCATION/STRATEGY AS NECESSARY.
+''' 
+''' NB IF YOU DO SO, PLEASE CONSIDER RENAMING THIS FILE AND/OR EXTRACTING 
+''' YOUR REPLACEMENT METHOD(S) TO A SEPARATE FILE SO A NUGET PACKAGE UPDATE 
+''' CANNOT INADVERTENTLY CAUSE YOUR CHANGES TO BE LOST
+''' </remarks>
+Partial Class SpAgent
+		''' <summary>
+		''' Must be implemented to provide a path to the base directory 
+		''' within which the Licensing System is to maintain its licenses.
+		''' </summary>
+		''' <remarks>
+		''' The default implementation uses ASP.NET's App_Data special folder. 
+		''' This directory will be correctly permissioned as part of Web Deployment 
+		''' to allow file Write/Create access at run time under Application control.
+		''' 
+		''' The result of this, combined with that from ConfigureStorageRelativePath(),
+		''' should result in a that is guaranteed to be present and correctly configured 
+		''' at all times as discussed above.
+		''' </remarks>
+		''' <param name="configure">delegate that must be invoked to accept the configured value.</param>
+		Private Shared Sub ConfigureStorageBasePath(configure As Action(Of String))
+			configure( AspNetAppDataStorageStrategy.AppDataPath )
+		End Sub
+
+		''' <summary>
+		''' Must be implemented to provide a subdirectory to be used 
+		''' within the area supplied via <c>ConfigureStorageBasePath()</c> above.
+		''' </summary>
+		''' <remarks>
+		''' The default implementation uses the name of a Folder (Licenses) 
+		''' within the project to which a placeholder file as been added by 
+		''' this NuGet package.
+		'''
+		''' When combined with the result from ConfigureStorageBasePath(), 
+		''' this typically results in a combined path such as
+		''' <c>C:\inetpub\wwwroot\APPLICATION\App_Data\Licenses</c>.
+		'''
+		''' It should not necessary to use a deeper folder hierarchy as the 
+		''' Base Directory is private to your Web Application.</para>
+		''' </remarks>
+		''' <param name="configure">delegate that must be invoked to accept the configured value.</param>
+		Private Shared Sub ConfigureStorageRelativePath( vendor As String, product As String, version As String, configure As Action(Of String))
+			Const nameOfFolderNuGetPackageHasIntroducedPlaceholderFile = "Licenses"
+			configure( nameOfFolderNuGetPackageHasIntroducedPlaceholderFile )
+		End Sub
+End Class

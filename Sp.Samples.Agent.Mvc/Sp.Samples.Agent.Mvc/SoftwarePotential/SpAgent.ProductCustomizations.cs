@@ -1,13 +1,25 @@
 ﻿// NB This file is auto-generated via the SoftwarePotential.Configuration-<ShortCode> NuGet package.
 // 
-// CONSIDER RENAMING OR MOVING THIS FILE SO A PACKAGE UPDATE CANNOT UNDO ANY CHANGES YOU MAKE
+// TODO: IF YOU MODIFY THIS FILE, CONSIDER MOVING ANY MODIFIED METHODS (AND/OR 
+// RENAMING THIS FILE) SO NUGET PACKAGE UPDATES CANNOT RESULT IN YOU INADVERTENTLY 
+// UNDOING CHANGES YOU HAVE MADE
 
 using Sp.Agent;
 using Sp.Agent.Configuration.Product.Activation;
+using System;
 using System.Diagnostics;
 
 namespace Sp.Agent
 {
+	/// <summary>
+	/// This portion of the partial class allows one to wire in a Product Customization without referring directly to the Product Identity or Permutation Ids.
+	/// </summary>
+	/// <remarks>
+	/// The default implementation is intended to give an example of how the configuration chain looks like.
+	/// As-is, it has a null effect - i.e. it just requests default behaviors for almost everything.
+	/// ([Assuming you haven't added any customizations,] This file and the code within it can actually be 
+	/// deleted as omitting any configuration just defaults all behaviors)
+	/// </remarks>
 	static partial class SpAgent
 	{
 		/// <summary>
@@ -47,6 +59,22 @@ namespace Sp.Agent
 		static void WhenActivating( IActivationAttemptContext context )
 		{
 			Debug.WriteLine( "Activation attempt #" + (context.PreviousAttempts + 1) );
+		}
+
+		/// <summary>
+		/// This portion of the partial class allows one to customize whether/how 
+		/// messages from the command line processing logic will be emitted to a Console.
+		/// </summary>
+		/// <remarks>
+		/// It is safe to delete this class, though the absence of messages may make 
+		/// error diagnosis more difficult.
+		/// </remarks>
+		static partial class CommandLineProcessing
+		{
+			static partial void ReportInstallationAction( string action )
+			{
+				Console.WriteLine( action );
+			}
 		}
 	}
 }
