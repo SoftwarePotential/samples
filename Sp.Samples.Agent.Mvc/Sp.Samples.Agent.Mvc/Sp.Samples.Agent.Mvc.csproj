@@ -19,6 +19,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -215,6 +216,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <Import Project="..\packages\Sp.Protector.3.2.1948\build\Sp.Protector.targets" Condition="Exists('..\packages\Sp.Protector.3.2.1948\build\Sp.Protector.targets')" />
   <Import Project="..\packages\Sp.Agent-62340.3.2.1948.3\build\net40\Sp.Agent-62340.targets" Condition="Exists('..\packages\Sp.Agent-62340.3.2.1948.3\build\net40\Sp.Agent-62340.targets')" />
   <Import Project="..\packages\Sp.Agent.Local-62340.3.2.1948.3\build\net40\Sp.Agent.Local-62340.targets" Condition="Exists('..\packages\Sp.Agent.Local-62340.3.2.1948.3\build\net40\Sp.Agent.Local-62340.targets')" />
