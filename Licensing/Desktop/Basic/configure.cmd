@@ -9,12 +9,9 @@ IF NOT EXIST "%MSBuildExe%" GOTO :NODOTNET
 IF [%1]==[] GOTO :NOPERMUTATIONID
 
 %MSBuildExe% Sp.Samples.Agent.WpfApplicationWithInstaller/Sp.Samples.Agent.WpfApplication/Sp.Samples.Agent.WpfApplication.csproj /t:ConfigurePermutationInfo /p:SlpsRuntimePermutationId=%1
-%MSBuildExe% Sp.Samples.BuildIntegration\Sp.Samples.BuildIntegration/Sp.Samples.BuildIntegration.csproj /t:ConfigurePermutationInfo /p:SlpsRuntimePermutationId=%1
-%MSBuildExe% Sp.Samples.BuildIntegration\Sp.Samples.BuildIntegration.Library/Sp.Samples.BuildIntegration.Library.csproj /t:ConfigurePermutationInfo /p:SlpsRuntimePermutationId=%1
 IF ERRORLEVEL 1 GOTO :ERROR
 
 echo Sp.Samples.Agent.WpfApplication has been configured for use with Software Potential permutation %1.
-echo Sp.Samples.BuildIntegration has been configured for use with Software Potential permutation %1.
 
 
 echo If you have your solution open in Visual Studio 2010, please Close and re-open it now (Visual Studio caches .targets files that were modified during this operation)
