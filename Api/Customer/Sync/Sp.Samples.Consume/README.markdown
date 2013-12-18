@@ -1,5 +1,14 @@
 # Customer Sync Sample Application
 
+## What the sample is intended to demonstrate
+
+This sample is intended to illustrate the required components of an application which:
+
+* create a customer using the Software Potential Rest Apis
+* retrieve a customer using oData filtering to find a customer with a given externalId
+* update an existing customer using the HAL links contained in the customer record retrieved from Software Potential
+* delete an existing customer using the HAL links contained in the customer record retrieved from Software Potential
+
 ## Prerequisites
 
 * The sample requires .NET 4.0 on both your development machine and the end-user's machine
@@ -24,7 +33,3 @@
 * CreateOrUpdate ExternalId CustomerName
 * Delete ExternalId CustomerName
 * e.g. Sp.Samples.Consume.CustomerSync.exe CreateOrUpdate ID1234 AcmeInc
-
-## 3. More details available on the wiki
-
-Further details are available on the wiki at https://github.com/SoftwarePotential/samples/wiki/Customer-Sync-Sample

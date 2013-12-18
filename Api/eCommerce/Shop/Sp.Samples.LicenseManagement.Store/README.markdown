@@ -4,12 +4,8 @@ This sample is intended to illustrate the required components of an application 
 * Facilitates an administrator to create, read, update/edit and delete entries to a catalogue of products 
 	* The administrator must assign a valid Software Potential Sku Id to each catalogue entry. As such, the product details and associated Sku Id should relate to a similar product SKU created at the Software Potential portal.
 	* The administrator can assign a License type to the catalog entries
-* Facilitates a customer to view a list of products, select a product of interest and to ‘buy’ this product	
+* Facilitates a customer to view a list of products, select a product of interest and to â€˜buyâ€™ this product	
 	* At the point of sale of a product, the Software Potential Web APIs are utilised to provide the customer with licensing information (Activation Key and License Id)
-
-## What this sample is not intended to demonstrate
-* Protection of features – this is demonstrated in the WpfApplicationWithInstaller application
-* [SP.Agent](http://www.inishtech.com/),  [SaaS](http://www.inishtech.com/KB18), [Distributor](http://www.inishtech.com/KB22) integration
 
 # Using the Sample
 ## Initial Set-up
@@ -20,8 +16,8 @@ This sample is intended to illustrate the required components of an application 
 	
 
 ## Buying a product / Obtaining License Info
-* Navigate to the ‘Buy’ section of the site
-* Select and ‘buy’ a product from the list of products on offer
+* Navigate to the â€˜Buyâ€™ section of the site
+* Select and â€˜buyâ€™ a product from the list of products on offer
 * License information is returned from the Software Potential Web Service (this sample application includes an Activation Key and a License Id) and added to a purchase record, which is displayed to the customer
 
 # Troubleshooting
