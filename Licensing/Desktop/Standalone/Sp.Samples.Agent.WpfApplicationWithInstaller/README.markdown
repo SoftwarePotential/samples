@@ -2,8 +2,6 @@
 
 WpfSample - WPF-based desktop application with a .MSI installer
 
-** See the wiki for more information: [WpfSample](https://github.com/SoftwarePotential/samples/wiki/WpfSample)**
-
 ## Prerequisites
 
 * The sample requires .NET 4.0 on both your development machine and the end-user's machine
