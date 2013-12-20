@@ -7,13 +7,10 @@ IF NOT EXIST "%DotNetDir%" GOTO :NODOTNET
 IF NOT EXIST "%MSBuildExe%" GOTO :NODOTNET
 
 %MSBuildExe% Sp.Samples.Agent.WpfApplicationWithInstaller/Sp.Samples.Agent.WpfApplication/Sp.Samples.Agent.WpfApplication.csproj /t:StripPermutationInfo
-%MSBuildExe% Sp.Samples.BuildIntegration\Sp.Samples.BuildIntegration/Sp.Samples.BuildIntegration.csproj /t:StripPermutationInfo
-%MSBuildExe% Sp.Samples.BuildIntegration\Sp.Samples.BuildIntegration.Library/Sp.Samples.BuildIntegration.Library.csproj /t:StripPermutationInfo
 
 IF ERRORLEVEL 1 GOTO :ERROR
 
 echo Sp.Samples.Agent.WpfApplication permutation configuration has been reset.
-echo Sp.Samples.BuildIntegration permutation configuration has been reset.
 echo If you have your solution open in Visual Studio 2010, please Close and re-open it now (Visual Studio caches .targets files that were modified during this operation)
 GOTO :EOF
 
