@@ -10,3 +10,5 @@ Sp.Samples.Agent.WpfApplicationWithInstaller/Sp.Samples.Agent.WpfApplication/SpA
 Sp.Samples.Agent.WpfApplicationWithInstaller/Sp.Samples.Agent.WpfApplication/SpAgent.props
 NuGet.exe
 packages
+SoftwarePotential
+SoftwarePotential.Vb
