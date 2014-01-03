@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Include>
-    <!-- The values below are used to determine product directory name within ProgramFilesFolder and CommonAppDataFolder -->
-    <!-- NB - they need to be in sync with SpAgent.Product.cs -->
-	  <?define SpAgent.ProductDirectoryPrefix="Software Potential" ?>
-    <?define SpAgent.ProductName="WPF Sample" ?>
-</Include>
