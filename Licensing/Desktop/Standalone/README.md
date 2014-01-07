@@ -2,7 +2,7 @@
 
 ### What the sample is intended to demonstrate
 
-This sample is intended to illustrate the required components of an application which:
+This sample is intended to illustrate the required components of an application that:
 
 * has a Desktop UI surface illustrating
  * an Online Activation form
@@ -50,8 +50,8 @@ The most common problems reported with the sample are:
 ## Sample won't compile
 
 * Ensure you have added the following NuGet packages
- * SoftwarePotential.Protection-``<PermutationShortCode>``
- * SoftwarePotential.Configuration.Local.SingleUser-``<PermutationShortCode>`` 
+ * SoftwarePotential.Protection-`<PermutationShortCode>`
+ * SoftwarePotential.Configuration.Local.SingleUser-`<PermutationShortCode>` 
  * SoftwarePotential.Licensing-Demo_10
 
 ## License will not activate
