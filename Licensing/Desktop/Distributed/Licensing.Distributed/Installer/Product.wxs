@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" >
+  <?include Variables.wxi ?>
+  <Product Id="*" Name="$(var.DistributorVendor) $(var.DistributorProductName)" Version="$(var.DistributorProductVersion)"
+    Manufacturer="$(var.DistributorVendor)" Language="1033" UpgradeCode="$(var.DistributorProductUpgradeCode)">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="$(var.DistributorVendor) $(var.DistributorProductName)">
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <Feature Id="ProductFeature" Title="DistributorSetup" Level="1">
+      <ComponentGroupRef Id="DistributorComponentGroup" />
+    </Feature>
+
+    <CustomAction Id="InstallDistributorService"    Directory="INSTALLFOLDER" Execute="deferred"  ExeCommand="[INSTALLFOLDER]install.cmd -install" Return="check"  />
+    <CustomAction Id="UninstallDistributorService"  Directory="INSTALLFOLDER" Execute="deferred"  ExeCommand="[INSTALLFOLDER]install.cmd -uninstall" Return="check"  />
+    <CustomAction Id="StopDistributorService"       Directory="INSTALLFOLDER" Execute="immediate" ExeCommand="[INSTALLFOLDER]install.cmd -stop" Return="check"  />
+    <InstallExecuteSequence>
+      <Custom Action="InstallDistributorService"    Before="InstallFinalize">(NOT INSTALLED OR UPGRADINGPRODUCTCODE) AND NOT REMOVE="ALL"</Custom>
+      <Custom Action="StopDistributorService"       Before="InstallValidate">REMOVE="ALL"</Custom>
+      <Custom Action="UninstallDistributorService"  Before="RemoveFiles">REMOVE="ALL"</Custom>
+    </InstallExecuteSequence>
+  </Product>
+</Wix>

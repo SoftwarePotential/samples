@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <!-- Defalt behavior is to auto-discover a Sp.Distributor-XXXXX package in $(NugetRepositoryFolder) - see ResolveDistributorSourceDirectoryFromNugetPackagesIfNotSupplied in the .targets file. -->
+    <!-- By default, NuGet stores packages in $(SolutionDir)\packages -->
+    <NugetRepositoryFolder>..\packages</NugetRepositoryFolder>
+
+    <!-- Specify a DistributorSourceDirectory iff you want to override the default package discovery based on $(NugetRepositoryFolder) 
+    <DistributorSourceDirectory/> -->
+  </PropertyGroup>
+</Project>
