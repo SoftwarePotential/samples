@@ -6,7 +6,7 @@
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." AllowSameVersionUpgrades="yes" />
-    <MediaTemplate />
+    <Media Id="1" Cabinet="cab1.cab" EmbedCab="yes" />
 
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
@@ -15,12 +15,12 @@
       </Directory>
     </Directory>
 
-    <Feature Id="ProductFeature" Title="DistributorSetup" Level="1">
+    <Feature Id="DistributorFeature" Title="DistributorSetup" Level="1">
       <ComponentGroupRef Id="DistributorComponentGroup" />
     </Feature>
 
-    <CustomAction Id="InstallDistributorService"    Directory="INSTALLFOLDER" Execute="deferred"  ExeCommand="[INSTALLFOLDER]install.cmd -install" Return="check"  />
-    <CustomAction Id="UninstallDistributorService"  Directory="INSTALLFOLDER" Execute="deferred"  ExeCommand="[INSTALLFOLDER]install.cmd -uninstall" Return="check"  />
+    <CustomAction Id="InstallDistributorService"    Directory="INSTALLFOLDER" Execute="deferred"  ExeCommand="[INSTALLFOLDER]install.cmd -install" Return="check"  Impersonate="no" />
+    <CustomAction Id="UninstallDistributorService"  Directory="INSTALLFOLDER" Execute="deferred"  ExeCommand="[INSTALLFOLDER]install.cmd -uninstall" Return="check" Impersonate="no"  />
     <CustomAction Id="StopDistributorService"       Directory="INSTALLFOLDER" Execute="immediate" ExeCommand="[INSTALLFOLDER]install.cmd -stop" Return="check"  />
     <InstallExecuteSequence>
       <Custom Action="InstallDistributorService"    Before="InstallFinalize">(NOT INSTALLED OR UPGRADINGPRODUCTCODE) AND NOT REMOVE="ALL"</Custom>
