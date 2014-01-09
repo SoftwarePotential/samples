@@ -43,11 +43,11 @@ OR b) override the path by assigning a valid directory path to %24(DistributorSo
       Condition="!EXISTS('$(DistributorSourceDirectory)\Slps.Distributor.Host.exe') OR !EXISTS('$(DistributorSourceDirectory)\install.cmd')" />
   </Target>
 
-  <!--Creates HarvestDirectory item that will tell Wix to generate a *.wxs file containing references to all the Distributor server files  -->
+  <!--Creates HarvestDirectory item that will tell WiX to generate a *.wxs file containing references to all the Distributor server files  -->
   <Target Name="ConstructHarvestDirectoryItems" DependsOnTargets="VerifyDistributorSourceFolder">
     <ItemGroup>
       <HarvestDirectory Include="$(DistributorSourceDirectory)" >
-        <ComponentGroupName>DistributorComponentGroup</ComponentGroupName>
+        <ComponentGroupName>DistributorFilesComponentGroup</ComponentGroupName>
         <DirectoryRefId>INSTALLFOLDER</DirectoryRefId>
         <PreprocessorVariable>wix.DistributorSourceDirectory</PreprocessorVariable>
         <SuppressRegistry>true</SuppressRegistry>
@@ -69,7 +69,7 @@ OR b) override the path by assigning a valid directory path to %24(DistributorSo
     <Message Text="Software Potential Distributor version: $(_DistributorVersion)" Importance="high" />
   </Target>
 
-  <!-- Creates Wix variables that are used by the linker/binder to generate the MSI -->
+  <!-- Creates WiX variables that are used by the linker/binder to generate the MSI -->
   <Target Name="ConstructLinkerVariables" DependsOnTargets="VerifyDistributorSourceFolder;RetrieveDistributorAssemblyVersion">
     <PropertyGroup>
       <!-- Points the binder to the Distributor source directory so that it can collect all the input files -->
