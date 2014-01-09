@@ -70,10 +70,12 @@ OR b) override the path by assigning a valid directory path to %24(DistributorSo
   </Target>
 
   <!-- Creates Wix variables that are used by the linker/binder to generate the MSI -->
-  <Target Name="ConstructLinkerVariables" DependsOnTargets="VerifyDistributorSourceFolder">
+  <Target Name="ConstructLinkerVariables" DependsOnTargets="VerifyDistributorSourceFolder;RetrieveDistributorAssemblyVersion">
     <PropertyGroup>
       <!-- Points the binder to the Distributor source directory so that it can collect all the input files -->
       <WixVariables>$(WixVariables);DistributorSourceDirectory=$(DistributorSourceDirectory)</WixVariables>
+      <!-- Include Distributor version in the MSI file name -->
+      <TargetName>$(OutputName)-$(_DistributorVersion)</TargetName>
     </PropertyGroup>
   </Target>
 </Project>

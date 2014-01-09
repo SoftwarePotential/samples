@@ -5,7 +5,7 @@
     Manufacturer="$(var.DistributorVendor)" Language="1033" UpgradeCode="$(var.DistributorProductUpgradeCode)">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
-    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." AllowSameVersionUpgrades="yes" />
     <MediaTemplate />
 
     <Directory Id="TARGETDIR" Name="SourceDir">
