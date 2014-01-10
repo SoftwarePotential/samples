@@ -6,6 +6,11 @@
     <HarvestDependsOn>ConstructHarvestDirectoryItems;$(HarvestDependsOn);</HarvestDependsOn>
     <CompileDependsOn>RetrieveDistributorAssemblyVersion;$(CompileDependsOn)</CompileDependsOn>
     <LinkDependsOn>ConstructLinkerVariables;$(CompileDependsOn)</LinkDependsOn>
+	
+    <!-- Suppress ICE61 warning (LGHT1076) that this product should remove only older version of itself. -->
+    <!--We're allowing same version upgrades (see MajorUpgrade/@AllowSameVersionUpgrades attribute) to make it possible
+      to upgrade a Distributor Server installation if the corresponding Vendor Permutation has been upgraded, but the Software Potential runtime version remains the same. -->
+    <SuppressIces>61</SuppressIces>
   </PropertyGroup>
 
   <!-- Attempts to derive DistributorSourceDirectory by searching for an 'Sp.Distributor-XXXXX' package in the standard NuGet packages location -->
