@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+
+  <Import Project="Sp.Distributor.Wix.props" />
+  <PropertyGroup>
+    <HarvestDependsOn>ConstructHarvestDirectoryItems;$(HarvestDependsOn);</HarvestDependsOn>
+    <CompileDependsOn>RetrieveDistributorAssemblyVersion;$(CompileDependsOn)</CompileDependsOn>
+    <LinkDependsOn>ConstructLinkerVariables;$(CompileDependsOn)</LinkDependsOn>
+  </PropertyGroup>
+
+  <!-- Attempts to derive DistributorSourceDirectory by searching for an 'Sp.Distributor-XXXXX' package in the standard NuGet packages location -->
+  <Target Name="ResolveDistributorSourceDirectoryFromNugetPackagesIfNotSupplied" Condition=" '$(DistributorSourceDirectory)' == '' ">
+    <ItemGroup>
+      <_DistributorHostExeFiles Include="$(NugetRepositoryFolder)\Sp.Distributor-*\Slps.Distributor.Host\Slps.Distributor.Host.exe" />
+    </ItemGroup>
+
+    <Error 
+      Text="There are multiple Sp.Distributor packages installed in your NuGet packages folder.
+Please disambiguate which directory to use by setting %24(DistributorSourceDirectory) in the props file (or uninstall redundant Sp.Distributor packages)." 
+      Condition=" '@(_DistributorHostExeFiles->Count())' &gt; 1" />
+    <Error 
+      Text="Could not detect a Software Potential Distributor Server package in your NuGet packages folder ($(NugetRepositoryFolder)). 
+Please either:
+a) add the Sp.Distributor-XXXXXX NuGet package to your solution to have it auto-discovered.
+OR b) override the path by assigning a valid directory path to %24(DistributorSourceDirectory) in the .props file."
+      Condition="!EXISTS(@(_DistributorHostExeFiles))" />
+
+    <PropertyGroup>
+      <DistributorSourceDirectory>@(_DistributorHostExeFiles -> '%(RootDir)')@(_DistributorHostExeFiles -> '%(Directory)')</DistributorSourceDirectory>
+    </PropertyGroup>
+
+    <Message Text="Discovered the Sp.Distributor package in '$(DistributorSourceDirectory)'" />
+  </Target>
+
+  <!--Verifies we have a source location and the content looks correct-->
+  <Target Name="VerifyDistributorSourceFolder" DependsOnTargets="ResolveDistributorSourceDirectoryFromNugetPackagesIfNotSupplied" >
+    <Message Text="Using '$(DistributorSourceDirectory)' as the Distributor Server Host source path" Importance="high" />
+    <Error 
+      Text="Could not find a Software Potential Distributor Server Host (Slps.Distributor.Host.exe) and installer (install.cmd) in $(DistributorSourceDirectory).
+Please either:
+a) add the Sp.Distributor-XXXXXX NuGet package to your solution to have it auto-discovered.
+OR b) override the path by assigning a valid directory path to %24(DistributorSourceDirectory) in the .props file." 
+      Condition="!EXISTS('$(DistributorSourceDirectory)\Slps.Distributor.Host.exe') OR !EXISTS('$(DistributorSourceDirectory)\install.cmd')" />
+  </Target>
+
+  <!--Creates HarvestDirectory item that will tell WiX to generate a *.wxs file containing references to all the Distributor server files  -->
+  <Target Name="ConstructHarvestDirectoryItems" DependsOnTargets="VerifyDistributorSourceFolder">
+    <ItemGroup>
+      <HarvestDirectory Include="$(DistributorSourceDirectory)" >
+        <ComponentGroupName>DistributorFilesComponentGroup</ComponentGroupName>
+        <DirectoryRefId>INSTALLFOLDER</DirectoryRefId>
+        <PreprocessorVariable>wix.DistributorSourceDirectory</PreprocessorVariable>
+        <SuppressRegistry>true</SuppressRegistry>
+        <SuppressRootDirectory>true</SuppressRootDirectory>
+      </HarvestDirectory>
+    </ItemGroup>
+  </Target>
+
+  <!-- Extracts the Software Potential Distributor version from the Distributor Host executable -->
+  <Target Name="RetrieveDistributorAssemblyVersion" DependsOnTargets="VerifyDistributorSourceFolder">
+    <GetAssemblyIdentity AssemblyFiles="$(DistributorSourceDirectory)\Slps.Distributor.Host.exe">
+      <Output TaskParameter="Assemblies" ItemName="_AssemblyIdentities" />
+    </GetAssemblyIdentity>
+
+    <PropertyGroup>
+      <_DistributorVersion>@(_AssemblyIdentities -> '%(Version)')</_DistributorVersion>
+      <DefineConstants>$(DefineConstants);DistributorProductVersion=$(_DistributorVersion)</DefineConstants>
+    </PropertyGroup>
+    <Message Text="Software Potential Distributor version: $(_DistributorVersion)" Importance="high" />
+  </Target>
+
+  <!-- Creates WiX variables that are used by the linker/binder to generate the MSI -->
+  <Target Name="ConstructLinkerVariables" DependsOnTargets="VerifyDistributorSourceFolder;RetrieveDistributorAssemblyVersion">
+    <PropertyGroup>
+      <!-- Points the binder to the Distributor source directory so that it can collect all the input files -->
+      <WixVariables>$(WixVariables);DistributorSourceDirectory=$(DistributorSourceDirectory)</WixVariables>
+      <!-- Include Distributor version in the MSI file name -->
+      <TargetName>$(OutputName)-$(_DistributorVersion)</TargetName>
+    </PropertyGroup>
+  </Target>
+</Project>

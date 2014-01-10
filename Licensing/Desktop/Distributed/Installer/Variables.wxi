@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+  <!-- Combined with DistributorProductName to form the Program Name in Add/Remove Programs list .-->
+  <!-- TODO: Change to your company name to ease identification of your Distributor in the [Add/Remove] Programs [and Features] list. -->
+  <?define DistributorVendor="My Company" ?>
+
+  <!-- Combined with DistributorVendor to form the Program Name in Add/Remove Programs list .-->
+  <?define DistributorProductName="Software Potential Distributor" ?>
+
+  <!-- Primary identifier associated with this package - needs to remain stable across releases for correct upgrade behavior. -->
+  <?define DistributorProductUpgradeCode="79aaa684-e73b-4303-bfbd-97b682de7d60" ?>
+</Include>
