@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.microsoft.com/slps/" elementFormDefault="qualified" targetNamespace="http://www.microsoft.com/slps/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://srv.softwarepotential.com/SLMServerWS/ActivationWS.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Microsoft.Licensing.LicenseIssue" />
+  <xs:element name="ImportTypes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Microsoft.Licensing.LicenseIssue" minOccurs="0" name="enErr1" type="q1:ActivationError" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ImportTypesResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActivateLicense">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="licenseRequest" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="note" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ActivateLicenseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ActivateLicenseResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

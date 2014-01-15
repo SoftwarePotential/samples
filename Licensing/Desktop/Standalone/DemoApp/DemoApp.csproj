@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\SoftwarePotential.Protection-62340.3.2.1950.4\build\SoftwarePotential.Protection-62340.props" Condition="Exists('..\packages\SoftwarePotential.Protection-62340.3.2.1950.4\build\SoftwarePotential.Protection-62340.props')" />
+  <Import Project="..\packages\Sp.Permutation-62340.3.2.1950.4\build\Sp.Permutation-62340.props" Condition="Exists('..\packages\Sp.Permutation-62340.3.2.1950.4\build\Sp.Permutation-62340.props')" />
+  <Import Project="..\packages\Sp.Protector.3.2.1950\build\Sp.Protector.props" Condition="Exists('..\packages\Sp.Protector.3.2.1950\build\Sp.Protector.props')" />
+  <Import Project="..\packages\SoftwarePotential.Licensing-Demo_10.1.0.1.0\build\SoftwarePotential.Licensing-Demo_10.props" Condition="Exists('..\packages\SoftwarePotential.Licensing-Demo_10.1.0.1.0\build\SoftwarePotential.Licensing-Demo_10.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -107,6 +112,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Sp.Protector.3.2.1950\build\Sp.Protector.targets" Condition="Exists('..\packages\Sp.Protector.3.2.1950\build\Sp.Protector.targets')" />
+  <Import Project="..\packages\Sp.Agent-62340.3.2.1950.4\build\net40\Sp.Agent-62340.targets" Condition="Exists('..\packages\Sp.Agent-62340.3.2.1950.4\build\net40\Sp.Agent-62340.targets')" />
+  <Import Project="..\packages\Sp.Agent.Local-62340.3.2.1950.4\build\net40\Sp.Agent.Local-62340.targets" Condition="Exists('..\packages\Sp.Agent.Local-62340.3.2.1950.4\build\net40\Sp.Agent.Local-62340.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
