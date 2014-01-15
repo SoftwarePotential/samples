@@ -7,3 +7,4 @@ obj
 *.cache
 _Teamcity.*
 NuGet.exe
+packages

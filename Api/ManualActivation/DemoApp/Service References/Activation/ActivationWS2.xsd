@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Microsoft.Licensing.LicenseIssue" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Microsoft.Licensing.LicenseIssue" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="ActivationError">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Success" />
+      <xs:enumeration value="CommunicationError" />
+      <xs:enumeration value="InvalidRequestData" />
+      <xs:enumeration value="NumberOfActivationsExceeded" />
+      <xs:enumeration value="LicenseDisabled" />
+      <xs:enumeration value="LicenseExpired" />
+      <xs:enumeration value="Failed" />
+      <xs:enumeration value="InternalServerError" />
+      <xs:enumeration value="DeviceChanged" />
+      <xs:enumeration value="TagsChanged" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ActivationError" nillable="true" type="tns:ActivationError" />
+</xs:schema>
