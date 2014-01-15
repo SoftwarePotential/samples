@@ -1,6 +1,6 @@
 # Standalone Desktop Sample application
 
-This solution hascontains a simple project illustrating the following elements of a **Licensed** application in a **Desktop** environment:
+This solution contains a simple project illustrating the following elements of a **Licensed** application in a **Desktop** environment:
 
 * an Online Activation page
 * a diagnostic license list page
