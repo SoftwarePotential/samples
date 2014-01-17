@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
-using System.Web;
 
 namespace DemoApp
 {
@@ -14,7 +13,6 @@ namespace DemoApp
 			var ex = antecedentException as FaultException;
 			if ( ex != null )
 				return TranslateActivationFaultCodeString( antecedentException, ex.Code.Name );
-			// Fall through to default handling (which will re-throw)
 			throw antecedentException;
 		}
 
