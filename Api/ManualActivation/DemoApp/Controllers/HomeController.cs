@@ -7,7 +7,6 @@ using System.Linq;
 using System.ServiceModel;
 using System.Web;
 using System.Web.Mvc;
-using System.ServiceModel;
 
 namespace DemoApp.Controllers
 {
@@ -15,7 +14,7 @@ namespace DemoApp.Controllers
 	{
 
 		readonly string _fileExtension = ".bin";
-
+		readonly string _activationUrl = "http://srv.softwarepotential.com/SLMServerWS/ActivationWS.svc";
 		string BaseUrl
 		{
 			get { return AppDomain.CurrentDomain.GetData( "DataDirectory" ).ToString(); }
@@ -57,7 +56,7 @@ namespace DemoApp.Controllers
 		{
 			var client = new ActivationWSClient(
 							new BasicHttpBinding(),
-							new EndpointAddress( AppSettings.ActivationWSUrl )
+							new EndpointAddress( _activationUrl )
 							);
 			var license = default( byte[] );
 			try
