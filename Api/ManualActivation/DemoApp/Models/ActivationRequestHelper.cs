@@ -11,7 +11,7 @@ namespace DemoApp.Models
 		const string END_REQUEST = "--END-REQUEST--";
 		public static byte[] ExtractRequestBlob( string activationRequest )
 		{
-			activationRequest.Trim();
+			activationRequest = activationRequest.Trim();
 			activationRequest = activationRequest.Remove( 0, BEGIN_REQUEST.Length );
 			int endRequestIndex = activationRequest.IndexOf( END_REQUEST );
 			activationRequest = activationRequest.Remove( endRequestIndex, END_REQUEST.Length );

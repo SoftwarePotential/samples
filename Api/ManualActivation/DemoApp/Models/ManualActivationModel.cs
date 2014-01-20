@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
-using System.Web;
+using System.Text.RegularExpressions;
 
 namespace DemoApp.Models
 {
@@ -21,15 +21,7 @@ namespace DemoApp.Models
 
 		public override bool IsValid( object value )
 		{
-			try
-			{
-				ActivationRequestHelper.ExtractRequestBlob( (string)value );
-				return true;
-			}
-			catch
-			{
-				return false;
-			}
+			return Regex.IsMatch( value.ToString(), "--BEGIN-REQUEST--[\\w\\W]*--END-REQUEST--" );
 		}
 
 		public override string FormatErrorMessage( string name )

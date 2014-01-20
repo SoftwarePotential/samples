@@ -8,15 +8,12 @@ namespace DemoApp
 {
 	public static class ActivationExceptionHelper
 	{
-		public static string TranslateExceptionToMessage( Exception antecedentException )
+		public static string TranslateExceptionToMessage( FaultException ex )
 		{
-			var ex = antecedentException as FaultException;
-			if ( ex != null )
-				return TranslateActivationFaultCodeString( antecedentException, ex.Code.Name );
-			throw antecedentException;
+			return TranslateActivationFaultCodeString( ex.Code.Name );
 		}
 
-		static string TranslateActivationFaultCodeString( Exception antecedentException, string faultCodeString )
+		static string TranslateActivationFaultCodeString( string faultCodeString )
 		{
 			if ( faultCodeString == ActivationError.LicenseExpired.ToString() )
 				return "The License associated with the provided key has Expired.";
@@ -29,7 +26,7 @@ namespace DemoApp
 			else if ( faultCodeString == ActivationError.TagsChanged.ToString() )
 				return "The license being activated has unmatched Custom Tag constraints. Reactivations of this license are only permitted on matching machine environments.";
 			else
-				return "Activation Server Exception occurred with Fault Code: " + faultCodeString + ".";			
+				return "Activation Server Exception occurred with Fault Code: " + faultCodeString + ".";
 		}
 	}
 }

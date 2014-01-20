@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.ServiceModel;
-using System.Web;
 using System.Web.Mvc;
 
 namespace DemoApp.Controllers
@@ -13,12 +12,8 @@ namespace DemoApp.Controllers
 	public class HomeController : Controller
 	{
 
-		readonly string _fileExtension = ".bin";
+		readonly string _fileExtension = ".bin"; // Convention for license files is to use a .bin extension
 		readonly string _activationUrl = "http://srv.softwarepotential.com/SLMServerWS/ActivationWS.svc";
-		string BaseUrl
-		{
-			get { return AppDomain.CurrentDomain.GetData( "DataDirectory" ).ToString(); }
-		}
 
 		public ActionResult Index()
 		{
@@ -30,53 +25,54 @@ namespace DemoApp.Controllers
 		{
 			if ( !ModelState.IsValid )
 				return View( manualActivationModel );
+
 			var license = GetLicense( manualActivationModel.ActivationRequest );
-			if ( license != default( byte[] ) )
+
+			if ( license != null )
 				manualActivationModel.FileId = SaveLicenseFile( license );
+
 			return View( manualActivationModel );
 		}
 
 		public FilePathResult Download( Guid fileId )
 		{
-			var filePath = Path.Combine( BaseUrl, fileId + _fileExtension );
-			var result = new FilePathResult( filePath, "application/octet-stream" );
-			result.FileDownloadName = fileId + _fileExtension;
-			return result;
+			string fileName = fileId + _fileExtension;
+			var filePath = Path.Combine( TempFolderBasePath, fileName );
+			return new FilePathResult( filePath, "application/octet-stream" ) { FileDownloadName = fileName };
 		}
 
 		byte[] GetLicense( string activationRequest )
 		{
 			byte[] requestBlob = ActivationRequestHelper.ExtractRequestBlob( activationRequest );
-			byte[] license = SendActivationRequest( requestBlob );
-
-			return license;
+			return SendActivationRequest( requestBlob );
 		}
 
 		byte[] SendActivationRequest( byte[] requestBlob )
 		{
-			var client = new ActivationWSClient(
-							new BasicHttpBinding(),
-							new EndpointAddress( _activationUrl )
-							);
-			var license = default( byte[] );
+			var client = new ActivationWSClient( new BasicHttpBinding(), new EndpointAddress( _activationUrl ) );
 			try
 			{
-				license = client.ActivateLicense( requestBlob, "Manual activation" );
+				return client.ActivateLicense( requestBlob, "Manual activation" );
 			}
-			catch ( Exception ex )
+			catch ( FaultException ex )
 			{
 				var translatedExceptionMessage = ActivationExceptionHelper.TranslateExceptionToMessage( ex );
 				ModelState.AddModelError( string.Empty, translatedExceptionMessage );
+				return null;
 			}
-			return license;
 		}
 
 		Guid SaveLicenseFile( byte[] license )
 		{
 			var fileId = Guid.NewGuid();
-			string fullPath = Path.Combine( BaseUrl, fileId + _fileExtension );
+			string fullPath = Path.Combine( TempFolderBasePath, fileId + _fileExtension );
 			System.IO.File.WriteAllBytes( fullPath, license );
 			return fileId;
+		}
+
+		string TempFolderBasePath
+		{
+			get { return AppDomain.CurrentDomain.GetData( "DataDirectory" ).ToString(); }
 		}
 	}
 }
