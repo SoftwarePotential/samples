@@ -1,0 +1,62 @@
+﻿<Window x:Class="DemoApp.Activation.ActivationDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:activation="clr-namespace:DemoApp.Activation" 
+        Title="ActivationDialog" Height="300" Width="300">
+    <Grid>
+        <StackPanel Name="activationPanel" Orientation="Vertical" >
+            <StackPanel.Resources>
+                <ObjectDataProvider x:Key="activationData" ObjectType="{x:Type activation:ActivationModel}" />
+            </StackPanel.Resources>
+            <StackPanel.DataContext>
+                <Binding Source="{StaticResource ResourceKey=activationData}"/>
+            </StackPanel.DataContext>
+            <StackPanel.CommandBindings>
+                <CommandBinding Command="{x:Static activation:ActivationDialog.ActivationCommand}" CanExecute="ActivationCommand_CanExecute" Executed="ActivationCommand_Executed" />
+            </StackPanel.CommandBindings>
+            <TextBlock Text="Please enter you activation key:" Margin="0 5" />
+            <TextBox Name="activationTextBox" MaxLength="{Binding ActivationKeyRequiredLength}" HorizontalAlignment="Left" Width="250" Margin="0 5" Text="{Binding Path=ActivationKey, Mode=TwoWay,
+							UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Validation.ErrorTemplate">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <DockPanel LastChildFill="True">
+                                        <Border Background="Red" DockPanel.Dock="Right" Margin="5 0" Width="20" Height="20" CornerRadius="10">
+                                            <TextBlock Text="!" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" />
+                                        </Border>
+                                        <AdornedElementPlaceholder VerticalAlignment="Center">
+                                            <Border BorderBrush="Red" BorderThickness="1" />
+                                        </AdornedElementPlaceholder>
+                                    </DockPanel>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="Validation.HasError" Value="true">
+                                <Setter Property="ToolTip"  Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <Button Name="activationButton" Content="Activate"  Height="30" HorizontalAlignment="Left"  ToolTip="Activate online"
+						Command="{x:Static activation:ActivationDialog.ActivationCommand}" CommandParameter="{Binding}">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="IsEnabled" Value="false" />
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding ElementName=activationTextBox, Path=(Validation.HasError)}" Value="false" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="true" />
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

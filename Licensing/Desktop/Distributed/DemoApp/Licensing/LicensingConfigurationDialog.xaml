@@ -1,0 +1,110 @@
+﻿<Window x:Class="DemoApp.Licensing.LicensingConfigurationDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:clr="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:DemoApp.Licensing" 
+        xmlns:licenses="clr-namespace:DemoApp.Licenses"
+        Title="Licensing Configuration" 
+        Height="280" Width="450" MinHeight="280" MinWidth="450" >
+    <Window.Resources>
+        <Style x:Key="SectionHeading"  TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="0,0,0,10" />
+        </Style>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{x:Static local:CloseWindowCommand.Instance}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+    </Window.InputBindings>
+    <Grid  Margin="15,15,0,0">
+        <StackPanel>
+            <StackPanel Name="localLicensesConfigurationPanel" Orientation="Vertical" Margin="0,0,0,20" >
+                <StackPanel.Resources>
+                    <ObjectDataProvider x:Key="licenseData" ObjectType="{x:Type licenses:LicenseListModelFactory}" MethodName="CreateLicenseListModel" />
+                </StackPanel.Resources>
+                <StackPanel.DataContext>
+                    <Binding Source="{StaticResource licenseData}" />
+                </StackPanel.DataContext>
+                <TextBlock Style="{StaticResource SectionHeading}">Local Licenses</TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>
+                        <TextBlock Text="{Binding Count, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" DataContext="{Binding Licenses}" />
+                        <Hyperlink Click="ViewLicenses_Click">license(s)</Hyperlink>
+                        <TextBlock>installed</TextBlock>
+                    </TextBlock>
+                </StackPanel>
+                <TextBlock Margin="0,5,0,0"><Hyperlink Click="Activate_Click">Activate...</Hyperlink></TextBlock>
+            </StackPanel>
+
+            <StackPanel Name="distributorConfigurationPanel" Orientation="Vertical" >
+                <StackPanel.Resources>
+                    <ObjectDataProvider x:Key="distributorConfigurationData"
+                        ObjectType="{x:Type local:DistributorConfigurationModelRepository}"
+                        MethodName="Load" />
+                </StackPanel.Resources>
+                <StackPanel.DataContext>
+                    <Binding Source="{StaticResource ResourceKey=distributorConfigurationData}"/>
+                </StackPanel.DataContext>
+                <TextBlock Style="{StaticResource SectionHeading}">Network Licenses</TextBlock>
+                <TextBlock>Distributor Server URL:</TextBlock>
+                <StackPanel Orientation="Horizontal" >
+                    <TextBox x:Name="distributorUrlTextBox" Width="250" Text="{Binding DistributorUrl, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" >
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <DockPanel LastChildFill="True">
+                                    <AdornedElementPlaceholder VerticalAlignment="Center">
+                                        <Border BorderBrush="Red" BorderThickness="1" />
+                                    </AdornedElementPlaceholder>
+                                </DockPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                        <TextBox.Style>
+                            <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                                <Style.Resources>
+                                    <VisualBrush x:Key="NotUsingDistributorBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None" >
+                                        <VisualBrush.Visual>
+                                            <Label Content="Not using distributor" Foreground="Gray" />
+                                        </VisualBrush.Visual>
+                                    </VisualBrush>
+                                </Style.Resources>
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                        <Setter Property="Background" Value="{StaticResource NotUsingDistributorBannerBrush}" />
+                                        <Setter Property="ToolTip" Value="{Binding Source={x:Static local:DistributorConfigurationModel.DistributorUrlPrompt}}"></Setter>
+                                    </Trigger>
+                                    <Trigger Property="Validation.HasError" Value="true">
+                                        <Setter Property="ToolTip"  Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <Button Click="TestConnection_Click" HorizontalAlignment="Left" IsEnabled="{Binding HasValidDistributorUrl, Mode=OneWay}" Margin="10, 0" >
+                        Test connection</Button>
+                </StackPanel>
+                <StackPanel Margin="0,20,0,0" Width="300" HorizontalAlignment="Left">
+                    <DockPanel>
+                        <Button Click="Save_Click" HorizontalAlignment="Left" Content="Save" Padding="5,2,5,2">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="IsEnabled" Value="false" />
+                                    <Style.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding ElementName=distributorUrlTextBox, Path=(Validation.HasError)}" Value="false" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="IsEnabled" Value="true" />
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button HorizontalAlignment="Left" Content="Cancel" Margin="20,0,0,0"
+                                Command="{x:Static local:CloseWindowCommand.Instance}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" >
+                        </Button>
+                    </DockPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
