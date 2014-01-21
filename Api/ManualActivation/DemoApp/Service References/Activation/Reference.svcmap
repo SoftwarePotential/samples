@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2aa8292f-da1d-4412-a747-32e122e3d3fe" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://srv.softwarepotential.com/SLMServerWS/ActivationWS.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ActivationWS.xsd" MetadataType="Schema" ID="33b7a679-c100-4527-8215-b90c96960fbf" SourceId="1" SourceUrl="http://srv.softwarepotential.com/SLMServerWS/ActivationWS.svc?xsd=xsd1" />
+    <MetadataFile FileName="ActivationWS1.xsd" MetadataType="Schema" ID="ef78a5fb-2ee3-4c81-98f2-6bfbf259262b" SourceId="1" SourceUrl="http://srv.softwarepotential.com/SLMServerWS/ActivationWS.svc?xsd=xsd0" />
+    <MetadataFile FileName="ActivationWS.disco" MetadataType="Disco" ID="3972c1f7-1bc6-4892-b842-d9382bf4fcc3" SourceId="1" SourceUrl="http://srv.softwarepotential.com/SLMServerWS/ActivationWS.svc?disco" />
+    <MetadataFile FileName="ActivationWS2.xsd" MetadataType="Schema" ID="166f7141-cf76-482d-98dd-955a6e7af9fc" SourceId="1" SourceUrl="http://srv.softwarepotential.com/SLMServerWS/ActivationWS.svc?xsd=xsd2" />
+    <MetadataFile FileName="ActivationWS.wsdl" MetadataType="Wsdl" ID="f3d88fc3-895d-421e-a566-f552aa4f4979" SourceId="1" SourceUrl="http://srv.softwarepotential.com/SLMServerWS/ActivationWS.svc?wsdl" />
+    <MetadataFile FileName="ActivationWS1.wsdl" MetadataType="Wsdl" ID="3ab68c00-65be-486f-a43f-8e481e898965" SourceId="1" SourceUrl="http://srv.softwarepotential.com/SLMServerWS/ActivationWS.svc?wsdl=wsdl0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
