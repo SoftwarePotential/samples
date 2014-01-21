@@ -37,6 +37,13 @@ namespace DemoApp.Licenses
 			// Remove license from the model
 			Licenses.Remove( license );
 		}
+
+		public void ReloadListFrom( Func<IEnumerable<LicenseItemModel>> getLicenses )
+		{
+			Licenses.Clear();
+			foreach(var item in getLicenses() )
+				Licenses.Add(item);
+		}
 	}
 
 	public class LicenseItemModel
@@ -57,10 +64,15 @@ namespace DemoApp.Licenses
 			if ( productContext == null )
 				return new LicenseListModel( new LicenseItemModel[] { }, "Unknown Product", "Unknown Version" );
 
-			IEnumerable<LicenseItemModel> licenseItems = RetrieveAllLicenses( productContext );
-			LicenseListModel licenseListModel = new LicenseListModel( licenseItems, productContext.ProductName, productContext.ProductVersion );
+			var licenseListModel = new LicenseListModel( RetrieveAllLicenses( productContext ), productContext.ProductName, productContext.ProductVersion );
 
 			return licenseListModel;
+		}
+
+		public IEnumerable<LicenseItemModel> CreateLicenseList()
+		{
+			IProductContext productContext = SpAgent.Product;
+			return RetrieveAllLicenses( productContext );
 		}
 
 		IEnumerable<LicenseItemModel> RetrieveAllLicenses( IProductContext productContext )
