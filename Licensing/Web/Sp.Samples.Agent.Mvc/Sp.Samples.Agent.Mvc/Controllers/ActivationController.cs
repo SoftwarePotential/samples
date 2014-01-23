@@ -63,22 +63,28 @@ namespace Sp.Samples.Agent.Mvc.Controllers
 		[HttpPost]
 		public void AddAsync( ActivationModel model )
 		{
-			//if ( !ModelState.IsValid )
-			//	return View( model );
+			AsyncManager.Parameters[ "activationModel" ] = model;
 
-			//if ( PostTokenIsMostRecentlySubmittedOne( model.PostToken ) )
-			//{
-			//	// Resubmits get bounced with an error message (only a refresh will generate a new token)- client side JS should prevent this from being a normal occurrence
-			//	ModelState.AddModelError( "", Resource.Controllers.ActivationController.AlreadySubmittedErrorMessage );
-			//	return View( model );
-			//}
+			if (!ModelState.IsValid)
+			{
+				AsyncManager.Parameters["validationError"] = true;
+				return;
+			}
+
+			if ( PostTokenIsMostRecentlySubmittedOne( model.PostToken ) )
+			{
+				// Resubmits get bounced with an error message (only a refresh will generate a new token)- client side JS should prevent this from being a normal occurrence
+				ModelState.AddModelError( "", Resource.Controllers.ActivationController.AlreadySubmittedErrorMessage );
+				AsyncManager.Parameters[ "validationError" ] = true;
+				return;
+			}
 
 			// Prevent any resubmits (minus ones just for validation purposes) as that could result in another activation taking place from Software Potential service's perspective
 			StashLastRequestToken( model.PostToken );
 
-			AsyncManager.Parameters[ "activationKey" ] = model.ActivationKey;
 			AsyncManager.OutstandingOperations.Increment();
-			AsyncManager.Parameters[ "task" ] =
+			AsyncManager.Parameters[ "validationError" ] = false;
+			AsyncManager.Parameters[ "activationTask" ] =
 				SpAgent.Product.Activation.OnlineActivateAsync( model.ActivationKey )
 				.ContinueWith( task =>
 				{
@@ -88,18 +94,20 @@ namespace Sp.Samples.Agent.Mvc.Controllers
 				} );
 		}
 
-		public ActionResult AddCompleted( Task task, string activationKey )
+		public ActionResult AddCompleted( Task activationTask, ActivationModel activationModel, bool validationError )
 		{
+			if ( validationError )
+				return View( activationModel );
 			try
 			{
-				task.Wait();
+				activationTask.Wait();
 			}
 			catch ( Exception ex )
 			{
-				string exceptionMessage = ex is AggregateException ? ex.InnerException.Message : ex.Message;
-				ModelState.AddModelError( "", string.Format( Resource.Controllers.ActivationController.FailureMessage, activationKey, exceptionMessage ) );
+				string exceptionMessage = ex is AggregateException ? ((AggregateException)ex).Flatten().InnerException.Message : ex.Message;
+				ModelState.AddModelError( "", string.Format( Resource.Controllers.ActivationController.FailureMessage, activationModel.ActivationKey, exceptionMessage ) );
 				// Re-render the page (with a new PostToken so that a form resubmission will pass the PostToken validation)
-				return View( new ActivationModel { PostToken = Guid.NewGuid(), ActivationKey = activationKey } );
+				return View( new ActivationModel { PostToken = Guid.NewGuid(), ActivationKey = activationModel.ActivationKey } );
 			}
 
 			// Redirect as per PRG to prevent resubmits

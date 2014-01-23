@@ -19,7 +19,7 @@ namespace Sp.Agent
 		/// and ConfigureStorageRelativePath() (see <c>ConfiguredBaseAndRelativePathElements()</c> for details).</para>
 		/// <para>Typically, this is useful when such a location is created and permissioned externally such as during application deployment (i.e. by an installer) or by the Application Hosting Environment (e.g., ASP.NET's App_Data).</para>
 		/// </summary>
-		public static string ConfiguredExternallyManagedRootPath()
+		static string ConfiguredExternallyManagedRootPath()
 		{
 			var baseAndRelative = ConfiguredBaseAndRelativePathElements();
 			return Path.Combine( baseAndRelative.Item1, baseAndRelative.Item2 );
@@ -32,7 +32,7 @@ namespace Sp.Agent
 		/// <item><description>relative path - when combined with base path, yields a combined result that is unique per application.</description></item></list>
 		/// See <c>ConfigureStorageBasePath()</c> and <c>ConfigureStorageRelativePath()</c> for details of the relevant extensibility points.
 		/// </summary>
-		public static Tuple<string, string> ConfiguredBaseAndRelativePathElements()
+		static Tuple<string, string> ConfiguredBaseAndRelativePathElements()
 		{
 			var basePath = default( string );
 			ConfigureStorageBasePath( value => basePath = value );

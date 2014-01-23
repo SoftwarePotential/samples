@@ -62,10 +62,12 @@ namespace Sp.Agent
 		}
 
 		/// <summary>
-		/// This portion of the partial class allows one to customize whether/how 
-		/// messages from the command line processing logic will be emitted to a Console.
+		/// <para>Provides standardized processing of Licensing-related command-line parameters.</para>
+		/// <para>To be invoked from your application's entry point.</para>
 		/// </summary>
 		/// <remarks>
+		/// This portion of the partial class allows one to customize whether/how 
+		/// messages from the command line processing logic will be emitted to a Console.
 		/// It is safe to delete this class, though the absence of messages may make 
 		/// error diagnosis more difficult.
 		/// </remarks>
