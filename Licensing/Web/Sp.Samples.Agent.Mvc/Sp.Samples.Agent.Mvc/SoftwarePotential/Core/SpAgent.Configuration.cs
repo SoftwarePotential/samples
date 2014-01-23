@@ -4,7 +4,9 @@
 
 using Sp.Agent;
 using Sp.Agent.Configuration;
+using Sp.Agent.Configuration.Internal; // For bool IsConfigured( this IAgentContext that)  which is normally not recommended.
 using System;
+using System.ComponentModel;
 using System.Globalization;
 
 namespace Sp.Agent
@@ -19,7 +21,11 @@ namespace Sp.Agent
 	/// </remarks>
 	static partial class SpAgent
 	{
-		static internal partial class Configuration
+		/// <summary>
+		/// <para>Provides access to APIs relevant to the configuration of Software Potential integration.</para>
+		/// <para>Typically should not be used outside of your application's configuration code.</para>
+		/// </summary>
+		static partial class Configuration
 		{
 			/// <summary>
 			/// Should be called once from Main/your entrypoint before running any Licensed 
@@ -38,6 +44,18 @@ namespace Sp.Agent
 			internal static IInitializeStores StoresInitialization
 			{
 				get { return SpAgent.Product.Stores.Initialization(); }
+			}
+
+			[EditorBrowsable( EditorBrowsableState.Never ), Obsolete( "Not applicable for normal API usage as SpAgent is effectively a Singleton" )]
+			internal new static bool Equals( object objA, object objB )
+			{
+				throw new NotImplementedException();
+			}
+
+			[EditorBrowsable( EditorBrowsableState.Never ), Obsolete( "Not applicable for normal API usage as SpAgent is effectively a Singleton" )]
+			internal new static bool ReferenceEquals( object objA, object objB )
+			{
+				throw new NotImplementedException();
 			}
 		}
 	}
@@ -60,14 +78,45 @@ namespace Sp.Agent
 		[System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline" )]
 		static SpAgent()
 		{
-			// If this triggers a compiler error, it's likely because there is not a SoftwarePotential.Configuration package reference in place
-			// Typically, one would Install-Package SoftwarePotential.Configuration (or a dependent package) to remediate this
-			ConfigureAgent( SpAgent.AgentContext );
+			if ( !ShouldSkipConfiguration( SpAgent.Configuration.AgentContext ) )
+			{
+				// If this triggers a compiler error, it's likely because there is not a SoftwarePotential.Configuration package reference in place
+				// Typically, one would Install-Package SoftwarePotential.Configuration (or a dependent package) to remediate this
+				ConfigureAgent( SpAgent.Configuration.AgentContext );
 
-			// If this triggers a compiler error, it's likely because there is not a SoftwarePotential\SpAgent.Product.cs file in place 
-			// Typically, one would Install-Package SoftwarePotential.Licensing-<ProductName_ProductVersion> to remediate this
-			ConfigureProduct( SpAgent.Product );
+				// If this triggers a compiler error, it's likely because there is not a SoftwarePotential\SpAgent.Product.cs file in place 
+				// Typically, one would Install-Package SoftwarePotential.Licensing-<ProductName_ProductVersion> to remediate this
+				ConfigureProduct( SpAgent.Product );
+			}
 		}
+
+		/// <summary>
+		/// Implements policy detailed in comments on ConfigureMultipleSpAgentsPerPermutation().
+		/// </summary>
+		/// <param name="agentContext"></param>
+		/// <returns></returns>
+		static bool ShouldSkipConfiguration( IAgentContext agentContext )
+		{
+			var sharedModeRequested = false; // By default we want to know if there are competing attempts to Configure the Agent
+			ConfigureMultipleSpAgentsPerPermutation( value => sharedModeRequested = value );
+			return sharedModeRequested && agentContext.IsConfigured();
+		}
+
+		/// <summary>
+		/// <para>Partial method enabling one to request an 'already initialized by a co-operating Assembly' guard in a partnering partial.</para>
+		/// <para>This allows a set of Assemblies with equivalent configurations to let the first one loaded manage the Configuration and others to assume that if configuration has already taken place that it is an equivalent setup.</para>
+		/// <para>Failure to provide an implementation of this partial method that correctly invokes the <paramref name="configure"/> 
+		/// callback will result in the default behavior:- each SpAgent class will attempt to Configure the Agent and an exception will result if more than  one does so per Permutation.</para>
+		/// <para>NB this will inhibit the normal behavior of trapping inadvertent use of protected code prior to controlled initialization via <c>SpAgent</c> and should be applied with care.</para>
+		/// </summary>
+		/// <remarks>Often a cleaner solution is to assign separate Permutations to each Application/component in order to both provide isolation and avoid this issue.</remarks>
+		/// <param name="configure">delegate that can be passed a flag indicating whether one wants to operate in 'first configuration wins' mode.</param>
+		/// <example><code>static partial void ConfigureMultipleSpAgentsPerPermutation( Action&lt;bool> configure )
+		/// {
+		///     configure( true); // Allow first SpAgent to be touched to manage the configurations and others to assume that any preceding initialization is correct.
+		/// }
+		/// </code></example>
+		static partial void ConfigureMultipleSpAgentsPerPermutation( Action<bool> configure );
 
 		/// <summary>
 		/// <para>Partial method enabling specification of an appropriate License Storage Policy by a partnering partial class.</para>

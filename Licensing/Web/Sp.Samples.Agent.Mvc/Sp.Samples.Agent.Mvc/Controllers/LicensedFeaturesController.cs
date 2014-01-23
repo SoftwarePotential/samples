@@ -16,7 +16,7 @@ namespace Sp.Samples.Agent.Mvc.Controllers
 		//
 		// GET: /LicensedResources/Feature1
 		[NotLicensedRedirectToCustomPage]
-		[Demoapp_10.Features.Feature1]
+		[Demo_10.Features.Feature1]
 		public ActionResult Feature1()
 		{
 			return ViewFeature( "Feature1" );
@@ -25,7 +25,7 @@ namespace Sp.Samples.Agent.Mvc.Controllers
 		//
 		// GET: /LicensedResources/Feature2
 		[NotLicensedRedirectToCustomPage]
-		[Demoapp_10.Features.Feature2]
+		[Demo_10.Features.Feature2]
 		public ActionResult Feature2()
 		{
 			return ViewFeature( "Feature2" );
@@ -34,7 +34,7 @@ namespace Sp.Samples.Agent.Mvc.Controllers
 		//
 		// GET: /LicensedResources/Feature3
 		[NotLicensedRedirectToCustomPage]
-		[Demoapp_10.Features.Feature3]
+		[Demo_10.Features.Feature3]
 		public ActionResult Feature3()
 		{
 			return ViewFeature( "Feature3" );

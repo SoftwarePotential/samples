@@ -10,6 +10,10 @@ namespace Sp.Agent
 {
 	static partial class SpAgent
 	{
+		/// <summary>
+		/// <para>Provides standardized processing of Licensing-related command-line parameters.</para>
+		/// <para>To be invoked from your application's entry point.</para>
+		/// </summary>
 		public static partial class CommandLineProcessing
 		{
 			public static bool ProcessInstallationArgs( string[] args )
