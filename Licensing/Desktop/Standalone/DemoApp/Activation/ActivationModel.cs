@@ -7,6 +7,7 @@
  * 
  */
 
+using System.Threading.Tasks;
 using Sp.Agent;
 using System;
 using System.ComponentModel;
@@ -27,9 +28,20 @@ namespace DemoApp.Activation
 			}
 		}
 
-		public void ActivateOnline()
+		bool _activationInProgress;
+		public bool IsActivationInProgress
 		{
-			SpAgent.Product.Activation.OnlineActivate( ActivationKey );
+			get { return _activationInProgress; }
+			set
+			{
+				_activationInProgress = value;
+				OnPropertyChanged( "IsActivationInProgress" );
+			}
+		}
+
+		public Task ActivateOnlineAsync()
+		{
+			return SpAgent.Product.Activation.OnlineActivateAsync(ActivationKey);
 		}
 
 		static bool IsActivationKeyWellFormed( string activationKey )
@@ -76,7 +88,7 @@ namespace DemoApp.Activation
 
 		#region INotifyPropertyChanged Members
 		public event PropertyChangedEventHandler PropertyChanged;
-		private void OnPropertyChanged( String propertyName )
+		void OnPropertyChanged( String propertyName )
 		{
 			if ( PropertyChanged != null )
 			{
