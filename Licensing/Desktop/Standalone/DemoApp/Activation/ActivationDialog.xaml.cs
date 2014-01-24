@@ -12,6 +12,7 @@ using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -40,12 +41,12 @@ namespace DemoApp.Activation
 					if ( task.IsFaulted )
 					{
 						string errorMessage = task.Exception.Flatten().InnerException.Message;
-						MessageBox.Show( "Error: " + errorMessage );
+						activationModel.LastActivationResultMessage = "Error: " + errorMessage;
 					}
 					else
 					{
-						MessageBox.Show( "Successfully activated license with activation key " + activationModel.ActivationKey );
-						Close();
+						activationModel.LastActivationResultMessage = "Successfully activated license with activation key " + activationModel.ActivationKey;
+						activationModel.LastActivationSucceeded = true;
 					}
 
 				}, CancellationToken.None, TaskContinuationOptions.None, uiContext );
@@ -71,16 +72,54 @@ namespace DemoApp.Activation
 		}
 	}
 	#region Converters
-	[ValueConversion( typeof( bool ), typeof( bool ) )]
+
+	[ValueConversion(typeof (bool), typeof (bool))]
 	public class InverseBooleanConverter : IValueConverter
+	{
+		public object Convert(object value, Type targetType, object parameter,
+			System.Globalization.CultureInfo culture)
+		{
+			if (targetType != typeof (bool))
+				throw new InvalidOperationException("The target must be a boolean");
+
+			return !(bool) value;
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter,
+			System.Globalization.CultureInfo culture)
+		{
+			throw new NotSupportedException();
+		}
+	}
+
+	[ValueConversion( typeof( bool ), typeof( bool ) )]
+	public class BooleanErrorMessageColorConverter : IValueConverter
 	{
 		public object Convert( object value, Type targetType, object parameter,
 			System.Globalization.CultureInfo culture )
 		{
-			if ( targetType != typeof( bool ) )
-				throw new InvalidOperationException( "The target must be a boolean" );
+			if ( value == null )
+				return "Red";
 
-			return !(bool)value;
+			bool valueAsBool = (bool)value;
+			return valueAsBool ? "Green" : "Red";
+		}
+
+		public object ConvertBack( object value, Type targetType, object parameter,
+			System.Globalization.CultureInfo culture )
+		{
+			throw new NotSupportedException();
+		}
+	}
+
+	[ValueConversion( typeof( bool ), typeof( bool ) )]
+	public class InverseBooleanVisibilityConverter : IValueConverter
+	{
+		public object Convert( object value, Type targetType, object parameter,
+			System.Globalization.CultureInfo culture )
+		{
+			var invertedBool = _inverseBooleanConverter.Convert(value, typeof(bool), parameter, culture);
+			return _booleanToVisibilityConverter.Convert(invertedBool, targetType, parameter, culture);
 		}
 
 		public object ConvertBack( object value, Type targetType, object parameter,
@@ -89,6 +128,8 @@ namespace DemoApp.Activation
 			throw new NotSupportedException();
 		}
 
+		readonly InverseBooleanConverter _inverseBooleanConverter = new InverseBooleanConverter();
+		readonly BooleanToVisibilityConverter _booleanToVisibilityConverter = new BooleanToVisibilityConverter();
 	}
 	#endregion
 }

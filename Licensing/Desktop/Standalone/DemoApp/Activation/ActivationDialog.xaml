@@ -5,15 +5,17 @@
         xmlns:activation="clr-namespace:DemoApp.Activation" 
         xmlns:presentation="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
         Closing="ActivationDialog_OnClosing"
-        Title="Activation" Height="300" Width="300">
+        Title="Activation" Height="250" Width="350">
     <Window.InputBindings>
         <KeyBinding Key="Escape" Command="{x:Static local:CloseWindowCommand.Instance}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
     </Window.InputBindings>
     <Grid>
-        <StackPanel Name="activationPanel" Orientation="Vertical" >
+        <StackPanel Name="activationPanel" Orientation="Vertical" Margin="5,0,5,0" >
             <StackPanel.Resources>
                 <ObjectDataProvider x:Key="activationData" ObjectType="{x:Type activation:ActivationModel}" />
                 <activation:InverseBooleanConverter x:Key="inverseBooleanConverter" />
+                <activation:InverseBooleanVisibilityConverter x:Key="inverseBooleanVisibilityConverter" />
+                <activation:BooleanErrorMessageColorConverter x:Key="booleanErrorMessageColorConverter" />
                 <presentation:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
             </StackPanel.Resources>
             <StackPanel.DataContext>
@@ -22,52 +24,58 @@
             <StackPanel.CommandBindings>
                 <CommandBinding Command="{x:Static activation:ActivationDialog.ActivationCommand}" CanExecute="ActivationCommand_CanExecute" Executed="ActivationCommand_Executed" />
             </StackPanel.CommandBindings>
-            <TextBlock Text="Please enter you activation key:" Margin="0 5" />
-            <TextBox Name="activationTextBox" MaxLength="{Binding ActivationKeyRequiredLength}" HorizontalAlignment="Left" Width="250" Margin="0 5" Text="{Binding Path=ActivationKey, Mode=TwoWay,
+            <TextBlock x:Name="lastActivationResultMessage" TextWrapping="Wrap" Text="{Binding Path=LastActivationResultMessage,UpdateSourceTrigger=PropertyChanged}" 
+                    Margin="0,5,0,5" Foreground="{Binding LastActivationSucceeded,Converter={StaticResource booleanErrorMessageColorConverter}}"></TextBlock>
+            <Button Command="{x:Static local:CloseWindowCommand.Instance}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" HorizontalAlignment="Left" 
+                    Content="OK" Visibility="{Binding LastActivationSucceeded,Converter={StaticResource booleanToVisibilityConverter}}"/>
+            <StackPanel Visibility="{Binding Path=LastActivationSucceeded,Converter={StaticResource inverseBooleanVisibilityConverter}}">
+                <TextBlock Text="Please enter you activation key:" Margin="0 5" />
+                <TextBox Name="activationTextBox" MaxLength="{Binding ActivationKeyRequiredLength}" HorizontalAlignment="Left" Width="250" Margin="0 5" Text="{Binding Path=ActivationKey, Mode=TwoWay,
 				UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" 
                 IsEnabled="{Binding Path=IsActivationInProgress,Mode=OneWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource inverseBooleanConverter}}" >
-                <TextBox.Style>
-                    <Style TargetType="{x:Type TextBox}">
-                        <Setter Property="Validation.ErrorTemplate">
-                            <Setter.Value>
-                                <ControlTemplate>
-                                    <DockPanel LastChildFill="True">
-                                        <Border Background="Red" DockPanel.Dock="Right" Margin="5 0" Width="20" Height="20" CornerRadius="10">
-                                            <TextBlock Text="!" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" />
-                                        </Border>
-                                        <AdornedElementPlaceholder VerticalAlignment="Center">
-                                            <Border BorderBrush="Red" BorderThickness="1" />
-                                        </AdornedElementPlaceholder>
-                                    </DockPanel>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        <Style.Triggers>
-                            <Trigger Property="Validation.HasError" Value="true">
-                                <Setter Property="ToolTip"  Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBox.Style>
-            </TextBox>
-            <StackPanel Orientation="Vertical">
-                <Button Name="activationButton" Content="Activate"  Height="30" HorizontalAlignment="Left"  ToolTip="Activate online"
-						Command="{x:Static activation:ActivationDialog.ActivationCommand}" CommandParameter="{Binding}">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="IsEnabled" Value="false" />
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="Validation.ErrorTemplate">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <DockPanel LastChildFill="True">
+                                            <Border Background="Red" DockPanel.Dock="Right" Margin="5 0" Width="20" Height="20" CornerRadius="10">
+                                                <TextBlock Text="!" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" />
+                                            </Border>
+                                            <AdornedElementPlaceholder VerticalAlignment="Center">
+                                                <Border BorderBrush="Red" BorderThickness="1" />
+                                            </AdornedElementPlaceholder>
+                                        </DockPanel>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
                             <Style.Triggers>
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding ElementName=activationTextBox, Path=(Validation.HasError)}" Value="false" />
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter Property="IsEnabled" Value="true" />
-                                </MultiDataTrigger>
+                                <Trigger Property="Validation.HasError" Value="true">
+                                    <Setter Property="ToolTip"  Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                                </Trigger>
                             </Style.Triggers>
                         </Style>
-                    </Button.Style>
-                </Button>
-                <Label Style="{StaticResource BusyAnimationStyle}" Visibility="{Binding Path=IsActivationInProgress,Mode=OneWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource booleanToVisibilityConverter}}"/>
+                    </TextBox.Style>
+                </TextBox>
+                <StackPanel Orientation="Vertical">
+                    <Button Name="activationButton" Content="Activate"  Height="30" HorizontalAlignment="Left"  ToolTip="Activate online"
+						Command="{x:Static activation:ActivationDialog.ActivationCommand}" CommandParameter="{Binding}">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="IsEnabled" Value="false" />
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding ElementName=activationTextBox, Path=(Validation.HasError)}" Value="false" />
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="IsEnabled" Value="true" />
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Label Style="{StaticResource BusyAnimationStyle}" Visibility="{Binding Path=IsActivationInProgress,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource booleanToVisibilityConverter}}"/>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
     </Grid>

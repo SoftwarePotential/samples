@@ -5,6 +5,11 @@
              Startup="Application_Startup"
               DispatcherUnhandledException="Application_DispatcherUnhandledException" >
     <Application.Resources>
-        <ResourceDictionary Source="Activation\BusyAnimationStyle.xaml" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ControlStyles.xaml" />
+                <ResourceDictionary Source="Activation\BusyAnimationStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
     </Application.Resources>
 </Application>

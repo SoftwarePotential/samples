@@ -17,7 +17,6 @@ namespace DemoApp.Activation
 	public class ActivationModel : IDataErrorInfo, INotifyPropertyChanged
 	{
 		string _activationKey;
-
 		public string ActivationKey
 		{
 			get { return _activationKey; }
@@ -39,9 +38,31 @@ namespace DemoApp.Activation
 			}
 		}
 
+		string _lastActivationResultMessage;
+		public string LastActivationResultMessage
+		{
+			get { return _lastActivationResultMessage; }
+			set
+			{
+				_lastActivationResultMessage = value;
+				OnPropertyChanged( "LastActivationResultMessage" );
+			}
+		}
+
+		bool _lastActivationSucceedeed;
+		public bool LastActivationSucceeded
+		{
+			get { return _lastActivationSucceedeed; }
+			set
+			{
+				_lastActivationSucceedeed = value;
+				OnPropertyChanged( "LastActivationSucceeded" );
+			}
+		}
+
 		public Task ActivateOnlineAsync()
 		{
-			return SpAgent.Product.Activation.OnlineActivateAsync(ActivationKey);
+			return SpAgent.Product.Activation.OnlineActivateAsync( ActivationKey );
 		}
 
 		static bool IsActivationKeyWellFormed( string activationKey )
