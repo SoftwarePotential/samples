@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="Activation\ActivationModel.cs" />
     <Compile Include="BusinessLogic\MyAlgorithms.cs" />
+    <Compile Include="CloseWindowCommand.cs" />
     <Compile Include="Licenses\LicenseListDialog.xaml.cs">
       <DependentUpon>LicenseListDialog.xaml</DependentUpon>
     </Compile>
@@ -86,6 +87,14 @@
     <Page Include="Activation\ActivationDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Activation\BusyAnimationStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Licenses\LicenseListDialog.xaml">
       <SubType>Designer</SubType>

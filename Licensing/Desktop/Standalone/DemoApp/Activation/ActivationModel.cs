@@ -7,6 +7,7 @@
  * 
  */
 
+using System.Threading.Tasks;
 using Sp.Agent;
 using System;
 using System.ComponentModel;
@@ -16,7 +17,6 @@ namespace DemoApp.Activation
 	public class ActivationModel : IDataErrorInfo, INotifyPropertyChanged
 	{
 		string _activationKey;
-
 		public string ActivationKey
 		{
 			get { return _activationKey; }
@@ -27,9 +27,42 @@ namespace DemoApp.Activation
 			}
 		}
 
-		public void ActivateOnline()
+		bool _activationInProgress;
+		public bool IsActivationInProgress
 		{
-			SpAgent.Product.Activation.OnlineActivate( ActivationKey );
+			get { return _activationInProgress; }
+			set
+			{
+				_activationInProgress = value;
+				OnPropertyChanged( "IsActivationInProgress" );
+			}
+		}
+
+		string _lastActivationResultMessage;
+		public string LastActivationResultMessage
+		{
+			get { return _lastActivationResultMessage; }
+			set
+			{
+				_lastActivationResultMessage = value;
+				OnPropertyChanged( "LastActivationResultMessage" );
+			}
+		}
+
+		bool _lastActivationSucceedeed;
+		public bool LastActivationSucceeded
+		{
+			get { return _lastActivationSucceedeed; }
+			set
+			{
+				_lastActivationSucceedeed = value;
+				OnPropertyChanged( "LastActivationSucceeded" );
+			}
+		}
+
+		public Task ActivateOnlineAsync()
+		{
+			return SpAgent.Product.Activation.OnlineActivateAsync( ActivationKey );
 		}
 
 		static bool IsActivationKeyWellFormed( string activationKey )
@@ -76,7 +109,7 @@ namespace DemoApp.Activation
 
 		#region INotifyPropertyChanged Members
 		public event PropertyChangedEventHandler PropertyChanged;
-		private void OnPropertyChanged( String propertyName )
+		void OnPropertyChanged( String propertyName )
 		{
 			if ( PropertyChanged != null )
 			{
