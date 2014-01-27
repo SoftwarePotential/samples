@@ -8,19 +8,23 @@ namespace DemoApp
 	{
 		#region ICommand Members
 
-		public bool CanExecute( object parameter )
+		void ICommand.Execute( object parameter )
+		{
+			if ( ((ICommand)this).CanExecute( parameter ) )
+			{
+				((Window)parameter).Close();
+			}
+		}
+
+		bool ICommand.CanExecute( object parameter )
 		{
 			return true;
 		}
 
-		public event EventHandler CanExecuteChanged;
-
-		public void Execute( object parameter )
+		event EventHandler ICommand.CanExecuteChanged
 		{
-			if ( this.CanExecute( parameter ) )
-			{
-				((Window)parameter).Close();
-			}
+			add { }
+			remove { }
 		}
 
 		#endregion

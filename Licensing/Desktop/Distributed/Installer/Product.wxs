@@ -25,7 +25,7 @@
     <CustomAction Id="InstallDistributorService"    Directory="INSTALLFOLDER" Execute="deferred"  ExeCommand="[INSTALLFOLDER]install.cmd -install" Return="check"  Impersonate="no" />
     <CustomAction Id="UninstallDistributorService"  Directory="INSTALLFOLDER" Execute="deferred"  ExeCommand="[INSTALLFOLDER]install.cmd -uninstall" Return="check" Impersonate="no"  />
     <InstallExecuteSequence>
-      <Custom Action="InstallDistributorService"    Before="InstallFinalize">(NOT INSTALLED OR UPGRADINGPRODUCTCODE) AND NOT REMOVE="ALL"</Custom>
+      <Custom Action="InstallDistributorService"    Before="InstallFinalize">(NOT Installed OR UPGRADINGPRODUCTCODE) AND NOT REMOVE="ALL"</Custom>
       <Custom Action="UninstallDistributorService"  Before="RemoveFiles">REMOVE="ALL"</Custom>
     </InstallExecuteSequence>
   </Product>
