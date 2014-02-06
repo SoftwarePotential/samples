@@ -3,7 +3,7 @@
   <Import Project="..\packages\SoftwarePotential.Protection-62340.3.2.1954.7\build\SoftwarePotential.Protection-62340.props" Condition="Exists('..\packages\SoftwarePotential.Protection-62340.3.2.1954.7\build\SoftwarePotential.Protection-62340.props')" />
   <Import Project="..\packages\Sp.Permutation-62340.3.2.1954.7\build\Sp.Permutation-62340.props" Condition="Exists('..\packages\Sp.Permutation-62340.3.2.1954.7\build\Sp.Permutation-62340.props')" />
   <Import Project="..\packages\Sp.Protector.3.2.1954\build\Sp.Protector.props" Condition="Exists('..\packages\Sp.Protector.3.2.1954\build\Sp.Protector.props')" />
-  <Import Project="..\packages\SoftwarePotential.Licensing-Demoapp_10.1.0.1.0\build\SoftwarePotential.Licensing-Demoapp_10.props" Condition="Exists('..\packages\SoftwarePotential.Licensing-Demoapp_10.1.0.1.0\build\SoftwarePotential.Licensing-Demoapp_10.props')" />
+  <Import Project="..\packages\SoftwarePotential.Licensing-Demo_10.1.0.1.0\build\SoftwarePotential.Licensing-Demo_10.props" Condition="Exists('..\packages\SoftwarePotential.Licensing-Demo_10.1.0.1.0\build\SoftwarePotential.Licensing-Demo_10.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -92,11 +92,11 @@
     <Compile Include="SoftwarePotential\Core\SpAgent.Configuration.Local.RelativePathSanityCheck.cs" />
     <Compile Include="SoftwarePotential\Core\SpAgent.Configuration.Local.SingleUser.cs" />
     <Compile Include="SoftwarePotential\Core\SpAgent.Permutation.cs" />
+    <Compile Include="SoftwarePotential\Core\SpAgent.Product.cs" />
+    <Compile Include="SoftwarePotential\Core\SpProduct.cs" />
     <Compile Include="SoftwarePotential\SpAgent.DistributorCustomizations.cs" />
-    <Compile Include="SoftwarePotential\SpAgent.Product.cs" />
     <Compile Include="SoftwarePotential\SpAgent.ProductCustomizations.cs" />
     <Compile Include="SoftwarePotential\SpAgent.SingleUserStorageCustomizations.cs" />
-    <Compile Include="SoftwarePotential\SpProduct.cs" />
     <Page Include="ControlStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -162,16 +162,16 @@
     <Content Include="SoftwarePotential.Vb\Core\SpAgent.Configuration.Local.vb" />
     <Content Include="SoftwarePotential.Vb\Core\SpAgent.Configuration.vb" />
     <Content Include="SoftwarePotential.Vb\Core\SpAgent.Permutation.vb" />
+    <Content Include="SoftwarePotential.Vb\Core\SpAgent.Product.vb" />
+    <Content Include="SoftwarePotential.Vb\Core\SpProduct.vb" />
     <Content Include="SoftwarePotential.Vb\SpAgent.DistributorCustomizations.vb" />
     <Content Include="SoftwarePotential.Vb\SpAgent.ProductCustomizations.vb" />
     <Content Include="SoftwarePotential.Vb\SpAgent.SingleUserStorageCustomizations.vb" />
-    <Content Include="SoftwarePotential\SpAgent.Product.vb" />
-    <Content Include="SoftwarePotential\SpProduct.vb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Sp.Agent-62340.3.2.1954.7\build\net40\Sp.Agent-62340.targets" Condition="Exists('..\packages\Sp.Agent-62340.3.2.1954.7\build\net40\Sp.Agent-62340.targets')" />
-  <Import Project="..\packages\Sp.Agent.Local-62340.3.2.1954.7\build\net40\Sp.Agent.Local-62340.targets" Condition="Exists('..\packages\Sp.Agent.Local-62340.3.2.1954.7\build\net40\Sp.Agent.Local-62340.targets')" />
   <Import Project="..\packages\Sp.Agent.Distributor-62340.3.2.1954.7\build\net40\Sp.Agent.Distributor-62340.targets" Condition="Exists('..\packages\Sp.Agent.Distributor-62340.3.2.1954.7\build\net40\Sp.Agent.Distributor-62340.targets')" />
+  <Import Project="..\packages\Sp.Agent.Local-62340.3.2.1954.7\build\net40\Sp.Agent.Local-62340.targets" Condition="Exists('..\packages\Sp.Agent.Local-62340.3.2.1954.7\build\net40\Sp.Agent.Local-62340.targets')" />
   <Import Project="..\packages\Sp.Protector.3.2.1954\build\Sp.Protector.targets" Condition="Exists('..\packages\Sp.Protector.3.2.1954\build\Sp.Protector.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

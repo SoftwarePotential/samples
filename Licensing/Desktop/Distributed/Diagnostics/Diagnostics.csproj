@@ -40,10 +40,7 @@
   <ItemGroup>
     <Compile Include="CopyrightBanner.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="SoftwarePotential\Core\SpAgent.CommandLineProcessing.cs" />
-    <Compile Include="SoftwarePotential\Core\SpAgent.Configuration.cs" />
     <Compile Include="SoftwarePotential\Core\SpAgent.Permutation.cs" />
-    <Compile Include="SoftwarePotential\SpAgent.ProductCustomizations.cs" />
     <Compile Include="SpAgent.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,10 +67,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SoftwarePotential.Vb\Core\SpAgent.CommandLineProcessing.vb" />
-    <Content Include="SoftwarePotential.Vb\Core\SpAgent.Configuration.vb" />
     <Content Include="SoftwarePotential.Vb\Core\SpAgent.Permutation.vb" />
-    <Content Include="SoftwarePotential.Vb\SpAgent.ProductCustomizations.vb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Sp.Agent-62340.3.2.1954.7\build\net40\Sp.Agent-62340.targets" Condition="Exists('..\packages\Sp.Agent-62340.3.2.1954.7\build\net40\Sp.Agent-62340.targets')" />
