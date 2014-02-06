@@ -1,0 +1,393 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sp.Agent.Distributor</name>
+    </assembly>
+    <members>
+        <member name="T:Sp.Agent.Distributor.CheckoutStorageAccessException">
+            <summary>
+            Thrown when the Checkout API encounters a problem accessing the Checkout Storage area within the configured Storage.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Distributor.CheckoutStorageAccessException.#ctor(System.Exception)">
+            <summary>
+            Creates a new <see cref="T:Sp.Agent.Distributor.CheckoutStorageAccessException"/> with the cited <param name="innerException"/>.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Distributor.CheckoutStorageAccessException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sp.Agent.Distributor.DistributorIntegrityException">
+            <summary>
+            Thrown when the Distributor Service detects an integrity violation. This signifies that the Licenses and/or Usage information on the specified Distributor Service machine have become inconsistent.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Distributor.DistributorIntegrityException.#ctor(System.Uri)">
+            <summary>
+            Creates a new <see cref="T:Sp.Agent.Distributor.DistributorIntegrityException"/> citing the provided <param name="baseUri"/>.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Distributor.DistributorIntegrityException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sp.Agent.Distributor.CheckoutRequiresStorageException">
+            <summary>
+            <para>Thrown when the Checkout API is being accessed while no suitable Storage has been configured.</para>
+            </summary>
+            <remarks>
+            <para>In order to use the Checkout API, Sp.Agent needs to be configured with a File Based Storage mechanism (i.e. the <see cref="M:Sp.Agent.Configuration.IAgentContext.Configure(System.Func{Sp.Agent.Configuration.IAgentCommenceConfigurationPhase,Sp.Agent.Configuration.IAgentCompletedConfigurationPhase})"/> expression needs to include an appropriate store definition).</para>
+            </remarks>
+            <seealso cref="M:Sp.Agent.Configuration.IAgentContext.Configure(System.Func{Sp.Agent.Configuration.IAgentCommenceConfigurationPhase,Sp.Agent.Configuration.IAgentCompletedConfigurationPhase})"/>
+        </member>
+        <member name="M:Sp.Agent.Distributor.CheckoutRequiresStorageException.#ctor">
+            <summary>
+            Creates a new <see cref="T:Sp.Agent.Distributor.CheckoutRequiresStorageException"/>.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Distributor.CheckoutRequiresStorageException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sp.Agent.Distributor.CheckedOutNotLicensedException">
+            <summary>
+            Thrown when a feature is not present within the set of Features currently Checked out.
+            </summary>
+            <remarks>
+            The occurrence of this exception additionally implies that it has not been possible to satisfy the required Feature requirement from any (non-Distributor) Licenses maintained on the current machine.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Distributor.CheckedOutNotLicensedException.#ctor(System.String)">
+            <summary>
+            Creates a new <see cref="T:Sp.Agent.Distributor.CheckedOutNotLicensedException"/> citing the supplied <c>feature</c>.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Distributor.CheckedOutNotLicensedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sp.Agent.Distributor.DistributorRequestException">
+            <summary>
+            Thrown when it has not been possible to communicate with the Distributor Service instance at a given endpoint.
+            </summary>
+            <remarks>The <c>InnerException</c> property contains details of the underlying exception.</remarks>
+            <seealso cref="T:Sp.Agent.Distributor.DistributorIntegrityException"/>
+        </member>
+        <member name="M:Sp.Agent.Distributor.DistributorRequestException.#ctor(System.Exception,System.Uri)">
+            <summary>
+            Creates a new <see cref="T:Sp.Agent.Distributor.DistributorRequestException"/> citing the supplied <param name="innerException">cause</param> and <param name="baseUri"/>.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Distributor.DistributorRequestException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sp.Agent.Configuration.AgentDistributorsConfigurationExtensions">
+            <summary>
+            <para>Enables the specification of the desired behavior with regard to discovering and managing connectivity to a Distributor Service.</para>
+            <para>Part of the Fluent Syntax chain used to fulfill the <c>IAgentDistributorsConfigurationPhase</c> of the <c>AgentContext.Configure()</c> Fluent Configuration Expression.</para>
+            </summary>
+            <seealso cref="M:Sp.Agent.Configuration.IAgentContext.Configure(System.Func{Sp.Agent.Configuration.IAgentCommenceConfigurationPhase,Sp.Agent.Configuration.IAgentCompletedConfigurationPhase})">AgentContext.Configure()</seealso>
+            <seealso cref="T:Sp.Agent.Configuration.IDistributorCommenceConfigurationPhase">IDistributorCommenceConfigurationPhase</seealso>
+            <seealso cref="T:Sp.Agent.Configuration.IDistributorCompletedConfigurationPhase">IDistributorCompletedConfigurationPhase</seealso>
+            <seealso cref="M:Sp.Agent.Configuration.IAgentDistributorsConfigurationPhase.DisableDistributor">DisableDistributor()</seealso>
+            <seealso cref="M:Sp.Agent.Configuration.DistributorDisableStorageExtensions.DisableStorage(Sp.Agent.Configuration.IAgentCommenceConfigurationPhase)">DisableStorage()</seealso>
+        </member>
+        <member name="M:Sp.Agent.Configuration.AgentDistributorsConfigurationExtensions.WithDistributor(Sp.Agent.Configuration.IAgentDistributorsConfigurationPhase,System.Func{Sp.Agent.Configuration.IDistributorCommenceConfigurationPhase,Sp.Agent.Configuration.IDistributorCompletedConfigurationPhase})">
+            <summary>
+            <para>EEnables the specification of the desired behavior with regard to discovering and managing connectivity to a Distributor Service.</para>
+            </summary>
+            <remarks>Part of the Fluent Syntax chain used to fulfill the <c>IAgentDistributorsConfigurationPhase</c> of the <c>AgentContext.Configure()</c> Fluent Configuration Expression.</remarks>
+            <seealso cref="M:Sp.Agent.Configuration.IAgentContext.Configure(System.Func{Sp.Agent.Configuration.IAgentCommenceConfigurationPhase,Sp.Agent.Configuration.IAgentCompletedConfigurationPhase})">AgentContext.Configure()</seealso>
+            <seealso cref="T:Sp.Agent.Configuration.IDistributorCommenceConfigurationPhase">IDistributorCommenceConfigurationPhase</seealso>
+            <seealso cref="T:Sp.Agent.Configuration.IDistributorCompletedConfigurationPhase">IDistributorCompletedConfigurationPhase</seealso>
+            <seealso cref="M:Sp.Agent.Configuration.IAgentDistributorsConfigurationPhase.DisableDistributor">DisableDistributor()</seealso>
+            <seealso cref="M:Sp.Agent.Configuration.DistributorDisableStorageExtensions.DisableStorage(Sp.Agent.Configuration.IAgentCommenceConfigurationPhase)">DisableStorage()</seealso>
+            <param name="that">Link in fluent call chain from <see cref="M:Sp.Agent.Configuration.IAgentContext.Configure(System.Func{Sp.Agent.Configuration.IAgentCommenceConfigurationPhase,Sp.Agent.Configuration.IAgentCompletedConfigurationPhase})">IAgentContext.Configure()</see>.</param>
+            <param name="distributor">Fluent Expression yielding a complete Distributor configuration call chain.
+            <example><code>distributor =&gt; distributor
+                .WithDiscovery( () =&gt; baseUri)
+                .CompleteWithDefaults()
+            </code></example>
+            </param>
+        </member>
+        <member name="T:Sp.Agent.Configuration.IDistributorCommenceConfigurationPhase">
+            <summary>
+            <para>Part of Fluent Syntax flow used to build the <c>composer</c> argument of <see cref="M:Sp.Agent.Configuration.AgentDistributorsConfigurationExtensions.WithDistributor(Sp.Agent.Configuration.IAgentDistributorsConfigurationPhase,System.Func{Sp.Agent.Configuration.IDistributorCommenceConfigurationPhase,Sp.Agent.Configuration.IDistributorCompletedConfigurationPhase})"/>.</para>
+            <para>Enables the specification of the desired behavior with regard to discovering and managing connectivity to a Distributor Service.</para>
+            </summary>
+            <seealso cref="M:Sp.Agent.Configuration.AgentDistributorsConfigurationExtensions.WithDistributor(Sp.Agent.Configuration.IAgentDistributorsConfigurationPhase,System.Func{Sp.Agent.Configuration.IDistributorCommenceConfigurationPhase,Sp.Agent.Configuration.IDistributorCompletedConfigurationPhase})">WithDistributor()</seealso>
+        </member>
+        <member name="M:Sp.Agent.Configuration.IDistributorCommenceConfigurationPhase.WithDiscovery(System.Func{System.Uri})">
+            <summary>
+            Enables the specification of a <c>Func</c> that will identify the correct service endpoint to use.
+            </summary>
+            <param name="discover">Function that will decide the correct endpoint to use whenever a Distributor needs to be contacted. May return <c>null</c> to signal that no Distributors are to be contacted at the present time.</param>
+            <returns>The next phase of the Fluent Syntax chain.</returns>
+            <seealso cref="M:Sp.Agent.Configuration.AgentDistributorsConfigurationExtensions.WithDistributor(Sp.Agent.Configuration.IAgentDistributorsConfigurationPhase,System.Func{Sp.Agent.Configuration.IDistributorCommenceConfigurationPhase,Sp.Agent.Configuration.IDistributorCompletedConfigurationPhase})"/>
+        </member>
+        <member name="T:Sp.Agent.Configuration.IDistributorConfigurationPhaseTail">
+            <summary>
+            <para>Part of Fluent Syntax flow used to build the <c>composer</c> argument of <see cref="M:Sp.Agent.Configuration.AgentDistributorsConfigurationExtensions.WithDistributor(Sp.Agent.Configuration.IAgentDistributorsConfigurationPhase,System.Func{Sp.Agent.Configuration.IDistributorCommenceConfigurationPhase,Sp.Agent.Configuration.IDistributorCompletedConfigurationPhase})"/>.</para>
+            <para>Represents the last step in the customization chain starting from <see cref="T:Sp.Agent.Configuration.IDistributorCommenceConfigurationPhase"/>.</para>
+            </summary>
+            <seealso cref="M:Sp.Agent.Configuration.AgentDistributorsConfigurationExtensions.WithDistributor(Sp.Agent.Configuration.IAgentDistributorsConfigurationPhase,System.Func{Sp.Agent.Configuration.IDistributorCommenceConfigurationPhase,Sp.Agent.Configuration.IDistributorCompletedConfigurationPhase})"/>
+        </member>
+        <member name="M:Sp.Agent.Configuration.IDistributorConfigurationPhaseTail.CompleteWithDefaults">
+            <summary>
+            Completes the composition of the Fluent Configuration Expression.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Configuration.IDistributorCompletedConfigurationPhase">
+            <summary>
+            Terminates a Fluent Syntax Composition expression starting from <see cref="M:Sp.Agent.Configuration.AgentDistributorsConfigurationExtensions.WithDistributor(Sp.Agent.Configuration.IAgentDistributorsConfigurationPhase,System.Func{Sp.Agent.Configuration.IDistributorCommenceConfigurationPhase,Sp.Agent.Configuration.IDistributorCompletedConfigurationPhase})"/>.
+            </summary>
+            <seealso cref="M:Sp.Agent.Configuration.AgentDistributorsConfigurationExtensions.WithDistributor(Sp.Agent.Configuration.IAgentDistributorsConfigurationPhase,System.Func{Sp.Agent.Configuration.IDistributorCommenceConfigurationPhase,Sp.Agent.Configuration.IDistributorCompletedConfigurationPhase})"/>
+        </member>
+        <member name="T:Sp.Agent.Distributor.DistributorNotLicensedException">
+            <summary>
+            <para>Thrown when an attempt to communicate with the Distributor Service for the purposes of obtaining a license allocation has failed.</para>
+            <para>The <c>InnerException</c> property contains details of the underlying exception.</para>
+            </summary>
+            <remarks>
+            The occurrence of this exception additionally implies that it has not been possible to satisfy the required Feature requirement from any (non-Distributor) Licenses maintained on the current machine.
+            </remarks>
+            <seealso cref="T:Sp.Agent.Distributor.DistributorIntegrityNotLicensedException"/>
+        </member>
+        <member name="M:Sp.Agent.Distributor.DistributorNotLicensedException.#ctor(System.Exception,System.Uri,System.String)">
+            <summary>
+            Creates a new <see cref="T:Sp.Agent.Distributor.DistributorNotLicensedException"/> citing the supplied <param name="innerException">cause</param>, <param name="baseUri"/> and <param name="feature"/>.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Distributor.DistributorNotLicensedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sp.Agent.Distributor.DistributorIntegrityNotLicensedException">
+            <summary>
+            Thrown when the Distributor Service is not in a position to satisfy a license allocation due to an integrity violation on the specified Distributor Service instance.
+            </summary>
+            <remarks>
+            <para>This exception signifies that the licenses and/or usage information on the specified Distributor Service machine have become inconsistent.</para>
+            <para>The occurrence of this exception additionally implies that it has not been possible to satisfy the required Feature requirement from any (non-Distributor) Licenses maintained on the current machine.</para>
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Distributor.DistributorIntegrityNotLicensedException.#ctor(System.Uri,System.String)">
+            <summary>
+            Creates a new <see cref="T:Sp.Agent.Distributor.DistributorIntegrityNotLicensedException"/> citing the supplied <c>baseUri</c> and <c>feature</c>.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Distributor.DistributorIntegrityNotLicensedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sp.Agent.Configuration.DistributorDisableStorageExtensions">
+            <summary>
+            <para>Provides a way to opt out of Local storage when using Sp.Agent.Distributor to consume Licenses (via <see cref="M:Sp.Agent.Configuration.AgentDistributorsConfigurationExtensions.WithDistributor(Sp.Agent.Configuration.IAgentDistributorsConfigurationPhase,System.Func{Sp.Agent.Configuration.IDistributorCommenceConfigurationPhase,Sp.Agent.Configuration.IDistributorCompletedConfigurationPhase})"/>).</para>
+            <para>NB: This will disable all Checkout functionality and the ability to install local licenses.</para>
+            </summary>
+            <seealso cref="M:Sp.Agent.Configuration.AgentDistributorsConfigurationExtensions.WithDistributor(Sp.Agent.Configuration.IAgentDistributorsConfigurationPhase,System.Func{Sp.Agent.Configuration.IDistributorCommenceConfigurationPhase,Sp.Agent.Configuration.IDistributorCompletedConfigurationPhase})">WithDistributor()</seealso>
+            <seealso cref="M:Sp.Agent.Configuration.IAgentContext.Configure(System.Func{Sp.Agent.Configuration.IAgentCommenceConfigurationPhase,Sp.Agent.Configuration.IAgentCompletedConfigurationPhase})">IAgentContext.Configure</seealso>
+            <seealso cref="T:Sp.Agent.Configuration.IAgentCommenceConfigurationPhase">IAgentCommenceConfigurationPhase</seealso>
+        </member>
+        <member name="M:Sp.Agent.Configuration.DistributorDisableStorageExtensions.DisableStorage(Sp.Agent.Configuration.IAgentCommenceConfigurationPhase)">
+            <summary>
+            <para>Disables all Local storage. Typically used in conjunction with Sp.Agent.Distributor's <see cref="M:Sp.Agent.Configuration.AgentDistributorsConfigurationExtensions.WithDistributor(Sp.Agent.Configuration.IAgentDistributorsConfigurationPhase,System.Func{Sp.Agent.Configuration.IDistributorCommenceConfigurationPhase,Sp.Agent.Configuration.IDistributorCompletedConfigurationPhase})">.WithDistributor()</see> mode.</para>
+            <para>NB: This will disable all Checkout functionality and the ability to install local licenses.</para>
+            </summary>
+            <seealso cref="M:Sp.Agent.Configuration.AgentDistributorsConfigurationExtensions.WithDistributor(Sp.Agent.Configuration.IAgentDistributorsConfigurationPhase,System.Func{Sp.Agent.Configuration.IDistributorCommenceConfigurationPhase,Sp.Agent.Configuration.IDistributorCompletedConfigurationPhase})">WithDistributor()</seealso>
+            <seealso cref="M:Sp.Agent.Configuration.IAgentContext.Configure(System.Func{Sp.Agent.Configuration.IAgentCommenceConfigurationPhase,Sp.Agent.Configuration.IAgentCompletedConfigurationPhase})">AgentContext.Configure()</seealso>
+            <seealso cref="T:Sp.Agent.Configuration.IAgentCommenceConfigurationPhase">IAgentCommenceConfigurationPhase</seealso>
+            <example><code>
+            AgentContext.For( "abc12" )
+                .Configure( agent =&gt; agent
+                    .DisableStorage()
+                    .WithDistributor( distributor =&gt; distributor
+                        .WithDiscovery( () =&gt; baseUri )
+                        .CompleteWithDefaults())
+                    .CompleteWithDefaults() );</code></example>
+        </member>
+        <member name="T:Sp.Agent.Configuration.AgentContextDistributorsExtensions">
+            <summary>
+            Exposes a set of extension methods for <see cref="T:Sp.Agent.Configuration.IAgentContext"/> related to Software Potential Distributor.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Configuration.AgentContextDistributorsExtensions.CreateDistributorsContext(Sp.Agent.Configuration.IAgentContext)">
+            <summary>
+            Provides access to availability and diagnostic information about specific Software Potential Distributor Service instances.
+            </summary>
+            <seealso cref="T:Sp.Agent.Distributor.IDistributorsContext"/>
+        </member>
+        <member name="T:Sp.Agent.Configuration.ProductContextDistributedExtensions">
+            <summary>
+            Exposes a set of extension methods for <see cref="T:Sp.Agent.IProductContext"/> related to Software Potential Distributor.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Configuration.ProductContextDistributedExtensions.CreateDistributedContext(Sp.Agent.IProductContext)">
+            <summary>
+            Creates an <see cref="T:Sp.Agent.Distributor.IDistributedContext"/> for this Product.
+            </summary>
+            <seealso cref="T:Sp.Agent.IProductContext"/>
+        </member>
+        <member name="T:Sp.Agent.Distributor.IDistributorsContext">
+            <summary>
+            Provides facilities for querying specific Distributor Service instances.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Distributor.IDistributorsContext.CanConnect(System.Uri)">
+            <summary>
+            Checks whether it is possible to communicate a Distributor Service instance at <paramref name="baseUri"/>.
+            </summary>
+            <param name="baseUri">Address of the Distributor Service.</param>
+            <returns><c>true</c> if the service can be contacted; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:Sp.Agent.Distributor.IDistributorsContext.ServiceVersion(System.Uri)">
+            <summary>
+            Gets the version of the Distributor Service instance at <paramref name="baseUri"/>.
+            </summary>
+            <param name="baseUri">Address of the Distributor Service.</param>
+            <returns>A human-readable service version string.</returns>
+            <example><c>3.2.1950</c></example>
+        </member>
+        <member name="M:Sp.Agent.Distributor.IDistributorsContext.IsServiceHealthy(System.Uri)">
+            <summary>
+            <para>Checks whether a given Distributor Service at <paramref name="baseUri"/> is in a consistent state.</para>
+            <para>A <c>false</c> result indicates that the Distributor Service is reporting an integrity violation, which signifies that the licenses and/or usage information on the specified Distributor Service instance have become inconsistent.</para>
+            </summary>
+            <param name="baseUri">Address of the Distributor Service.</param>
+            <returns><c>true</c> if the Distributor service is in a consistent state; <c>false</c> if the Distributor service reports an integrity violation.</returns>
+        </member>
+        <member name="T:Sp.Agent.Distributor.IDistributedContext">
+            <summary>
+            Provides queries and operations for Distributor-aware applications such as <see cref="T:Sp.Agent.Distributor.ICheckoutContext">Checkout</see>.
+            </summary>
+        </member>
+        <member name="P:Sp.Agent.Distributor.IDistributedContext.Checkout">
+            <summary>
+            Facilitates switching the application between Connected and Disconnected mode.
+            </summary>
+            <exception cref="T:Sp.Agent.Distributor.CheckoutRequiresStorageException">Thrown if no storage has been configured within the <see cref="T:Sp.Agent.Configuration.IAgentContext"/> Configuration.</exception>
+        </member>
+        <member name="T:Sp.Agent.Distributor.ICheckoutContext">
+            <summary>
+            Provides facilities for getting information about <see cref="M:Sp.Agent.Distributor.ICheckoutContext.AvailableNow">Available</see> and/or the <see cref="M:Sp.Agent.Distributor.ICheckoutContext.TryGetCurrent(Sp.Agent.Distributor.ICheckout@)">Currently held</see> Checkouts.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Distributor.ICheckoutContext.AvailableNow">
+            <summary>
+            Provides a list of <see cref="T:Sp.Agent.Distributor.IAvailableCheckout">Available Checkouts</see> that the current client is eligible to <see cref="M:Sp.Agent.Distributor.IAvailableCheckout.Acquire(System.DateTime)"/> at the present time.
+            </summary>
+            <returns>A list of Available Checkouts that one can potentially <see cref="M:Sp.Agent.Distributor.IAvailableCheckout.Acquire(System.DateTime)"/>.</returns>
+            <exception cref="T:Sp.Agent.Distributor.NoDistributorException">Thrown if there is no Distributor configured or discoverable available at the present time.</exception>
+            <exception cref="T:Sp.Agent.Distributor.DistributorRequestException">Thrown if there is a connectivity or related issue contacting the service. See the <c>InnerException</c> for details.</exception>
+            <exception cref="T:Sp.Agent.Distributor.DistributorIntegrityException">Thrown if there is an integrity issue on the server.</exception>
+        </member>
+        <member name="M:Sp.Agent.Distributor.ICheckoutContext.TryGetCurrent(Sp.Agent.Distributor.ICheckout@)">
+            <summary>
+            Tries to get details of the currently held Checkout (if any).
+            </summary>
+            <param name="checkout"><see cref="T:Sp.Agent.Distributor.ICheckout"/> instance (if one is held at the present time)</param>
+            <returns><c>true</c> if there is a Checkout held at the present time; otherwise, <c>false</c>.</returns>
+            <exception cref="T:Sp.Agent.Distributor.CheckoutStorageAccessException">Thrown if there is a issue reading the checkout storage. See the <c>InnerException</c> for details.</exception>
+        </member>
+        <member name="T:Sp.Agent.Distributor.IAvailableCheckout">
+            <summary>
+            Provides details of an Available Checkout that one can potentially <c>Acquire</c>.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Distributor.IAvailableCheckout.Acquire(System.DateTime)">
+            <summary>
+            <para>Attempts to Acquire this Checkout.</para>
+            <para>Upon success, the client will remain in Disconnected mode until the Checkout is <see cref="M:Sp.Agent.Distributor.ICheckout.Relinquish">Relinquished</see>.</para>
+            <para>NB While Checked out, Distributed <see cref="P:Sp.Agent.Distributor.ICheckout.Features"/> not within this <see cref="T:Sp.Agent.Distributor.IAvailableCheckout"/> will be unavailable (i.e., normal Connected leasing behavior will be suspended and the available features will be confined to those on locally available licenses plus the Checked out set).</para>
+            </summary>
+            <param name="until">The date and time until which one wishes to hold the Checkout.</param>
+            <seealso cref="M:Sp.Agent.Distributor.ICheckout.Relinquish"/>
+            <exception cref="T:Sp.Agent.Distributor.NoLongerAvailableException">Thrown if this Checkout is no longer available at the present time.</exception>
+            <exception cref="T:Sp.Agent.Distributor.NoDistributorException">Thrown if there is no Distributor configured or discoverable available at the present time.</exception>
+            <exception cref="T:Sp.Agent.Distributor.DistributorRequestException">Thrown if there is a connectivity or related issue contacting the service. See the <c>InnerException</c> for details.</exception>
+            <exception cref="T:Sp.Agent.Distributor.CheckoutStorageAccessException">Thrown if there is a issue reading the checkout storage. See the <c>InnerException</c> for details.</exception>
+            <exception cref="T:Sp.Agent.Distributor.DistributorIntegrityException">Thrown if there is an integrity issue on the server.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if you have already <see cref="M:Sp.Agent.Distributor.IAvailableCheckout.Acquire(System.DateTime)">Acquired</see> another <see cref="T:Sp.Agent.Distributor.IAvailableCheckout"/>. You will need to <see cref="M:Sp.Agent.Distributor.ICheckout.Relinquish"/> first to avoid this.</exception>
+        </member>
+        <member name="P:Sp.Agent.Distributor.IAvailableCheckout.AvailableUntil">
+            <summary>
+            The (local) date and time until which one is eligible to Acquire this Available Checkout.
+            </summary>
+        </member>
+        <member name="P:Sp.Agent.Distributor.IAvailableCheckout.Id">
+            <summary>
+            The internal identifier of this Available Checkout.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Distributor.ICheckout">
+            <summary>
+            Provides details of the currently held Checkout (and a <see cref="M:Sp.Agent.Distributor.ICheckout.Relinquish"/> operation).
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Distributor.ICheckout.Relinquish">
+            <summary>
+            Releases this Checkout reservation. Upon success, the Client will move back to Connected mode.
+            </summary>
+            <remarks>Checked Out Features are reserved until a given date/time and must then be explicitly Relinquished in order to return to Connected mode.</remarks>
+            <exception cref="T:Sp.Agent.Distributor.NoDistributorException">Thrown if there is no Distributor configured or discoverable available at the present time.</exception>
+            <exception cref="T:Sp.Agent.Distributor.DistributorRequestException">Thrown if there is a connectivity or related issue contacting the service. See the <c>InnerException</c> for details.</exception>
+            <exception cref="T:Sp.Agent.Distributor.CheckoutStorageAccessException">Thrown if there is a issue reading the checkout storage. See the <c>InnerException</c> for details.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if you have already <see cref="M:Sp.Agent.Distributor.ICheckout.Relinquish"/>ed.</exception>
+        </member>
+        <member name="P:Sp.Agent.Distributor.ICheckout.Features">
+            <summary>
+            Gets the set of Features that have been reserved as part of the Checkout.
+            </summary>
+            <exception cref="T:Sp.Agent.Distributor.CheckoutStorageAccessException">Thrown if there is a issue reading the checkout storage. See the <c>InnerException</c> for details.</exception>
+        </member>
+        <member name="P:Sp.Agent.Distributor.ICheckout.ValidUntil">
+            <summary>
+            Gets the (local) date and time until which this Checked out set of <see cref="P:Sp.Agent.Distributor.ICheckout.Features"/> will remain valid. 
+            </summary>
+            <exception cref="T:Sp.Agent.Distributor.CheckoutStorageAccessException">Thrown if there is a issue reading the checkout storage. See the <c>InnerException</c> for details.</exception>
+        </member>
+        <member name="T:Sp.Agent.Distributor.Internal.Core.IContextFactory">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>	
+        </member>
+        <member name="M:Sp.Agent.Distributor.Internal.Core.IContextFactory.Create(Sp.Agent.IProductContext,System.String)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Distributor.NoDistributorException">
+            <summary>
+            <para>Thrown when the Distributor Discovery configuration did not yield a Distributor (the configuration needs to resolve exactly one Distributor instance).</para>
+            </summary>
+            <remarks>
+            <para>In order to use the Checkout API, Sp.Agent needs to be configured with a Distributor (i.e. <see cref="M:Sp.Agent.Configuration.IAgentContext.Configure(System.Func{Sp.Agent.Configuration.IAgentCommenceConfigurationPhase,Sp.Agent.Configuration.IAgentCompletedConfigurationPhase})">AgentContext.Configure</see> expression needs to include an appropriate .WithDistributor( ... .WithDiscovery( ... ) ... ) sequence).</para>
+            </remarks>
+            <seealso cref="M:Sp.Agent.Configuration.IAgentContext.Configure(System.Func{Sp.Agent.Configuration.IAgentCommenceConfigurationPhase,Sp.Agent.Configuration.IAgentCompletedConfigurationPhase})"/>
+        </member>
+        <member name="M:Sp.Agent.Distributor.NoDistributorException.#ctor">
+            <summary>
+            Creates a new <see cref="T:Sp.Agent.Distributor.NoDistributorException"/>.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Distributor.NoDistributorException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sp.Agent.Distributor.NoLongerAvailableException">
+            <summary>
+            <para>Thrown when an attempt to Acquire an IAvailableCheckout fails due to it no longer being available.</para>
+            </summary>
+            <remarks>Encountering this exception indicates that it is necessary to generate a fresh availability set by re-executing <see cref="M:Sp.Agent.Distributor.ICheckoutContext.AvailableNow">ICheckouts.AvailableNow()</see>.</remarks>
+            <seealso cref="M:Sp.Agent.Distributor.ICheckoutContext.AvailableNow"/>
+        </member>
+        <member name="M:Sp.Agent.Distributor.NoLongerAvailableException.#ctor">
+            <summary>
+            Creates a new <see cref="T:Sp.Agent.Distributor.NoLongerAvailableException"/>.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Distributor.NoLongerAvailableException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

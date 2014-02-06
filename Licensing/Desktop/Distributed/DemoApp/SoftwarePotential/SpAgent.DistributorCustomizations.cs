@@ -171,7 +171,9 @@ namespace Sp.Agent
 			} );
 		}
 	}
-#elif SP_AGENT_DISTRIBUTOR_PROMPT_FOR_ENDPOINT_EXAMPLE
+#endif
+
+#if SP_AGENT_DISTRIBUTOR_PROMPT_FOR_ENDPOINT_EXAMPLE
 	/// <summary>
 	/// This portion of the partial class shows a skeleton implementation that 
 	/// illustrates how one might have an Options Dialog be triggered to allow 

@@ -1,0 +1,1 @@
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<bool>" %><% if (Model) { %><%= Resource.Views.Common.CommonText.Yes %><% } else { %><%= Resource.Views.Common.CommonText.No %><%} %>

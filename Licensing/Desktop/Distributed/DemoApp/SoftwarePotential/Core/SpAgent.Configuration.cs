@@ -82,15 +82,7 @@ namespace Sp.Agent
 			{
 				// If this triggers a compiler error, it's likely because there is not a SoftwarePotential.Configuration package reference in place
 				// Typically, one would Install-Package SoftwarePotential.Configuration (or a dependent package) to remediate this
-				try
-				{
-					ConfigureAgent( Configuration.AgentContext );
-				}
-				catch ( Exception e )
-				{
-					Console.WriteLine( e );
-					throw;
-				}
+				ConfigureAgent( SpAgent.Configuration.AgentContext );
 
 				// If this triggers a compiler error, it's likely because there is not a SoftwarePotential\SpAgent.Product.cs file in place 
 				// Typically, one would Install-Package SoftwarePotential.Licensing-<ProductName_ProductVersion> to remediate this
