@@ -5,6 +5,7 @@ This solution contains projects illustrating the following elements of a Distrib
 * Configuring licensing settings (including Distributor connection settings)
 * Managing local licenses (Online Activation dialog, License List dialog)
 * Creating a Windows Installer MSI package for Distributor Server (using WiX toolset)
+* Creating a standalone diagnostics tool for your Distributor Server
 
 ## Prerequisites
 * Visual Studio 2010 or later
@@ -25,9 +26,11 @@ This solution contains projects illustrating the following elements of a Distrib
 	-	`SoftwarePotential.Licensing-Demo_10`
 	-	`SoftwarePotential.Configuration.Local.SingleUser-<PermutationShortCode>`
 	-	`SoftwarePotential.Configuration.Distributor-<PermutationShortCode>`
+* Add the following packages to `Diagnostics` project:
+	-	`Sp.Agent.Distributor-<PermutationShortCode>`
+	-	`SoftwarePotential-<PermutationShortCode>`
 * Add the following packages to your solution:
 	- `Sp.Distributor-<PermutationShortCode>` (needed to build the Installer project)
-
 ### Customize the Installer project
 * Change `DistributorVendor` variable in `Variables.wxi` to your company name (`DistributorVendor` combined with `DistributorProductName` compose the Program Name in the Add/Remove Programs list; by default, the full Program Name is _My Company Software Potential Distributor_)
 
