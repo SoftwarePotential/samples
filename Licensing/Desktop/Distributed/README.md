@@ -5,7 +5,7 @@ This solution contains projects illustrating the following elements of a Distrib
 * Configuring licensing settings (including Distributor connection settings)
 * Managing local licenses (Online Activation dialog, License List dialog)
 * Creating a Windows Installer MSI package for Distributor Server (using WiX toolset)
-* Creating a standalone diagnostics tool for your Distributor Server
+* Creating a standalone diagnostics tool for your Distributor Server 
 
 ## Prerequisites
 * Visual Studio 2010 or later
@@ -71,6 +71,10 @@ This solution contains projects illustrating the following elements of a Distrib
 * Build the Installer project
 * A new version of `DistributorSetup.msi` is generated in the output directory
 * Installing the new version of `DistributorSetup.msi` will perform a complete upgrade of Distributor Server on the target machine
+
+### Diagnostics
+* Run the diagnostics application from a command prompt
+* .\Diagnostics.exe --help will display the commands and usage information.
 
 #Troubleshooting
 ## The Installer project fails to load in Visual Studio
