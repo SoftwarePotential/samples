@@ -13,6 +13,7 @@ using DemoApp.BusinessLogic;
 using System.Windows;
 using DemoApp.Licensing;
 using DemoApp.Properties;
+using DemoApp.Checkout;
 
 namespace DemoApp
 {
@@ -55,12 +56,18 @@ namespace DemoApp
 				default:
 					throw new ArgumentOutOfRangeException( "featureNumber" );
 			}
-			MessageBox.Show( string.Format( "Feature {0} accessed successfully", featureNumber) , "Success", MessageBoxButton.OK, MessageBoxImage.Information );
+			MessageBox.Show( string.Format( "Feature {0} accessed successfully", featureNumber ), "Success", MessageBoxButton.OK, MessageBoxImage.Information );
 		}
 
 		void Configure_Click( object sender, RoutedEventArgs e )
 		{
 			var dialog = new LicensingConfigurationDialog { Owner = this };
+			dialog.ShowDialog();
+		}
+
+		void Checkout_Click( object sender, RoutedEventArgs e )
+		{
+			var dialog = new CheckoutDialog { Owner = this };
 			dialog.ShowDialog();
 		}
 	}

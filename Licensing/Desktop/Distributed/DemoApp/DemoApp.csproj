@@ -59,6 +59,20 @@
     </Compile>
     <Compile Include="Activation\ActivationModel.cs" />
     <Compile Include="BusinessLogic\MyAlgorithms.cs" />
+    <Compile Include="Checkout\AvailableCheckout.xaml.cs">
+      <DependentUpon>AvailableCheckout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Checkout\AvailableCheckoutsModel.cs" />
+    <Compile Include="Checkout\CurrentCheckoutPage.xaml.cs">
+      <DependentUpon>CurrentCheckoutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Checkout\CheckoutDialog.xaml.cs">
+      <DependentUpon>CheckoutDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Checkout\CurrentCheckoutModel.cs" />
+    <Compile Include="Checkout\IDisplayCheckoutState.cs" />
+    <Compile Include="Common\CloseWindowCommand.cs" />
+    <Compile Include="Common\ViewModelBase.cs" />
     <Compile Include="Licensing\DistributorDiagnosticsHelper.cs" />
     <Compile Include="Licensing\LicensingConfigurationDialog.xaml.cs">
       <DependentUpon>LicensingConfigurationDialog.xaml</DependentUpon>
@@ -68,9 +82,19 @@
     </Compile>
     <Compile Include="Licenses\LicenseListModel.cs" />
     <Compile Include="Licensing\DistributorConfigurationModel.cs" />
-    <Compile Include="SoftwarePotential\Core\SpAgent.Configuration.cs" />
-    <Compile Include="SoftwarePotential\Core\SpAgent.Configuration.Distributor.AppSettings.cs" />
-    <Compile Include="SoftwarePotential\SpAgent.DistributorCustomizations.cs" />
+    <Compile Include="Common\RelayCommand.cs" />
+    <Page Include="Checkout\AvailableCheckout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Checkout\CurrentCheckoutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Checkout\CheckoutDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ControlStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -124,6 +148,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\refresh-icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

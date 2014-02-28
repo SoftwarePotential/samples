@@ -7,8 +7,9 @@
         <DockPanel LastChildFill="True">
             <Menu IsMainMenu="True" DockPanel.Dock="Top">
                 <MenuItem Header="_Licensing"   >
-                    <MenuItem Header="Configure..." Click="Configure_Click"></MenuItem>
-                </MenuItem>
+					<MenuItem Header="Configure..." Click="Configure_Click"></MenuItem>
+					<MenuItem Header="Checkout..." Click="Checkout_Click"></MenuItem>
+				</MenuItem>
             </Menu>
             <StackPanel Margin="10 10">
                 <StackPanel.CommandBindings>
