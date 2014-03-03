@@ -14,5 +14,6 @@ namespace DemoApp.Checkout
 		void ShowAvailableCheckouts();
 		void ShowCurrentCheckout();
 		void NotifyUser( object message );
+		void Close();
 	}
 }

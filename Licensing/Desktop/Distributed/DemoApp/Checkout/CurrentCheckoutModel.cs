@@ -22,7 +22,7 @@ namespace DemoApp.Checkout
 
 		public RelayCommand CheckinCommand { get; private set; }
 
-		public IDisplayCheckoutState State { get; set; }
+		public IDisplayCheckoutState DisplayState { get; set; }
 
 		public DateTime ValidUntil
 		{
@@ -48,15 +48,15 @@ namespace DemoApp.Checkout
 			try
 			{
 				_checkout.Relinquish();
-				State.ShowAvailableCheckouts();
+				DisplayState.Close();
 			}
 			catch ( DistributorRequestException )
 			{
-				State.NotifyUser( "There has been an issue contacting your distributor server. Please try again. If the problem persists, please contact your system administrator." );
+				DisplayState.NotifyUser( "There has been an issue contacting your distributor server. Please try again. If the problem persists, please contact your system administrator." );
 			}
 			catch ( Exception exc )
 			{
-				State.NotifyUser( exc.Message );
+				DisplayState.NotifyUser( exc.Message );
 			}
 		}
 

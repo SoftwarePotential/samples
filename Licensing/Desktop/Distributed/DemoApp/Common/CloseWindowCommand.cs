@@ -7,32 +7,13 @@
  * 
  */
 
-using System;
 using System.Windows;
 using System.Windows.Input;
 
 namespace DemoApp.Common
 {
-	public class CloseWindowCommand : ICommand
+	public class CloseWindowCommand 
 	{
-		#region ICommand Members
-
-		public bool CanExecute( object parameter )
-		{
-			return true;
-		}
-
-		public event EventHandler CanExecuteChanged;
-
-		public void Execute( object parameter )
-		{
-			if ( CanExecute( parameter ) )
-			{
-				((Window)parameter).Close();
-			}
-		}
-		#endregion
-
-		public static readonly ICommand Instance = new CloseWindowCommand();
+		public static readonly ICommand CloseCommand =  new RelayCommand<object>( o => ((Window)o).Close() );
 	}
 }

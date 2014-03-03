@@ -59,8 +59,8 @@
     </Compile>
     <Compile Include="Activation\ActivationModel.cs" />
     <Compile Include="BusinessLogic\MyAlgorithms.cs" />
-    <Compile Include="Checkout\AvailableCheckout.xaml.cs">
-      <DependentUpon>AvailableCheckout.xaml</DependentUpon>
+    <Compile Include="Checkout\AvailableCheckoutPage.xaml.cs">
+      <DependentUpon>AvailableCheckoutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Checkout\AvailableCheckoutsModel.cs" />
     <Compile Include="Checkout\CurrentCheckoutPage.xaml.cs">
@@ -83,7 +83,7 @@
     <Compile Include="Licenses\LicenseListModel.cs" />
     <Compile Include="Licensing\DistributorConfigurationModel.cs" />
     <Compile Include="Common\RelayCommand.cs" />
-    <Page Include="Checkout\AvailableCheckout.xaml">
+    <Page Include="Checkout\AvailableCheckoutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

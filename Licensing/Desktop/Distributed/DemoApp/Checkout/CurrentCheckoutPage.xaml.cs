@@ -11,9 +11,6 @@ using System.Windows.Controls;
 
 namespace DemoApp.Checkout
 {
-	/// <summary>
-	/// Interaction logic for Checkout.xaml
-	/// </summary>
 	public partial class CurrentCheckoutPage : Page
 	{
 		public CurrentCheckoutPage()

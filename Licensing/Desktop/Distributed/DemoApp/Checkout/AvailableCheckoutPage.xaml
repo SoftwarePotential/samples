@@ -6,9 +6,9 @@
 			xmlns:system="clr-namespace:System;assembly=mscorlib"
 			xmlns:checkout="clr-namespace:DemoApp.Checkout"	  
 			xmlns:distributor="clr-namespace:Sp.Agent.Distributor;assembly=Sp.Agent.Distributor"
-			 xmlns:global="clr-namespace:DemoApp"
-
+			 xmlns:common="clr-namespace:DemoApp.Common"
              mc:Ignorable="d" >
+
 	<Page.DataContext>
 		<checkout:AvailableCheckoutsModel/>
 	</Page.DataContext>
@@ -41,14 +41,14 @@
 					<Image x:Key="refreshIcon" Source="../Content/refresh-icon.png"/>
 				</StackPanel.Resources>
 
-				<Button Content="{StaticResource refreshIcon}" Command="{Binding RefreshCommmand}" Height="32" Width="32" HorizontalAlignment="Right" Margin="0,0,0,5">
+				<Button Content="{StaticResource refreshIcon}" Command="{Binding RefreshCommmand}" Height="32" Width="32" HorizontalAlignment="Right" Margin="0,5,0,5">
 				</Button>
 				<TextBlock Text="Select Available Checkout" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,5,0"/>
 
-				<DataGrid Name="AvailableCheckoutsGrid" SelectedItem="{Binding SelectedAvailableCheckout, Mode=TwoWay}"
-						  ColumnHeaderStyle="{StaticResource ResourceKey=gridHeaderTemplate}" 
+				<DataGrid Name="AvailableCheckoutsGrid" SelectedItem="{Binding SelectedAvailableCheckout, Mode=TwoWay}" 
+						  ColumnHeaderStyle="{StaticResource ResourceKey=gridHeaderTemplate}" HeadersVisibility="Column"
 						  Style="{StaticResource ResourceKey=availableCheckoutGridTemplate}"
-						  ItemsSource="{Binding Path=AvailableCheckouts}" HorizontalAlignment="Left" AutoGenerateColumns="False" CanUserAddRows="False"  >
+						  ItemsSource="{Binding AvailableCheckouts}" HorizontalAlignment="Left" AutoGenerateColumns="False" CanUserAddRows="False"  >
 					<DataGrid.Columns>
 						<DataGridTemplateColumn Header="Features" Width="*" >
 							<DataGridTemplateColumn.CellTemplate>
@@ -70,12 +70,12 @@
 					<StackPanel.Resources>
 						<checkout:ExpirationDateConverter x:Key="ExpirationDateConverter" />
 					</StackPanel.Resources>
-					<StackPanel Orientation="Horizontal" Margin="10,5,0,0" DataContext="{Binding SelectedAvailableCheckout}">
+					<StackPanel Orientation="Horizontal" Margin="0,5,0,0" DataContext="{Binding SelectedAvailableCheckout}">
 						<TextBlock Text="Maximum Available Date: " FontWeight="SemiBold"  VerticalAlignment="Center" ></TextBlock>
 						<TextBlock Text="{Binding Path=(distributor:IAvailableCheckout.AvailableUntil), StringFormat=d, Converter={StaticResource ExpirationDateConverter}}" VerticalAlignment="Center"/>
 					</StackPanel>
-					<TextBlock Text="Checkout Until:" FontWeight="SemiBold"  Margin="10,0,10,0"  VerticalAlignment="Center"></TextBlock>
-					<DatePicker  Margin="10,5,120,0"  Name="CheckoutUntil" SelectedDate="{Binding Path=AcquireCheckoutUntil, NotifyOnValidationError=True, NotifyOnSourceUpdated=True, ValidatesOnDataErrors=True}">
+					<TextBlock Text="Checkout Until:" FontWeight="SemiBold"  Margin="0,0,10,0"  VerticalAlignment="Center"></TextBlock>
+					<DatePicker  Margin="0,5,120,0"  Name="CheckoutUntil" SelectedDate="{Binding Path=AcquireCheckoutUntil, NotifyOnValidationError=True, NotifyOnSourceUpdated=True, ValidatesOnDataErrors=True}">
 						<Validation.ErrorTemplate>
 							<ControlTemplate>
 								<DockPanel LastChildFill="True">
@@ -95,13 +95,9 @@
 							</Style>
 						</DatePicker.Style>
 					</DatePicker>
-					<TextBlock TextWrapping="WrapWithOverflow" Margin="10,5,10,0">Please note that while checked out you will only be able to run features that are either in your checked out set or in local licenses.</TextBlock>
+					<TextBlock TextWrapping="WrapWithOverflow" Margin="0,5,10,0">Please note that while checked out you will only be able to run features that are either in your checked out set or in local licenses.</TextBlock>
 				</StackPanel>
-				<StackPanel Margin="0,10,10,0"  HorizontalAlignment="Right"  Orientation="Horizontal">
-					<Button Content="Checkout" HorizontalAlignment="Left"  Margin="10,0,0,0" Command="{Binding AcquireCheckoutCommand}"/>
-					<Button HorizontalAlignment="Left" Content="Cancel" Margin="10,0,0,0" Command="{x:Static global:CloseWindowCommand.Instance}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" >
-					</Button>
-				</StackPanel>
+				<Button Content="Checkout" HorizontalAlignment="Right"  Margin="10,0,0,0" Command="{Binding AcquireCheckoutCommand}"/>
 			</StackPanel>
 		</DockPanel>
 	</Grid>

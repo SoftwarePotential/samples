@@ -4,7 +4,7 @@
         xmlns:clr="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:DemoApp.Licensing" 
         xmlns:licenses="clr-namespace:DemoApp.Licenses"
-		xmlns:global="clr-namespace:DemoApp"
+		xmlns:common="clr-namespace:DemoApp.Common"
         Title="Licensing Configuration" 
         Height="280" Width="450" MinHeight="280" MinWidth="450" >
     <Window.Resources>
@@ -15,7 +15,7 @@
         </Style>
     </Window.Resources>
     <Window.InputBindings>
-		<KeyBinding Key="Escape" Command="{x:Static global:CloseWindowCommand.Instance}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+		<KeyBinding Key="Escape"  Command="{x:Static common:CloseWindowCommand.CloseCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
     </Window.InputBindings>
     <Grid  Margin="15,15,0,0">
         <StackPanel>
@@ -98,10 +98,9 @@
                                 </Style>
                             </Button.Style>
                         </Button>
-                        <Button HorizontalAlignment="Left" Content="Cancel" Margin="10,0,0,0"
-                                Command="{x:Static global:CloseWindowCommand.Instance}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" >
-                        </Button>
-                    </DockPanel>
+						<Button HorizontalAlignment="Left" Content="Cancel" Margin="10,0,0,0" Command="{x:Static common:CloseWindowCommand.CloseCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+
+					</DockPanel>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

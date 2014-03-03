@@ -24,7 +24,7 @@ namespace DemoApp.Checkout
 		IAvailableCheckout _selectedAvailableCheckout;
 		DateTime _acquireCheckoutUntil;
 
-		public IDisplayCheckoutState State { get; set; }
+		public IDisplayCheckoutState DisplayState { get; set; }
 
 		public RelayCommand AcquireCheckoutCommand { get; private set; }
 		public RelayCommand RefreshCommmand { get; private set; }
@@ -83,19 +83,23 @@ namespace DemoApp.Checkout
 			try
 			{
 				SelectedAvailableCheckout.Acquire( AcquireCheckoutUntil );
-				State.ShowCurrentCheckout();
+				DisplayState.ShowCurrentCheckout();
 			}
 			catch ( NoLongerAvailableException )
 			{
-				State.NotifyUser( "The requested checkout is no longer available. Please refresh the list above and select another available chekcout." );
+				DisplayState.NotifyUser( "The requested checkout is no longer available. Please refresh the list above and select another available chekcout." );
 			}
 			catch ( DistributorRequestException )
 			{
-				State.NotifyUser( "There has been an issue contacting your distributor server. Please try again. If the problem persists, please contact your system administrator." );
+				DisplayState.NotifyUser( "There has been an issue contacting your distributor server. Please try again. If the problem persists, please contact your system administrator." );
+			}
+			catch ( DistributorIntegrityException )
+			{
+				DisplayState.NotifyUser( "We have detected an integrity issue with your distributor server. Please contact your system administartor." );
 			}
 			catch ( Exception exc )
 			{
-				State.NotifyUser( "Error: " + exc.Message );
+				DisplayState.NotifyUser( "Error: " + exc.Message );
 			}
 		}
 
@@ -119,7 +123,7 @@ namespace DemoApp.Checkout
 		{
 			get
 			{
-				if ( columnName == "AquireCheckoutUntil" && SelectedAvailableCheckout != null )
+				if ( columnName == "AcquireCheckoutUntil" && SelectedAvailableCheckout != null )
 				{
 					if ( IsPastDate )
 						return "Selected checkout date cannot be in the past";

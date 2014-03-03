@@ -36,7 +36,7 @@ namespace DemoApp.Checkout
 		public void ShowCurrentCheckout()
 		{
 			var currentCheckoutPage = new CurrentCheckoutPage();
-			((CurrentCheckoutModel)currentCheckoutPage.DataContext).State = this;
+			((CurrentCheckoutModel)currentCheckoutPage.DataContext).DisplayState = this;
 
 			CheckoutFrame.Navigate( currentCheckoutPage );
 		}
@@ -44,13 +44,19 @@ namespace DemoApp.Checkout
 		public void ShowAvailableCheckouts()
 		{
 			var availableCheckoutPage = new AvailableCheckoutPage();
-			((AvailableCheckoutsModel)availableCheckoutPage.DataContext).State = this;
+			((AvailableCheckoutsModel)availableCheckoutPage.DataContext).DisplayState = this;
 			CheckoutFrame.Navigate( availableCheckoutPage );
+			CheckoutFrame.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
 		}
 				
 		public void NotifyUser( object message )
 		{
 			MessageBox.Show( message.ToString() );
+		}
+
+		public void Close()
+		{
+			((Window)this).Close();
 		}
 
 		ICheckoutContext Checkout
