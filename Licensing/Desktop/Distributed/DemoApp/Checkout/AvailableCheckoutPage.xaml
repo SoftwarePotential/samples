@@ -1,0 +1,104 @@
+﻿<Page x:Class="DemoApp.Checkout.AvailableCheckoutPage"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			xmlns:system="clr-namespace:System;assembly=mscorlib"
+			xmlns:checkout="clr-namespace:DemoApp.Checkout"	  
+			xmlns:distributor="clr-namespace:Sp.Agent.Distributor;assembly=Sp.Agent.Distributor"
+			 xmlns:common="clr-namespace:DemoApp.Common"
+             mc:Ignorable="d" >
+
+	<Page.DataContext>
+		<checkout:AvailableCheckoutsModel/>
+	</Page.DataContext>
+	<Grid>
+		<DockPanel LastChildFill="False" >
+			<StackPanel DockPanel.Dock="Top"  Margin="0,0,5,0">
+				<StackPanel.Resources>
+					<checkout:PoolIdFeaturesConverter x:Key="PoolIdFeaturesConverter" />
+					<checkout:ExpirationDateConverter x:Key="ExpirationDateConverter" />
+					<Style TargetType="{x:Type DataGrid}" x:Key="availableCheckoutGridTemplate" BasedOn="{StaticResource {x:Type DataGrid}}">
+						<Style.Triggers>
+							<MultiDataTrigger>
+								<MultiDataTrigger.Conditions>
+									<Condition Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Items.Count}" Value="0"></Condition>
+								</MultiDataTrigger.Conditions>
+								<Setter Property="Template">
+									<Setter.Value>
+										<ControlTemplate>
+											<TextBlock>No available checkouts</TextBlock>
+										</ControlTemplate>
+									</Setter.Value>
+								</Setter>
+							</MultiDataTrigger>
+						</Style.Triggers>
+					</Style>
+					<Style  TargetType="DataGridColumnHeader" x:Key="gridHeaderTemplate" >
+						<Setter Property="FontWeight" Value="Bold" />
+						<Setter Property="FontSize" Value="12" />
+					</Style>
+					<Image x:Key="refreshIcon" Source="../Content/refresh-icon.png"/>
+				</StackPanel.Resources>
+
+				<Button Content="{StaticResource refreshIcon}" Command="{Binding RefreshCommmand}" Height="32" Width="32" HorizontalAlignment="Right" Margin="0,5,0,5">
+				</Button>
+				<TextBlock Text="Select Available Checkout" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,5,0"/>
+
+				<DataGrid Name="AvailableCheckoutsGrid" SelectedItem="{Binding SelectedAvailableCheckout, Mode=TwoWay}" 
+						  ColumnHeaderStyle="{StaticResource ResourceKey=gridHeaderTemplate}" HeadersVisibility="Column"
+						  Style="{StaticResource ResourceKey=availableCheckoutGridTemplate}"
+						  ItemsSource="{Binding AvailableCheckouts}" HorizontalAlignment="Left" AutoGenerateColumns="False" CanUserAddRows="False"  >
+					<DataGrid.Columns>
+						<DataGridTemplateColumn Header="Features" Width="*" >
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding Path=(distributor:IAvailableCheckout.Id), Converter={StaticResource PoolIdFeaturesConverter},ConverterParameter=', ' }"/>
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTemplateColumn Header="Expiration" Width="100">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding Path=(distributor:IAvailableCheckout.AvailableUntil), StringFormat=d, Converter={StaticResource ExpirationDateConverter}}" HorizontalAlignment="Right"  Margin="0,0,5,0" />
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+					</DataGrid.Columns>
+				</DataGrid>
+				<StackPanel>
+					<StackPanel.Resources>
+						<checkout:ExpirationDateConverter x:Key="ExpirationDateConverter" />
+					</StackPanel.Resources>
+					<StackPanel Orientation="Horizontal" Margin="0,5,0,0" DataContext="{Binding SelectedAvailableCheckout}">
+						<TextBlock Text="Maximum Available Date: " FontWeight="SemiBold"  VerticalAlignment="Center" ></TextBlock>
+						<TextBlock Text="{Binding Path=(distributor:IAvailableCheckout.AvailableUntil), StringFormat=d, Converter={StaticResource ExpirationDateConverter}}" VerticalAlignment="Center"/>
+					</StackPanel>
+					<TextBlock Text="Checkout Until:" FontWeight="SemiBold"  Margin="0,0,10,0"  VerticalAlignment="Center"></TextBlock>
+					<DatePicker  Margin="0,5,120,0"  Name="CheckoutUntil" SelectedDate="{Binding Path=AcquireCheckoutUntil, NotifyOnValidationError=True, NotifyOnSourceUpdated=True, ValidatesOnDataErrors=True}">
+						<Validation.ErrorTemplate>
+							<ControlTemplate>
+								<DockPanel LastChildFill="True">
+									<AdornedElementPlaceholder VerticalAlignment="Center">
+										<Border BorderBrush="Red" BorderThickness="1" />
+									</AdornedElementPlaceholder>
+								</DockPanel>
+							</ControlTemplate>
+						</Validation.ErrorTemplate>
+						<DatePicker.Style>
+							<Style  TargetType="DatePicker" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+								<Style.Triggers>
+									<Trigger Property="Validation.HasError" Value="true">
+										<Setter Property="ToolTip"  Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+									</Trigger>
+								</Style.Triggers>
+							</Style>
+						</DatePicker.Style>
+					</DatePicker>
+					<TextBlock TextWrapping="WrapWithOverflow" Margin="0,5,10,0">Please note that while checked out you will only be able to run features that are either in your checked out set or in local licenses.</TextBlock>
+				</StackPanel>
+				<Button Content="Checkout" HorizontalAlignment="Right"  Margin="10,0,0,0" Command="{Binding AcquireCheckoutCommand}"/>
+			</StackPanel>
+		</DockPanel>
+	</Grid>
+</Page>
