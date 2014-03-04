@@ -38,7 +38,6 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CopyrightBanner.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="SpAgent.cs" />
   </ItemGroup>
