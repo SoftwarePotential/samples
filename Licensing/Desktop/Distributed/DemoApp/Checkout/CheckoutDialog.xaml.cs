@@ -7,14 +7,16 @@
  * 
  */
 
+using DemoApp.Common;
 using Sp.Agent;
 using Sp.Agent.Distributor;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace DemoApp.Checkout
 {
-	public partial class CheckoutDialog : Window, IDisplayCheckoutState
+	public partial class CheckoutDialog : Window, IDisplayState
 	{
 		public CheckoutDialog()
 		{
@@ -28,33 +30,23 @@ namespace DemoApp.Checkout
 		{
 			ICheckout checkout;
 			if ( Checkout.TryGetCurrent( out checkout ) )
-				ShowCurrentCheckout();
+				Navigate(new CurrentCheckoutPage());
 			else
-				ShowAvailableCheckouts();
+				Navigate(new AvailableCheckoutPage());
 		}
 
-		public void ShowCurrentCheckout()
-		{
-			var currentCheckoutPage = new CurrentCheckoutPage();
-			((CurrentCheckoutModel)currentCheckoutPage.DataContext).DisplayState = this;
-
-			CheckoutFrame.Navigate( currentCheckoutPage );
+		public void Navigate( Page page )
+		{			
+			((ViewModelBase)page.DataContext).DisplayState = this;
+			CheckoutFrame.Navigate( page );
 		}
 
-		public void ShowAvailableCheckouts()
-		{
-			var availableCheckoutPage = new AvailableCheckoutPage();
-			((AvailableCheckoutsModel)availableCheckoutPage.DataContext).DisplayState = this;
-			CheckoutFrame.Navigate( availableCheckoutPage );
-			CheckoutFrame.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
-		}
-				
 		public void NotifyUser( object message )
 		{
 			MessageBox.Show( message.ToString() );
 		}
 
-		public void Close()
+		public void Exit()
 		{
 			((Window)this).Close();
 		}

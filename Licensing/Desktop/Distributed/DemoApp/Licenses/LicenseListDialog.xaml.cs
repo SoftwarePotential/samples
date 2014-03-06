@@ -8,7 +8,6 @@
  */
 
 using System.Windows;
-using System.Windows.Input;
 
 namespace DemoApp.Licenses
 {
@@ -17,25 +16,6 @@ namespace DemoApp.Licenses
 		public LicenseListDialog()
 		{
 			InitializeComponent();
-		}
-
-		public static RoutedCommand RemoveLicenseCommand = new RoutedCommand();
-
-		void RemoveLicenseCommand_Executed( object sender, ExecutedRoutedEventArgs e )
-		{
-			if ( MessageBox.Show( "Are you sure you want to remove this license?", "Please confirm", MessageBoxButton.YesNo ) == MessageBoxResult.Yes )
-			{
-				object[] parameters = (object[])e.Parameter;
-				var licenseListModel = (LicenseListModel)parameters[ 0 ];
-				var licenseToRemove = (LicenseItemModel)parameters[ 1 ];
-
-				licenseListModel.DeleteLicense( licenseToRemove );
-			}
-		}
-
-		void RemoveLicenseCommand_CanExecute( object sender, CanExecuteRoutedEventArgs e )
-		{
-			e.CanExecute = true;
 		}
 	}
 }

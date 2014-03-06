@@ -9,7 +9,7 @@
 	</Window.InputBindings>
 	<Grid>
 		<DockPanel>
-			<Frame Name="CheckoutFrame" DockPanel.Dock="Top" Height="310"  Width="420"/>		
+			<Frame Name="CheckoutFrame" DockPanel.Dock="Top" Height="310"  Width="420" NavigationUIVisibility="Hidden"/>		
 		</DockPanel>
 	</Grid>
 </Window>

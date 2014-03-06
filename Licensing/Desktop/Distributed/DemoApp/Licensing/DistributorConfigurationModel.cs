@@ -10,11 +10,16 @@
 using System;
 using System.ComponentModel;
 using Sp.Agent;
+using DemoApp.Common;
+using System.Windows;
+using DemoApp.Properties;
 
 namespace DemoApp.Licensing
 {
 	class DistributorConfigurationModel : INotifyPropertyChanged, IDataErrorInfo
 	{
+		public RelayCommand TestConnectionCommand { get; set; }
+		public RelayCommand SaveCommand { get; set; }
 		string _distributorUrl;
 
 		public string DistributorUrl
@@ -26,7 +31,8 @@ namespace DemoApp.Licensing
 				{
 					_distributorUrl = value;
 					OnPropertyChanged( "DistributorUrl" );
-					OnPropertyChanged( "HasValidDistributorUrl" );
+					TestConnectionCommand.RaiseCanExecuteChanged();
+					SaveCommand.RaiseCanExecuteChanged();
 				}
 			}
 		}
@@ -41,12 +47,58 @@ namespace DemoApp.Licensing
 			}
 		}
 
-		public bool IsValidModel
+		public DistributorConfigurationModel()
 		{
-			get
+			TestConnectionCommand = new RelayCommand( TestConnection, CanTestConnection );
+			SaveCommand = new RelayCommand( Save, CanSave );
+			DistributorUrl = DistributorConfigurationRepository.Load();
+		}
+
+		void TestConnection()
+		{
+			var diagnosticsResult = DistributorDiagnosticsHelper.GetDiagnosticsInformation( new Uri( DistributorUrl ) );
+			MessageBox.Show( diagnosticsResult.GetAllMessagesAsString(), "Connectivity test", MessageBoxButton.OK,
+				diagnosticsResult.AllVerificationsPassed ? MessageBoxImage.Information : MessageBoxImage.Warning );
+		}
+
+		bool CanTestConnection()
+		{
+			return HasValidDistributorUrl;
+		}
+
+		void Save()
+		{
+			if ( HasValidDistributorUrl )
 			{
-				return Error == null;
+				var diagnosticsResult = DistributorDiagnosticsHelper.GetDiagnosticsInformation( new Uri( DistributorUrl ) );
+				if ( !diagnosticsResult.AllVerificationsPassed )
+				{
+					var messages = diagnosticsResult.GetAllMessagesAsString() + "\nDo you want to save this configuration anyway?";
+
+					var warningMessageBoxResult = MessageBox.Show( messages, "Warning", MessageBoxButton.YesNo,
+						MessageBoxImage.Warning );
+					if ( warningMessageBoxResult == MessageBoxResult.No )
+						return;
+				}
 			}
+
+			DistributorConfigurationRepository.Save( this );
+			SetFistRunLicensingConfigurationFinishedIfApplies();
+		//	Close();
+		}
+
+		static void SetFistRunLicensingConfigurationFinishedIfApplies()
+		{
+			if ( !Settings.Default.FirstRunLicensingConfigurationFinished )
+			{
+				Settings.Default.FirstRunLicensingConfigurationFinished = true;
+				Settings.Default.Save();
+			}
+		}
+
+		bool CanSave()
+		{
+			return HasValidDistributorUrl;
 		}
 
 		#region INotifyPropertyChanged Members
@@ -88,12 +140,12 @@ namespace DemoApp.Licensing
 		const string ValidUrlExample = "http://licensingserver:8731";
 	}
 
-	static class DistributorConfigurationModelRepository
+	static class DistributorConfigurationRepository
 	{
-		public static DistributorConfigurationModel Load()
+		public static string Load()
 		{
 			var urlFromConfig = SpAgent.Configuration.DistributorBaseUri;
-			return new DistributorConfigurationModel { DistributorUrl = urlFromConfig != null ? urlFromConfig.ToString() : string.Empty };
+			return urlFromConfig != null ? urlFromConfig.ToString() : string.Empty;
 		}
 
 		public static void Save( DistributorConfigurationModel model )
