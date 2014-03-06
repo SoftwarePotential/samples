@@ -14,6 +14,8 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Data;
 using Sp.Agent;
+using System.Windows;
+using DemoApp.Common;
 
 namespace DemoApp.Licenses
 {
@@ -23,50 +25,28 @@ namespace DemoApp.Licenses
 		public string ProductVersion { get; private set; }
 		public ObservableCollection<LicenseItemModel> Licenses { get; set; }
 
-		public LicenseListModel( IEnumerable<LicenseItemModel> licenses, string productName, string productVersion )
-		{
-			ProductName = productName;
-			ProductVersion = productVersion;
-			Licenses = new ObservableCollection<LicenseItemModel>( licenses );
-		}
-
-		public void DeleteLicense( LicenseItemModel license )
-		{
-			// Remove license from license store
-			SpAgent.Product.Stores.Delete( license.ActivationKey );
-			// Remove license from the model
-			Licenses.Remove( license );
-		}
-
-		public void ReloadListFrom( Func<IEnumerable<LicenseItemModel>> getLicenses )
-		{
-			Licenses.Clear();
-			foreach(var item in getLicenses() )
-				Licenses.Add(item);
-		}
-	}
-
-	public class LicenseItemModel
-	{
-		public string ActivationKey { get; set; }
-		public DateTime ValidUntil { get; set; }
-		public IEnumerable<string> Features { get; set; }
-	}
-
-	public class LicenseListModelFactory
-	{
-		public LicenseListModel CreateLicenseListModel()
+		public LicenseListModel()
 		{
 			IProductContext productContext = SpAgent.Product;
+
+			ProductName = productContext.ProductName;
+			ProductVersion = productContext.ProductVersion;
 
 			// If there's no product context, then probably SpAgent hasn't been initialized 
 			// (this can happen inside Visual Studio Designer)
 			if ( productContext == null )
-				return new LicenseListModel( new LicenseItemModel[] { }, "Unknown Product", "Unknown Version" );
+				return;
 
-			var licenseListModel = new LicenseListModel( RetrieveAllLicenses( productContext ), productContext.ProductName, productContext.ProductVersion );
-
-			return licenseListModel;
+			Licenses = new ObservableCollection<LicenseItemModel>( RetrieveAllLicenses( productContext ) );
+			foreach ( var license in Licenses )
+				license.ItemRemoved += RemoveSelectedItem;
+		}
+				
+		public void Reload( )
+		{
+			Licenses.Clear();
+			foreach ( var item in RetrieveAllLicenses( SpAgent.Product ) )
+				Licenses.Add( item );
 		}
 
 		public IEnumerable<LicenseItemModel> CreateLicenseList()
@@ -86,7 +66,38 @@ namespace DemoApp.Licenses
 					Features = l.Advanced.AllFeatures().Select( f => f.Key )
 				} );
 		}
+
+		void RemoveSelectedItem( object sender, EventArgs e )
+		{
+			var license = (LicenseItemModel)sender;
+			license.ItemRemoved -= RemoveSelectedItem;
+			Licenses.Remove( license );
+		}
 	}
+
+	public class LicenseItemModel
+	{
+		public string ActivationKey { get; set; }
+		public DateTime ValidUntil { get; set; }
+		public IEnumerable<string> Features { get; set; }
+		public RelayCommand RemoveLicenseCommand { get; set; }
+		public event EventHandler ItemRemoved;
+
+		public LicenseItemModel()
+		{
+			RemoveLicenseCommand = new RelayCommand( RemoveLicense );
+		}
+
+		void RemoveLicense()
+		{
+			if ( MessageBox.Show( "Are you sure you want to remove this license?", "Please confirm", MessageBoxButton.YesNo ) == MessageBoxResult.Yes )
+			{
+				SpAgent.Product.Stores.Delete( ActivationKey );
+				if ( ItemRemoved != null )
+					ItemRemoved( this, EventArgs.Empty );
+			}
+		}
+	}	
 
 	#region Converters
 	[ValueConversion( typeof( IEnumerable<string> ), typeof( string ) )]

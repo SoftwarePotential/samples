@@ -21,9 +21,7 @@ namespace DemoApp.Checkout
 		DateTime _validUntil;
 
 		public RelayCommand CheckinCommand { get; private set; }
-
-		public IDisplayCheckoutState DisplayState { get; set; }
-
+		
 		public DateTime ValidUntil
 		{
 			get { return _validUntil; }
@@ -48,7 +46,7 @@ namespace DemoApp.Checkout
 			try
 			{
 				_checkout.Relinquish();
-				DisplayState.Close();
+				DisplayState.Exit();
 			}
 			catch ( DistributorRequestException )
 			{

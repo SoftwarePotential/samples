@@ -7,13 +7,13 @@
  * 
  */
 
-namespace DemoApp.Checkout
+using System.Windows.Controls;
+namespace DemoApp.Common
 {
-	public interface IDisplayCheckoutState
+	public interface IDisplayState
 	{
-		void ShowAvailableCheckouts();
-		void ShowCurrentCheckout();
+		void Navigate(Page page);
 		void NotifyUser( object message );
-		void Close();
+		void Exit();
 	}
 }

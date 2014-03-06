@@ -24,8 +24,6 @@ namespace DemoApp.Checkout
 		IAvailableCheckout _selectedAvailableCheckout;
 		DateTime _acquireCheckoutUntil;
 
-		public IDisplayCheckoutState DisplayState { get; set; }
-
 		public RelayCommand AcquireCheckoutCommand { get; private set; }
 		public RelayCommand RefreshCommmand { get; private set; }
 
@@ -75,7 +73,23 @@ namespace DemoApp.Checkout
 
 		public void Load()
 		{
-			AvailableCheckouts = new ObservableCollection<IAvailableCheckout>( CheckoutContext.AvailableNow() );
+			try
+			{
+				IAvailableCheckout[] checkoutContextAvailableNow = CheckoutContext.AvailableNow();
+				AvailableCheckouts = new ObservableCollection<IAvailableCheckout>( checkoutContextAvailableNow );
+			}
+			catch ( DistributorRequestException )
+			{
+				DisplayState.NotifyUser( "There has been an issue contacting your distributor server. Please try again. If the problem persists, please contact your system administrator." );
+			}
+			catch ( DistributorIntegrityException )
+			{
+				DisplayState.NotifyUser( "We have detected an integrity issue with your distributor server. Please contact your system administartor." );
+			}
+			catch ( Exception exc )
+			{
+				DisplayState.NotifyUser( "Error: " + exc.Message );
+			}
 		}
 
 		public void AcquireCheckout()
@@ -83,7 +97,7 @@ namespace DemoApp.Checkout
 			try
 			{
 				SelectedAvailableCheckout.Acquire( AcquireCheckoutUntil );
-				DisplayState.ShowCurrentCheckout();
+				DisplayState.Navigate( new CurrentCheckoutPage() );
 			}
 			catch ( NoLongerAvailableException )
 			{
@@ -105,18 +119,18 @@ namespace DemoApp.Checkout
 
 		public bool CanAcquireCheckout()
 		{
-			return (SelectedAvailableCheckout != null) && (!IsPastDate && !IsAfterValidUntilDate);
+			return (SelectedAvailableCheckout != null) && (!IsPastDate() && !IsAfterValidUntilDate());
 		}
 
 		#region IDataErrorInfo
-		public bool IsPastDate
+		public bool IsPastDate()
 		{
-			get { return AcquireCheckoutUntil < DateTime.UtcNow; }
+			return AcquireCheckoutUntil < DateTime.UtcNow;
 		}
 
-		public bool IsAfterValidUntilDate
+		public bool IsAfterValidUntilDate()
 		{
-			get { return AcquireCheckoutUntil > SelectedAvailableCheckout.AvailableUntil; }
+			return AcquireCheckoutUntil > SelectedAvailableCheckout.AvailableUntil;
 		}
 
 		public string this[ string columnName ]
@@ -125,9 +139,9 @@ namespace DemoApp.Checkout
 			{
 				if ( columnName == "AcquireCheckoutUntil" && SelectedAvailableCheckout != null )
 				{
-					if ( IsPastDate )
+					if ( IsPastDate() )
 						return "Selected checkout date cannot be in the past";
-					if ( IsAfterValidUntilDate )
+					if ( IsAfterValidUntilDate() )
 						return "Selected date is greater than the maximum available checkout date for the selected item.";
 
 				}

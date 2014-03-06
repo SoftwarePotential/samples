@@ -10,6 +10,7 @@ namespace Diagnostics
 {
 	public class Program
 	{
+		const string PORT = ":8731";
 		static int Main( string[] args )
 		{
 			try
@@ -27,13 +28,12 @@ Commands:
 Usage: 
   {0} (--help | -h)
   {0} all --serverName=<serverName> [--nologo] [--verbose]
-  {0} connectivity --serverName=<serverName> [--nologo] [--verbose]
-  {0} integrity --serverName=<serverName> [--nologo] [--verbose]
-  {0} version --serverName=<serverName> [--nologo] [--verbose]
+  {0} connectivity --serverName=<serverName> [--verbose]
+  {0} integrity --serverName=<serverName> [--verbose]
+  {0} version --serverName=<serverName>  [--verbose]
 
 Options:
 --help -h                         Show this screen.
---nologo                          Hide version/copyright banner start of output.
 --serverName=<serverName>         Server machine name.
 "
 					, arguments =>
@@ -113,7 +113,7 @@ Options:
 
 		static Uri ServiceBaseUri( string serverName )
 		{
-			return new Uri( "http://" + serverName + ":8731" );
+			return new Uri( "http://" + serverName + PORT );
 		}
 
 		static int RunWithBannerAndOrUsage( string[] args, string name, string usage, Action<IDictionary<string, ValueObject>> run )
@@ -123,12 +123,6 @@ Options:
 				var parser = new CommandLineParser( name, usage );
 
 				var arguments = parser.Parse( args );
-
-				if ( !arguments[ "--nologo" ].IsTrue )
-				{
-					Console.WriteLine( parser.Banner );
-					Console.WriteLine();
-				}
 
 				run( arguments );
 
@@ -160,12 +154,7 @@ Options:
 				if ( args.Count == 0 )
 					args = new[] { "--help" };
 
-				return new Docopt().Apply( string.Format( Banner + _usage, ExeName ), args );
-			}
-
-			public string Banner
-			{
-				get { return CopyrightBanner.ForUtilityInAssembly( _name, Assembly ); }
+				return new Docopt().Apply( string.Format( _usage, ExeName ), args );
 			}
 
 			static string ExeName

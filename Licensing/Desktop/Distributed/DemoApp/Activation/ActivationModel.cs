@@ -7,14 +7,17 @@
  * 
  */
 
+using DemoApp.Common;
 using Sp.Agent;
 using System;
 using System.ComponentModel;
+using System.Windows;
 
 namespace DemoApp.Activation
 {
-	public class ActivationModel : IDataErrorInfo, INotifyPropertyChanged
+	public class ActivationModel : ViewModelBase, IDataErrorInfo
 	{
+		public RelayCommand ActivationCommand { get; set; }
 		string _activationKey;
 
 		public string ActivationKey
@@ -23,8 +26,33 @@ namespace DemoApp.Activation
 			set
 			{
 				_activationKey = value;
+				ActivationCommand.RaiseCanExecuteChanged();
 				OnPropertyChanged( "ActivationKey" );
 			}
+		}
+
+		public ActivationModel()
+		{
+			ActivationCommand = new RelayCommand( Activate, CanActivate );
+		}
+
+		void Activate()
+		{
+			try
+			{
+				ActivateOnline();
+				MessageBox.Show( "Successfully activated license with activation key " + ActivationKey );
+				//Close();
+			}
+			catch ( Exception exc )
+			{
+				MessageBox.Show( "Error: " + exc.Message );
+			}
+		}
+
+		bool CanActivate()
+		{
+			return !string.IsNullOrEmpty( ActivationKey ) && ActivationKey.Length == ActivationKeyRequiredLength && IsActivationKeyWellFormed();
 		}
 
 		public void ActivateOnline()
@@ -32,27 +60,16 @@ namespace DemoApp.Activation
 			SpAgent.Product.Activation.OnlineActivate( ActivationKey );
 		}
 
-		static bool IsActivationKeyWellFormed( string activationKey )
+		bool IsActivationKeyWellFormed()
 		{
-			return SpAgent.Product.Activation.IsWellFormedKey( activationKey );
+			return SpAgent.Product.Activation.IsWellFormedKey( ActivationKey );
 		}
 
-		public static int ActivationKeyRequiredLength
+		public int ActivationKeyRequiredLength
 		{
 			get { return 29; }
 		}
 
-		static string ValidateActivationKey( string activationKey )
-		{
-			string result = null;
-			if ( string.IsNullOrEmpty( activationKey ) )
-				result = "Please enter an activation key";
-			else if ( activationKey.Length != ActivationKeyRequiredLength )
-				result = string.Format( "Activation key should be exactly {0} characters long", ActivationKeyRequiredLength );
-			else if ( !IsActivationKeyWellFormed( activationKey ) )
-				result = "Activation key is not in the correct format";
-			return result;
-		}
 
 		#region IDataErrorInfo Members
 		public string this[ string columnName ]
@@ -62,7 +79,12 @@ namespace DemoApp.Activation
 				string result = null;
 				if ( columnName == "ActivationKey" )
 				{
-					result = ValidateActivationKey( ActivationKey );
+					if ( string.IsNullOrEmpty( ActivationKey ) )
+						result = "Please enter an activation key";
+					else if ( ActivationKey.Length != ActivationKeyRequiredLength )
+						result = string.Format( "Activation key should be exactly {0} characters long", ActivationKeyRequiredLength );
+					else if ( !IsActivationKeyWellFormed() )
+						result = "Activation key is not in the correct format";
 				}
 				return result;
 			}
@@ -71,17 +93,6 @@ namespace DemoApp.Activation
 		public string Error
 		{
 			get { return null; }
-		}
-		#endregion
-
-		#region INotifyPropertyChanged Members
-		public event PropertyChangedEventHandler PropertyChanged;
-		private void OnPropertyChanged( String propertyName )
-		{
-			if ( PropertyChanged != null )
-			{
-				PropertyChanged( this, new PropertyChangedEventArgs( propertyName ) );
-			}
 		}
 		#endregion
 	}

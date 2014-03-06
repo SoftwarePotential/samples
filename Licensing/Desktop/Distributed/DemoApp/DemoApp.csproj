@@ -86,7 +86,7 @@
       <DependentUpon>CheckoutDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Checkout\CurrentCheckoutModel.cs" />
-    <Compile Include="Checkout\IDisplayCheckoutState.cs" />
+    <Compile Include="Common\IDisplayState.cs" />
     <Compile Include="Common\CloseWindowCommand.cs" />
     <Compile Include="Common\ViewModelBase.cs" />
     <Compile Include="Licensing\DistributorDiagnosticsHelper.cs" />

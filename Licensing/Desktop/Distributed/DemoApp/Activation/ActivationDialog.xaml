@@ -4,18 +4,13 @@
         xmlns:activation="clr-namespace:DemoApp.Activation" 
         Title="ActivationDialog" Height="300" Width="300">
     <Grid>
-        <StackPanel Name="activationPanel" Orientation="Vertical" >
-            <StackPanel.Resources>
-                <ObjectDataProvider x:Key="activationData" ObjectType="{x:Type activation:ActivationModel}" />
-            </StackPanel.Resources>
+        <StackPanel Name="activationPanel" Orientation="Vertical" >        
             <StackPanel.DataContext>
-                <Binding Source="{StaticResource ResourceKey=activationData}"/>
+                <activation:ActivationModel/>
             </StackPanel.DataContext>
-            <StackPanel.CommandBindings>
-                <CommandBinding Command="{x:Static activation:ActivationDialog.ActivationCommand}" CanExecute="ActivationCommand_CanExecute" Executed="ActivationCommand_Executed" />
-            </StackPanel.CommandBindings>
+          
             <TextBlock Text="Please enter you activation key:" Margin="0 5" />
-            <TextBox Name="activationTextBox" MaxLength="{Binding ActivationKeyRequiredLength}" HorizontalAlignment="Left" Width="250" Margin="0 5" Text="{Binding Path=ActivationKey, Mode=TwoWay,
+            <TextBox Name="activationTextBox" MaxLength="{Binding ActivationKeyRequiredLength}" HorizontalAlignment="Left" Width="250" Margin="0 5" Text="{Binding ActivationKey, Mode=TwoWay,
 							UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
@@ -41,22 +36,9 @@
                     </Style>
                 </TextBox.Style>
             </TextBox>
-            <Button Name="activationButton" Content="Activate"  Height="30" HorizontalAlignment="Left"  ToolTip="Activate online"
-						Command="{x:Static activation:ActivationDialog.ActivationCommand}" CommandParameter="{Binding}">
-                <Button.Style>
-                    <Style TargetType="{x:Type Button}">
-                        <Setter Property="IsEnabled" Value="false" />
-                        <Style.Triggers>
-                            <MultiDataTrigger>
-                                <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding ElementName=activationTextBox, Path=(Validation.HasError)}" Value="false" />
-                                </MultiDataTrigger.Conditions>
-                                <Setter Property="IsEnabled" Value="true" />
-                            </MultiDataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
-        </StackPanel>
+			<Button Name="activationButton" Content="Activate"  Height="30" HorizontalAlignment="Left"  ToolTip="Activate online" Command="{Binding ActivationCommand}" CommandParameter="{Binding}"/>
+
+
+		</StackPanel>
     </Grid>
 </Window>

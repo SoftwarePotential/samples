@@ -7,40 +7,31 @@
  * 
  */
 
-using System;
+using DemoApp.Common;
 using System.Windows;
-using System.Windows.Input;
-using DemoApp.BusinessLogic;
+using System.Windows.Controls;
 
 namespace DemoApp.Activation
 {
-	public partial class ActivationDialog : Window
+	public partial class ActivationDialog : Window, IDisplayState
 	{
 		public ActivationDialog()
 		{
 			InitializeComponent();
 		}
 
-		public static RoutedCommand ActivationCommand = new RoutedCommand();
-
-		void ActivationCommand_Executed( object sender, ExecutedRoutedEventArgs e )
+		public void Navigate( Page page )
 		{
-			try
-			{
-				var activationModel = (ActivationModel)e.Parameter;
-				activationModel.ActivateOnline();
-				MessageBox.Show( "Successfully activated license with activation key " + activationModel.ActivationKey );
-				Close();
-			}
-			catch ( Exception exc )
-			{
-				MessageBox.Show( "Error: " + exc.Message );
-			}
 		}
 
-		void ActivationCommand_CanExecute( object sender, CanExecuteRoutedEventArgs e )
+		public void NotifyUser( object message )
 		{
-			e.CanExecute = true;
+			MessageBox.Show( message.ToString() );
+		}
+		
+		public void Exit()
+		{
+			((Window)this).Close();
 		}
 	}
 }

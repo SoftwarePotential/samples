@@ -97,7 +97,10 @@
 					</DatePicker>
 					<TextBlock TextWrapping="WrapWithOverflow" Margin="0,5,10,0">Please note that while checked out you will only be able to run features that are either in your checked out set or in local licenses.</TextBlock>
 				</StackPanel>
-				<Button Content="Checkout" HorizontalAlignment="Right"  Margin="10,0,0,0" Command="{Binding AcquireCheckoutCommand}"/>
+				<StackPanel Orientation="Horizontal"  HorizontalAlignment="Right">
+					<Button Content="Checkout" HorizontalAlignment="Right"  Margin="10,0,0,0" Command="{Binding AcquireCheckoutCommand}"/>
+					<Button Content="Cancel" HorizontalAlignment="Right"  Margin="10,0,0,0" Command="{Binding CloseCommand}"/>
+				</StackPanel>
 			</StackPanel>
 		</DockPanel>
 	</Grid>
