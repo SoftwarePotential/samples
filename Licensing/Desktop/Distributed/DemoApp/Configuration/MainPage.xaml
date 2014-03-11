@@ -1,0 +1,80 @@
+﻿<Page x:Class="DemoApp.Configuration.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DemoApp.Configuration"
+      xmlns:licenses="clr-namespace:DemoApp.Licenses"
+	  xmlns:common="clr-namespace:DemoApp.Common"
+      Title="Licensing Configuration" 
+      Height="280" Width="420" MinHeight="280" MinWidth="420">
+	<Page.DataContext>
+		<local:ConfigurationModel/>
+	</Page.DataContext>
+	<Page.Resources>
+		<Style x:Key="SectionHeading"  TargetType="TextBlock">
+			<Setter Property="FontWeight" Value="Bold" />
+			<Setter Property="FontSize" Value="14" />
+			<Setter Property="Margin" Value="0,0,0,10" />
+		</Style>
+	</Page.Resources>
+	<Grid>
+		<StackPanel>
+			<StackPanel Name="localLicensesConfigurationPanel" Orientation="Vertical" Margin="0,0,0,20" >
+				<TextBlock Style="{StaticResource  ResourceKey=SectionHeading}">Local Licenses</TextBlock>
+				<StackPanel Orientation="Horizontal">
+					<TextBlock>
+                        <TextBlock Text="{Binding LicenseCount, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        <Hyperlink Command="{Binding ViewLicensesCommand}">license(s)</Hyperlink>
+                        <TextBlock>installed</TextBlock>
+                    </TextBlock>
+				</StackPanel>
+				<TextBlock Margin="0,5,0,0"><Hyperlink Command="{Binding ActivationCommand}">Activate...</Hyperlink></TextBlock>
+			</StackPanel>
+			<StackPanel Name="distributorConfigurationPanel" Orientation="Vertical" >
+				<TextBlock Style="{StaticResource SectionHeading}">Network Licenses</TextBlock>
+				<TextBlock>Distributor Server URL:</TextBlock>
+				<StackPanel Orientation="Horizontal" >
+					<TextBox x:Name="distributorUrlTextBox" Width="310" Text="{Binding DistributorUrl, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" >
+						<Validation.ErrorTemplate>
+							<ControlTemplate>
+								<DockPanel LastChildFill="True">
+									<AdornedElementPlaceholder VerticalAlignment="Center">
+										<Border BorderBrush="Red" BorderThickness="1" />
+									</AdornedElementPlaceholder>
+								</DockPanel>
+							</ControlTemplate>
+						</Validation.ErrorTemplate>
+						<TextBox.Style>
+							<Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+								<Style.Resources>
+									<VisualBrush x:Key="NotUsingDistributorBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None" >
+										<VisualBrush.Visual>
+											<Label Content="Not using distributor" Foreground="Gray" />
+										</VisualBrush.Visual>
+									</VisualBrush>
+								</Style.Resources>
+								<Style.Triggers>
+									<Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+										<Setter Property="Background" Value="{StaticResource NotUsingDistributorBannerBrush}" />
+										<Setter Property="ToolTip" Value="{Binding DistributorUrlPrompt}"></Setter>
+									</Trigger>
+									<Trigger Property="Validation.HasError" Value="true">
+										<Setter Property="ToolTip"  Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+									</Trigger>
+								</Style.Triggers>
+							</Style>
+						</TextBox.Style>
+					</TextBox>
+					<Button  Command="{Binding TestConnectionCommand}" HorizontalAlignment="Left"  Margin="10, 0" Content="Test connection" />
+				</StackPanel>
+				<StackPanel Margin="0,20,5,0"  HorizontalAlignment="Right">
+					<DockPanel>
+						<Button  HorizontalAlignment="Left" Content="Save" Padding="5,2,5,2" Command="{Binding SaveCommand}"/>
+						<Button Content="Cancel" HorizontalAlignment="Right"  Margin="10,0,0,0" Command="{Binding CloseCommand}"/>
+					</DockPanel>
+				</StackPanel>
+			</StackPanel>
+		</StackPanel>
+	</Grid>
+</Page>

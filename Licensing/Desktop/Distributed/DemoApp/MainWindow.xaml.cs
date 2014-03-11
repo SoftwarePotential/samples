@@ -11,9 +11,9 @@ using System;
 using System.Windows.Input;
 using DemoApp.BusinessLogic;
 using System.Windows;
-using DemoApp.Licensing;
 using DemoApp.Properties;
 using DemoApp.Checkout;
+using DemoApp.Configuration;
 
 namespace DemoApp
 {
@@ -25,7 +25,7 @@ namespace DemoApp
 
 			if ( !Settings.Default.FirstRunLicensingConfigurationFinished )
 			{
-				var dialog = new LicensingConfigurationDialog();
+				var dialog = new ConfigurationDialog();
 				dialog.ShowDialog();
 			}
 		}
@@ -61,7 +61,7 @@ namespace DemoApp
 
 		void Configure_Click( object sender, RoutedEventArgs e )
 		{
-			var dialog = new LicensingConfigurationDialog { Owner = this };
+			var dialog = new ConfigurationDialog { Owner = this };
 			dialog.ShowDialog();
 		}
 

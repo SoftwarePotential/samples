@@ -13,7 +13,7 @@ using System.Net.Sockets;
 using System.ServiceModel;
 using Sp.Agent;
 
-namespace DemoApp.Licensing
+namespace DemoApp.Configuration
 {
 	class DistributorDiagnosticsHelper
 	{

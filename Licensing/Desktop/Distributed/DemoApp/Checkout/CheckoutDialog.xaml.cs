@@ -50,6 +50,11 @@ namespace DemoApp.Checkout
 		{
 			((Window)this).Close();
 		}
+		
+		public bool Warn(object message)
+		{
+			return MessageBox.Show( message.ToString(), "Please confirm", MessageBoxButton.YesNo ) == MessageBoxResult.Yes;
+		}
 
 		ICheckoutContext Checkout
 		{

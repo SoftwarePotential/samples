@@ -11,17 +11,20 @@ using DemoApp.Common;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DemoApp.Activation
+namespace DemoApp.Configuration
 {
-	public partial class ActivationDialog : Window, IDisplayState
+	public partial class ConfigurationDialog : Window, IDisplayState
 	{
-		public ActivationDialog()
+		public ConfigurationDialog()
 		{
 			InitializeComponent();
+			Navigate( new MainPage() );
 		}
-
+		
 		public void Navigate( Page page )
 		{
+			((ViewModelBase)page.DataContext).DisplayState = this;
+			ConfigurationFrame.Navigate( page );
 		}
 
 		public void NotifyUser( object message )
@@ -29,9 +32,14 @@ namespace DemoApp.Activation
 			MessageBox.Show( message.ToString() );
 		}
 		
+		public bool Warn( object message )
+		{
+			return MessageBox.Show( message.ToString(), "Please confirm", MessageBoxButton.YesNo ) == MessageBoxResult.Yes;
+		}
+
 		public void Exit()
 		{
-			((Window)this).Close();
+			Close();
 		}
 	}
 }

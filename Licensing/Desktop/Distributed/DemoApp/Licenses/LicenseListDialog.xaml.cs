@@ -7,13 +7,13 @@
  * 
  */
 
-using System.Windows;
+using System.Windows.Controls;
 
 namespace DemoApp.Licenses
 {
-	public partial class LicenseListDialog : Window
+	public partial class LicenseListPage : Page
 	{
-		public LicenseListDialog()
+		public LicenseListPage()
 		{
 			InitializeComponent();
 		}
