@@ -8,13 +8,14 @@
  */
 
 using System.Windows.Controls;
-namespace DemoApp.Common
+
+namespace DemoApp.Activation
 {
-	public interface IDisplayState
+	public partial class ActivationPage : Page
 	{
-		void Navigate(Page page);
-		void NotifyUser( object message );
-		bool Warn( object message );
-		void Exit();
+		public ActivationPage()
+		{
+			InitializeComponent();
+		}
 	}
 }

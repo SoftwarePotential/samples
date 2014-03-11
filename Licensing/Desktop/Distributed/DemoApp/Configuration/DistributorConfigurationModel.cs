@@ -6,20 +6,24 @@
  * ALSO SEE: https://github.com/SoftwarePotential/samples/blob/master/License.txt
  * 
  */
-
+using DemoApp.Activation;
+using DemoApp.Common;
+using DemoApp.Licenses;
+using DemoApp.Properties;
+using Sp.Agent;
 using System;
 using System.ComponentModel;
-using Sp.Agent;
-using DemoApp.Common;
+using System.Linq;
 using System.Windows;
-using DemoApp.Properties;
 
-namespace DemoApp.Licensing
+namespace DemoApp.Configuration
 {
-	class DistributorConfigurationModel : INotifyPropertyChanged, IDataErrorInfo
+	public class ConfigurationModel : ViewModelBase, IDataErrorInfo
 	{
 		public RelayCommand TestConnectionCommand { get; set; }
 		public RelayCommand SaveCommand { get; set; }
+		public RelayCommand ActivationCommand { get; set; }
+		public RelayCommand ViewLicensesCommand { get; set; }
 		string _distributorUrl;
 
 		public string DistributorUrl
@@ -47,11 +51,25 @@ namespace DemoApp.Licensing
 			}
 		}
 
-		public DistributorConfigurationModel()
+		int _licenseCount;
+		public int LicenseCount
+		{
+			get { return _licenseCount; }
+			set
+			{
+				_licenseCount = value;
+				OnPropertyChanged( "LicenseCount" );
+			}
+		}
+
+		public ConfigurationModel()
 		{
 			TestConnectionCommand = new RelayCommand( TestConnection, CanTestConnection );
 			SaveCommand = new RelayCommand( Save, CanSave );
 			DistributorUrl = DistributorConfigurationRepository.Load();
+			LicenseCount = LicenseRepository.RetrieveAllLicenses( SpAgent.Product ).Count();
+			ActivationCommand = new RelayCommand( () => DisplayState.Navigate( new ActivationPage() ) );
+			ViewLicensesCommand = new RelayCommand( () => DisplayState.Navigate( new LicenseListPage() ) );
 		}
 
 		void TestConnection()
@@ -84,7 +102,7 @@ namespace DemoApp.Licensing
 
 			DistributorConfigurationRepository.Save( this );
 			SetFistRunLicensingConfigurationFinishedIfApplies();
-		//	Close();
+			//	Close();
 		}
 
 		static void SetFistRunLicensingConfigurationFinishedIfApplies()
@@ -100,17 +118,6 @@ namespace DemoApp.Licensing
 		{
 			return HasValidDistributorUrl;
 		}
-
-		#region INotifyPropertyChanged Members
-		public event PropertyChangedEventHandler PropertyChanged;
-		void OnPropertyChanged( String propertyName )
-		{
-			if ( PropertyChanged != null )
-			{
-				PropertyChanged( this, new PropertyChangedEventArgs( propertyName ) );
-			}
-		}
-		#endregion
 
 		#region IDataErrorInfo Members
 		public string this[ string columnName ]
@@ -148,7 +155,7 @@ namespace DemoApp.Licensing
 			return urlFromConfig != null ? urlFromConfig.ToString() : string.Empty;
 		}
 
-		public static void Save( DistributorConfigurationModel model )
+		public static void Save( ConfigurationModel model )
 		{
 			var urlToWrite = model.HasValidDistributorUrl ? new Uri( model.DistributorUrl ) : null;
 			SpAgent.Configuration.DistributorBaseUri = urlToWrite;

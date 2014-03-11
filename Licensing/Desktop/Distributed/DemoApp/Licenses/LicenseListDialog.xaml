@@ -1,70 +1,81 @@
-﻿<Window x:Class="DemoApp.Licenses.LicenseListDialog"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+﻿<Page x:Class="DemoApp.Licenses.LicenseListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 		xmlns:licenses="clr-namespace:DemoApp.Licenses"
-        Title="LicenseList" Height="300" Width="300">
-    <Grid>
-        <StackPanel>
-			<StackPanel.DataContext>
-				<licenses:LicenseListModel/>
-			</StackPanel.DataContext>
-			<StackPanel.Resources>
-				<licenses:FlatStringArrayConverter x:Key="FlatStringArrayConverter" />
-				<licenses:MultiValueConverter x:Key="MultiValueConverter" />
-				<Style TargetType="{x:Type DataGrid}" x:Key="dataGridTemplate" BasedOn="{StaticResource {x:Type DataGrid}}">
-					<Style.Triggers>
-						<DataTrigger Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Items.Count}" Value="0" >
-							<Setter Property="Template">
-								<Setter.Value>
-									<ControlTemplate>
-										<TextBlock>No licenses installed</TextBlock>
-									</ControlTemplate>
-								</Setter.Value>
-							</Setter>
-						</DataTrigger>
-					</Style.Triggers>
-				</Style>
-			</StackPanel.Resources>
-			<TextBlock HorizontalAlignment="Left" Margin="2 10" FontSize="14" >
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Installed licenses for {0} {1}:"  >
-                        <Binding Path="ProductName" />
-                        <Binding Path="ProductVersion"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <DataGrid Name="licensesGrid" Style="{StaticResource ResourceKey=dataGridTemplate}" ItemsSource="{Binding Licenses}" HorizontalAlignment="Left" AutoGenerateColumns="False" CanUserAddRows="False" >
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Activation Key" >
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding ActivationKey}" HorizontalAlignment="Left" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Expiration Date" >
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding ValidUntil, StringFormat=d}" HorizontalAlignment="Right" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Features" >
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Features, Converter={StaticResource FlatStringArrayConverter},ConverterParameter=', ' }"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn>
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-								<Button Content="Remove" Command="{Binding RemoveLicenseCommand}" CommandParameter="{Binding}"/>
-							</DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
-    </Grid>
-</Window>
+        Title="LicenseList" Height="300" Width="420">
+	<Page.DataContext>
+		<licenses:LicenseListModel/>
+	</Page.DataContext>
+	<Grid>
+
+		<StackPanel Margin="0 0 5 0">
+			<StackPanel>
+				<StackPanel.Resources>
+					<licenses:FlatStringArrayConverter x:Key="FlatStringArrayConverter" />
+					<licenses:MultiValueConverter x:Key="MultiValueConverter" />
+					<Style TargetType="{x:Type DataGrid}" x:Key="dataGridTemplate" BasedOn="{StaticResource {x:Type DataGrid}}">
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Items.Count}" Value="0" >
+								<Setter Property="Template">
+									<Setter.Value>
+										<ControlTemplate>
+											<TextBlock>No licenses installed</TextBlock>
+										</ControlTemplate>
+									</Setter.Value>
+								</Setter>
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+					<Image x:Key="deleteIcon" Source="../Content/delete.png"/>
+				</StackPanel.Resources>
+				<TextBlock HorizontalAlignment="Left" Margin="2 10" FontSize="14" >
+					<TextBlock.Text>
+						<MultiBinding StringFormat="Installed licenses for {0} {1}:"  >
+							<Binding Path="ProductName" />
+							<Binding Path="ProductVersion"/>
+						</MultiBinding>
+					</TextBlock.Text>
+				</TextBlock>
+				<DataGrid Name="licensesGrid"  HeadersVisibility="Column" Style="{StaticResource ResourceKey=dataGridTemplate}" ItemsSource="{Binding Licenses}" HorizontalAlignment="Left" AutoGenerateColumns="False" CanUserAddRows="False" >
+					<DataGrid.Columns>
+						<DataGridTemplateColumn Header="Activation Key" Width="90" >
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding ActivationKey}" HorizontalAlignment="Left" />
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTemplateColumn Header="Expiration Date" Width="90">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding ValidUntil, StringFormat=d}" HorizontalAlignment="Right" />
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTemplateColumn Header="Features" Width="*">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding Features, Converter={StaticResource FlatStringArrayConverter},ConverterParameter=', ' }"/>
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTemplateColumn Width="28">
+							<DataGridTemplateColumn.CellTemplate >
+								<DataTemplate>
+									<Button  Command="{Binding RemoveLicenseCommand}" CommandParameter="{Binding}" Height="24" Width="24" HorizontalAlignment="Right" Margin="0,5,0,5">
+										<Image Source="../Content/delete.png"/>
+									</Button>
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+					</DataGrid.Columns>
+				</DataGrid>
+			</StackPanel>
+			<StackPanel Margin="0 5 0 0">
+				<Button Content="Back" Command="{Binding BackCommand}" HorizontalAlignment="Right"/>
+			</StackPanel>
+		</StackPanel>
+	</Grid>
+</Page>
