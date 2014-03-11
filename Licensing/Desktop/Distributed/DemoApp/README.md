@@ -30,3 +30,13 @@ Alternatively you can create an MSI as outlined in the [Installer](https://githu
 * Click the **Run Feature 1** button - this should display a success message (we have a license for this feature in the Distributor Server)
 * Click the **Run Feature 2** button - this should display a success message (we have a license for this feature installed locally)
 * Click the **Run Feature 3** button - this should display a denial message and navigate you to the activation dialog
+
+### Checking out
+* Launch the checkout dialog
+* Select an available checkout
+* Enter the desired expiration date for the checkout
+* Click checkout
+
+### Checking in
+* Launch the checkout dialog
+* Click checkin
