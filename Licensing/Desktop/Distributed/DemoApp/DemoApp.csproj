@@ -102,6 +102,19 @@
     <Compile Include="Licenses\LicenseListModel.cs" />
     <Compile Include="Configuration\DistributorConfigurationModel.cs" />
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="SoftwarePotential\Core\SpAgent.CommandLineProcessing.cs" />
+    <Compile Include="SoftwarePotential\Core\SpAgent.Configuration.cs" />
+    <Compile Include="SoftwarePotential\Core\SpAgent.Configuration.Distributor.AppSettings.cs" />
+    <Compile Include="SoftwarePotential\Core\SpAgent.Configuration.Distributor.cs" />
+    <Compile Include="SoftwarePotential\Core\SpAgent.Configuration.Local.cs" />
+    <Compile Include="SoftwarePotential\Core\SpAgent.Configuration.Local.RelativePathSanityCheck.cs" />
+    <Compile Include="SoftwarePotential\Core\SpAgent.Configuration.Local.SingleUser.cs" />
+    <Compile Include="SoftwarePotential\Core\SpAgent.Permutation.cs" />
+    <Compile Include="SoftwarePotential\Core\SpAgent.Product.cs" />
+    <Compile Include="SoftwarePotential\Core\SpProduct.cs" />
+    <Compile Include="SoftwarePotential\SpAgent.DistributorCustomizations.cs" />
+    <Compile Include="SoftwarePotential\SpAgent.ProductCustomizations.cs" />
+    <Compile Include="SoftwarePotential\SpAgent.SingleUserStorageCustomizations.cs" />
     <Page Include="Activation\BusyAnimationStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -182,6 +195,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Content\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SoftwarePotential.Vb\Core\SpAgent.CommandLineProcessing.vb" />
+    <Content Include="SoftwarePotential.Vb\Core\SpAgent.Configuration.Distributor.AppSettings.vb" />
+    <Content Include="SoftwarePotential.Vb\Core\SpAgent.Configuration.Distributor.vb" />
+    <Content Include="SoftwarePotential.Vb\Core\SpAgent.Configuration.Local.RelativePathSanityCheck.vb" />
+    <Content Include="SoftwarePotential.Vb\Core\SpAgent.Configuration.Local.SingleUser.vb" />
+    <Content Include="SoftwarePotential.Vb\Core\SpAgent.Configuration.Local.vb" />
+    <Content Include="SoftwarePotential.Vb\Core\SpAgent.Configuration.vb" />
+    <Content Include="SoftwarePotential.Vb\Core\SpAgent.Permutation.vb" />
+    <Content Include="SoftwarePotential.Vb\Core\SpAgent.Product.vb" />
+    <Content Include="SoftwarePotential.Vb\Core\SpProduct.vb" />
+    <Content Include="SoftwarePotential.Vb\SpAgent.DistributorCustomizations.vb" />
+    <Content Include="SoftwarePotential.Vb\SpAgent.ProductCustomizations.vb" />
+    <Content Include="SoftwarePotential.Vb\SpAgent.SingleUserStorageCustomizations.vb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Sp.Agent-62340.3.2.1954.7\build\net40\Sp.Agent-62340.targets" Condition="Exists('..\packages\Sp.Agent-62340.3.2.1954.7\build\net40\Sp.Agent-62340.targets')" />
