@@ -6,8 +6,7 @@
       xmlns:local="clr-namespace:DemoApp.Configuration"
       xmlns:licenses="clr-namespace:DemoApp.Licenses"
 	  xmlns:common="clr-namespace:DemoApp.Common"
-      Title="Licensing Configuration" 
-      Height="280" Width="420" MinHeight="280" MinWidth="420">
+      Title="Licensing Configuration"    >
 	<Page.DataContext>
 		<local:ConfigurationModel/>
 	</Page.DataContext>
@@ -20,7 +19,7 @@
 	</Page.Resources>
 	<Grid>
 		<StackPanel>
-			<StackPanel Name="localLicensesConfigurationPanel" Orientation="Vertical" Margin="0,0,0,20" >
+			<StackPanel Name="localLicensesConfigurationPanel" Orientation="Vertical" >
 				<TextBlock Style="{StaticResource  ResourceKey=SectionHeading}">Local Licenses</TextBlock>
 				<StackPanel Orientation="Horizontal">
 					<TextBlock>
@@ -31,11 +30,11 @@
 				</StackPanel>
 				<TextBlock Margin="0,5,0,0"><Hyperlink Command="{Binding ActivationCommand}">Activate...</Hyperlink></TextBlock>
 			</StackPanel>
-			<StackPanel Name="distributorConfigurationPanel" Orientation="Vertical" >
+			<StackPanel Name="distributorConfigurationPanel" Orientation="Vertical" Margin="0,10,0,0" >
 				<TextBlock Style="{StaticResource SectionHeading}">Network Licenses</TextBlock>
 				<TextBlock>Distributor Server URL:</TextBlock>
 				<StackPanel Orientation="Horizontal" >
-					<TextBox x:Name="distributorUrlTextBox" Width="310" Text="{Binding DistributorUrl, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" >
+					<TextBox  MinWidth="308" x:Name="distributorUrlTextBox" Text="{Binding DistributorUrl, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" >
 						<Validation.ErrorTemplate>
 							<ControlTemplate>
 								<DockPanel LastChildFill="True">
@@ -66,13 +65,11 @@
 							</Style>
 						</TextBox.Style>
 					</TextBox>
-					<Button  Command="{Binding TestConnectionCommand}" HorizontalAlignment="Left"  Margin="10, 0" Content="Test connection" />
+					<Button  Command="{Binding TestConnectionCommand}" HorizontalAlignment="Right"  Margin="10,0,0,0" Content="Test connection" />
 				</StackPanel>
-				<StackPanel Margin="0,20,5,0"  HorizontalAlignment="Right">
-					<DockPanel>
-						<Button  HorizontalAlignment="Left" Content="Save" Padding="5,2,5,2" Command="{Binding SaveCommand}"/>
-						<Button Content="Cancel" HorizontalAlignment="Right"  Margin="10,0,0,0" Command="{Binding CloseCommand}"/>
-					</DockPanel>
+				<StackPanel Margin="0,5,0,0"  Orientation="Horizontal" HorizontalAlignment="Right">
+					<Button  HorizontalAlignment="Left" Content="Save" Padding="7,2,10,2" Command="{Binding SaveCommand}"/>
+					<Button Content="Cancel" HorizontalAlignment="Right"  Margin="5,0,0,0" Command="{Binding CloseCommand}"/>
 				</StackPanel>
 			</StackPanel>
 		</StackPanel>

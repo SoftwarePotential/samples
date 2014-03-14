@@ -4,9 +4,9 @@
 			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 			xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			xmlns:system="clr-namespace:System;assembly=mscorlib"
-			xmlns:checkout="clr-namespace:DemoApp.Checkout"	  
+			xmlns:checkout="clr-namespace:DemoApp.Checkout"	  	
+			xmlns:common="clr-namespace:DemoApp.Common"	  
 			xmlns:distributor="clr-namespace:Sp.Agent.Distributor;assembly=Sp.Agent.Distributor"
-			 xmlns:common="clr-namespace:DemoApp.Common"
              mc:Ignorable="d" >
 
 	<Page.DataContext>
@@ -16,8 +16,8 @@
 		<DockPanel LastChildFill="False" >
 			<StackPanel DockPanel.Dock="Top"  Margin="0,0,5,0">
 				<StackPanel.Resources>
-					<checkout:PoolIdFeaturesConverter x:Key="PoolIdFeaturesConverter" />
-					<checkout:ExpirationDateConverter x:Key="ExpirationDateConverter" />
+					<common:PoolIdFeaturesConverter x:Key="PoolIdFeaturesConverter" />
+					<common:ExpirationDateConverter x:Key="ExpirationDateConverter" />
 					<Style TargetType="{x:Type DataGrid}" x:Key="availableCheckoutGridTemplate" BasedOn="{StaticResource {x:Type DataGrid}}">
 						<Style.Triggers>
 							<MultiDataTrigger>
@@ -68,7 +68,7 @@
 				</DataGrid>
 				<StackPanel>
 					<StackPanel.Resources>
-						<checkout:ExpirationDateConverter x:Key="ExpirationDateConverter" />
+						<common:ExpirationDateConverter x:Key="ExpirationDateConverter" />
 					</StackPanel.Resources>
 					<StackPanel Orientation="Horizontal" Margin="0,5,0,0" DataContext="{Binding SelectedAvailableCheckout}">
 						<TextBlock Text="Maximum Available Date: " FontWeight="SemiBold"  VerticalAlignment="Center" ></TextBlock>

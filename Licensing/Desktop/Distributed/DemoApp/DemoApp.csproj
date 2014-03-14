@@ -86,6 +86,7 @@
       <DependentUpon>CheckoutDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Checkout\CurrentCheckoutModel.cs" />
+    <Compile Include="Common\Converters.cs" />
     <Compile Include="Common\IDisplayState.cs" />
     <Compile Include="Common\CloseWindowCommand.cs" />
     <Compile Include="Common\ViewModelBase.cs" />
@@ -194,7 +195,7 @@
     <Resource Include="Content\refresh-icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\delete.png" />
+    <Resource Include="Content\delete.ico" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SoftwarePotential.Vb\Core\SpAgent.CommandLineProcessing.vb" />

@@ -15,7 +15,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
-using System.Windows;
 using System.Windows.Data;
 
 namespace DemoApp.Licenses
@@ -53,10 +52,9 @@ namespace DemoApp.Licenses
 				Licenses.Add( item );
 		}
 
-
 		void RemoveSelectedItem( object sender, EventArgs e )
 		{
-			if ( MessageBox.Show( "Are you sure you want to remove this license?", "Please confirm", MessageBoxButton.YesNo ) == MessageBoxResult.Yes )
+			if ( DisplayState.Warn( "Are you sure you want to remove this license?" ) )
 			{
 				var license = (LicenseItemModel)sender;
 				license.ItemRemoved -= RemoveSelectedItem;
@@ -88,7 +86,11 @@ namespace DemoApp.Licenses
 	}
 
 	public class LicenseRepository
-	{	
+	{
+		public static int LicenseCount( IProductContext productContext )
+		{
+			return productContext.Licenses.All().Count();
+		}
 
 		public static IEnumerable<LicenseItemModel> RetrieveAllLicenses( IProductContext productContext )
 		{
@@ -102,34 +104,4 @@ namespace DemoApp.Licenses
 				} );
 		}
 	}
-
-	#region Converters
-	[ValueConversion( typeof( IEnumerable<string> ), typeof( string ) )]
-	public class FlatStringArrayConverter : IValueConverter
-	{
-		public object Convert( object value, Type targetType, object parameter, CultureInfo culture )
-		{
-			string separator = (string)parameter ?? ",";
-			return string.Join( separator, (IEnumerable<string>)value );
-		}
-
-		public object ConvertBack( object value, Type targetType, object parameter, CultureInfo culture )
-		{
-			throw new NotImplementedException();
-		}
-	}
-
-	public class MultiValueConverter : IMultiValueConverter
-	{
-		public object Convert( object[] values, Type targetType, object parameter, CultureInfo culture )
-		{
-			return values.Clone();
-		}
-
-		public object[] ConvertBack( object value, Type[] targetTypes, object parameter, CultureInfo culture )
-		{
-			throw new NotImplementedException();
-		}
-	}
-	#endregion
 }

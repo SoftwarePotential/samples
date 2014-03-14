@@ -13,7 +13,6 @@ using DemoApp.Properties;
 using Sp.Agent;
 using System;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows;
 
 namespace DemoApp.Configuration
@@ -40,17 +39,7 @@ namespace DemoApp.Configuration
 				}
 			}
 		}
-
-		public bool HasValidDistributorUrl
-		{
-			get
-			{
-				Uri parsedUri;
-				bool isWellFormedUri = Uri.TryCreate( DistributorUrl, UriKind.Absolute, out parsedUri );
-				return isWellFormedUri && parsedUri.Scheme == Uri.UriSchemeHttp && !parsedUri.IsDefaultPort;
-			}
-		}
-
+		
 		int _licenseCount;
 		public int LicenseCount
 		{
@@ -64,12 +53,19 @@ namespace DemoApp.Configuration
 
 		public ConfigurationModel()
 		{
-			TestConnectionCommand = new RelayCommand( TestConnection, CanTestConnection );
-			SaveCommand = new RelayCommand( Save, CanSave );
+			TestConnectionCommand = new RelayCommand( TestConnection, HasValidDistributorUrl );
+			SaveCommand = new RelayCommand( Save, HasValidDistributorUrl );
 			DistributorUrl = DistributorConfigurationRepository.Load();
-			LicenseCount = LicenseRepository.RetrieveAllLicenses( SpAgent.Product ).Count();
+			LicenseCount = LicenseRepository.LicenseCount( SpAgent.Product );
 			ActivationCommand = new RelayCommand( () => DisplayState.Navigate( new ActivationPage() ) );
 			ViewLicensesCommand = new RelayCommand( () => DisplayState.Navigate( new LicenseListPage() ) );
+		}
+
+		public bool HasValidDistributorUrl()
+		{
+			Uri parsedUri;
+			bool isWellFormedUri = Uri.TryCreate( DistributorUrl, UriKind.Absolute, out parsedUri );
+			return isWellFormedUri && parsedUri.Scheme == Uri.UriSchemeHttp && !parsedUri.IsDefaultPort;
 		}
 
 		void TestConnection()
@@ -79,23 +75,15 @@ namespace DemoApp.Configuration
 				diagnosticsResult.AllVerificationsPassed ? MessageBoxImage.Information : MessageBoxImage.Warning );
 		}
 
-		bool CanTestConnection()
-		{
-			return HasValidDistributorUrl;
-		}
-
 		void Save()
 		{
-			if ( HasValidDistributorUrl )
+			if ( HasValidDistributorUrl() )
 			{
 				var diagnosticsResult = DistributorDiagnosticsHelper.GetDiagnosticsInformation( new Uri( DistributorUrl ) );
 				if ( !diagnosticsResult.AllVerificationsPassed )
 				{
 					var messages = diagnosticsResult.GetAllMessagesAsString() + "\nDo you want to save this configuration anyway?";
-
-					var warningMessageBoxResult = MessageBox.Show( messages, "Warning", MessageBoxButton.YesNo,
-						MessageBoxImage.Warning );
-					if ( warningMessageBoxResult == MessageBoxResult.No )
+					if ( !DisplayState.Warn( messages ) )
 						return;
 				}
 			}
@@ -113,13 +101,7 @@ namespace DemoApp.Configuration
 				Settings.Default.Save();
 			}
 		}
-
-		bool CanSave()
-		{
-			return HasValidDistributorUrl;
-		}
-
-		#region IDataErrorInfo Members
+		
 		public string this[ string columnName ]
 		{
 			get
@@ -129,7 +111,7 @@ namespace DemoApp.Configuration
 				{
 					if ( !string.IsNullOrEmpty( DistributorUrl ) )
 					{
-						if ( !HasValidDistributorUrl )
+						if ( !HasValidDistributorUrl() )
 							result = "Incorrect URL format\nPlease enter full Distributor URL, including the port number (e.g. " + ValidUrlExample + ")";
 					}
 				}
@@ -141,7 +123,6 @@ namespace DemoApp.Configuration
 		{
 			get { return this[ "DistributorUrl" ]; }
 		}
-		#endregion
 
 		public const string DistributorUrlPrompt = "Please enter Distributor URL (e.g. " + ValidUrlExample + ")";
 		const string ValidUrlExample = "http://licensingserver:8731";
@@ -157,7 +138,7 @@ namespace DemoApp.Configuration
 
 		public static void Save( ConfigurationModel model )
 		{
-			var urlToWrite = model.HasValidDistributorUrl ? new Uri( model.DistributorUrl ) : null;
+			var urlToWrite = model.HasValidDistributorUrl() ? new Uri( model.DistributorUrl ) : null;
 			SpAgent.Configuration.DistributorBaseUri = urlToWrite;
 		}
 	}

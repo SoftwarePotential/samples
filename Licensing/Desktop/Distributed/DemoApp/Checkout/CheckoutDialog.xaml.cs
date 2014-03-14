@@ -12,7 +12,6 @@ using Sp.Agent;
 using Sp.Agent.Distributor;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace DemoApp.Checkout
 {
@@ -23,16 +22,25 @@ namespace DemoApp.Checkout
 			InitializeComponent();		
 			Load();
 		}
-
-		public static RoutedCommand CheckinCommand = new RoutedCommand();
-
+		
 		public void Load()
 		{
-			ICheckout checkout;
-			if ( Checkout.TryGetCurrent( out checkout ) )
-				Navigate(new CurrentCheckoutPage());
-			else
-				Navigate(new AvailableCheckoutPage());
+			try
+			{
+				ICheckout checkout;
+				if ( Checkout.TryGetCurrent( out checkout ) )
+					Navigate( new CurrentCheckoutPage() );
+				else
+					Navigate( new AvailableCheckoutPage() );
+			}
+			catch ( DistributorRequestException )
+			{
+				NotifyUser( "There has been an issue contacting your distributor server. Please try again. If the problem persists, please contact your system administrator." );
+			}
+			catch ( NoDistributorException )
+			{
+				NotifyUser( "There is no distributor server configured. Please configure a server in the configuration dialog." );
+			}
 		}
 
 		public void Navigate( Page page )
