@@ -16,7 +16,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Input;
 
 namespace DemoApp.Activation
 {
@@ -85,13 +84,13 @@ namespace DemoApp.Activation
 		{
 			var activationModel = this;
 			SetActivationInProgress( true );
-
+			LastActivationResultMessage =string.Empty;
+		
 			var uiContext = TaskScheduler.FromCurrentSynchronizationContext();
 			SpAgent.Product.Activation.OnlineActivateAsync( ActivationKey )
 				.ContinueWith( task =>
 				{
 					SetActivationInProgress( false );
-
 					if ( task.IsFaulted )
 					{
 						string errorMessage = task.Exception.Flatten().InnerException.Message;
@@ -101,6 +100,7 @@ namespace DemoApp.Activation
 					{
 						LastActivationResultMessage = "Successfully activated license with activation key " + activationModel.ActivationKey;
 						LastActivationSucceeded = true;
+						ActivationKey = string.Empty;
 					}
 
 				}, CancellationToken.None, TaskContinuationOptions.None, uiContext );
@@ -109,8 +109,6 @@ namespace DemoApp.Activation
 		void SetActivationInProgress( bool isInProgress )
 		{
 			IsActivationInProgress = isInProgress;
-			// Notify the CommandManager that ActivationCommand CanExecute computed value could have changed (Activation button visibility depends on that)
-			CommandManager.InvalidateRequerySuggested();
 		}
 
 		bool IsActivationKeyWellFormed()
@@ -123,7 +121,6 @@ namespace DemoApp.Activation
 			get { return 29; }
 		}
 
-		#region IDataErrorInfo Members
 		public string this[ string columnName ]
 		{
 			get
@@ -145,12 +142,8 @@ namespace DemoApp.Activation
 		public string Error
 		{
 			get { return null; }
-		}
-		#endregion
-
+		}	
 	}
-
-	#region Converters
 
 	[ValueConversion( typeof( bool ), typeof( bool ) )]
 	public class InverseBooleanConverter : IValueConverter
@@ -210,5 +203,4 @@ namespace DemoApp.Activation
 		readonly InverseBooleanConverter _inverseBooleanConverter = new InverseBooleanConverter();
 		readonly BooleanToVisibilityConverter _booleanToVisibilityConverter = new BooleanToVisibilityConverter();
 	}
-	#endregion
 }

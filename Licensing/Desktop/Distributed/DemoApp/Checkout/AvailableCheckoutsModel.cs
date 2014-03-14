@@ -13,8 +13,6 @@ using Sp.Agent.Distributor;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Globalization;
-using System.Windows.Data;
 
 namespace DemoApp.Checkout
 {
@@ -122,7 +120,6 @@ namespace DemoApp.Checkout
 			return (SelectedAvailableCheckout != null) && (!IsPastDate() && !IsAfterValidUntilDate());
 		}
 
-		#region IDataErrorInfo
 		public bool IsPastDate()
 		{
 			return AcquireCheckoutUntil < DateTime.UtcNow;
@@ -153,45 +150,10 @@ namespace DemoApp.Checkout
 		{
 			get { return this[ "AquireCheckoutUntil" ]; }
 		}
-		#endregion
-
+	
 		static ICheckoutContext CheckoutContext
 		{
 			get { return SpAgent.Distributed.Checkout; }
 		}
 	}
-
-	#region Converters
-	[ValueConversion( typeof( string ), typeof( string ) )]
-	public class PoolIdFeaturesConverter : IValueConverter
-	{
-		public object Convert( object value, Type targetType, object parameter, CultureInfo culture )
-		{
-			string separator = (string)parameter ?? ",";
-			return ((string)(value)).Replace( ":", separator );
-		}
-
-		public object ConvertBack( object value, Type targetType, object parameter, CultureInfo culture )
-		{
-			throw new NotImplementedException();
-		}
-	}
-
-	[ValueConversion( typeof( string ), typeof( string ) )]
-	public class ExpirationDateConverter : IValueConverter
-	{
-		public object Convert( object value, Type targetType, object parameter, CultureInfo culture )
-		{
-			if ( (DateTime)value == DateTime.MaxValue )
-				return "Unlimited";
-			return value;
-		}
-
-		public object ConvertBack( object value, Type targetType, object parameter, CultureInfo culture )
-		{
-			throw new NotImplementedException();
-		}
-	}
-	#endregion
-
 }

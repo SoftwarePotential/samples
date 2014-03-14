@@ -70,6 +70,7 @@
       <DependentUpon>CheckoutDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Checkout\CurrentCheckoutModel.cs" />
+    <Compile Include="Common\Converters.cs" />
     <Compile Include="Common\IDisplayState.cs" />
     <Compile Include="Common\CloseWindowCommand.cs" />
     <Compile Include="Common\ViewModelBase.cs" />
@@ -164,7 +165,7 @@
     <Resource Include="Content\refresh-icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\delete.png" />
+    <Resource Include="Content\delete.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
