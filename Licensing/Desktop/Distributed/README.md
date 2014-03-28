@@ -22,7 +22,7 @@ This solution contains projects illustrating the following elements of a Distrib
 
 ### Install the NuGet packages
 * Add the SoftwarePotential NuGet feed (`https://srv.softwarepotential.com/NuGet/nuget/`) in your Package Manager settings (see [Software Potential NuGet Feed](http://docs.softwarepotential.com/Adding-SoftwarePotential-NuGet-Feed.html) for reference)
-* Add the following packages to `DemoAp` project:
+* Add the following packages to `DemoApp` project:
 	-	`SoftwarePotential.Protection-<PermutationShortCode>`
 	-	`SoftwarePotential.Licensing-Demo_10`
 	-	`SoftwarePotential.Configuration.Local.SingleUser-<PermutationShortCode>`
