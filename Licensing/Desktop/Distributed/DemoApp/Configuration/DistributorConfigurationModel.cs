@@ -87,7 +87,7 @@ namespace DemoApp.Configuration
 				var diagnosticsResult = DistributorDiagnosticsHelper.GetDiagnosticsInformation( new Uri( DistributorUrl ) );
 				if ( !diagnosticsResult.AllVerificationsPassed )
 				{
-					var messages = diagnosticsResult.GetAllMessagesAsString() + "\nDo you want to save this configuration anyway?";
+					var messages = diagnosticsResult.GetAllMessagesAsString() + "\n\nDo you want to save this configuration anyway?";
 					if ( !DisplayState.Warn( messages ) )
 						return;
 				}
