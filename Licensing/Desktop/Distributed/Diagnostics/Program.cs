@@ -20,6 +20,7 @@ namespace Diagnostics
 Commands:
   all           Perform a complete diagnostic for a nominated distributor service.
   
+  vendor        Perform a vendor name diagnostic against the given distributor service.
   connectivity  Perform a connectivity diagnostic on the path to a given distributor service.
   integrity     Perform an integrity diagnostic on a given distributor service.
 
@@ -28,6 +29,7 @@ Commands:
 Usage: 
   {0} (--help | -h)
   {0} all --serverName=<serverName> [--nologo] [--verbose]
+  {0} vendor --serverName=<serverName> [--verbose]
   {0} connectivity --serverName=<serverName> [--verbose]
   {0} integrity --serverName=<serverName> [--verbose]
   {0} version --serverName=<serverName>  [--verbose]
@@ -49,12 +51,18 @@ Options:
 						Console.WriteLine();
 						Connectivity( arguments[ "--serverName" ].ToString() );
 						Console.WriteLine();
+						Console.WriteLine( "VENDOR DIAGNOSTIC:" );
+						Console.WriteLine();
+						Vendor( arguments[ "--serverName" ].ToString() );
+						Console.WriteLine();
 						Console.WriteLine( "INTEGRITY DIAGNOSTIC:" );
 						Console.WriteLine();
 						Integrity( arguments[ "--serverName" ].ToString() );
 					}
 					else if ( arguments[ "connectivity" ].IsTrue )
 						Connectivity( arguments[ "--serverName" ].ToString() );
+					else if ( arguments[ "vendor" ].IsTrue )
+						Vendor( arguments[ "--serverName" ].ToString() );
 					else if ( arguments[ "integrity" ].IsTrue )
 						Integrity( arguments[ "--serverName" ].ToString() );
 					else if ( arguments[ "version" ].IsTrue )
@@ -84,6 +92,16 @@ Options:
 			{
 				Console.WriteLine( ex );
 			}
+		}
+
+		static void Vendor( string serverName )
+		{
+			var serverVendorName = SpAgent.Distributors.VendorName( ServiceBaseUri( serverName ) );
+			var clientVendorName = SpAgent.Configuration.AgentContext.VendorName;
+			if ( serverVendorName == clientVendorName )
+				Console.WriteLine( "Vendor name check passed. Vendor Name: " + serverVendorName );
+			else
+				Console.WriteLine( "Vendor name check failed. Server Vendor Name: " + serverVendorName + "; Client Vendor Name: " + clientVendorName );
 		}
 
 		static void Integrity( string serverName )

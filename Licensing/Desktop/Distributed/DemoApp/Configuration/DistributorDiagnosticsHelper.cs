@@ -7,11 +7,11 @@
  * 
  */
 
+using Sp.Agent;
 using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.ServiceModel;
-using Sp.Agent;
 
 namespace DemoApp.Configuration
 {
@@ -36,6 +36,29 @@ namespace DemoApp.Configuration
 			}
 
 			string version = SpAgent.Distributors.ServiceVersion( url );
+
+			string serviceVendor;
+			try
+			{
+				serviceVendor = SpAgent.Distributors.VendorName( url );
+			}
+			catch
+			{
+				// It should always be possible to obtain the vendor name - all Distributor services, regardless of version should support this API
+				diagnosticsMessages.Add( string.Format( "Could not obtain vendor name from {0}.", url ) );
+				return new DiagnosticsResult( false, diagnosticsMessages );
+			}
+
+			string agentVendor = SpAgent.Configuration.AgentContext.VendorName;
+			var localPermutationIsForSameVendor = serviceVendor == agentVendor;
+			if ( !localPermutationIsForSameVendor )
+			{
+				// Any communication with a server which is not for the correct vendor will yield exceptions due to an inability to complete the security handshake. 
+				diagnosticsMessages.Add( string.Format( "The nominated service endpoint is incompatible with this Application; please select an alternative endpoint.\n\nService vendor name: \"{0}\"\nApplication vendor name: \"{1}\"\n\nService endpoint version: {2}", serviceVendor,  agentVendor, version ) );
+				// Because IsServiceHealthy will fail, we bail and do not attempt to use it after a mismatch is detected
+				return new DiagnosticsResult( false, diagnosticsMessages );
+			}
+
 			diagnosticsMessages.Add( string.Format( "Distributor service version {0} detected.", version ) );
 
 			bool isServiceHealthy;
@@ -72,7 +95,7 @@ namespace DemoApp.Configuration
 
 		public string GetAllMessagesAsString()
 		{
-			return string.Join(Environment.NewLine, Messages);
+			return string.Join( Environment.NewLine, Messages );
 		}
 	}
 }
