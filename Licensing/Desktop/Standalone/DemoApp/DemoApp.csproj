@@ -117,21 +117,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Sp.Protector.3.2.1950\build\Sp.Protector.targets" Condition="Exists('..\packages\Sp.Protector.3.2.1950\build\Sp.Protector.targets')" />
-  <Import Project="..\packages\Sp.Agent-62340.3.2.1950.4\build\net40\Sp.Agent-62340.targets" Condition="Exists('..\packages\Sp.Agent-62340.3.2.1950.4\build\net40\Sp.Agent-62340.targets')" />
-  <Import Project="..\packages\Sp.Agent.Local-62340.3.2.1950.4\build\net40\Sp.Agent.Local-62340.targets" Condition="Exists('..\packages\Sp.Agent.Local-62340.3.2.1950.4\build\net40\Sp.Agent.Local-62340.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Sp.Agent-62340.3.2.1954.7\build\net40\Sp.Agent-62340.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Agent-62340.3.2.1954.7\build\net40\Sp.Agent-62340.targets'))" />
-    <Error Condition="!Exists('..\packages\Sp.Agent.Local-62340.3.2.1954.7\build\net40\Sp.Agent.Local-62340.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Agent.Local-62340.3.2.1954.7\build\net40\Sp.Agent.Local-62340.targets'))" />
-    <Error Condition="!Exists('..\packages\SoftwarePotential.Licensing-Demo_10.1.0.1.0\build\SoftwarePotential.Licensing-Demo_10.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SoftwarePotential.Licensing-Demo_10.1.0.1.0\build\SoftwarePotential.Licensing-Demo_10.props'))" />
-    <Error Condition="!Exists('..\packages\Sp.Protector.3.2.1954\build\Sp.Protector.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Protector.3.2.1954\build\Sp.Protector.props'))" />
-    <Error Condition="!Exists('..\packages\Sp.Protector.3.2.1954\build\Sp.Protector.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Protector.3.2.1954\build\Sp.Protector.targets'))" />
-    <Error Condition="!Exists('..\packages\Sp.Permutation-62340.3.2.1954.7\build\Sp.Permutation-62340.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Permutation-62340.3.2.1954.7\build\Sp.Permutation-62340.props'))" />
-    <Error Condition="!Exists('..\packages\SoftwarePotential.Protection-62340.3.2.1954.7\build\SoftwarePotential.Protection-62340.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SoftwarePotential.Protection-62340.3.2.1954.7\build\SoftwarePotential.Protection-62340.props'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
