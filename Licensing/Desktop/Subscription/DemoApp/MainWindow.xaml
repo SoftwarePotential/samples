@@ -1,0 +1,19 @@
+﻿<Window x:Class="DemoApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		Title="DemoApp" Height="350" Width="525">
+	<Grid>
+		<DockPanel LastChildFill="True">
+			<Menu IsMainMenu="True" DockPanel.Dock="Top">
+				<MenuItem Header="_Licenses"   >
+					<MenuItem Header="Manage licenses" Click="ShowInstalledLicensesList_Click"></MenuItem>
+					<MenuItem Header="Activate" Click="ShowActivationDialog_Click"></MenuItem>
+				</MenuItem>
+			</Menu>
+			<StackPanel Margin="10 10">
+				<Button Name="runFeature1" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0 10" Height="30" Click="RunFeature1_Click" >Run Feature 1</Button>
+				<Button Name="runFeature2" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0 10" Height="30" Click="RunFeature2_Click">Run Feature 2</Button>
+			</StackPanel>
+		</DockPanel>
+	</Grid>
+</Window>
