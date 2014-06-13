@@ -69,7 +69,6 @@
       <DependentUpon>SubscriptionLicenseDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Licensing\SpAgentActivation.cs" />
-    <Compile Include="SoftwarePotential\SpAgent.ProductCustomizations.cs" />
     <Page Include="Activation\ActivationDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
