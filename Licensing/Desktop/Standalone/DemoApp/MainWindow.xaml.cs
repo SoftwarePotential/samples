@@ -9,12 +9,13 @@
 
 using DemoApp.Activation;
 using DemoApp.BusinessLogic;
+using DemoApp.Common;
 using DemoApp.Licenses;
 using System.Windows;
 
 namespace DemoApp
 {
-	public partial class MainWindow : Window
+	public partial class MainWindow : Window, IDisplayState
 	{
 		public MainWindow()
 		{
@@ -32,18 +33,32 @@ namespace DemoApp
 			MyAlgorithms.AccessFeature2();
 			MessageBox.Show( "Feature 2 accessed successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information );
 		}
-
-
+		 
 		void ShowInstalledLicensesList_Click( object sender, RoutedEventArgs e )
 		{
-			var licenseListDialog = new LicenseListDialog { Owner = this };
-			licenseListDialog.ShowDialog();
+			
+			new LicenseListDialog { Owner = this }.ShowDialog();
 		}
 
 		void ShowActivationDialog_Click( object sender, RoutedEventArgs e )
 		{
-			var activationDialog = new ActivationDialog { Owner = this };
-			activationDialog.ShowDialog();
+			//	((ViewModelBase)activationDialog.DataContext).DisplayState = this;
+			new ActivationDialog { Owner = this }.ShowDialog();
+		}
+
+		public void NotifyUser( object message )
+		{
+			MessageBox.Show( message.ToString() );
+		}
+
+		public void Exit()
+		{
+			((Window)this).Close();
+		}
+
+		public bool Warn( object message )
+		{
+			return MessageBox.Show( message.ToString(), "Please confirm", MessageBoxButton.YesNo ) == MessageBoxResult.Yes;
 		}
 	}
 }

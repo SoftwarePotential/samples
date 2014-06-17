@@ -7,42 +7,57 @@
  * 
  */
 
+using DemoApp.Common;
+using Sp.Agent;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
-using System.Windows.Data;
-using Sp.Agent;
 
 namespace DemoApp.Licenses
 {
-	public class LicenseListModel
+	public class LicenseListModel : ViewModelBase
 	{
+		public RelayCommand BackCommand { get; set; }
 		public string ProductName { get; private set; }
 		public string ProductVersion { get; private set; }
 		public ObservableCollection<LicenseItemModel> Licenses { get; set; }
 
-		public LicenseListModel( IEnumerable<LicenseItemModel> licenses, string productName, string productVersion )
+
+		public LicenseListModel()
 		{
-			ProductName = productName;
-			ProductVersion = productVersion;
-			Licenses = new ObservableCollection<LicenseItemModel>( licenses );
+			IProductContext productContext = SpAgent.Product;
+
+			ProductName = productContext.ProductName;
+			ProductVersion = productContext.ProductVersion;
+
+			// If there's no product context, then probably SpAgent hasn't been initialized 
+			// (this can happen inside Visual Studio Designer)
+			if ( productContext == null )
+				return;
+
+			Licenses = new ObservableCollection<LicenseItemModel>( LicenseRepository.RetrieveAllLicenses( productContext ) );
+			foreach ( var license in Licenses )
+				license.ItemRemoved += RemoveSelectedItem;
 		}
 
-		public void DeleteLicense( LicenseItemModel license )
-		{
-			// Remove license from license store
-			SpAgent.Product.Stores.Delete( license.ActivationKey );
-			// Remove license from the model
-			Licenses.Remove( license );
-		}
-
-		public void ReloadListFrom( Func<IEnumerable<LicenseItemModel>> getLicenses )
+		public void Reload()
 		{
 			Licenses.Clear();
-			foreach(var item in getLicenses() )
-				Licenses.Add(item);
+			foreach ( var item in LicenseRepository.RetrieveAllLicenses( SpAgent.Product ) )
+				Licenses.Add( item );
+		}
+
+		void RemoveSelectedItem( object sender, EventArgs e )
+		{
+			if ( DisplayState.Warn( "Are you sure you want to remove this license?" ) )
+			{
+				var license = (LicenseItemModel)sender;
+				license.ItemRemoved -= RemoveSelectedItem;
+
+				SpAgent.Product.Stores.Delete( license.ActivationKey );
+				Licenses.Remove( license );
+			}
 		}
 	}
 
@@ -51,31 +66,29 @@ namespace DemoApp.Licenses
 		public string ActivationKey { get; set; }
 		public DateTime ValidUntil { get; set; }
 		public IEnumerable<string> Features { get; set; }
+		public RelayCommand RemoveLicenseCommand { get; set; }
+		public event EventHandler ItemRemoved;
+
+		public LicenseItemModel()
+		{
+			RemoveLicenseCommand = new RelayCommand( RemoveLicense );
+		}
+
+		void RemoveLicense()
+		{
+			if ( ItemRemoved != null )
+				ItemRemoved( this, EventArgs.Empty );
+		}
 	}
 
-	public class LicenseListModelFactory
+	public class LicenseRepository
 	{
-		public LicenseListModel CreateLicenseListModel()
+		public static int LicenseCount( IProductContext productContext )
 		{
-			IProductContext productContext = SpAgent.Product;
-
-			// If there's no product context, then probably SpAgent hasn't been initialized 
-			// (this can happen inside Visual Studio Designer)
-			if ( productContext == null )
-				return new LicenseListModel( new LicenseItemModel[] { }, "Unknown Product", "Unknown Version" );
-
-			var licenseListModel = new LicenseListModel( RetrieveAllLicenses( productContext ), productContext.ProductName, productContext.ProductVersion );
-
-			return licenseListModel;
+			return productContext.Licenses.All().Count();
 		}
 
-		public IEnumerable<LicenseItemModel> CreateLicenseList()
-		{
-			IProductContext productContext = SpAgent.Product;
-			return RetrieveAllLicenses( productContext );
-		}
-
-		IEnumerable<LicenseItemModel> RetrieveAllLicenses( IProductContext productContext )
+		public static IEnumerable<LicenseItemModel> RetrieveAllLicenses( IProductContext productContext )
 		{
 			return
 				productContext.Licenses.All()
@@ -86,35 +99,5 @@ namespace DemoApp.Licenses
 					Features = l.Advanced.AllFeatures().Select( f => f.Key )
 				} );
 		}
-	}
-
-	#region Converters
-	[ValueConversion( typeof( IEnumerable<string> ), typeof( string ) )]
-	public class FlatStringArrayConverter : IValueConverter
-	{
-		public object Convert( object value, Type targetType, object parameter, CultureInfo culture )
-		{
-			string separator = (string)parameter ?? ",";
-			return string.Join( separator, (IEnumerable<string>)value );
-		}
-
-		public object ConvertBack( object value, Type targetType, object parameter, CultureInfo culture )
-		{
-			throw new NotImplementedException();
-		}
-	}
-
-	public class MultiValueConverter : IMultiValueConverter
-	{
-		public object Convert( object[] values, Type targetType, object parameter, CultureInfo culture )
-		{
-			return values.Clone();
-		}
-
-		public object[] ConvertBack( object value, Type[] targetTypes, object parameter, CultureInfo culture )
-		{
-			throw new NotImplementedException();
-		}
-	}
-	#endregion
+	}	 
 }

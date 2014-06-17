@@ -7,25 +7,19 @@
  * 
  */
 
-using System.Threading.Tasks;
+using DemoApp.Common;
 using Sp.Agent;
-using System;
 using System.ComponentModel;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace DemoApp.Activation
 {
-	public class ActivationModel : IDataErrorInfo, INotifyPropertyChanged
+	public class ActivationModel : ViewModelBase, IDataErrorInfo
 	{
+		public RelayCommand ActivationCommand { get; set; }
+		public RelayCommand CancelCommand { get; set; }
 		string _activationKey;
-		public string ActivationKey
-		{
-			get { return _activationKey; }
-			set
-			{
-				_activationKey = value;
-				OnPropertyChanged( "ActivationKey" );
-			}
-		}
 
 		bool _activationInProgress;
 		public bool IsActivationInProgress
@@ -34,6 +28,7 @@ namespace DemoApp.Activation
 			set
 			{
 				_activationInProgress = value;
+				ActivationCommand.RaiseCanExecuteChanged();
 				OnPropertyChanged( "IsActivationInProgress" );
 			}
 		}
@@ -60,34 +55,67 @@ namespace DemoApp.Activation
 			}
 		}
 
-		public Task ActivateOnlineAsync()
+		public string ActivationKey
 		{
-			return SpAgent.Product.Activation.OnlineActivateAsync( ActivationKey );
+			get { return _activationKey; }
+			set
+			{
+				_activationKey = value;
+				ActivationCommand.RaiseCanExecuteChanged();
+				OnPropertyChanged( "ActivationKey" );
+			}
 		}
 
-		static bool IsActivationKeyWellFormed( string activationKey )
+		public ActivationModel()
 		{
-			return SpAgent.Product.Activation.IsWellFormedKey( activationKey );
+			ActivationCommand = new RelayCommand( ActivateOnline, CanActivate );
 		}
 
-		public static int ActivationKeyRequiredLength
+		bool CanActivate()
+		{
+			return !string.IsNullOrEmpty( ActivationKey ) && ActivationKey.Length == ActivationKeyRequiredLength && IsActivationKeyWellFormed() && !IsActivationInProgress;
+		}
+
+		void ActivateOnline()
+		{
+			SetActivationInProgress( true );
+			LastActivationResultMessage = string.Empty;
+			var uiContext = TaskScheduler.FromCurrentSynchronizationContext();
+			SpAgent.Product.Activation.OnlineActivateAsync( ActivationKey )
+				.ContinueWith( task => OnActivationComplete( task, ActivationKey ), CancellationToken.None, TaskContinuationOptions.None, uiContext );
+		}
+
+		void OnActivationComplete( Task task, string activationKey )
+		{
+			SetActivationInProgress( false );
+			if ( task.IsFaulted )
+			{
+				string errorMessage = task.Exception.Flatten().InnerException.Message;
+				LastActivationResultMessage = "Error: " + errorMessage;
+			}
+			else
+			{
+				LastActivationResultMessage = "Successfully activated license with activation key " + activationKey;
+				LastActivationSucceeded = true;
+				ActivationKey = string.Empty;
+			}
+		}
+
+		void SetActivationInProgress( bool isInProgress )
+		{
+			IsActivationInProgress = isInProgress;
+		}
+
+		bool IsActivationKeyWellFormed()
+		{
+			return SpAgent.Product.Activation.IsWellFormedKey( ActivationKey );
+		}
+
+		static int ActivationKeyRequiredLength
 		{
 			get { return 29; }
 		}
 
-		static string ValidateActivationKey( string activationKey )
-		{
-			string result = null;
-			if ( string.IsNullOrEmpty( activationKey ) )
-				result = "Please enter an activation key";
-			else if ( activationKey.Length != ActivationKeyRequiredLength )
-				result = string.Format( "Activation key should be exactly {0} characters long", ActivationKeyRequiredLength );
-			else if ( !IsActivationKeyWellFormed( activationKey ) )
-				result = "Activation key is not in the correct format";
-			return result;
-		}
-
-		#region IDataErrorInfo Members
 		public string this[ string columnName ]
 		{
 			get
@@ -95,7 +123,12 @@ namespace DemoApp.Activation
 				string result = null;
 				if ( columnName == "ActivationKey" )
 				{
-					result = ValidateActivationKey( ActivationKey );
+					if ( string.IsNullOrEmpty( ActivationKey ) )
+						result = "Please enter an activation key";
+					else if ( ActivationKey.Length != ActivationKeyRequiredLength )
+						result = string.Format( "Activation key should be exactly {0} characters long", ActivationKeyRequiredLength );
+					else if ( !IsActivationKeyWellFormed() )
+						result = "Activation key is not in the correct format";
 				}
 				return result;
 			}
@@ -105,17 +138,5 @@ namespace DemoApp.Activation
 		{
 			get { return null; }
 		}
-		#endregion
-
-		#region INotifyPropertyChanged Members
-		public event PropertyChangedEventHandler PropertyChanged;
-		void OnPropertyChanged( String propertyName )
-		{
-			if ( PropertyChanged != null )
-			{
-				PropertyChanged( this, new PropertyChangedEventArgs( propertyName ) );
-			}
-		}
-		#endregion
 	}
 }
