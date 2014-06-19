@@ -13,7 +13,7 @@ namespace DemoApp
 	/// </summary>
 	public partial class App : Application
 	{
-		const string RENEWAL_MESSAGE = " Some licenses need to be renewed. This can be done via the Licenses->Manage Licenses menu option.";
+		const string RENEWAL_MESSAGE = "Some licenses need to be renewed. This can be done via the Licenses->Manage Subscriptions menu option.";
 		// Called once during application startup
 		// (event handler registered in App.xaml)
 		void Application_Startup( object sender, StartupEventArgs e )
@@ -39,7 +39,6 @@ namespace DemoApp
 
 			if ( e.Exception is NotLicensedException )
 			{
-
 				if ( HasLicensesDueForRenewal() )
 					MessageBox.Show( "You don't have a license for this feature. " + RENEWAL_MESSAGE );
 				else

@@ -58,7 +58,7 @@ namespace DemoApp.Licenses
 				OnPropertyChanged( "LastRenewalSucceeded" );
 			}
 		}
-		
+
 		public SubscriptionLicenseListModel()
 		{
 			IProductContext productContext = SpAgent.Product;
@@ -90,7 +90,7 @@ namespace DemoApp.Licenses
 			if ( task.IsFaulted )
 			{
 				string errorMessage = task.Exception.Flatten().InnerException.Message;
-				LastRenewalResultMessage = "Error: " + errorMessage;							
+				LastRenewalResultMessage = "Error: " + errorMessage;
 			}
 			else
 			{

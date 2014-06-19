@@ -34,10 +34,9 @@ namespace DemoApp.Common
 
 		protected void OnPropertyChanged( string propertyName = null )
 		{
-			var eventHandler = PropertyChanged;
-			if ( eventHandler != null )
+			if ( PropertyChanged != null )
 			{
-				eventHandler( this, new PropertyChangedEventArgs( propertyName ) );
+				PropertyChanged( this, new PropertyChangedEventArgs( propertyName ) );
 			}
 		}
 	}

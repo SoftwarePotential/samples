@@ -12,7 +12,6 @@ using Sp.Agent;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace DemoApp.Licenses
 {
@@ -22,7 +21,6 @@ namespace DemoApp.Licenses
 		public string ProductName { get; private set; }
 		public string ProductVersion { get; private set; }
 		public ObservableCollection<LicenseItemModel> Licenses { get; set; }
-
 
 		public LicenseListModel()
 		{
@@ -80,24 +78,4 @@ namespace DemoApp.Licenses
 				ItemRemoved( this, EventArgs.Empty );
 		}
 	}
-
-	public class LicenseRepository
-	{
-		public static int LicenseCount( IProductContext productContext )
-		{
-			return productContext.Licenses.All().Count();
-		}
-
-		public static IEnumerable<LicenseItemModel> RetrieveAllLicenses( IProductContext productContext )
-		{
-			return
-				productContext.Licenses.All()
-				.Select( l => new LicenseItemModel()
-				{
-					ActivationKey = l.ActivationKey,
-					ValidUntil = l.ValidUntil,
-					Features = l.Advanced.AllFeatures().Select( f => f.Key )
-				} );
-		}
-	}	 
 }

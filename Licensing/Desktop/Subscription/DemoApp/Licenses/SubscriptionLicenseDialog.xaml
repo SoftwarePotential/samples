@@ -8,7 +8,7 @@
 	xmlns:converter="clr-namespace:DemoApp.Converter"
 	xmlns:licenses="clr-namespace:DemoApp.Licenses"
 	Height="350" Width="525"
-    Title="LicenseList">
+    Title="Expired Subscriptions">
 	<Window.DataContext>
 		<licenses:SubscriptionLicenseListModel/>
 	</Window.DataContext>

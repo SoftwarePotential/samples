@@ -6,7 +6,7 @@
 		<DockPanel LastChildFill="True">
 			<Menu IsMainMenu="True" DockPanel.Dock="Top">
 				<MenuItem Header="_Licenses"   >
-					<MenuItem Header="Manage licenses" Click="ShowInstalledLicensesList_Click"></MenuItem>
+					<MenuItem Header="Manage subscriptions" Click="ShowInstalledLicensesList_Click"></MenuItem>
 					<MenuItem Header="Activate" Click="ShowActivationDialog_Click"></MenuItem>
 				</MenuItem>
 			</Menu>

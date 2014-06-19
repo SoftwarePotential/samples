@@ -25,7 +25,8 @@ namespace DemoApp.Common
 
 		protected bool SetProperty<T>( ref T storage, T value, String propertyName = null )
 		{
-			if ( object.Equals( storage, value ) ) return false;
+			if ( object.Equals( storage, value ) ) 
+				return false;
 
 			storage = value;
 			OnPropertyChanged( propertyName );
@@ -34,11 +35,8 @@ namespace DemoApp.Common
 
 		protected void OnPropertyChanged( string propertyName = null )
 		{
-			var eventHandler = PropertyChanged;
-			if ( eventHandler != null )
-			{
-				eventHandler( this, new PropertyChangedEventArgs( propertyName ) );
-			}
+			if ( PropertyChanged != null )
+				PropertyChanged( this, new PropertyChangedEventArgs( propertyName ) );
 		}
 	}
 }
