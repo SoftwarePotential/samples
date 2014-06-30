@@ -7,35 +7,33 @@
  * 
  */
 
+using DemoApp.Common;
 using System.Windows;
-using System.Windows.Input;
 
 namespace DemoApp.Licenses
 {
-	public partial class LicenseListDialog : Window
+	public partial class LicenseListDialog : Window, IDisplayState
 	{
 		public LicenseListDialog()
 		{
 			InitializeComponent();
+
+			((ViewModelBase)DataContext).DisplayState = this;
 		}
 
-		public static RoutedCommand RemoveLicenseCommand = new RoutedCommand();
-
-		void RemoveLicenseCommand_Executed( object sender, ExecutedRoutedEventArgs e )
+		public void NotifyUser( object message )
 		{
-			if ( MessageBox.Show( "Are you sure you want to remove this license?", "Please confirm", MessageBoxButton.YesNo ) == MessageBoxResult.Yes )
-			{
-				object[] parameters = (object[])e.Parameter;
-				var licenseListModel = (LicenseListModel)parameters[ 0 ];
-				var licenseToRemove = (LicenseItemModel)parameters[ 1 ];
-
-				licenseListModel.DeleteLicense( licenseToRemove );
-			}
+			MessageBox.Show( message.ToString(), "Success", MessageBoxButton.OK, MessageBoxImage.Information );
 		}
 
-		void RemoveLicenseCommand_CanExecute( object sender, CanExecuteRoutedEventArgs e )
+		public bool Warn( object message )
 		{
-			e.CanExecute = true;
+			return MessageBox.Show( message.ToString(), "Please confirm", MessageBoxButton.YesNo ) == MessageBoxResult.Yes;
+		}
+
+		public void Exit()
+		{
+			((Window)this).Close();
 		}
 	}
 }

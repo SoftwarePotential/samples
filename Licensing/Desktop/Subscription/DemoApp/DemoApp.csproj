@@ -1,17 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1D7458DF-0190-4BB1-8AC0-522B78F6679F}</ProjectGuid>
+    <ProjectGuid>{07965E21-6F79-455A-8AFA-83B6839EBC8A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DemoApp</RootNamespace>
     <AssemblyName>DemoApp</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <NuGetPackageImportStamp>3d2d8dac</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -19,7 +21,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -33,80 +35,53 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="System" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Activation\ActivationPage.xaml.cs">
-      <DependentUpon>ActivationPage.xaml</DependentUpon>
+    <Compile Include="Activation\ActivationDialog.xaml.cs">
+      <DependentUpon>ActivationDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Activation\ActivationModel.cs" />
     <Compile Include="BusinessLogic\MyAlgorithms.cs" />
-    <Compile Include="Checkout\AvailableCheckoutPage.xaml.cs">
-      <DependentUpon>AvailableCheckoutPage.xaml</DependentUpon>
+    <Compile Include="Converter\BooleanErrorMessageColorConverter.cs" />
+    <Compile Include="Converter\PoolIdFeaturesConverter.cs" />
+    <Compile Include="Converter\ExpirationDateConverter.cs" />
+    <Compile Include="Converter\FlatStringArrayConverter.cs" />
+    <Compile Include="Converter\MultiValueConverter.cs" />
+    <Compile Include="Converter\InverseBooleanConverter.cs" />
+    <Compile Include="Licenses\SubscriptionLicenseDialog.xaml.cs">
+      <DependentUpon>SubscriptionLicenseDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Checkout\AvailableCheckoutsModel.cs" />
-    <Compile Include="Checkout\CurrentCheckoutPage.xaml.cs">
-      <DependentUpon>CurrentCheckoutPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Checkout\CheckoutDialog.xaml.cs">
-      <DependentUpon>CheckoutDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Checkout\CurrentCheckoutModel.cs" />
-    <Compile Include="Common\Converters.cs" />
-    <Compile Include="Common\IDisplayState.cs" />
-    <Compile Include="Common\CloseWindowCommand.cs" />
-    <Compile Include="Common\ViewModelBase.cs" />
-    <Compile Include="Configuration\DistributorDiagnosticsHelper.cs" />
-    <Compile Include="Configuration\ConfigurationDialog.xaml.cs">
-      <DependentUpon>ConfigurationDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Configuration\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Licenses\LicenseListDialog.xaml.cs">
-      <DependentUpon>LicenseListDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Licenses\LicenseListModel.cs" />
-    <Compile Include="Configuration\DistributorConfigurationModel.cs" />
-    <Compile Include="Common\RelayCommand.cs" />
-    <Page Include="Activation\BusyAnimationStyle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Checkout\AvailableCheckoutPage.xaml">
+    <Compile Include="Licensing\SpAgentActivation.cs" />
+    <Page Include="Activation\ActivationDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Checkout\CurrentCheckoutPage.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Common\BusyAnimationStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Checkout\CheckoutDialog.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Configuration\MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ControlStyles.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Licenses\LicenseListDialog.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Configuration\ConfigurationDialog.xaml">
+    <Page Include="Licenses\SubscriptionLicenseDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -114,26 +89,38 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Activation\ActivationPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converter\InverseBooleanVisibilityConverter.cs" />
+    <Compile Include="Common\IDisplayState.cs" />
+    <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Common\ViewModelBase.cs" />
+    <Compile Include="Licenses\SubscriptionLicenseListModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="App.config" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -141,10 +128,7 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Content\refresh-icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Content\delete.ico" />
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

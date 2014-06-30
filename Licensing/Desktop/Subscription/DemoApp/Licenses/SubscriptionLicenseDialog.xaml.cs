@@ -10,11 +10,11 @@
 using DemoApp.Common;
 using System.Windows;
 
-namespace DemoApp.Activation
+namespace DemoApp.Licenses
 {
-	public partial class ActivationDialog : Window, IDisplayState
+	public partial class SubscriptionLicenseDialog : Window, IDisplayState
 	{
-		public ActivationDialog()
+		public SubscriptionLicenseDialog()
 		{
 			InitializeComponent();
 			((ViewModelBase)DataContext).DisplayState = this;

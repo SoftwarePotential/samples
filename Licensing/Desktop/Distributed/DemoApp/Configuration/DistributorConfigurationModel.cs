@@ -39,7 +39,7 @@ namespace DemoApp.Configuration
 				}
 			}
 		}
-		
+
 		int _licenseCount;
 		public int LicenseCount
 		{
@@ -54,11 +54,16 @@ namespace DemoApp.Configuration
 		public ConfigurationModel()
 		{
 			TestConnectionCommand = new RelayCommand( TestConnection, HasValidDistributorUrl );
-			SaveCommand = new RelayCommand( Save, HasValidDistributorUrl );
+			SaveCommand = new RelayCommand( Save, HasValidDistributorUrlOrEmpty );
 			DistributorUrl = DistributorConfigurationRepository.Load();
 			LicenseCount = LicenseRepository.LicenseCount( SpAgent.Product );
 			ActivationCommand = new RelayCommand( () => DisplayState.Navigate( new ActivationPage() ) );
 			ViewLicensesCommand = new RelayCommand( () => DisplayState.Navigate( new LicenseListPage() ) );
+		}
+
+		bool HasValidDistributorUrlOrEmpty()
+		{
+			return HasValidDistributorUrl() || String.Empty == DistributorUrl;
 		}
 
 		public bool HasValidDistributorUrl()
@@ -82,18 +87,17 @@ namespace DemoApp.Configuration
 				var diagnosticsResult = DistributorDiagnosticsHelper.GetDiagnosticsInformation( new Uri( DistributorUrl ) );
 				if ( !diagnosticsResult.AllVerificationsPassed )
 				{
-					var messages = diagnosticsResult.GetAllMessagesAsString() + "\nDo you want to save this configuration anyway?";
+					var messages = diagnosticsResult.GetAllMessagesAsString() + "\n\nDo you want to save this configuration anyway?";
 					if ( !DisplayState.Warn( messages ) )
 						return;
 				}
 			}
 
 			DistributorConfigurationRepository.Save( this );
-			SetFistRunLicensingConfigurationFinishedIfApplies();
-			//	Close();
+			SetFirstRunLicensingConfigurationFinishedIfApplies();
 		}
 
-		static void SetFistRunLicensingConfigurationFinishedIfApplies()
+		static void SetFirstRunLicensingConfigurationFinishedIfApplies()
 		{
 			if ( !Settings.Default.FirstRunLicensingConfigurationFinished )
 			{
@@ -101,21 +105,15 @@ namespace DemoApp.Configuration
 				Settings.Default.Save();
 			}
 		}
-		
+
 		public string this[ string columnName ]
 		{
 			get
 			{
-				string result = null;
 				if ( columnName == "DistributorUrl" )
-				{
-					if ( !string.IsNullOrEmpty( DistributorUrl ) )
-					{
-						if ( !HasValidDistributorUrl() )
-							result = "Incorrect URL format\nPlease enter full Distributor URL, including the port number (e.g. " + ValidUrlExample + ")";
-					}
-				}
-				return result;
+					if ( !HasValidDistributorUrlOrEmpty() )
+						return "Incorrect URL format\nPlease enter full Distributor URL, including the port number (e.g. " + ValidUrlExample + ")";
+				return null;
 			}
 		}
 

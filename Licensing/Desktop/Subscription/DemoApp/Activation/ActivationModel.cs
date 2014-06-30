@@ -8,9 +8,9 @@
  */
 
 using DemoApp.Common;
+using DemoApp.Licensing;
 using Sp.Agent;
 using System.ComponentModel;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace DemoApp.Activation
@@ -80,12 +80,10 @@ namespace DemoApp.Activation
 		{
 			SetActivationInProgress( true );
 			LastActivationResultMessage = string.Empty;
-			var uiContext = TaskScheduler.FromCurrentSynchronizationContext();
-			SpAgent.Product.Activation.OnlineActivateAsync( ActivationKey )
-				.ContinueWith( task => OnActivationComplete( task, ActivationKey ), CancellationToken.None, TaskContinuationOptions.None, uiContext );
+			SpAgentActivation.ActivateOnline( ActivationKey, OnActivationComplete );
 		}
 
-		void OnActivationComplete( Task task, string activationKey )
+		void OnActivationComplete( Task task, string activationKey)
 		{
 			SetActivationInProgress( false );
 			if ( task.IsFaulted )

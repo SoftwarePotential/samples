@@ -1,17 +1,18 @@
-﻿<Window x:Class="DemoApp.Licenses.LicenseListDialog"
+﻿<Window x:Class="DemoApp.Licenses.SubscriptionLicenseDialog"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-	xmlns:converter="clr-namespace:DemoApp.Converter"
 	xmlns:common="clr-namespace:DemoApp.Common"
+			xmlns:presentation="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"	  
+	xmlns:converter="clr-namespace:DemoApp.Converter"
 	xmlns:licenses="clr-namespace:DemoApp.Licenses"
 	Height="350" Width="525"
-    Title="LicenseList">
+    Title="Expired Subscriptions">
 	<Window.DataContext>
-		<licenses:LicenseListModel/>
+		<licenses:SubscriptionLicenseListModel/>
 	</Window.DataContext>
-	<Grid Margin="5,5,5,5">
+	<Grid Margin="10,10,10,10">
 		<StackPanel>
 			<StackPanel>
 				<StackPanel.Resources>
@@ -24,7 +25,7 @@
 								<Setter Property="Template">
 									<Setter.Value>
 										<ControlTemplate>
-											<TextBlock>No licenses installed</TextBlock>
+											<TextBlock>There are no Expired Subscription Licenses in need of renewal.</TextBlock>
 										</ControlTemplate>
 									</Setter.Value>
 								</Setter>
@@ -49,13 +50,13 @@
 				</StackPanel.Resources>
 				<TextBlock HorizontalAlignment="Left" FontSize="14" >
 					<TextBlock.Text>
-						<MultiBinding StringFormat="Installed licenses for {0} {1}"  >
+						<MultiBinding StringFormat="Expired Subscription Licenses for {0} {1}"  >
 							<Binding Path="ProductName" />
 							<Binding Path="ProductVersion"/>
 						</MultiBinding>
 					</TextBlock.Text>
 				</TextBlock>
-				<DataGrid Name="licensesGrid" CellStyle="{StaticResource datagridCellTemplate}" ColumnHeaderStyle="{StaticResource gridHeaderTemplate}"  HeadersVisibility="Column" Style="{StaticResource ResourceKey=dataGridTemplate}" ItemsSource="{Binding Licenses}" HorizontalAlignment="Left" AutoGenerateColumns="False" CanUserAddRows="False" >
+				<DataGrid Height="150" Name="licensesGrid" CellStyle="{StaticResource datagridCellTemplate}" ColumnHeaderStyle="{StaticResource gridHeaderTemplate}"  HeadersVisibility="Column" Style="{StaticResource ResourceKey=dataGridTemplate}" ItemsSource="{Binding Licenses}" HorizontalAlignment="Left" AutoGenerateColumns="False" CanUserAddRows="False" >
 					<DataGrid.Columns>
 						<DataGridTemplateColumn Header="Activation Key" Width="100" >
 							<DataGridTemplateColumn.CellTemplate>
@@ -64,13 +65,13 @@
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>
 						</DataGridTemplateColumn>
-						<DataGridTemplateColumn Header="Expiration Date" Width="100">
+						<DataGridTemplateColumn Header="Valid Until" Width="90">
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
 									<TextBlock Text="{Binding ValidUntil, StringFormat=d, Converter={StaticResource ExpirationDateConverter}}" HorizontalAlignment="Right" />
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>
-						</DataGridTemplateColumn>
+						</DataGridTemplateColumn>	
 						<DataGridTemplateColumn Header="Features" Width="*">
 							<DataGridTemplateColumn.CellTemplate>
 								<DataTemplate>
@@ -78,11 +79,11 @@
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>
 						</DataGridTemplateColumn>
-						<DataGridTemplateColumn>
+						<DataGridTemplateColumn  Width="55">
 							<DataGridTemplateColumn.CellTemplate >
 								<DataTemplate>
-									<Button  Command="{Binding RemoveLicenseCommand}" CommandParameter="{Binding}" Height="24" Width="24"  HorizontalAlignment="Right" Margin="0,5,0,5">
-										<Image Source="/Content/delete.ico" />
+									<Button  Command="{Binding RenewLicenseCommand}" CommandParameter="{Binding}"  HorizontalAlignment="Right" Margin="0,5,0,5" >
+										Renew
 									</Button>
 								</DataTemplate>
 							</DataGridTemplateColumn.CellTemplate>
@@ -91,7 +92,16 @@
 				</DataGrid>
 			</StackPanel>
 			<StackPanel Margin="0 5 0 0">
-				<Button Content="Back" Command="{Binding CloseCommand}" HorizontalAlignment="Right"/>
+				<StackPanel.Resources>
+					<converter:InverseBooleanConverter x:Key="inverseBooleanConverter" />
+					<converter:InverseBooleanVisibilityConverter x:Key="inverseBooleanVisibilityConverter" />
+					<converter:BooleanErrorMessageColorConverter x:Key="booleanErrorMessageColorConverter" />
+					<presentation:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+				</StackPanel.Resources>
+				<TextBlock x:Name="lastActivationResultMessage" TextWrapping="Wrap" Text="{Binding Path=LastRenewalResultMessage,UpdateSourceTrigger=PropertyChanged}" Width="330" 
+                    Margin="0,5,0,5" Foreground="{Binding LastRenewalSucceeded,Converter={StaticResource booleanErrorMessageColorConverter}}"></TextBlock>
+				<Label Style="{StaticResource BusyAnimationStyle}" Visibility="{Binding Path=IsRenewalInProgress,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource booleanToVisibilityConverter}}"/>
+				<Button Content="Close" Command="{Binding CloseCommand}" HorizontalAlignment="Right"/>
 			</StackPanel>
 		</StackPanel>
 	</Grid>

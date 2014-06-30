@@ -25,30 +25,31 @@ namespace DemoApp
 		void RunFeature1_Click( object sender, RoutedEventArgs e )
 		{
 			MyAlgorithms.AccessFeature1();
-			MessageBox.Show( "Feature 1 accessed successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information );
+			NotifyUser( "Feature 1 accessed successfully" );
 		}
 
 		void RunFeature2_Click( object sender, RoutedEventArgs e )
 		{
 			MyAlgorithms.AccessFeature2();
-			MessageBox.Show( "Feature 2 accessed successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information );
+			NotifyUser( "Feature 2 accessed successfully" );
 		}
-		 
+
 		void ShowInstalledLicensesList_Click( object sender, RoutedEventArgs e )
 		{
-			
-			new LicenseListDialog { Owner = this }.ShowDialog();
+			var licenseListDialog = new SubscriptionLicenseDialog { Owner = this };
+			licenseListDialog.ShowDialog();
 		}
 
 		void ShowActivationDialog_Click( object sender, RoutedEventArgs e )
 		{
+			var activationDialog = new ActivationDialog { Owner = this };
 			//	((ViewModelBase)activationDialog.DataContext).DisplayState = this;
-			new ActivationDialog { Owner = this }.ShowDialog();
+			activationDialog.ShowDialog();
 		}
 
 		public void NotifyUser( object message )
 		{
-			MessageBox.Show( message.ToString() );
+			MessageBox.Show( message.ToString(), "Success", MessageBoxButton.OK, MessageBoxImage.Information );
 		}
 
 		public void Exit()
