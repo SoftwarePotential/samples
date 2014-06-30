@@ -1,0 +1,2257 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sp.Agent</name>
+    </assembly>
+    <members>
+        <member name="T:Slps.ProtectionAttributes.FeatureAttribute">
+            <summary>
+            Indicates that the marked method should have protection applied and, optionally if licensing is enabled, additionally require a license to execute 
+            </summary>
+        </member>
+        <member name="T:Slps.Engine.Internal.InternalFeatureAttribute">
+            <summary>
+            This attribute can be attached to method to indicate that it should be transformed during Code Protection
+            
+            NB this does not require a license, 
+            <seealso cref="T:Slps.ProtectionAttributes.FeatureAttribute"/>
+            </summary>summary&gt;
+        </member>
+        <member name="F:Slps.Engine.Internal.InternalFeatureAttribute.FEATURE_PROPERTY_NAME">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="F:Slps.Engine.Internal.InternalFeatureAttribute.CODE_RULE_TYPE_PROPERTY_NAME">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Slps.Engine.Internal.InternalFeatureAttribute.#ctor">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Slps.Engine.Internal.InternalFeatureAttribute.#ctor(System.String)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Slps.Engine.Internal.InternalFeatureAttribute.#ctor(Slps.Engine.Internal.CodeRuleType)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="P:Slps.Engine.Internal.InternalFeatureAttribute.FeatureName">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="P:Slps.Engine.Internal.InternalFeatureAttribute.CodeRuleType">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Slps.ProtectionAttributes.FeatureAttribute.#ctor">
+            <summary>
+            Indicates that the marked method should have Protection applied during Code Protector execution.
+            Requires the 'Execute' feature to be present on a supporting license at execution time 
+            (i.e., When Licensing is Enabled, requires a valid license for the Product but does not require any specific feature to be present on that license).
+            
+            Note: If Licensing is Disabled in your Code Protector Settings, Methods associated with this attribute will not be restricted.
+            </summary>
+        </member>
+        <member name="M:Slps.ProtectionAttributes.FeatureAttribute.#ctor(System.String)">
+            <summary>
+            Indicates that the marked method should have Protection applied during Code Protector execution.
+            Requires the indicated <param name="featureName"></param> feature to be available on a supporting Product License at execution time.
+            </summary>
+        </member>
+        <member name="T:Slps.ProtectionAttributes.ProtectAttribute">
+            <summary>
+            Indicates that the marked method should have protection applied.
+            </summary>
+            <remarks>
+            Use <see cref="T:Slps.ProtectionAttributes.FeatureAttribute"/> instead if you intend to add Licensing to your method.
+            Methods protected using <see cref="T:Slps.ProtectionAttributes.ProtectAttribute"/> do not incur Licensing checks and are therefore faster to execute.
+            </remarks>
+        </member>
+        <member name="T:Slps.Engine.Execution.Internal.IExecutionEngineParams">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Slps.Engine.Execution.Internal.IExecutionEngineParams.ExtractParameters(System.Object,System.Object@,System.Object[]@)">
+            <summary>
+            For internal use.
+            </summary>
+            <seealso cref="T:Slps.Engine.Execution.Internal.IExecutionEngineParams"/>
+            <param name="methodData">For internal use.</param>
+            <param name="objectInstance">For internal use.</param>
+            <param name="arguments">For internal use.</param>
+        </member>
+        <member name="T:Slps.Engine.Execution.Internal.IExecutionEngineGenericArguments">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="P:Slps.Engine.Execution.Internal.IExecutionEngineGenericArguments.GenericTypeArgs">
+            <summary>
+            For internal use.
+            </summary>
+        </member>
+        <member name="P:Slps.Engine.Execution.Internal.IExecutionEngineGenericArguments.GenericMethodArgs">
+            <summary>
+            For internal use.
+            </summary>
+        </member>
+        <member name="P:Slps.Engine.Execution.Internal.IExecutionEngineGenericArguments.Stack">
+            <summary>
+            For internal use.
+            </summary>		
+        </member>
+        <member name="T:Slps.Engine.Execution.Internal.IExecutionStack">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Slps.Engine.Execution.Internal.IExecutionStack.Push(System.Guid)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Slps.Engine.Execution.Internal.IExecutionStack.Enter(System.Guid)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Slps.Engine.Execution.Internal.IExecutionStack.Exit(System.Guid)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Slps.Engine.Execution.Internal.IExecutionStack.Pop(System.Guid)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Slps.Engine.Execution.Internal.InvocationContext">
+            /// <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Slps.Engine.Execution.Internal.InvocationContext.#ctor(System.Object,System.Object[],System.Type[],System.Type[])">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Slps.Engine.Execution.Internal.InvocationContext.ExtractParameters(System.Object,System.Object@,System.Object[]@)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="P:Slps.Engine.Execution.Internal.InvocationContext.GenericTypeArgs">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="P:Slps.Engine.Execution.Internal.InvocationContext.GenericMethodArgs">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="P:Slps.Engine.Execution.Internal.InvocationContext.Stack">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Activation.InvalidLicenseKeyException">
+            <summary>
+            License Key format is invalid.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Activation.InvalidLicenseKeyException.#ctor">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Activation.InvalidLicenseKeyException.#ctor(System.String,System.String)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Activation.InvalidLicenseKeyException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sp.Agent.Activation.InvalidLicenseKeyException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info"/> parameter is null. </exception>
+              
+            <exception cref="T:System.Runtime.Serialization.SerializationException">The class name is null or <see cref="P:System.Exception.HResult"/> is zero (0). </exception>
+        </member>
+        <member name="P:Sp.Agent.Activation.InvalidLicenseKeyException.LicenseKey">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Execution.NotLicensedException">
+            <summary>
+            Thrown when there's no license to Execute protected code.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Execution.NotLicensedException.#ctor(System.String)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Execution.NotLicensedException.#ctor(System.String,System.Exception)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Execution.NotLicensedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Sp.Agent.Execution.NotLicensedException"/> class.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="info"/> parameter is null. </exception>
+              
+            <exception cref="T:System.Runtime.Serialization.SerializationException">The class name is null or <see cref="P:System.Exception.HResult"/> is zero (0). </exception>
+        </member>
+        <member name="T:Slps.Engine.Internal.CodeRuleType">
+            <summary>
+            Type of CodeRule (Include/Exclude).
+            </summary>
+        </member>
+        <member name="F:Slps.Engine.Internal.CodeRuleType.Include">
+            <summary>
+            Include all code entities that match the rule.
+            </summary>
+        </member>
+        <member name="F:Slps.Engine.Internal.CodeRuleType.Exclude">
+            <summary>
+            Exclude all code entities that match the rule.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Activation.NumberOfActivationsExceededActivationServerException">
+            <summary>
+            Indicates that the License associated with the supplied activation key has already been activated the maximum permitted number of times designated in License entity in the Software Potential service.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Activation.ActivationServerException">
+            <summary>
+            Indicates that there has been a problem encountered by the license server in the processing of an activation request.<para/>
+            The reason can be inspected via the <c>Code</c> property.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Activation.ActivationServerException.#ctor(System.Exception,System.String)">
+            <summary>
+            Constructs a default ActivationServerException.
+            </summary>
+            <param name="innerException">The inner exception.</param>
+            <param name="code">The underlying error code.</param>
+        </member>
+        <member name="M:Sp.Agent.Activation.ActivationServerException.#ctor(System.String,System.Exception,System.String)">
+            <summary>
+            Constructs an ActivationServerException with the specified message explaining the details of the condition.
+            </summary>
+            <param name="message">The exception message.</param>
+            <param name="innerException">The inner exception.</param>
+            <param name="code">The underlying error code.</param>
+        </member>
+        <member name="M:Sp.Agent.Activation.ActivationServerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sp.Agent.Activation.ActivationServerException.Code">
+            <summary>
+            The reason given by the activation server for the rejection of the activation request.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Activation.NumberOfActivationsExceededActivationServerException.#ctor(System.Exception,System.String)">
+            <summary>
+            Creates an instance with the supplied inner exception detail and standard error message.
+            </summary>
+            <param name="innerException">The inner exception.</param>
+            <param name="code">The fault code encountered.</param>
+        </member>
+        <member name="M:Sp.Agent.Activation.NumberOfActivationsExceededActivationServerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sp.Agent.Activation.LicenseExpiredActivationServerException">
+            <summary>
+            Indicates that the License associated with the supplied activation key has been marked Expired in the License entity in the Software Potential service.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Activation.LicenseExpiredActivationServerException.#ctor(System.Exception,System.String)">
+            <summary>
+            Creates an instance with the supplied inner exception detail and standard error message.
+            </summary>
+            <param name="innerException">The inner exception.</param>
+            <param name="code">The fault code encountered.</param>
+        </member>
+        <member name="M:Sp.Agent.Activation.LicenseExpiredActivationServerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sp.Agent.Activation.LicenseDisabledActivationServerException">
+            <summary>
+            Indicates that the License associated with the supplied activation key has been marked Disabled in the License entity in the Software Potential service.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Activation.LicenseDisabledActivationServerException.#ctor(System.Exception,System.String)">
+            <summary>
+            Creates an instance with the supplied inner exception detail and standard error message.
+            </summary>
+            <param name="innerException">The inner exception.</param>
+            <param name="code">The fault code encountered.</param>
+        </member>
+        <member name="M:Sp.Agent.Activation.LicenseDisabledActivationServerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sp.Agent.Activation.DeviceChangedActivationServerException">
+            <summary>
+            Indicates that the Software Potential service refused to re-activate the license due to an inability to fulfill a stipulation that it cannot be activated on more than one machine.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Activation.DeviceChangedActivationServerException.#ctor(System.Exception,System.String)">
+            <summary>
+            Creates an instance with the supplied inner exception detail and standard error message.
+            </summary>
+            <param name="innerException">The inner exception.</param>
+            <param name="code">The fault code encountered.</param>
+        </member>
+        <member name="M:Sp.Agent.Activation.DeviceChangedActivationServerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sp.Agent.Activation.TagsChangedActivationServerException">
+            <summary>
+            Indicates that the Software Potential service refused to re-activate the license due to an inability to fulfill a stipulation that all activation tags must match those of the preceding activation.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Activation.TagsChangedActivationServerException.#ctor(System.Exception,System.String)">
+            <summary>
+            Creates an instance with the supplied inner exception detail and standard error message.
+            </summary>
+            <param name="innerException">The inner exception.</param>
+            <param name="code">The fault code encountered.</param>
+        </member>
+        <member name="M:Sp.Agent.Activation.TagsChangedActivationServerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sp.Agent.Activation.RenewalNotAuthorizedActivationServerException">
+            <summary>
+            Indicates that the Software Potential service refused to renew the license due to a limitation on what date renewals are authorized until.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Activation.RenewalNotAuthorizedActivationServerException.#ctor(System.Exception,System.String)">
+            <summary>
+            Creates an instance with the supplied inner exception detail and standard error message.
+            </summary>
+            <param name="innerException">The inner exception.</param>
+            <param name="code">The fault code encountered.</param>
+        </member>
+        <member name="M:Sp.Agent.Activation.RenewalNotAuthorizedActivationServerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sp.Agent.Activation.InvalidVersionActivationServerException">
+            <summary>
+            Indicates that the Software Potential service refused to activate the license due to a limitation on version of the runtime is supported by the given license type.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Activation.InvalidVersionActivationServerException.#ctor(System.Exception,System.String)">
+            <summary>
+            Creates an instance with the supplied inner exception detail and standard error message.
+            </summary>
+            <param name="innerException">The inner exception.</param>
+            <param name="code">The fault code encountered.</param>
+        </member>
+        <member name="M:Sp.Agent.Activation.InvalidVersionActivationServerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sp.Agent.Activation.ActivationTransmissionException">
+            <summary>
+            <para>Indicates that there has been a problem in the tranmission of an Activation Request to an Activation Server Endpoint. The <c>InnerException</c> will contain salient details of the problem.</para>
+            <para>It is possible to configure multiple attempts to be made via <see cref="T:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase"/>.</para>
+            </summary>
+            <seealso cref="T:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase"/>
+            <seealso cref="T:Sp.Agent.Activation.IActivateLicenses"/>
+        </member>
+        <member name="M:Sp.Agent.Activation.ActivationTransmissionException.#ctor(System.String,System.Exception)">
+            <summary>
+            Standard constructor.
+            </summary>
+            <param name="message">An explaining message. See <see cref="M:Sp.Agent.Activation.ActivationTransmissionException.Create(System.Exception,System.Int32,System.Uri)"/> for a helper.</param>
+            <param name="innerException">The root cause.</param>
+        </member>
+        <member name="M:Sp.Agent.Activation.ActivationTransmissionException.Create(System.Exception,System.Int32,System.Uri)">
+            <summary>
+            Creates a <c>ActivationTransmissionException</c>.
+            </summary>
+            <param name="inner">The inner exception.</param>
+            <param name="previousAttempts">The numver of attempts that have taken place prior to this one.</param>
+            <param name="destination">The endpoint one was attempting to communicate with.</param>
+        </member>
+        <member name="M:Sp.Agent.Activation.ActivationTransmissionException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Serialization constructor.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.ActivateLicensesExtensions">
+            <summary>
+            Provides access to more granular activation Apis that allow one to implement Disconnected or Manual Activation scenarios.
+            </summary>
+            <remarks>
+            Not implemented directly as a property as <see cref="T:Sp.Agent.Activation.IActivateLicensesAdvanced"/> is not <c>CLSCompliant</c> but <see cref="T:Sp.Agent.Activation.IActivateLicenses"/> is.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.ActivateLicensesExtensions.Advanced(Sp.Agent.Activation.IActivateLicenses)">
+            <summary>
+            Provides more granular activation Apis that allow one to implement Disconnected or Manual Activation scenarios.
+            <para/>
+            See <see cref="T:Sp.Agent.Activation.IActivateLicensesAdvanced"/> for further details.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Activation.IActivateLicenses">
+            <summary>
+            Manages the process of activating a license that has been prepared on the Software Potential service into a local license store.
+            <para/>
+            See <see cref="T:Sp.Agent.Configuration.AgentContext"/> for details of configuring stores.
+            See <see cref="T:Sp.Agent.ActivateLicensesExtensions"/> for extension methods pertaining to advanced options as managed via <see cref="T:Sp.Agent.Activation.IActivateLicensesAdvanced"/>.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Internal.IHideObjectMembers">
+            <summary>
+            Facilitates more natural usage of fluent interfaces wrt intellisense
+            </summary>
+            <remarks>
+            see http://blogs.clariusconsulting.net/kzu/how-to-hide-system-object-members-from-your-interfaces/ for details </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.IHideObjectMembers.GetType">
+            <summary>
+            Has no material effect - does not get overridden; Only serves to indicate to VS intellisense that the member should be omitted from the method lists
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Internal.IHideObjectMembers.GetHashCode">
+            <summary>
+            Has no material effect - does not get overridden; Only serves to indicate to VS intellisense that the member should be omitted from the method lists
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Internal.IHideObjectMembers.ToString">
+            <summary>
+            Has no material effect - does not get overridden; Only serves to indicate to VS intellisense that the member should be omitted from the method lists
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Internal.IHideObjectMembers.Equals(System.Object)">
+            <summary>
+            Has no material effect - does not get overridden; Only serves to indicate to VS intellisense that the member should be omitted from the method lists
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Activation.IActivateLicenses.IsWellFormedKey(System.String)">
+            <summary>
+            Determines whether the specified activation key is well formed (e.g., 5 sets of digits/letters separated by minus (-) symbols).
+            </summary>
+            <param name="activationKey">The activation key. Can by any string, doesn't have to be of a particular length etc.</param>
+            <returns><c>true</c> if <paramref name="activationKey"/> is  well formed; otherwise, <c>false</c>.</returns>
+            <remarks>Does not attempt to ascertain whether the Activation Key represents a license that is valid - the validation is purely for adherence to the key format.</remarks>
+        </member>
+        <member name="M:Sp.Agent.Activation.IActivateLicenses.OnlineActivateAsync(System.String,System.Object)">
+             <summary>
+             Submits an activation request to Software Potential service and installs the resulting license (assuming that succeeds) asynchronously.
+            <para/>
+             See <see cref="T:Sp.Agent.Activation.IActivateLicensesAdvanced"/> <c>.CreateDeferredRequest()</c>  (for deferring Activation and/or processing it on another machine) or <c>CreateManualActivationRequest()</c> (for Manual Activation via the Software Potential service) for alternate approaches to activation.
+             </summary>
+             <param name="activationKey">must be a well formed Activation Key as defined by <c>IsWellFormedKey()</c>.</param>
+             <param name="state">propagated to Activation Customizations such as the Action supplied to <see cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase.WithTagging(System.Action{Sp.Agent.Configuration.Product.Activation.IActivationTaggingContext})"/>.</param>
+             <remarks>Performs an asynchronous <c>CreateRequest()</c> followed by a <c>SendDeferredRequestAsync()</c> and a <c>Install()</c>.</remarks>
+             <exception cref="T:System.AggregateException">Transmission may (internally) be automatically retried as dictated by <see cref="T:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase"/>. As a result, an <see cref="T:System.AggregateException"/> reflecting the outcomes of multiple activation attempts may be thrown.</exception>
+             <exception cref="T:Sp.Agent.Activation.ActivationServerException">Thrown if the Software Potential service refuses the Activation Request. For some causes, there are specific derived Types reflecting the indicated reason.</exception>
+             <exception cref="T:Sp.Agent.Activation.ActivationTransmissionException">Thrown if it was not possible to communicate with the Software Potential Activation service.</exception>
+        </member>
+        <member name="M:Sp.Agent.Activation.IActivateLicenses.OnlineActivateAsync(System.String)">
+             <summary>
+             Submits an activation request to Software Potential service and installs the resulting license (assuming that succeeds) asynchronously.
+            <para/>
+             See <see cref="T:Sp.Agent.Activation.IActivateLicensesAdvanced"/> <c>.CreateDeferredRequest()</c>  (for deferring Activation and/or processing it on another machine) or <c>CreateManualActivationRequest()</c> (for Manual Activation via the Software Potential service) for alternate approaches to activation.
+             </summary>
+             <param name="activationKey">must be a well formed Activation Key as defined by <c>IsWellFormedKey()</c>.</param>
+             <remarks><para>Performs an asynchronous <c>CreateRequest()</c> followed by a <c>SendDeferredRequestAsync()</c> and a <c>Install()</c>.</para></remarks>
+             <exception cref="T:System.AggregateException">Transmission may (internally) be automatically retried as dictated by <see cref="T:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase"/>. As a result, an <see cref="T:System.AggregateException"/> reflecting the outcomes of multiple activation attempts may be thrown.</exception>
+             <exception cref="T:Sp.Agent.Activation.ActivationServerException">Thrown if the Software Potential service refuses the Activation Request. For some causes, there are specific derived Types reflecting the indicated reason.</exception>
+             <exception cref="T:Sp.Agent.Activation.ActivationTransmissionException">Thrown if it was not possible to communicate with the Software Potential Activation service.</exception>
+        </member>
+        <member name="M:Sp.Agent.Activation.IActivateLicenses.OnlineActivate(System.String,System.Object)">
+            <summary>
+            Submits an activation request to Software Potential service and installs the resulting license (assuming that succeeds) synchronously.
+            <para/>
+            See <see cref="T:Sp.Agent.Activation.IActivateLicensesAdvanced"/> <c>.CreateRequest()</c>  (for deferring Activation and/or processing it on another machine) or <c>CreateManualActivationRequest()</c> (for Manual Activation via the Software Potential service) for alternate approaches to activation.
+            </summary>
+            <param name="activationKey">must be a well formed Activation Key as defined by <c>IsWellFormedKey()</c>.</param>
+            <param name="state">propagated to Activation Customizations such as the Action supplied to <see cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase.WithTagging(System.Action{Sp.Agent.Configuration.Product.Activation.IActivationTaggingContext})"/>.</param>
+            <remarks>
+            <para>Performs a synchronous <c>CreateDeferredRequest()</c> followed by a <c>SendDeferredRequestAsync()</c> and a <c>Install()</c>.</para>
+            <para>Note that Transmission may (internally) be automatically retried as dictated by <see cref="T:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase"/>. As a result, an <see cref="T:System.AggregateException"/> reflecting the outcomes of multiple activation attempts may be thrown internally by <see cref="M:Sp.Agent.Activation.IActivateLicenses.OnlineActivateAsync(System.String)"/> hence it is recommnded to use that API in preference. Only of the first of these is bubbled up.</para>
+            </remarks>
+            <exception cref="T:System.AggregateException">While thrown internally, it is never surfaced and instead replaced with <c>ex.Flatten().InnerException</c>. It is recommended to use <see cref="M:Sp.Agent.Activation.IActivateLicenses.OnlineActivateAsync(System.String)"/> in preference.</exception>
+            <exception cref="T:Sp.Agent.Activation.ActivationServerException">Thrown if the Software Potential service refuses the Activation Request. For some causes, there are specific derived Types reflecting the indicated reason.</exception>
+            <exception cref="T:Sp.Agent.Activation.ActivationTransmissionException">Thrown if it was not possible to communicate with the Software Potential Activation service.</exception>
+        </member>
+        <member name="M:Sp.Agent.Activation.IActivateLicenses.OnlineActivate(System.String)">
+            <summary>
+            Submits an activation request to Software Potential service and installs the resulting license (assuming that succeeds) synchronously.
+            <para/>
+            See <see cref="T:Sp.Agent.Activation.IActivateLicensesAdvanced"/> <c>.CreateRequest()</c>  (for deferring Activation and/or processing it on another machine) or <c>CreateManualActivationRequest()</c> (for Manual Activation via the Software Potential service) for alternate approaches to activation.
+            </summary>
+            <param name="activationKey">must be a well formed Activation Key as defined by <c>IsWellFormedKey()</c>.</param>
+            <remarks><para>Performs a synchronous <c>CreateDeferredRequest()</c> followed by a <c>SendDeferredRequestAsync()</c> and a <c>Install()</c>.</para>
+            <para>Note that Transmission may (internally) be automatically retried as dictated by <see cref="T:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase"/>. As a result, an <see cref="T:System.AggregateException"/> reflecting the outcomes of multiple activation attempts may be thrown internally by <see cref="M:Sp.Agent.Activation.IActivateLicenses.OnlineActivateAsync(System.String)"/> hence it is recommnded to use that API in preference. Only of the first of these is bubbled up.</para>
+            </remarks>
+            <exception cref="T:System.AggregateException">While thrown internally, it is never surfaced and instead replaced with <c>ex.Flatten().InnerException</c>. It is recommended to use <see cref="M:Sp.Agent.Activation.IActivateLicenses.OnlineActivateAsync(System.String)"/> in preference.</exception>
+            <exception cref="T:Sp.Agent.Activation.ActivationServerException">Thrown if the Software Potential service refuses the Activation Request. For some causes, there are specific derived Types reflecting the indicated reason.</exception>
+            <exception cref="T:Sp.Agent.Activation.ActivationTransmissionException">Thrown if it was not possible to communicate with the Software Potential Activation service.</exception>
+        </member>
+        <member name="T:Sp.Agent.Activation.IActivateLicensesAdvanced">
+            <summary>
+            Provides advanced facilities for management of the Activation process such as:<para/>
+            <list type="number">
+            <item><description>Manual Activation - creation of a textual activation request which an end-user can transmit to the Vendor's systems via mechanisms such as email.</description></item>
+            <item><description>Disconnected Activation - creation of a Deferred Activation request on the machine that is to have the license installed which can then be submitted to the Software Potential Activation service at a later point in time - e.g., on another machine that doesn't have firewall restrictions imposed on it.</description></item>
+            <item><description>Installation of licenses resulting from Manual or Disconnected activation.</description></item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Activation.IActivateLicensesAdvanced.CreateDeferredRequest(System.String,System.Object)">
+            <summary>
+            Generates a request blob which can then be transmitted to the Software Potential service in order to generate a <see cref="T:Sp.Agent.Licensing.ILicense">License</see> that is appropriate for the configured licensing context.
+            <para/>
+            See <see cref="T:Sp.Agent.Configuration.AgentContext"/> for details of configuring stores.
+            </summary>
+            <param name="activationKey">The activation key for the License entity in the Software Potential service.</param>
+            <param name="state">propagated to Activation Customizations such as the Action supplied to <see cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase.WithTagging(System.Action{Sp.Agent.Configuration.Product.Activation.IActivationTaggingContext})"/>.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">thrown if <paramref name="activationKey"/> does not represent a well-formed key, as defined by <c>IsWellFormedKey()</c>.</exception>
+            <returns>An activation request blob that can be submitted to the Software Potential service at a later point via<c>SendDeferredRequestAsync()</c>. </returns>
+        </member>
+        <member name="M:Sp.Agent.Activation.IActivateLicensesAdvanced.CreateManualActivationRequest(System.String,System.Object)">
+            <summary>
+            <para>Generates a textual representation of the request blob which can be used to download a binary license file from the Software Potential service.</para>
+            <para>Textual requests can be submitted e.g., via email where an Online Activation would not be appropriate, e.g., due to lack of network connectivity.</para>
+            <para>See <see cref="T:Sp.Agent.Configuration.AgentContext"/> for details of configuring stores.</para>
+            </summary>
+            <returns>Manual Activation request string ready for submission to the Software Potential service (in return for a .BIN license file)</returns>
+            <remarks>Submission of the textual request to the Software Potential service yields a .BIN License File. Such a license can be installed at a later point in time via <see cref="M:Sp.Agent.Storage.IStoreLicenses.Install(System.Byte[])">IStoreLicenses.Install</see></remarks>.
+            <param name="activationKey">The activation key for the license entity in the Software Potential service.</param>
+            <param name="state">propagated to Activation Customizations such as the Action supplied to <see cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase.WithTagging(System.Action{Sp.Agent.Configuration.Product.Activation.IActivationTaggingContext})"/>.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">thrown if <paramref name="activationKey"/> does not represent a well-formed key, as defined by <c>IsWellFormedKey()</c>.</exception>
+            <seealso cref="M:Sp.Agent.Storage.IStoreLicenses.Install(System.Byte[])">IStoreLicenses.Install</seealso>
+        </member>
+        <member name="M:Sp.Agent.Activation.IActivateLicensesAdvanced.SendDeferredRequestAsync(System.Byte[])">
+            <summary>
+            <para>Transmits a request blob generated by <c>CreateDeferredRequest()</c> to the Software Potential service in order to retrieve a license blob which is appropriate for the configured licensing context.</para>
+            <para>Such a license can be installed at a later point in time via <see cref="M:Sp.Agent.Storage.IStoreLicenses.Install(System.Byte[])">IStoreLicenses.Install</see>.</para>
+            </summary>
+            <param name="requestBlob">The license activation request blob to be transmitted to the Software Potential service (previously obtained from <c>CreateRequest()</c>).</param>
+            <exception cref="T:System.ArgumentNullException">thrown if <paramref name="requestBlob"/> is <c>null</c>.</exception>
+            <exception cref="T:System.AggregateException">Transmission may (internally) be automatically retried as dictated by <see cref="T:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase"/>. As a result, an <see cref="T:System.AggregateException"/> reflecting the outcomes of multiple activation attempts may be thrown.</exception>
+            <exception cref="T:Sp.Agent.Activation.ActivationServerException">Thrown if the Software Potential service refuses the Activation Request. For some causes, there are specific derived Types reflecting the indicated reason.</exception>
+            <exception cref="T:Sp.Agent.Activation.ActivationTransmissionException">Thrown if it was not possible to communicate with the Software Potential Activation service.</exception>
+        </member>
+        <member name="M:Sp.Agent.Activation.IActivateLicensesAdvanced.GenerateActivationAddress(System.Int32)">
+            <summary>
+             Returns the Software Potential activation service endpoint that is appropriate for use after <param name="previousAttempts"/> previous attempts.
+            </summary>
+            <value>Activation endpoint URL.</value>
+            <example><c>"http://srv.softwarepotential.com/SLMServerWS/ActivationWS.svc"</c></example>
+        </member>
+        <member name="P:Sp.Agent.Activation.IActivateLicensesAdvanced.ActivationUrl">
+            <summary>
+             Returns the configured Software Potential activation service endpoint.
+            </summary>
+            <value>Activation endpoint URL.</value>
+            <example><c>"http://srv.softwarepotential.com/SLMServerWS/ActivationWS.svc"</c></example>
+        </member>
+        <member name="T:Sp.Agent.Internal.PermutationRevisionMismatchException">
+            <summary>
+            <para>Thrown to flag a mismatch between the Permutation Revision that was used during the Protection process
+            and the Permuted Revision of the Execution engine that was encountered when the protected code was to be executed.</para>
+            <para></para>
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Internal.PermutationRevisionMismatchException.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Constructs a new PermutationRevisionMismatchException.
+            </summary>
+            <param name="expectedRevision">The revision number required to execute the protected code.</param>
+            <param name="actualRevision">The revision number of the Permuted Runtime Assembly encountered when attempting to execute.</param>
+        </member>
+        <member name="M:Sp.Agent.Internal.PermutationRevisionMismatchException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Serialization constructor.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Configuration.ConfigurationCompleteWithDefaultsExtensions">
+            <summary>
+            Exposes a set of extension methods that accept the defaults for any remaining configurable settings in a configuration call-chain.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Configuration.ConfigurationCompleteWithDefaultsExtensions.CompleteWithDefaults(Sp.Agent.Configuration.IAgentDistributorsConfigurationPhase)">
+            <summary>
+            Accepts the defaults for the remaining configurable settings.
+            </summary>
+            <remarks>
+            Currently, the default is <c>DisableDistributor().WithEmbeddedLicensesAutoDetected()</c>.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Configuration.ConfigurationCompleteWithDefaultsExtensions.CompleteWithDefaults(Sp.Agent.Configuration.IAgentEmbeddedLicensesConfigurationPhase)">
+            <summary>
+            Accepts the defaults for the remaining configurable settings.
+            </summary>
+            <remarks>
+            Currently, the default is <c>WithEmbeddedLicensesAutoDetected()</c>.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Configuration.IAgentDistributorsConfigurationPhase">
+            <summary>
+            <para>Allows one to control access to Distributed Licenses within a given AgentContext.</para>
+            <para>Extension methods provided by Sp.Agent.Distributor allow one to opt into relevant Discovery strategies.</para>
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Configuration.IAgentDistributorsConfigurationPhase.DisableDistributor">
+            <summary>
+            <para>Accepts the default behavior - do not consider contacting any Distributors if no Licenses can be located from Storage on the local machine in order to Execute Licensed Code.</para>
+            <para>NB Extension methods provided by Sp.Agent.Distributor allow one to opt into relevant Discovery strategies.</para>
+            </summary>
+            <returns>The next link in the Fluent Expression chain.</returns>
+        </member>
+        <member name="T:Sp.Agent.Configuration.IAgentEmbeddedLicensesConfigurationPhase">
+            <summary>
+            Allows one to control whether or not Licensed Code Execution should search for Embedded Licenses (for Execute only) 
+            that are embedded as part of the Code Protection process should no Stored License be available.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Configuration.IAgentEmbeddedLicensesConfigurationPhase.DisableEmbeddedLicenses">
+            <summary>
+            Inhibits detection (and prevents usage) of any embedded licenses.
+            </summary>
+            <remarks>May provide a minor performance benefit as Embedded Licenses are considered prior to consulting any Distributor.</remarks>
+        </member>
+        <member name="M:Sp.Agent.Configuration.IAgentEmbeddedLicensesConfigurationPhase.WithEmbeddedLicensesAutoDetected">
+            <summary>
+            Accept default behavior - check for embedded licenses and use them to execute <c>[Feature]</c> (and/or <c>[Feature("Execute")]</c>) Licensed Code if present.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Configuration.IAgentCommenceConfigurationPhase">
+            <summary>
+            Commences the Software Potential Agent configuration pipeline.<para/>
+            Each specific application style/environment provides appropriate Extension Methods on this interface to provide an appropriate subset of customization options.<para/>
+            Following the fluent configuration sequence should yield a <see cref="T:Sp.Agent.Configuration.IAgentCompletedConfigurationPhase"/>, which the <see cref="T:Sp.Agent.Configuration.IAgentContext"/> <c>.Configure( Func&lt;IAgentCommenceConfigurationPhase, IAgentCompletedConfigurationPhase&gt; )</c> or <c>.EnsureConfigured( Func&lt;IAgentCommenceConfigurationPhase, IAgentCompletedConfigurationPhase&gt;)</c> extension method expects.<para/>
+            NB IntelliSense will not offer any methods until you add a Reference to an appropriate environment layer such as <c>Sp.Agent.Crm.dll</c>.<para/>
+            </summary>
+            <example>
+            <code>
+            using Sp.Agent.Configuration;
+            using Sp.Agent.Configuration.Internal;
+            
+            var context = AgentContext.For( "abc12" );
+            context.Configure( x=&gt; x.Configure( x=&gt;x.CompleteWithDefaults() ) );
+            </code>
+            </example>
+            <remarks>Using the <c>Sp.Agent.Configuration.Internal</c> namespace opens access to low-level customization Apis. Typically one should be using an appropriate environment layer such as <c>Sp.Agent.Crm.dll</c>.</remarks>
+            <seealso cref="T:Sp.Agent.Configuration.IAgentCompletedConfigurationPhase"/>
+            <seealso cref="T:Sp.Agent.Configuration.IAgentContext"/>
+            <seealso cref="T:Sp.Agent.Configuration.AgentContext"/>.
+        </member>
+        <member name="T:Sp.Agent.Configuration.Internal.IInternalDistributorsConfigurationPhase">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Internal.IInternalDistributorsConfigurationPhase.WithDistributorBaseUri(System.Func{System.Uri})">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Internal.IInternalDistributorsConfigurationPhase.DisableDistributors">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Configuration.IAgentCompletedConfigurationPhase">
+            <summary>
+            Terminates the Software Potential Agent configuration pipeline.<para/>
+            See <see cref="T:Sp.Agent.Configuration.IAgentCommenceConfigurationPhase"/> for further information and examples pertaining to <c>Configure()</c> / <c>EnsureConfigured()</c> call sequences.<para/>
+            NB IntelliSense will not offer any methods until you add a Reference to an appropriate environment layer such as <c>Sp.Agent.Crm.dll</c>.<para/>
+            </summary>
+            <seealso cref="T:Sp.Agent.Configuration.IAgentCommenceConfigurationPhase"/>
+            <seealso cref="T:Sp.Agent.Configuration.IAgentContext"/>.
+            <seealso cref="T:Sp.Agent.Configuration.AgentContext"/>.
+        </member>
+        <member name="T:Sp.Agent.Configuration.Product.Activation.Internal.ProductActivationTransmissionEndpointInternalExtensions">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Product.Activation.Internal.ProductActivationTransmissionEndpointInternalExtensions.WithBaseUriPolicy(Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionEndpointConfigurationPhase,System.Func{System.Int32,System.Uri})">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Product.Activation.Internal.ProductActivationTransmissionEndpointInternalExtensions.WithSchemePolicy(Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionEndpointConfigurationPhase,System.Func{System.Int32,System.String})">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase">
+            <summary>
+            <para>Part of Fluent Syntax flow used to build the <c>composer</c> argument of <see cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionConfigurationPhase.WithTransmission(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCompletedConfigurationPhase})"/>.</para>
+            <para>Enables one to specify the desired behavior with regard to management of <see cref="P:Sp.Agent.Licensing.ILicense.Tags">License Tags</see> at the point of License activation via <see cref="T:Sp.Agent.Activation.IActivateLicenses"/>.</para>
+            <para>Subsequent phases in the chain allow customization of the Retry, Endpoint Selection and Monitoring/Status reporting aspects.</para>
+            </summary>
+            <seealso cref="M:Sp.Agent.IProductContext.Configure(System.Func{Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase,Sp.Agent.Configuration.Product.IProductCompletedConfigurationPhase})">IProductContext.Configure</seealso>
+            <seealso cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase.Customize(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationCompletedConfigurationPhase})">IProductActivationConfigurationPhase.Customize()</seealso>
+            <seealso cref="P:Sp.Agent.Licensing.ILicense.Tags">ILicense.Tags</seealso>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase.WithTagging(System.Action{Sp.Agent.Configuration.Product.Activation.IActivationTaggingContext})">
+            <summary>
+            Allows one to specify a custom Action to be triggered during <see cref="T:Sp.Agent.Activation.IActivateLicenses"/>'s Activation methods.
+            </summary>
+            <param name="applyTagsUsingState">Action to be called. The action is supplied with a context which gives access to the <c>state</c> supplied to the <c>Activate</c> method and allows custom tags to be added as desired based on your specific licensing requirements.</param>
+            <returns>The next phase of the Fluent Syntax chain.</returns>
+            <seealso cref="P:Sp.Agent.Licensing.ILicense.Tags">ILicense.Tags</seealso>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionConfigurationPhase">
+            <summary>
+            <para>Part of Fluent Syntax flow used to build the <c>composer</c> argument of <see cref="M:Sp.Agent.IProductContext.Configure(System.Func{Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase,Sp.Agent.Configuration.Product.IProductCompletedConfigurationPhase})">IProductContext.Configure()</see>.</para>
+            <para>Enables one to specify the rules or customize the behavior with regard to sending, retrying and monitoring of Activation Requests via <see cref="T:Sp.Agent.Activation.IActivateLicenses"/>.</para>
+            </summary>
+            <seealso cref="M:Sp.Agent.IProductContext.Configure(System.Func{Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase,Sp.Agent.Configuration.Product.IProductCompletedConfigurationPhase})">IProductContext.Configure</seealso>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionConfigurationPhase.WithTransmission(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCompletedConfigurationPhase})">
+            <summary>
+            Allows one to specify custom rules and behaviors to be applied when sending, retrying and monitoring of Activation Requests transmitted via <see cref="T:Sp.Agent.Activation.IActivateLicenses"/>.
+            </summary>
+            <returns>The next phase of the Fluent Syntax chain.</returns>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase">
+            <summary>
+            <para>Part of Fluent Syntax flow used to build the <c>composer</c> argument of <see cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionConfigurationPhase.WithTransmission(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCompletedConfigurationPhase})"/>.</para>
+            <para>Enables one to specify the rules or customize the behavior with regard to retrying of Activation Requests when triggered via <see cref="T:Sp.Agent.Activation.IActivateLicenses"/>.</para>
+            </summary>
+            <seealso cref="M:Sp.Agent.IProductContext.Configure(System.Func{Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase,Sp.Agent.Configuration.Product.IProductCompletedConfigurationPhase})">IProductContext.Configure</seealso>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase.WithRetryPolicy(System.Func{System.Exception,System.Int32,System.Boolean})">
+            <summary>
+            <para>Allows one to specify a custom policy regarding whether an Activation Request triggered via <see cref="T:Sp.Agent.Activation.IActivateLicenses"/> should be submitted.</para>
+            <para>The supplied <c>Func</c> is responsible for deciding when to terminate the retrying of a request that is failing to roundtrip to the Activation Server for any reason.</para>
+            </summary>
+            <param name="shouldRetryAfterExceptionWithPreviousAttempts">
+            <para><c>Func</c> that decides based on the <c>Exception</c> and <c>previousAttempts</c> input parameters whether a retry attempt should take place.</para>
+            </param>
+            <returns>The next phase of the Fluent Syntax chain.</returns>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionEndpointConfigurationPhase">
+            <summary>
+            <para>Part of Fluent Syntax flow used to build the <c>composer</c> argument of <see cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionConfigurationPhase.WithTransmission(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCompletedConfigurationPhase})"/>.</para>
+            <para>Enables one to specify the rules or customize the behavior with regard to the selection of an appropriate endpoint to attempt to use for a given Activation Request transmission attempt triggered via <see cref="T:Sp.Agent.Activation.IActivateLicenses"/>.</para>
+            </summary>
+            <seealso cref="M:Sp.Agent.IProductContext.Configure(System.Func{Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase,Sp.Agent.Configuration.Product.IProductCompletedConfigurationPhase})">IProductContext.Configure</seealso>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionHooksConfigurationPhase">
+            <summary>
+            <para>Part of Fluent Syntax flow used to build the <c>composer</c> argument of <see cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionConfigurationPhase.WithTransmission(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCompletedConfigurationPhase})"/>.</para>
+            <para>Enables one to specify a callback which will be invoked prior to each and every Activation Request transmission attempt triggered via <see cref="T:Sp.Agent.Activation.IActivateLicenses"/>.</para>
+            </summary>
+            <seealso cref="M:Sp.Agent.IProductContext.Configure(System.Func{Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase,Sp.Agent.Configuration.Product.IProductCompletedConfigurationPhase})">IProductContext.Configure</seealso>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionHooksConfigurationPhase.BeforeEachAttempt(System.Action{Sp.Agent.Configuration.Product.Activation.IActivationAttemptContext})">
+            <summary>
+            <para>Allows one to indicate the callback to be triggered prior to the transmission of any attempted Activation Request triggered via <see cref="T:Sp.Agent.Activation.IActivateLicenses"/> should be submitted.</para>
+            <para>The supplied <c>Action</c> can customize the transmission process via the supplied <see cref="T:Sp.Agent.Configuration.Product.Activation.IActivationAttemptContext"/>.</para>
+            </summary>
+            <param name="beforeEachAttemptAction">
+            <para><c>Action</c> to call. The action can, based on the contextual information supplied</para>
+            <para>- customize the transmission process by altering properties on the Web Request about to be transmitted.</para>
+            <para>- Update progress indicators etc.</para></param>
+            <remarks>Whether or not a given attempt should proceed or not can be controlled via <see cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase.WithRetryPolicy(System.Func{System.Exception,System.Int32,System.Boolean})"/>.</remarks>
+            <returns>The next phase of the Fluent Syntax chain.</returns>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionConfigurationPhaseTail">
+            <summary>
+            <para>Part of Fluent Syntax flow used to build the <c>composer</c> argument of <see cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionConfigurationPhase.WithTransmission(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCompletedConfigurationPhase})"/>.</para>
+            <para>Represents the last step in the customization chain starting from <see cref="T:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase"/>.</para>
+            </summary>
+            <seealso cref="M:Sp.Agent.IProductContext.Configure(System.Func{Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase,Sp.Agent.Configuration.Product.IProductCompletedConfigurationPhase})">IProductContext.Configure</seealso>
+            <seealso cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase.Customize(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationCompletedConfigurationPhase})">IProductActivationConfigurationPhase.Customize()</seealso>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionConfigurationPhaseTail.CompleteWithDefaults">
+            <summary>
+            Completes the composition of the Fluent Configuration Expression.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCompletedConfigurationPhase">
+            <summary>
+            Terminates a Fluent Syntax Composition expression starting from <see cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionConfigurationPhase.WithTransmission(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCompletedConfigurationPhase})"/>.
+            </summary>
+            <seealso cref="M:Sp.Agent.IProductContext.Configure(System.Func{Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase,Sp.Agent.Configuration.Product.IProductCompletedConfigurationPhase})">IProductContext.Configure</seealso>
+            <seealso cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase.Customize(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationCompletedConfigurationPhase})">IProductActivationConfigurationPhase.Customize()</seealso>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhaseTail">
+            <summary>
+            <para>Part of Fluent Syntax flow used to build the <c>composer</c> argument of <see cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase.Customize(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationCompletedConfigurationPhase})">IProductActivationConfigurationPhase.Customize()</see>.</para>
+            <para>Represents the last step in the customization chain starting from <see cref="T:Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase"/>.</para>
+            </summary>
+            <seealso cref="M:Sp.Agent.IProductContext.Configure(System.Func{Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase,Sp.Agent.Configuration.Product.IProductCompletedConfigurationPhase})">IProductContext.Configure</seealso>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhaseTail.CompleteWithDefaults">
+            <summary>
+            Completes the customization chain starting from <see cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase.Customize(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationCompletedConfigurationPhase})">IProductActivationConfigurationPhase.Customize()</see>.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Product.Activation.IProductActivationCompletedConfigurationPhase">
+            <summary>
+            Terminates a Fluent Syntax Composition expression starting from <see cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase.Customize(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationCompletedConfigurationPhase})">IProductActivationConfigurationPhase.Customize()</see>.
+            </summary>
+            <seealso cref="M:Sp.Agent.IProductContext.Configure(System.Func{Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase,Sp.Agent.Configuration.Product.IProductCompletedConfigurationPhase})">IProductContext.Configure</seealso>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Product.Activation.ProductActivationConfigurationException">
+            <summary>
+            <para>Thrown in response to <see cref="T:Sp.Agent.Activation.IActivateLicenses"/><c>.Activate</c> method invocation if the <c>state</c> argument is not <c>null</c> but does not implement <c>IEnumerable&lt;KeyValuePair&lt;string, string&gt;&gt;</c>.</para>
+            <para>Can be avoided by supplying a custom Action to <see cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase.WithTagging(System.Action{Sp.Agent.Configuration.Product.Activation.IActivationTaggingContext})"/></para>
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Product.Activation.ProductActivationConfigurationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Serialization constructor.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Configuration.AgentContext">
+             <summary>
+             Main entry point to the Software Potential Agent's Configuration and processing capabilities.<para/>
+             <list type="bullet">
+             <item><description>Configuration - Controls configuration of the Agent's Stores, Activation endpoints etc. in a manner appropriate to your application style/environment.</description></item><para/>
+             <item><description>Agent Context, see <see cref="T:Sp.Agent.Configuration.IAgentContext"/> - Provides licensing and configuration information not pertaining to a specific licensed product.</description></item><para/>
+             <item><description>Product Context, see <see cref="T:Sp.Agent.IProductContext"/> - Provides information regarding a licensed product.</description></item>
+             </list>
+             </summary>
+             <example>
+             <code>
+             using Sp.Agent.Configuration;
+             using Sp.Agent;
+             
+             // Skeleton Software Potential Agent Integration class - see documentation for your application environment/style to see Configuration options.
+             public class SpAgent
+             {
+                readonly static IAgentContext _agentContext;
+                readonly static IProductContext _product;
+            
+                static SpAgent()
+                {
+                    _agentContext = AgentContext.For( "abc12" );
+                    // TODO see your specific Sp.Agent.*.dll Integration Layer Documentation for specifics of how to manage configuration for your application/hosting context
+                    // _agentContext.Configure( x =&gt; x /* application/environment-specific Configuration Sequence */ .CompleteWithDefaults() );
+                    _product = _agentContext.ProductContextFor( "My Product", "My Version" );
+                    // _product.Configure( x =&gt; x /* product-specific Configuration Sequence */ .CompleteWithDefaults() );
+                }
+            
+                static IProductContext Product
+                {
+                    get { return _product; }
+                }
+            
+                public void Activate( string activationKey )
+                {
+                    Product.Activation.OnlineActivate( activationKey );
+                }
+            }
+             </code>
+             </example>
+        </member>
+        <member name="M:Sp.Agent.Configuration.AgentContext.For(System.String)">
+            <summary>
+            Obtains the <see cref="T:Sp.Agent.Configuration.IAgentContext"/> for the Software Potential Agent Permutation with reference id <paramref name="permutationId"/>.
+            </summary>
+            <example><code>AgentContext.For( "abc12" )</code></example>
+            <returns><see cref="T:Sp.Agent.Configuration.IAgentContext"/> for the specified Software Potential Agent Permutation.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="permutationId"/> is <c>null</c>.</exception>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase">
+            <summary>
+            <para>Part of Fluent Syntax flow used to build the <c>composer</c> argument of <see cref="T:Sp.Agent.IProductContext"/>.<c>Customize()</c>.</para>
+            <para>Enables one to specify the desired behavior when Licenses are being Activated via <see cref="T:Sp.Agent.Activation.IActivateLicenses"/>.</para>
+            </summary>
+            <seealso cref="M:Sp.Agent.IProductContext.Configure(System.Func{Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase,Sp.Agent.Configuration.Product.IProductCompletedConfigurationPhase})">IProductContext.Configure</seealso>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase.Customize(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationCompletedConfigurationPhase})">
+            <summary>
+            <para>Enables one to provide a Configuration Expression specifying details of how you wish Activation to be managed.</para>
+            </summary>
+            <param name="composer">See <see cref="T:Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase"/> for details and examples of composing a Configuration Expression using the fluent expression composition sequence.</param>
+            <seealso cref="M:Sp.Agent.IProductContext.Configure(System.Func{Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase,Sp.Agent.Configuration.Product.IProductCompletedConfigurationPhase})">IProductContext.Configure</seealso>
+            <example>
+            Not calling <c>Configure()</c> is equivalent to calling it as follows:-
+            <code>
+            productContext.Configure( options =&gt; options
+            .Activation.Customize( activationOptions =&gt; activationOptions
+            		.WithTaggingDefault()
+            		.WithTranmissionDefault()
+            		.CompleteWithDefaults() )
+            .CompleteWithDefaults() );
+            </code>
+            </example>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Product.Activation.IActivationTaggingContext">
+            <summary>
+            <para>Supplied to the Activation Tagging Customization specified via <see cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase.WithTagging(System.Action{Sp.Agent.Configuration.Product.Activation.IActivationTaggingContext})"/>.</para>
+            <para>Provides access to the <c>state</c> argument passed to the <see cref="T:Sp.Agent.Activation.IActivateLicenses"/> Activate method.</para>
+            <para>Allows one to include Tags into the <see cref="T:Sp.Agent.Licensing.ILicense">License</see></para>
+            </summary>
+            <seealso cref="M:Sp.Agent.IProductContext.Configure(System.Func{Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase,Sp.Agent.Configuration.Product.IProductCompletedConfigurationPhase})">IProductContext.Configure</seealso>
+            <seealso cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase.Customize(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationCompletedConfigurationPhase})">IProductActivationConfigurationPhase.Customize()</seealso>
+            <seealso cref="P:Sp.Agent.Licensing.ILicense.Tags">ILicense.Tags</seealso>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Product.Activation.IActivationTaggingContext.AddTag(System.String,System.String)">
+            <summary>
+            <para>Allows one to add an additional Tag <paramref name="name"/>/<paramref name="value"/> pair to be included in the license as part of the Activation process. See <see cref="P:Sp.Agent.Licensing.ILicense.Tags">ILicense.Tags</see> for details.</para>
+            <para>The <see cref="P:Sp.Agent.Configuration.Product.Activation.IActivationTaggingContext.State"/> property may be used as a generic contextual input to the Action's functionality.</para>
+            </summary>
+        </member>
+        <member name="P:Sp.Agent.Configuration.Product.Activation.IActivationTaggingContext.State">
+            <summary>
+            The argument value (if supplied) for the <c>state</c> argument of the Activate method called on <see cref="T:Sp.Agent.Activation.IActivateLicenses"/>.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Product.Activation.IActivationAttemptContext">
+            <summary>
+            <para>Contextual information passed to the designated callback configured via <see cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionHooksConfigurationPhase.BeforeEachAttempt(System.Action{Sp.Agent.Configuration.Product.Activation.IActivationAttemptContext})"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sp.Agent.Configuration.Product.Activation.IActivationAttemptContext.PreviousAttempts">
+            <summary>
+            <para>The number of previous attempts that have already taken place.</para>
+            </summary>
+            <example><c>0</c> on the first attempt to transmit the Activation Request.</example>
+        </member>
+        <member name="P:Sp.Agent.Configuration.Product.Activation.IActivationAttemptContext.Protocol">
+            <summary>
+            <para>The Web Service context that will be used to transmit the request.</para>
+            </summary>
+        </member>
+        <member name="P:Sp.Agent.Configuration.Product.Activation.IActivationAttemptContext.Address">
+            <summary>
+            <para>The Endpoint that this attempt will be directed at (can vary per attempt, see <see cref="P:Sp.Agent.Configuration.Product.Activation.IActivationAttemptContext.PreviousAttempts"/>).</para>
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Internal.AgentContextInternalExtensions">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Internal.AgentContextInternalExtensions.IsConfigured(Sp.Agent.Configuration.IAgentContext)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Internal.AgentContextInternalExtensions.AsImpl(Sp.Agent.Configuration.IAgentContext)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.ProductActivationConfigurationDefaultExtensions">
+            <summary>
+            Defines standard behaviors for <see cref="T:Sp.Agent.Activation.IActivateLicenses"/> Activation time behavior. Used in conjunction with <see cref="T:Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase"/>.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.ProductActivationConfigurationDefaultExtensions.Default(Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase)">
+            <summary>
+            Accepts the defaults for all <see cref="T:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase"/> configuration aspects. See <see cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase.Customize(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationCompletedConfigurationPhase})"/>.
+            </summary>
+            <remarks>
+            Equivalent to selecting all defaults :-
+            <code>.Customize( activationConfig =&gt; activationConfig
+            .WithTaggingDefault()
+            .WithTransmissionDefault()
+            .BeforeEachAttempt( _ =&gt; { } )
+            .CompleteWithDefaults() )
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.ProductActivationConfigurationDefaultExtensions.WithTaggingDefault(Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase)">
+             <summary>
+             <para>Accepts the default processing rules for the inclusion of <see cref="P:Sp.Agent.Licensing.ILicense.Tags"/> at <see cref="T:Sp.Agent.Activation.IActivateLicenses">Activation</see> time.</para>
+             <para>If a <c>state</c> argument implementing <c>IEnumerable&lt;KeyValuePair&lt;string, string&gt;&gt;</c> is supplied to the Activation methods (e.g. such as <c>Dictionary</c>), it will be treated as a set of tags, each of which will be submitted to the Activation Server for inclusion in the License.</para>
+             <para>If a <c>state</c> argument not matching the above is supplied, a <see cref="T:Sp.Agent.Configuration.Product.Activation.ProductActivationConfigurationException"/> is thrown.</para>
+             </summary>
+             <remarks><para>Equivalent to:</para>
+             <code>.WithTagging( context =&gt;
+            {
+            	foreach ( var kv in (IEnumerable&lt;KeyValuePair&lt;string, string&gt;&gt;)context.State )
+            			context.AddTag( kv.Key, kv.Value );
+            } )
+            	</code></remarks>
+             <seealso cref="M:Sp.Agent.ProductActivationConfigurationDefaultExtensions.Default(Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase)"/>
+             <seealso cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase.Customize(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationCompletedConfigurationPhase})"/>
+             <exception cref="T:Sp.Agent.Configuration.Product.Activation.ProductActivationConfigurationException">Thrown in response to Activate method invocation if the <c>state</c> argument is not <c>null</c> but does not implement <c>IEnumerable&lt;KeyValuePair&lt;string, string&gt;&gt;</c>.</exception>
+        </member>
+        <member name="M:Sp.Agent.ProductActivationConfigurationDefaultExtensions.WithTransmissionDefault(Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionConfigurationPhase)">
+            <summary>
+            <para>Accepts the default rules and behaviors for the transmission of Activation Requests.</para>
+            </summary>
+            <remarks>
+            <para>Equivalent to:</para>
+            <code>.WithTransmission( activationTransmission =&gt; activationTransmission
+            .WithRetryPolicyDefault()
+            .WithEndpointSelectionPolicyDefault()
+            .CompleteWithDefaults() )
+            </code>
+            </remarks>
+            <seealso cref="M:Sp.Agent.ProductActivationConfigurationDefaultExtensions.Default(Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase)"/>
+            <seealso cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase.Customize(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationCompletedConfigurationPhase})"/>
+        </member>
+        <member name="M:Sp.Agent.ProductActivationConfigurationDefaultExtensions.WithRetryPolicyDefault(Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase)">
+            <summary>
+            <para>Accepts the default behavior for retrying the transmission of Activation Requests should a failure occur.</para>
+            </summary>
+            <remarks>
+            <para>Presently, the default policy is to make a maximum of 3 attempts.</para>
+            </remarks>
+            <seealso cref="M:Sp.Agent.ProductActivationConfigurationDefaultExtensions.Default(Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase)"/>
+            <seealso cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase.Customize(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationCompletedConfigurationPhase})"/>
+        </member>
+        <member name="M:Sp.Agent.ProductActivationConfigurationDefaultExtensions.WithEndpointSelectionPolicyDefault(Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionEndpointConfigurationPhase)">
+            <summary>
+            <para>Accepts the default behavior for the selection of which endpoint to use when communicating with an Activation Server.</para>
+            </summary>
+            <remarks>
+            <para>Presently, the default policy is to default to using <c>https</c>, but try the <c>http</c> endpoint for every third Activation attempt. The main aim of this strategy is to maximize the likelihood of being able to traverse any proxies between the end-user machine and the Software Potential Activation servers.</para>
+            </remarks>
+            <seealso cref="M:Sp.Agent.ProductActivationConfigurationDefaultExtensions.Default(Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase)"/>
+            <seealso cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase.Customize(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationCompletedConfigurationPhase})"/>
+            <seealso cref="M:Sp.Agent.ProductActivationConfigurationDefaultExtensions.WithRetryPolicyDefault(Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase)"/>
+            <seealso cref="M:Sp.Agent.ProductActivationConfigurationDefaultExtensions.WithEndpointSelectionPolicyHttpsOnly(Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionEndpointConfigurationPhase)"/>
+        </member>
+        <member name="M:Sp.Agent.ProductActivationConfigurationDefaultExtensions.WithEndpointSelectionPolicyHttpsOnly(Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionEndpointConfigurationPhase)">
+            <summary>
+            <para>Constrains the endpoint selection algorithm to only use <c>https://</c> endpoints when communicating with an Activation Server.</para>
+            </summary>
+            <remarks>
+            <para>A key impact of selecting this policy (when compared to <see cref="M:Sp.Agent.ProductActivationConfigurationDefaultExtensions.WithEndpointSelectionPolicyDefault(Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionEndpointConfigurationPhase)"/>) is that there is a higher likelihood of a proxy being configured in such a manner that it will not allow the Activation attempt to be transmitted as an Online Activation Request, leading to the need to use <see cref="M:Sp.Agent.Activation.IActivateLicensesAdvanced.CreateDeferredRequest(System.String,System.Object)"/> and/or <see cref="M:Sp.Agent.Activation.IActivateLicensesAdvanced.CreateManualActivationRequest(System.String,System.Object)"/>.</para>
+            </remarks>
+            <seealso cref="M:Sp.Agent.ProductActivationConfigurationDefaultExtensions.Default(Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase)"/>
+            <seealso cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase.Customize(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationCompletedConfigurationPhase})"/>
+            <seealso cref="M:Sp.Agent.ProductActivationConfigurationDefaultExtensions.WithRetryPolicyDefault(Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionCommenceConfigurationPhase)"/>
+            <seealso cref="M:Sp.Agent.ProductActivationConfigurationDefaultExtensions.WithEndpointSelectionPolicyDefault(Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionEndpointConfigurationPhase)"/>
+        </member>
+        <member name="T:Sp.Agent.ProductActivationConfigurationCompleteWithDefaultsExtensions">
+            <summary>
+            Shortcut extensions to allow one to say <c>.CompleteWithDefaults()</c> to accept defaults when one has configured the aspect one wishes to customize and do not wish to express an opinion regarding the remaning options.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.ProductActivationConfigurationCompleteWithDefaultsExtensions.CompleteWithDefaults(Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionEndpointConfigurationPhase)">
+            <summary>
+            <para>Accepts the default rules and behaviors for the remaining options pertaining to the transmission of Activation Requests.</para>
+            </summary>
+            <seealso cref="M:Sp.Agent.ProductActivationConfigurationDefaultExtensions.Default(Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase)"/>
+            <seealso cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase.Customize(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationCompletedConfigurationPhase})"/>
+        </member>
+        <member name="M:Sp.Agent.ProductActivationConfigurationCompleteWithDefaultsExtensions.CompleteWithDefaults(Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionHooksConfigurationPhase)">
+            <summary>
+            <para>Accepts the default rules and behaviors for the remaining options pertaining to the transmission of Activation Requests.</para>
+            </summary>
+            <seealso cref="M:Sp.Agent.ProductActivationConfigurationDefaultExtensions.Default(Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase)"/>
+            <seealso cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase.Customize(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationCompletedConfigurationPhase})"/>
+        </member>
+        <member name="M:Sp.Agent.ProductActivationConfigurationCompleteWithDefaultsExtensions.CompleteWithDefaults(Sp.Agent.Configuration.Product.Activation.IProductActivationTransmissionConfigurationPhase)">
+            <summary>
+            <para>Accepts the default rules and behaviors for the remaining options pertaining to the transmission of Activation Requests.</para>
+            </summary>
+            <seealso cref="M:Sp.Agent.ProductActivationConfigurationDefaultExtensions.Default(Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase)"/>
+            <seealso cref="M:Sp.Agent.Configuration.Product.Activation.IProductActivationConfigurationPhase.Customize(System.Func{Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase,Sp.Agent.Configuration.Product.Activation.IProductActivationCompletedConfigurationPhase})"/>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase">
+            <summary>
+            <para>Part of Fluent Syntax flow used to create the <c>composer</c> argument of <see cref="T:Sp.Agent.IProductContext"/>.<c>Customize()</c>.</para>
+            </summary>
+            <seealso cref="M:Sp.Agent.IProductContext.Configure(System.Func{Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase,Sp.Agent.Configuration.Product.IProductCompletedConfigurationPhase})">IProductContext.Configure</seealso>
+        </member>
+        <member name="P:Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase.Activation">
+            <summary>
+            Defines configuration aspects pertaining to how <see cref="T:Sp.Agent.Activation.IActivateLicenses">License Activation</see> is performed.
+            </summary>
+            <seealso cref="T:Sp.Agent.Activation.IActivateLicenses">ILicense.Tags</seealso>
+            <seealso cref="P:Sp.Agent.Licensing.ILicense.Tags">ILicense.Tags</seealso>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Product.IProductConfigurationPhaseTail">
+            <summary>
+            <para>Part of Fluent Syntax flow used to create the <c>composer</c> argument of <see cref="T:Sp.Agent.IProductContext"/>.<c>Customize()</c>.</para>
+            <para>Represents the last step in the customization chain starting from <see cref="T:Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase"/>.</para>
+            </summary>
+            <seealso cref="M:Sp.Agent.IProductContext.Configure(System.Func{Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase,Sp.Agent.Configuration.Product.IProductCompletedConfigurationPhase})">IProductContext.Configure</seealso>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Product.IProductConfigurationPhaseTail.CompleteWithDefaults">
+            <summary>
+            Completes the customization chain starting from <see cref="T:Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase"/>.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Product.IProductCompletedConfigurationPhase">
+            <summary>
+            Terminates a Fluent Syntax Composition expression starting from <see cref="T:Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase"/> used by <see cref="T:Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase"/><c>.Customize()</c>.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Product.Internal.ProductCommenceConfigurationInternalExtensions">
+            <summary>
+            Provides Extension Methods that allow the <see cref="M:Sp.Agent.IProductContext.Configure(System.Func{Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase,Sp.Agent.Configuration.Product.IProductCompletedConfigurationPhase})">IProductContext.Configure</see> Configuration Expression Fluent Syntax to not have to overspecify redundant information.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Product.Internal.ProductCommenceConfigurationInternalExtensions.CompleteWithDefaults(Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase)">
+            <summary>
+            Accepts the defaults for all remaining aspects of the Configuration.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Internal.Contexts.IExtensionServiceResolver">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.Contexts.IExtensionServiceResolver.Resolve``1(System.String)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Internal.Contexts.ExtensionServiceNotFoundException">
+            <summary>
+            <para>Indicates that there has been a problem discovering a Permuted Sp.Agent Extension assembly. The required <c>Sp.Agent.*.dll</c> alongside the <c>Sp.Agent.dll</c> needs to load correctly in order for the extension to operate correctly.</para>
+            <para>It is permissible to IL-Merge the <c>Sp.Agent.*.dll</c>s into the outer <c>Sp.Agent</c> assembly (and that itself can be IL-Merged too).</para>
+            <para>Typically there will be underlying <c>MEF</c> (<c>System.ComponentModel.Composition</c>)-flagged conditions underlying the issue which can be critical to correctly diagnosing issues.</para>
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Internal.Contexts.ExtensionServiceNotFoundException.#ctor(System.String,System.String,System.String,System.Exception)">
+            <summary>
+            Constructs a new ExtensionServiceNotFoundException.
+            </summary>
+            <param name="permutationStamp">The internal component stamp associated with the required version of the vendor's Permuted Runtime.</param>
+            <param name="shortCode">The permutation short code associated with the vendor's Permuted Runtime.</param>
+            <param name="extensionName">The Extension within which the caller is anticipating the implementation should reside (solely for diagnostic purposes).</param>
+            <param name="innerException">The inner exception</param>
+        </member>
+        <member name="M:Sp.Agent.Internal.Contexts.ExtensionServiceNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Serialization constructor.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.IProductContext">
+            <summary>
+            Provides access to information and capabilities for a given Software Potential service Product such as:<para/>
+            <list type="bullet">
+            <item><description><see cref="T:Sp.Agent.Activation.IActivateLicenses">Activation</see>.</description></item>
+            <item><description><see cref="T:Sp.Agent.Licensing.IQueryLicenses">Activated Licenses</see>.</description></item>
+            </list>
+            See <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">IAgentContext.ProductContextFor</see> for examples and details of how to obtain an <see cref="T:Sp.Agent.IProductContext"/>.<para/>
+            See <see cref="M:Sp.Agent.Configuration.AgentContext.For(System.String)">AgentContext.For</see> for examples and details of how to obtain an <see cref="T:Sp.Agent.Configuration.IAgentContext"/>.<para/>
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.IProductContext.Configure(System.Func{Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase,Sp.Agent.Configuration.Product.IProductCompletedConfigurationPhase})">
+            <summary>
+            <para>Enables one to provide a Configuration Expression specifying details of how you wish Licenses to be managed for a given Product+Version.</para>
+            <para>May only be called a single time per <c>ProductName</c>/<c>ProductVersion</c> pair for a given <c>AgentContext</c>.</para>
+            </summary>
+            <remarks>
+            Failing to call <c>Configure()</c> will result in a Default Configuration being applied at the first point where the any of the following events occur:
+            <list type="bullet">
+            <item><description>A License is Activated.</description></item>
+            </list>
+            </remarks>
+            <param name="composer"><see cref="T:Sp.Agent.Configuration.Product.IProductCommenceConfigurationPhase"/> for details of composing a Configuration Expression using the fluent expression composition sequence.</param>
+            <seealso cref="M:Sp.Agent.Configuration.IAgentContext.Configure(System.Func{Sp.Agent.Configuration.IAgentCommenceConfigurationPhase,Sp.Agent.Configuration.IAgentCompletedConfigurationPhase})">IAgentContext.Configure</seealso>
+            <example>
+            Not calling <c>Configure()</c> is equivalent to calling it as follows:-
+            <code>
+            productContext.Configure( options =&gt; options
+                .Activation.Default()
+                .CompleteWithDefaults() );
+            </code>
+            </example>
+        </member>
+        <member name="P:Sp.Agent.IProductContext.ProductName">
+            <summary>
+            The Product Name string as supplied to <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)"/>.
+            </summary>
+            <example><c>"My Product"</c></example>
+            <seealso cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">IAgentContext.ProductContextFor</seealso>
+        </member>
+        <member name="P:Sp.Agent.IProductContext.ProductVersion">
+            <summary>
+            The Product Version string as supplied to <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)"/>.
+            </summary>
+            <example><c>"My Version"</c></example>
+            <seealso cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">IAgentContext.ProductContextFor</seealso>
+        </member>
+        <member name="P:Sp.Agent.IProductContext.Activation">
+            <summary>
+            Provides License Activation-related capabilities.
+            </summary>
+            <seealso cref="T:Sp.Agent.Activation.IActivateLicenses"/>
+        </member>
+        <member name="P:Sp.Agent.IProductContext.Licenses">
+            <summary>
+            Provides License querying-related capabilities.
+            </summary>
+            <seealso cref="T:Sp.Agent.Licensing.IQueryLicenses"/>
+        </member>
+        <member name="P:Sp.Agent.IProductContext.Features">
+            <summary>
+            Provides Feature querying-related capabilities.
+            </summary>
+            <seealso cref="T:Sp.Agent.Licensing.IQueryFeatures"/>
+        </member>
+        <member name="P:Sp.Agent.IProductContext.LocalFeatures">
+            <summary>
+            Provides Feature querying-related capabilities.
+            </summary>
+            <seealso cref="T:Sp.Agent.Licensing.IQueryLocalFeatures"/>
+        </member>
+        <member name="P:Sp.Agent.IProductContext.Stores">
+            <summary>
+            Provides <see cref="T:Sp.Agent.Activation.IActivateLicenses">Activated</see> License Store manipulation capabilities.
+            </summary>
+            <seealso cref="T:Sp.Agent.Storage.IStoreLicenses"/>
+        </member>
+        <member name="T:Sp.Agent.Configuration.IAgentContext">
+            <summary>
+            Provides access to information and capabilities for a given Permuted Software Potential Agent.<para/>
+            See <see cref="T:Sp.Agent.Configuration.IAgentCommenceConfigurationPhase"/> for examples and details of <c>.Configure( ... )</c> or <c>.EnsureConfigured( ... )</c> extension methods which can be layered onto this context.<para/>
+            See <see cref="M:Sp.Agent.Configuration.AgentContext.For(System.String)">AgentContext.For</see> for examples and details of how to obtain an <see cref="T:Sp.Agent.Configuration.IAgentContext"/>.<para/>
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Configuration.IAgentContext.Configure(System.Func{Sp.Agent.Configuration.IAgentCommenceConfigurationPhase,Sp.Agent.Configuration.IAgentCompletedConfigurationPhase})">
+            <summary>
+            <para>Enables one to provide a Configuration Expression specifying details of how you wish Licenses to be managed within your system.</para>
+            <para>May only be called a single time per <c>PermutationId</c> in a given <c>AppDomain</c>.</para>
+            </summary>
+            <remarks>
+            Failing to call <c>Configure()</c> will result in a Default Configuration (without any License Stores) being applied at the first point where the any of the following events occur:
+            <list type="bullet">
+            <item><description>Protected code is executed within the current <c>AppDomain</c>which has been protected using the Permutation identified by <c>PermutationId</c>.</description></item>
+            <item><description><c>ProductContextFor()</c> is used in any <see cref="T:Sp.Agent.Configuration.IAgentContext"/> for the current <c>PermutationId</c>.</description></item>
+            </list>
+            </remarks>
+            <param name="composer"><see cref="T:Sp.Agent.Configuration.IAgentCommenceConfigurationPhase"/> for details of composing a Configuration Expression appropriate to your application style/environment using the fluent expression composition sequence.</param>
+        </member>
+        <member name="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">
+            <summary>
+            Provides access to information regarding installed licenses and Activation capabilities relating to the Licenses and Features for the Software Potential service Product profile designated by the <paramref name="productName"/> and <paramref name="productVersion"/> parameters.
+            </summary>
+            <param name="productName">The Product Name string, e.g., <c>"My Product"</c>.</param>
+            <param name="productVersion">The Product Version string, e.g., <c>"My Version"</c>.</param>
+        </member>
+        <member name="P:Sp.Agent.Configuration.IAgentContext.PermutationId">
+            <summary>
+            The 5 character permutation short code identifier associated with your Permuted set of Software Potential Agent DLLs.<para/>
+            See <see cref="M:Sp.Agent.Configuration.AgentContext.For(System.String)">AgentContext.For</see> for examples / details of using a Permutation Short Code.
+            </summary>
+            <example><c>"abc12"</c></example>
+        </member>
+        <member name="P:Sp.Agent.Configuration.IAgentContext.VendorName">
+            <summary>
+            The identifying Vendor Name string associated with your Permuted set of Software Potential Agent DLLs.<para/>
+            </summary>
+            <example><c>"SampleVendor - licensing@samplevendor.com"</c></example>
+        </member>
+        <member name="T:Sp.Agent.Internal.CoreServices.ICorePermutationServices">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.CoreServices.ICorePermutationServices.FetchVendorName">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Internal.Contexts.Permutations.IPermutationContext">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.Contexts.Permutations.IPermutationContext.FetchVendorName">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Internal.CoreServices.ICoreActivationServices">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.CoreServices.ICoreActivationServices.IsWellFormed(System.String)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.CoreServices.ICoreActivationServices.CreateRequest(System.String,System.Tuple{System.String,System.String,System.String},System.Collections.ObjectModel.ReadOnlyCollection{System.Guid},System.Object)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.CoreServices.ICoreActivationServices.CreateManualActivationRequest(System.String,System.Tuple{System.String,System.String,System.String},System.Collections.ObjectModel.ReadOnlyCollection{System.Guid},System.Object)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.CoreServices.ICoreActivationServices.SendRequestAsync(System.Byte[],System.Tuple{System.String,System.String})">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.CoreServices.ICoreActivationServices.ComputeActivationUrl(System.Tuple{System.String,System.String},System.Int32)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Internal.CoreServices.ICoreStorageServices">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.CoreServices.ICoreStorageServices.All(System.Collections.ObjectModel.ReadOnlyCollection{System.Guid})">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.CoreServices.ICoreStorageServices.ConfigurationStores(System.Collections.ObjectModel.ReadOnlyCollection{System.Guid},System.Tuple{System.String,System.String,System.String})">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.CoreServices.ICoreStorageServices.AddLicenseBlob(System.Byte[],System.Collections.ObjectModel.ReadOnlyCollection{System.Guid},System.Tuple{System.String,System.String,System.String})">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.CoreServices.ICoreStorageServices.Delete(System.String,System.Collections.ObjectModel.ReadOnlyCollection{System.Guid},System.Tuple{System.String,System.String,System.String})">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.CoreServices.ICoreStorageServices.Initialize(System.Collections.ObjectModel.ReadOnlyCollection{System.Guid},System.Tuple{System.String,System.String,System.String})">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.CoreServices.ICoreStorageServices.Uninitialize(System.Collections.ObjectModel.ReadOnlyCollection{System.Guid},System.Tuple{System.String,System.String,System.String})">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.CoreServices.ICoreStorageServices.VerifyInitialized(System.Collections.ObjectModel.ReadOnlyCollection{System.Guid},System.Tuple{System.String,System.String,System.String})">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Licensing.ILicense">
+            <summary>
+            Provides access to information pertaining to an <see cref="P:Sp.Agent.IProductContext.Activation">Activated</see> License for a given <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">Software Potential service Product</see>.<para/>
+            </summary>
+            <seealso cref="T:Sp.Agent.Licensing.IQueryLicenses"/>
+            <seealso cref="P:Sp.Agent.IProductContext.Licenses">IProductContext.Licenses</seealso>
+            <seealso cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">IAgentContext.ProductContextFor</seealso>
+            <seealso cref="M:Sp.Agent.Configuration.AgentContext.For(System.String)">AgentContext.For</seealso>
+        </member>
+        <member name="P:Sp.Agent.Licensing.ILicense.ActivationKey">
+            <summary>
+            The activation key for <see cref="P:Sp.Agent.IProductContext.Activation">Activated</see> License.
+            </summary>
+        </member>
+        <member name="P:Sp.Agent.Licensing.ILicense.IsEvaluation">
+            <summary>
+            Indicates whether License is an Evaluation license (or Commercial).
+            </summary>
+            <value>
+            <para><c>true</c> if the License is an Evaluation License.</para>
+            <para><c>false</c> if the License is a Commercial License.</para>
+            </value>
+            <remarks>All Evaluation licenses available for a product are removed whenever a Commercial License for the same product is added to the <see cref="T:Sp.Agent.Storage.IStoreLicenses">Store</see>.</remarks>
+        </member>
+        <member name="P:Sp.Agent.Licensing.ILicense.IssueDate">
+            <summary/>
+        </member>
+        <member name="P:Sp.Agent.Licensing.ILicense.Renewal">
+            <summary/>
+        </member>
+        <member name="P:Sp.Agent.Licensing.ILicense.Advanced">
+            <summary>
+            Provides access to aspects of the license which are not commonly used directly in the vast majority of Software Potential licensed applications.
+            </summary>
+            <remarks>In most cases, other facilities within <see cref="T:Sp.Agent.IProductContext"/> provide higher level facilities that provide the desired behavior in a higher level fashion than the lower-level Apis contained hereunder.</remarks>
+            <seealso cref="T:Sp.Agent.Licensing.ILicense"/>
+        </member>
+        <member name="P:Sp.Agent.Licensing.ILicense.Tags">
+            <summary>The custom tags associated with this License.</summary>
+            <remarks>
+            <para>Tags can be added either via the Software Potential service Web Api or by supplying them at Activation Time via a Product Configuration Customization supplied during the <see cref="T:Sp.Agent.Configuration.Product.Activation.IProductActivationCommenceConfigurationPhase"/>.</para>
+            <para>The <c>Key</c>s of Activation Tags are prefixed with an <c>A:</c> prefix.</para>
+            </remarks>
+        </member>
+        <member name="P:Sp.Agent.Licensing.ILicense.ValidFrom">
+            <summary/>
+        </member>
+        <member name="P:Sp.Agent.Licensing.ILicense.ValidUntil">
+            <summary>
+            The date/time until which the License is operable, which may be limited by a <see cref="P:Sp.Agent.Licensing.ILicenseAdvanced.ExpirationDate"/> and extended by the Grace Period applied at the point of issue".
+            </summary>
+            <value>The date at which the license will no longer be usable. <c>DateTime.MaxValue</c> if no <see cref="P:Sp.Agent.Licensing.ILicenseAdvanced.ExpirationDate"/> stipulated in the license terms.</value>
+            <remarks>The <see cref="T:System.DateTimeKind"/> is <see cref="F:System.DateTimeKind.Local"/>.</remarks>
+        </member>
+        <member name="T:Sp.Agent.Licensing.ILicenseRenewal">
+            <summary/>
+        </member>
+        <member name="P:Sp.Agent.Licensing.ILicenseRenewal.RevisionNumber">
+            <summary/>
+        </member>
+        <member name="P:Sp.Agent.Licensing.ILicenseRenewal.GracePeriod">
+            <summary/>
+        </member>
+        <member name="T:Sp.Agent.Licensing.ILicenseAdvanced">
+            <summary>
+            Provides access to aspects of the license that are not commonly used directly in the vast majority of Software Potential licensed applications.
+            </summary>
+            <remarks>In most cases, other facilities within <see cref="T:Sp.Agent.IProductContext"/> provide higher level facilities that provide the desired behavior in a higher level fashion than the lower-level Apis contained hereunder.</remarks>
+            <seealso cref="T:Sp.Agent.Licensing.ILicense"/>
+        </member>
+        <member name="M:Sp.Agent.Licensing.ILicenseAdvanced.AllFeatures">
+            <summary>
+            <para>Lists the complete set of <see cref="T:Sp.Agent.Licensing.IFeature">Features</see> on the License.</para>
+            </summary>
+            <seealso cref="T:Sp.Agent.Licensing.IQueryLocalFeatures"/>
+        </member>
+        <member name="P:Sp.Agent.Licensing.ILicenseAdvanced.ConcurrentUsageLimit">
+            <summary>
+            The maximum number of concurrent usages of this <see cref="T:Sp.Agent.Licensing.ILicense">License</see> stipulated on the license.
+            </summary>
+            <remarks>
+            While this has an implicit meaning in the context of the Software Potential Distributor system, the Software Potential Agent does not ordinarily apply any specific constraints based on this setting.
+            </remarks>
+            <value><c>null</c> if Unlimited. Otherwise the maximum number of permitted instances.</value>
+        </member>
+        <member name="P:Sp.Agent.Licensing.ILicenseAdvanced.IsVirtualMachineAllowed">
+            <summary>
+            Indicates if the license is permitted to be used in Virtualized Execution Environments.
+            </summary>
+        </member>
+        <member name="P:Sp.Agent.Licensing.ILicenseAdvanced.ExpirationDate">
+            <summary>
+            <para>The date/time at which a license exits its normal validity period and enters its Grace Period (if any).</para>
+            </summary>
+            <value>The <see cref="T:System.DateTimeKind">DateTimeKind.Local</see> time at which the feature completes its normal validity period.</value>
+            <remarks>A license may still continue to be valid for some time after this point while it is in its Grace Period</remarks>	
+        </member>
+        <member name="P:Sp.Agent.Licensing.ILicenseAdvanced.IsSubscription">
+             <summary>
+             Indicates if a license is a subscription license and subject to renewal.
+             </summary>
+            <para><c>true</c> if the License is a Subscription License.</para>
+             <para><c>false</c> if the License is not a Subscription License.</para>
+             <remarks>A Subscription License can only be renewed after it has passed the <see cref="P:Sp.Agent.Licensing.ILicenseAdvanced.ExpirationDate">ExpirationDate</see></remarks>
+        </member>
+        <member name="P:Sp.Agent.Licensing.ILicenseAdvanced.Period">
+            <summary/>
+        </member>
+        <member name="T:Sp.Agent.Licensing.IFeature">
+            <summary>
+            Exposes the properties of a Feature included in an Activated License.
+            </summary>
+        </member>
+        <member name="P:Sp.Agent.Licensing.IFeature.ConcurrentUsageLimit">
+            <summary>
+            The maximum number of concurrent usages of this <see cref="T:Sp.Agent.Licensing.IFeature">Feature</see> stipulated on the license, or <c>null</c> if Unlimited.
+            </summary>
+            <remarks>
+            <para>While this has an implicit meaning in the context of the Software Potential Distributor system, the Software Potential Agent does not ordinarily apply any specific constraints based on this setting.</para>
+            <para>Typically this value is considered as an additional limitation on top of that implied by <see cref="P:Sp.Agent.Licensing.ILicenseAdvanced.ConcurrentUsageLimit">the equivalent property at License Level</see>.</para>
+            </remarks>
+            <value><c>null</c> if Unlimited. Otherwise the maximum number of permitted instances.</value>
+            <seealso cref="P:Sp.Agent.Licensing.ILicenseAdvanced.ConcurrentUsageLimit"/>
+        </member>
+        <member name="P:Sp.Agent.Licensing.IFeature.ExpirationDate">
+            <summary>
+            <para>The date/time at which this feature completes its normal validity period.</para>
+            </summary>
+            <remarks><para>This limitation is in addition to the license validity period constraints.</para>
+            <para>NB it is not recommended to use this property in attempting to determine whether a Licensed Feature is Valid (either at the current time or based on an effective date). Such 
+            computations should instead be carried out using the <see cref="T:Sp.Agent.Licensing.IQueryLocalFeatures"/> Apis.</para></remarks>
+            <value>The <see cref="T:System.DateTimeKind">DateTimeKind.Local</see> time at which the feature completes it's normal validity period (assuming the underlying License is itself Valid).</value>
+            <seealso cref="T:Sp.Agent.Licensing.IQueryLocalFeatures"/>
+            <seealso cref="T:Sp.Agent.Licensing.ILicenseAdvanced"/>
+        </member>
+        <member name="P:Sp.Agent.Licensing.IFeature.ValidUntil">
+            <summary>
+            The date/time until which the Feature is operable, which may be constrained by the <see cref="P:Sp.Agent.Licensing.IFeature.ExpirationDate"/> (and extended by the Feature's Grace Period).
+            </summary>
+            <value>The <see cref="F:System.DateTimeKind.Local"/> Date at which the Feature will become Expired due to the <see cref="P:Sp.Agent.Licensing.IFeature.ExpirationDate"/> stipulation. <c>DateTime.MaxValue</c> if there is no limit stipulated.</value>
+            <remarks>The <see cref="T:System.DateTimeKind"/> is <see cref="F:System.DateTimeKind.Local"/>.</remarks>
+        </member>
+        <member name="P:Sp.Agent.Licensing.IFeature.EndDate">
+            <summary/>
+        </member>
+        <member name="T:Sp.Agent.Licensing.ILicensePeriod">
+            <summary/>
+        </member>
+        <member name="P:Sp.Agent.Licensing.ILicensePeriod.StartDate">
+            <summary/>
+        </member>
+        <member name="P:Sp.Agent.Licensing.ILicensePeriod.EndDate">
+            <summary/>
+        </member>
+        <member name="T:Sp.Agent.Licensing.IQueryLocalFeatures">
+            <summary>
+            <para>Provides access to high level information pertaining to Features present on the locally <see cref="P:Sp.Agent.IProductContext.Activation">Activated</see> set of <see cref="T:Sp.Agent.Licensing.ILicense">License</see>s for a given <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">Software Potential service Product</see>.</para>
+            <para>NB The Feature sets returned from these queries do not include Features that may be obtainable via a Distributor. See the <c>Agent.Distributor</c> extension's <c>IContext</c> for mechanisms unifying access to locally-installed licenses and/or Distributed Features.</para>
+            <para>See <see cref="P:Sp.Agent.IProductContext.Features">IProductContext.LocalFeatures</see> for examples and details of how to obtain an <see cref="T:Sp.Agent.Licensing.IQueryLocalFeatures"/>.</para>
+            <para><see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">IAgentContext.ProductContextFor</see> for examples and details of how to obtain an <see cref="T:Sp.Agent.IProductContext"/>.</para>
+            <para><see cref="M:Sp.Agent.Configuration.AgentContext.For(System.String)">AgentContext.For</see> for examples and details of how to obtain an <see cref="T:Sp.Agent.Configuration.IAgentContext"/>.</para>
+            </summary>
+            <seealso cref="P:Sp.Agent.IProductContext.LocalFeatures">IProductContext.LocalFeatures</seealso>
+            <seealso cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">IAgentContext.ProductContextFor</seealso>
+            <seealso cref="M:Sp.Agent.Configuration.AgentContext.For(System.String)">AgentContext.For</seealso>
+        </member>
+        <member name="M:Sp.Agent.Licensing.IQueryLocalFeatures.Valid">
+            <summary>
+            <para>Provides a consolidated set of in-date Features across all currently Valid Software Potential service Product Licenses for this <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">Product Context</see> that have been Activated and installed into locally configured stores.</para>
+            <para>The set of licenses considered is obtainable via <see cref="M:Sp.Agent.Licensing.IQueryLicenses.Valid">Licenses.Valid</see>.</para>
+            <para>NB The set does not include Features that may be obtainable via a Distributor. See the <c>Agent.Distributor</c> extension's <c>IContext</c> for mechanisms unifying access to locally-installed licenses and/or Distributed Features.</para>
+            </summary>
+            <returns>The set of in-date Features available across all Valid licenses.</returns>
+            <remarks>
+            <para>When checking for the presence of a single Feature, it can be significantly cheaper to use <see cref="M:Sp.Agent.Licensing.IQueryLocalFeatures.ValidContains(System.String)"/> in preference.</para>
+            <para>The <c>Execute</c> implicit feature is not included in this set; Use <see cref="M:Sp.Agent.Licensing.IQueryLicenses.Valid">Licenses.Valid</see> to query at the license level.</para>
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Licensing.IQueryLocalFeatures.ValidContains(System.String)">
+            <summary>
+            <para>Determines whether <paramref name="featureName"/> is an in-date Feature on any Valid Software Potential service Product License for this <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">Product Context</see> that have been Activated into one of the locally configured stores.</para>
+            <para>A consolidated set of available Features can be retrieved using <see cref="M:Sp.Agent.Licensing.IQueryLocalFeatures.Valid"/>.</para>
+            <para>The set of licenses considered can be retrieved via <see cref="M:Sp.Agent.Licensing.IQueryLicenses.Valid">Licenses.Valid</see>.</para>
+            <para>NB The set does not include Features that may be obtainable via a Distributor. See the <c>Agent.Distributor</c> extension's <c>IContext</c> for mechanisms unifying access to locally-installed licenses and/or Distributed Features.</para>
+            </summary>
+            <param name="featureName">Name of the feature to search for. The value is case-sensitive.</param>
+            <returns><c>true</c> if the feature is present and in-date on at least one valid license.</returns>
+            <remarks>
+            <para>The <c>Execute</c> implicit feature is not considered; Use <see cref="M:Sp.Agent.Licensing.IQueryLicenses.Valid">Licenses.Valid</see> to query at the license level.</para>
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Licensing.IQueryFeatures">
+            <summary>
+            <para>Provides access to high level information pertaining to features present on the <see cref="P:Sp.Agent.IProductContext.Activation">Activated</see> set of <see cref="T:Sp.Agent.Licensing.ILicense">License</see>s for a given <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">Software Potential service Product</see>.</para>
+            <para>See <see cref="P:Sp.Agent.IProductContext.Features">IProductContext.Features</see> for examples and details of how to obtain an <see cref="T:Sp.Agent.Licensing.IQueryFeatures"/>.</para>
+            <para><see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">IAgentContext.ProductContextFor</see> for examples and details of how to obtain an <see cref="T:Sp.Agent.IProductContext"/>.</para>
+            <para><see cref="M:Sp.Agent.Configuration.AgentContext.For(System.String)">AgentContext.For</see> for examples and details of how to obtain an <see cref="T:Sp.Agent.Configuration.IAgentContext"/>.</para>
+            </summary>
+            <seealso cref="P:Sp.Agent.IProductContext.Features">IProductContext.Features</seealso>
+            <seealso cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">IAgentContext.ProductContextFor</seealso>
+            <seealso cref="M:Sp.Agent.Configuration.AgentContext.For(System.String)">AgentContext.For</seealso>
+        </member>
+        <member name="M:Sp.Agent.Licensing.IQueryFeatures.ValidAvailable">
+            <summary>
+            <para>Provides a consolidated set of in-date Features across all currently Valid Activated Software Potential service Product Licenses for this <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">Product Context</see>.</para>
+            <para>The set of licenses considered is obtainable via <see cref="M:Sp.Agent.Licensing.IQueryLicenses.Valid">Licenses.Valid</see>.</para>
+            </summary>
+            <returns>The set of in-date features available across all Valid licenses.</returns>
+            <remarks>
+            <para>When checking for the presence of a single Feature, it can be significantly cheaper to use <see cref="M:Sp.Agent.Licensing.IQueryFeatures.ValidAvailableContains(System.String)"/> in preference.</para>
+            <para>The <c>Execute</c> implicit feature is not included in this set; Use <see cref="M:Sp.Agent.Licensing.IQueryLicenses.Valid">Licenses.Valid</see> to query at the license level.</para>
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Licensing.IQueryFeatures.ValidAvailableContains(System.String)">
+            <summary>
+            <para>Determines whether <paramref name="featureName"/> is available and in-date Feature on any Valid Activated Software Potential service Product License for this <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">Product Context</see>.</para>
+            <para>A consolidated set of available features can be retrieved using <see cref="M:Sp.Agent.Licensing.IQueryFeatures.ValidAvailable"/>.</para>
+            <para>The set of licenses considered can be retrieved via <see cref="M:Sp.Agent.Licensing.IQueryLicenses.Valid">Licenses.Valid</see>.</para>
+            </summary>
+            <param name="featureName">Name of the feature to search for. The value is case-sensitive.</param>
+            <returns><c>true</c> if the feature is present and in-date on at least one valid license.</returns>
+            <remarks>
+            <para>The <c>Execute</c> implicit feature is not considered; Use <see cref="M:Sp.Agent.Licensing.IQueryLicenses.Valid">Licenses.Valid</see> to query at the license level.</para>
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Licensing.LicenseRevisionException">
+            <summary>
+            <para>Thrown if an attempt is made to install a license when there is a newer version of the license already installed</para>
+            <seealso cref="T:Sp.Agent.Activation.IActivateLicenses"/>
+            <seealso cref="T:Sp.Agent.Storage.IStoreLicenses"/>
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Licensing.LicenseRevisionException.#ctor(System.Int32,System.Int32,System.String)">
+            <summary>
+            Creates a new LicenseRevisionException citing the specified <paramref name="activationKey"/>.
+            </summary>
+            <param name="activationKey">The Product for which being processing was taking place at the point of detection of the problem.</param>		
+            <param name="newRevision">The License Revision Number associated with the license for which installation was attempted.</param>
+            <param name="existingRevision">The License Revision Number associated of the license that was already installed.</param>
+        </member>
+        <member name="M:Sp.Agent.Licensing.LicenseRevisionException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Serialization constructor.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Storage.Internal.IInternalConfigurationStore">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Storage.Internal.IInternalConfigurationStore.GetFolder(System.String)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Storage.Internal.IInternalConfigurationStores">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Storage.Internal.IInternalConfigurationStores.All">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Storage.Internal.IStoreLicensesInitializationExtensions">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Storage.Internal.IStoreLicensesInitializationExtensions.Configuration(Sp.Agent.Storage.IStoreLicenses)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Storage.StorageInaccessibleException">
+            <summary>
+            Thrown if there is an issue accessing a license store. Typically this results from misconfiguration or environment changes to the internal storage mechanism employed by a store.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Storage.StorageInaccessibleException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Serialization constructor.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Storage.WritingStorageInaccessibleException">
+            <summary>
+            <para>Thrown if there is an issue writing a License to a Store. Additionally also triggered by activities such as commencing Activation which will emit this exception as an indication that it will not be possible to install the resulting license upon activation.</para>
+            <para>Typically this results from misconfiguration or environment changes to the internal storage mechanism employed by a store.</para>
+            <seealso cref="T:Sp.Agent.Configuration.IInitializeStores"/>
+            <seealso cref="T:Sp.Agent.Activation.IActivateLicenses"/>
+            <seealso cref="T:Sp.Agent.Storage.IStoreLicenses"/>
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Storage.WritingStorageInaccessibleException.#ctor(System.Tuple{System.String,System.String,System.String},System.Exception)">
+            <summary>
+            Creates a new WritingStorageInaccessibleException citing the specified <paramref name="productId"/>.
+            </summary>
+            <param name="productId">The Product for which being processing was taking place at the point of detection of the problem.</param>
+            <param name="innerException">The underlying cause.</param>
+        </member>
+        <member name="T:Sp.Agent.Storage.ReadingStorageInaccessibleException">
+            <summary>
+            <para>Thrown if there is an issue reading a License from a Store</para>
+            <para>Typically this results from misconfiguration or environment changes to the internal storage mechanism employed by a store.</para>
+            <para>This exception often forms part of the details of a <see cref="T:Sp.Agent.Execution.NotLicensedException"/>.</para>
+            <seealso cref="T:Sp.Agent.Configuration.IInitializeStores"/>
+            <seealso cref="T:Sp.Agent.Execution.NotLicensedException"/>
+            <seealso cref="T:Sp.Agent.Licensing.IQueryLicenses"/>
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Storage.ReadingStorageInaccessibleException.#ctor(System.Tuple{System.String,System.String,System.String},System.Exception)">
+            <summary>
+            Creates a new ReadingStorageInaccessibleException citing the specified <paramref name="productId"/>.
+            </summary>
+            <param name="productId">The Product for which being processing was taking place at the point of detection of the problem.</param>
+            <param name="innerException">The underlying cause.</param>
+        </member>
+        <member name="T:Sp.Agent.Configuration.IInitializeStores">
+            <summary>
+            <para>Provides access to Store Initialization facilities.</para>
+            <para>These Apis apply to Configured License Stores that have an Initialization or Verification aspect. Examples of such Stores include the Local Store (when configured using <c>.WithApplicationInitializedStore()</c>).</para>
+            <para>See the <see cref="T:Sp.Agent.Storage.IStoreLicenses"/><c>.Initialization()</c> extension method in the <c>Sp.Agent.Configuration</c> namespace for the relevant navigation path.</para>
+            </summary>
+            <seealso cref="T:Sp.Agent.Storage.IStoreLicenses"/>
+        </member>
+        <member name="M:Sp.Agent.Configuration.IInitializeStores.Initialize">
+            <summary>
+            <para>Attempts to Initialize all configured Initializable Stores for this product.</para>
+            <para>Examples of such Stores include the Local Store (when configured using <c>.WithApplicationInitializedStore()</c>).</para>
+            <para>Typically, this activity should only be triggered when running with elevated privileges under the control of an Installation program.</para>
+            </summary>
+            <seealso cref="T:Sp.Agent.Storage.IStoreLicenses"/>
+        </member>
+        <member name="M:Sp.Agent.Configuration.IInitializeStores.Uninitialize">
+            <summary>
+            <para>Attempts to Reverse the <c>Initialize()</c> process for configured Initializable Stores for this product.</para>
+            <para>Typically, this activity should only be triggered when running  with elevated privileges under the control of an Installation program.</para>
+            <para>Stores may throw Exceptions if such an action would be destructive (e.g. if there are <c>Install()</c>ed Licenses that have not yet been <c>Delete()</c>d.</para>
+            </summary>
+            <seealso cref="T:Sp.Agent.Storage.IStoreLicenses"/>
+        </member>
+        <member name="M:Sp.Agent.Configuration.IInitializeStores.Verify">
+            <summary>
+            <para>Verifies that any <c>Initialize()</c> process applicable to the configured Initializable Stores for this product has taken place.</para>
+            <para>This check should be triggered unconditionally on application startup at all times.</para>
+            <para>Yields an Exception if the postconditions of the <c>Initialize()</c> method have not been fulfilled on any configured store.</para>
+            </summary>
+            <exception cref="T:Sp.Agent.Storage.WritingStorageInaccessibleException">Thrown if a Store is found not to be in an appropriate <c>Initialize()</c>d state.</exception>
+            <seealso cref="T:Sp.Agent.Storage.IStoreLicenses"/>
+        </member>
+        <member name="T:Sp.Agent.Configuration.IStoreLicensesInitializationExtensions">
+            <summary>
+            Provides access to Store Initialization Apis. These become relevant when using a License Store that has an Initialization or Verification aspect. Examples of such Stores include the Local Store.
+            </summary>
+            <remarks>
+            Not implemented directly as a property as this interface is only relevant during the configuration phase of your Software Potential Integration - i.e., only the Composition Root of your application should be concerning itself with Initialization (or Verification of same).
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Configuration.IStoreLicensesInitializationExtensions.Initialization(Sp.Agent.Storage.IStoreLicenses)">
+            <summary>
+            Provides access to the Store Initialization and Verification Apis for use during configuration during application startup if you have a store that participates in Store Initialization. See the documentation for Configuration Api for your store for information as to whether it should be relevant to your store.
+            <para/>
+            See <see cref="T:Sp.Agent.Configuration.IInitializeStores"/> for further details.
+            </summary>
+            <seealso cref="T:Sp.Agent.Configuration.IInitializeStores"/>
+        </member>
+        <member name="T:Sp.Agent.Storage.IStoreLicenses">
+            <summary>
+            Manages manipulation of <see cref="T:Sp.Agent.Activation.IActivateLicenses">Activated</see> product <see cref="T:Sp.Agent.Licensing.ILicense">Licenses</see> in configured License <see cref="T:Sp.Agent.Storage.IStore">Stores</see>.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Storage.IStoreLicenses.All">
+            <summary>
+            Yields a list of the Configured <see cref="T:Sp.Agent.Storage.IStore">Stores</see> within the current <see cref="M:Sp.Agent.Configuration.AgentContext.For(System.String)">Context</see>.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Storage.IStoreLicenses.Install(System.Byte[])">
+            <summary>
+            <para>Adds an Activated <see cref="T:Sp.Agent.Licensing.ILicense">License</see> for the <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">current product</see> obtained via <c>IActivateLicensesAdvanced.SendDeferredRequestAsync()</c> or the contents of a .BIN license file downloaded from the Software Potential service obtained via Manual Activation.</para>
+            <para>If an Activated <see cref="T:Sp.Agent.Licensing.ILicense">License</see> for the same activation key already exists, it will replace the existing one.</para>
+            <para>All Evaluation licenses for a given product are removed if the license being installed is a Commercial License.</para>
+            </summary>
+            <param name="licenseBlob">The license blob to be installed.</param>
+            <exception cref="T:System.ArgumentNullException">thrown if <paramref name="licenseBlob"/> is <c>null</c>.</exception>
+            <exception cref="T:Sp.Agent.Storage.NonmatchingProductIdException">thrown if the <paramref name="licenseBlob"/> is for a product other than that supplied when creating the <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">Product Context</see>.</exception>
+            <exception cref="T:Sp.Agent.Licensing.LicenseRevisionException">thrown if the <paramref name="licenseBlob"/> is a version older than the one already installed in the current <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">Product Context</see>.</exception>
+            <seealso cref="M:Sp.Agent.Activation.IActivateLicensesAdvanced.SendDeferredRequestAsync(System.Byte[])"/>
+            <seealso cref="M:Sp.Agent.Activation.IActivateLicensesAdvanced.CreateManualActivationRequest(System.String,System.Object)"/>
+        </member>
+        <member name="M:Sp.Agent.Storage.IStoreLicenses.Delete(System.String)">
+            <summary>
+            Deletes a license for the <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">current product</see> that was previously successfully <see cref="M:Sp.Agent.Storage.IStoreLicenses.Install(System.Byte[])">Installed</see>.
+            </summary>
+            <param name="activationKey">Activation key of <see cref="T:Sp.Agent.Licensing.ILicense">license</see> that is to be removed.</param>
+            <exception cref="T:System.ArgumentNullException">thrown if <paramref name="activationKey"/> is <c>null</c>.</exception>
+            <exception cref="T:Sp.Agent.Storage.LicenseNotFoundException">thrown if the license identified by <paramref name="activationKey"/> cannot be located in any configured <see cref="T:Sp.Agent.Storage.IStore">Store</see> for the <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">current product</see>.</exception>
+        </member>
+        <member name="T:Sp.Agent.Storage.NonmatchingProductIdException">
+            <summary>
+            Indicates that the supplied license blob is not valid for the <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">current product</see>.<para/>
+            See <see cref="M:Sp.Agent.Storage.IStoreLicenses.Install(System.Byte[])"/>.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Storage.NonmatchingProductIdException.#ctor(System.Tuple{System.String,System.String,System.String},System.Tuple{System.String,System.String,System.String})">
+            <summary>
+            Constructs a new NonmatchingProductIdException.
+            </summary>
+            <param name="expected">The product Id that was expected based on the <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">current product</see>.</param>
+            <param name="actual">The product Id that the activated license is for.</param>
+        </member>
+        <member name="M:Sp.Agent.Storage.NonmatchingProductIdException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Serialization constructor.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Storage.VirtualMachineNotAllowedException">
+            <summary>
+            Indicates that the supplied license blob has a stipulation on it that it not be used within a Virtual Machine environment and hence it is not suitable for use on the current machine.<para/>
+            See <see cref="M:Sp.Agent.Storage.IStoreLicenses.Install(System.Byte[])"/>.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Storage.VirtualMachineNotAllowedException.#ctor">
+            <summary>
+            Constructs a new VirtualMachineNotAllowedException.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Storage.VirtualMachineNotAllowedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Serialization constructor.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Storage.DistributorLicenseOnClientException">
+            <summary>
+            Indicates that the supplied license blob is not a standard license, but is instead one that needs to be installed into a Software Potential Distributor and used indirectly via a Software Potential Distributor Client.
+            See <see cref="M:Sp.Agent.Storage.IStoreLicenses.Install(System.Byte[])"/>.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Storage.DistributorLicenseOnClientException.#ctor">
+            <summary>
+            Constructs a new DistributorLicenseOnClientException.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Storage.DistributorLicenseOnClientException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Serialization constructor.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Storage.LicenseNotFoundException">
+            <summary>
+            Indicates that the specified license was not found in the store for the <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">current product</see>.<para/>
+            See <see cref="M:Sp.Agent.Storage.IStoreLicenses.Delete(System.String)"/>.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Storage.LicenseNotFoundException.#ctor(System.String,System.Tuple{System.String,System.String,System.String})">
+            <summary>
+            Constructs a new LicenseNotFoundException.
+            </summary>
+            <param name="vendorProductVersion">The product Id based on the <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">current product</see>.</param>
+            <param name="activationKey">The activation key for the license that could not be located.</param>
+        </member>
+        <member name="M:Sp.Agent.Storage.LicenseNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Serialization constructor.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Storage.StoreNotEmptyException">
+            <summary>
+            Indicates that the store for the <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">current product</see> still has licenses installed in it and hence cannot be <see cref="M:Sp.Agent.Configuration.IInitializeStores.Uninitialize">Uninitialized</see> until the licenses have been <see cref="M:Sp.Agent.Storage.IStoreLicenses.Delete(System.String)">Deleted()d</see>.<para/>
+            </summary>
+            <seealso cref="M:Sp.Agent.Storage.IStoreLicenses.Delete(System.String)"/>
+            <seealso cref="M:Sp.Agent.Configuration.IInitializeStores.Uninitialize"/>
+        </member>
+        <member name="M:Sp.Agent.Storage.StoreNotEmptyException.#ctor(System.String,System.Tuple{System.String,System.String,System.String})">
+            <summary>
+            Constructs a new StoreNotEmptyException.
+            </summary>
+            <param name="vendorProductVersion">The product Id based on the <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">current product</see>.</param>
+            <param name="storeName">The name of the Store that was not empty.</param>
+        </member>
+        <member name="M:Sp.Agent.Storage.StoreNotEmptyException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Serialization constructor.
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Storage.IStore">
+            <summary>
+            Represents a Configured <see cref="T:Sp.Agent.Activation.IActivateLicenses">Activated</see> Product <see cref="T:Sp.Agent.Licensing.ILicense">License</see> Store.
+            </summary>
+        </member>
+        <member name="P:Sp.Agent.Storage.IStore.Name">
+            <summary>
+            The unique name associated with the store type that has been Configured.
+            </summary>
+            <example><c>"Crm.Organization"</c></example>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Internal.AgentCommenceConfigurationPhaseInternalExtensions">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Internal.AgentCommenceConfigurationPhaseInternalExtensions.NextPhase(Sp.Agent.Configuration.IAgentCommenceConfigurationPhase)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Internal.AgentCommenceConfigurationPhaseInternalExtensions.InternalCompleteWithDefaults(Sp.Agent.Configuration.IAgentCommenceConfigurationPhase)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Internal.AgentCommenceConfigurationPhaseInternalExtensions.WithStoreTypeId(Sp.Agent.Configuration.IAgentCommenceConfigurationPhase,System.Guid)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Internal.AgentCommenceConfigurationPhaseInternalExtensions.WithCoreParameter(Sp.Agent.Configuration.IAgentCommenceConfigurationPhase,System.String,System.Object)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Internal.AgentInternalDistributorsConfigurationPhaseInternalExtensions">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Internal.AgentInternalDistributorsConfigurationPhaseInternalExtensions.NextPhase(Sp.Agent.Configuration.Internal.IInternalDistributorsConfigurationPhase)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Internal.AgentInternalDistributorsConfigurationPhaseInternalExtensions.InternalCompleteWithDefaults(Sp.Agent.Configuration.Internal.IInternalDistributorsConfigurationPhase)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Configuration.Internal.AgentEmbeddedLicensesConfigurationPhaseInternalExtensions">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Configuration.Internal.AgentEmbeddedLicensesConfigurationPhaseInternalExtensions.InternalCompleteWithDefaults(Sp.Agent.Configuration.IAgentEmbeddedLicensesConfigurationPhase)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Internal.Contexts.AgentContextsInternal">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.Contexts.AgentContextsInternal.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sp.Agent.Internal.Contexts.AgentContextsInternal.Instance">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Internal.CoreServices.ICoreExecutionServices">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.CoreServices.ICoreExecutionServices.ExecuteMethod(Slps.Engine.Execution.Internal.IExecutionEngineParams,System.Guid,System.Boolean,System.Tuple{System.String,System.String,System.String},System.Collections.ObjectModel.ReadOnlyCollection{System.Guid},System.String,System.Reflection.Assembly,System.Int32)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Licensing.IQueryLicenses">
+            <summary>
+            Provides access to information pertaining to the <see cref="P:Sp.Agent.IProductContext.Activation">Activated</see> set of <see cref="T:Sp.Agent.Licensing.ILicense">License</see>s for a given <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">Software Potential service Product</see>.<para/>
+            See <see cref="P:Sp.Agent.IProductContext.Licenses">IProductContext.Licenses</see> for examples and details of how to obtain an <see cref="T:Sp.Agent.Licensing.IQueryLicenses"/>.<para/>
+            See <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">IAgentContext.ProductContextFor</see> for examples and details of how to obtain an <see cref="T:Sp.Agent.IProductContext"/>.<para/>
+            See <see cref="M:Sp.Agent.Configuration.AgentContext.For(System.String)">AgentContext.For</see> for examples and details of how to obtain an <see cref="T:Sp.Agent.Configuration.IAgentContext"/>.<para/>
+            </summary>
+            <seealso cref="P:Sp.Agent.IProductContext.Licenses">IProductContext.Licenses</seealso>
+            <seealso cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">IAgentContext.ProductContextFor</seealso>
+            <seealso cref="M:Sp.Agent.Configuration.AgentContext.For(System.String)">AgentContext.For</seealso>
+        </member>
+        <member name="M:Sp.Agent.Licensing.IQueryLicenses.All">
+            <summary>
+            <para>Returns ALL activated Software Potential service Product Licenses for this <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">Product Context</see>.</para>
+            <para>NB This INCLUDES POTENTIALLY INVALID licenses and hence should not be used in authorization checks. In general, the <c>.Valid()</c> sibling is the more appropriate query method to use.</para>
+            </summary>
+            <seealso cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">IAgentContext.ProductContextFor</seealso>
+        </member>
+        <member name="M:Sp.Agent.Licensing.IQueryLicenses.Valid">
+            <summary>
+            <para>Returns currently valid activated Software Potential service Product Licenses for this <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">Product Context</see>.</para>
+            <para>Compared to <c>.All</c>, this filters out licenses that are not presently in-date, are in violation of License Binding or Virtual Execution Environment restrictions or have been tampered.</para>
+            <para>This list is in sync with the set of licenses considered by the Execution Engine for the execution of Protected Code.</para>
+            </summary>
+            <seealso cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">IAgentContext.ProductContextFor</seealso>
+        </member>
+        <member name="M:Sp.Agent.Licensing.IQueryLicenses.DueForRenewalNow">
+            <summary>
+            <para>Returns all activated Software Potential service Product Licenses for this <see cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">Product Context</see> 
+            that are past their current <see cref="P:Sp.Agent.Licensing.ILicenseAdvanced.ExpirationDate">ExpirationDate</see></para>
+            </summary>
+            <seealso cref="M:Sp.Agent.Configuration.IAgentContext.ProductContextFor(System.String,System.String)">IAgentContext.ProductContextFor</seealso>
+        </member>
+        <member name="T:Sp.Agent.Internal.CoreServices.ICoreLicensingServices">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.CoreServices.ICoreLicensingServices.All(System.Collections.ObjectModel.ReadOnlyCollection{System.Guid},System.Tuple{System.String,System.String,System.String})">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.CoreServices.ICoreLicensingServices.Valid(System.Collections.ObjectModel.ReadOnlyCollection{System.Guid},System.Tuple{System.String,System.String,System.String})">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.CoreServices.ICoreLicensingServices.ValidFeatures(System.Collections.ObjectModel.ReadOnlyCollection{System.Guid},System.Tuple{System.String,System.String,System.String})">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Internal.CoreServices.ICoreLicensingServices.ValidFeaturesContains(System.String,System.Collections.ObjectModel.ReadOnlyCollection{System.Guid},System.Tuple{System.String,System.String,System.String})">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="T:Sp.Agent.Internal.CoreServicesNotFoundException">
+            <summary>
+            <para>Indicates that there has been a problem discovering a Permuted Sp.Agent Core assembly. Each <c>Sp.Agent.*.dll</c> alongside the <c>Sp.Agent.dll</c> needs to load correctly in order for the Sp.Agent to operate correctly.</para>
+            <para>It is permissible to IL-Merge the <c>Sp.Agent.*.dll</c>s into the outer <c>Sp.Agent</c> assembly (and that itself can be IL-Merged too).</para>
+            <para>Typically there will be underlying <c>MEF</c> (<c>System.ComponentModel.Composition</c>)-flagged conditions underlying the issue which can be critical to correctly diagnosing issues.</para>
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Internal.CoreServicesNotFoundException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            Constructs a new CoreServicesNotFoundException.
+            </summary>
+            <param name="permutationStamp">The internal component stamp associated with the required version of the vendor's Permuted Runtime.</param>
+            <param name="shortCode">The permutation short code associated with the vendor's Permuted Runtime.</param>
+            <param name="innerException">The inner exception</param>
+        </member>
+        <member name="M:Sp.Agent.Internal.CoreServicesNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Serialization constructor.
+            </summary>
+        </member>
+        <member name="T:Slps.Engine.Execution.Internal.ExecutionServices">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Slps.Engine.Execution.Internal.ExecutionServices.ExecuteMethod(System.Object,System.String,System.String,System.Object[],System.Type[],System.Type[])">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+        <member name="M:Slps.Engine.Execution.Internal.ExecutionServices.ExecuteMethod2(Slps.Engine.Execution.Internal.IExecutionEngineParams,System.Guid,System.String,System.Reflection.Assembly)">
+            <summary>
+            For internal use only.
+            </summary>
+            <remarks>
+            Subject to unlimited change without notice even in minor version changes.
+            </remarks>
+        </member>
+    </members>
+</doc>

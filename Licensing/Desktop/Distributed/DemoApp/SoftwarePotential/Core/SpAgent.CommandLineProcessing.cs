@@ -42,7 +42,7 @@ namespace Sp.Agent
 				{
 					ExecuteCommandLineAction(
 						"Activating License: " + activationKey,
-						() => SpAgent.Product.Activation.OnlineActivate( activationKey ) );
+						() => SpAgent.Product.Activation.OnlineActivateAsync( activationKey ).Wait() );
 					handledSomething = true;
 				}
 

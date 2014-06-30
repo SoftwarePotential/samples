@@ -23,7 +23,7 @@ Partial Public Class CommandLineProcessing
         Dim activationKey As String = CommandLineParsing.ArgumentOrDefault("activate", args)
         If activationKey IsNot Nothing Then
             ExecuteCommandLineAction("Activating License: " + activationKey, Sub()
-                                                                                 SpAgent.Product.Activation.OnlineActivate(activationKey)
+                                                                                 SpAgent.Product.Activation.OnlineActivateAsync(activationKey).Wait()
                                                                              End Sub)
             handledSomething = True
         End If
