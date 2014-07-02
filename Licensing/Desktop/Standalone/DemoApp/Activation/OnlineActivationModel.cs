@@ -15,10 +15,12 @@ using System.Threading.Tasks;
 
 namespace DemoApp.Activation
 {
-	public class ActivationModel : ViewModelBase, IDataErrorInfo
+	public class OnlineActivationModel : ViewModelBase, IDataErrorInfo
 	{
 		public RelayCommand ActivationCommand { get; set; }
+		public RelayCommand GenerateManualActivationRequestCommand { get; set; }
 		public RelayCommand CancelCommand { get; set; }
+
 		string _activationKey;
 
 		bool _activationInProgress;
@@ -66,7 +68,8 @@ namespace DemoApp.Activation
 			}
 		}
 
-		public ActivationModel()
+
+		public OnlineActivationModel()
 		{
 			ActivationCommand = new RelayCommand( ActivateOnline, CanActivate );
 		}
