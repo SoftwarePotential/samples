@@ -7,6 +7,7 @@
  * 
  */
 
+using System.Windows;
 namespace DemoApp.Common
 {
 	public interface IDisplayState

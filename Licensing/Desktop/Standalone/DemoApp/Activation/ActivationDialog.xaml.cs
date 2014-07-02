@@ -17,7 +17,9 @@ namespace DemoApp.Activation
 		public ActivationDialog()
 		{
 			InitializeComponent();
-			((ViewModelBase)DataContext).DisplayState = this;
+	
+			((ViewModelBase)(OnlineTab.DataContext)).DisplayState = this;
+			((ViewModelBase)(OfflineTab.DataContext)).DisplayState = this;
 		}
 
 		public void NotifyUser( object message )

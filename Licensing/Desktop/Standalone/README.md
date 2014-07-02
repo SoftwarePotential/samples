@@ -3,6 +3,7 @@
 This solution contains a simple project illustrating the following elements of a **Licensed** application in a **Desktop** environment:
 
 * an Online Activation page
+* an Offline Activation page
 * a diagnostic license list page
 * Click Once deployable
 
@@ -28,7 +29,20 @@ The application uses WPF without any dependency on third party packages (e.g. MV
 * Generate a license for the Product `Demo` and Version `1.0` via the [Software Potential service](https://srv.softwarepotential.com/Issue.aspx?IssueType=new) 
  * Create a license for product `Demo 1.0` (**Manage Licenses|Issue New Licenses** on the site)
   * Add a Feature (e.g., `Feature1`)
-* Paste the license key into the activation form (**Licenses|Activate** on the sample's menu)
+
+### Online
+* Paste the license key into the Online Tab of the activation form (**Licenses|Activate** on the sample's menu)
+* Click Activate
+
+### Offline
+* Paste the license key into the Offline Tab of the activation form (**Licenses|Activate** on the sample's menu)
+* Click Generate
+* Click Copy to Clipboard
+* Navigate to [Software Potential service's Manual Activation page](https://srv.softwarepotential.com/Activation.aspx)
+* Paste the license request, load the license and click Activate
+* Download the generated License (.bin) file
+* Back in the demo app click Browse and navigate to the location of the downloaded License file
+* Click install
 
 ## Viewing the licenses list
 

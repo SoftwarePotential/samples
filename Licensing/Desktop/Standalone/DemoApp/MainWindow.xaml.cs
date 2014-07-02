@@ -8,7 +8,6 @@
  */
 
 using DemoApp.Activation;
-using DemoApp.BusinessLogic;
 using DemoApp.Common;
 using DemoApp.Licenses;
 using System.Windows;
@@ -20,29 +19,16 @@ namespace DemoApp
 		public MainWindow()
 		{
 			InitializeComponent();
+			((ViewModelBase)DataContext).DisplayState = this;
 		}
-
-		void RunFeature1_Click( object sender, RoutedEventArgs e )
-		{
-			MyAlgorithms.AccessFeature1();
-			MessageBox.Show( "Feature 1 accessed successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information );
-		}
-
-		void RunFeature2_Click( object sender, RoutedEventArgs e )
-		{
-			MyAlgorithms.AccessFeature2();
-			MessageBox.Show( "Feature 2 accessed successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information );
-		}
-		 
+				 
 		void ShowInstalledLicensesList_Click( object sender, RoutedEventArgs e )
-		{
-			
+		{			
 			new LicenseListDialog { Owner = this }.ShowDialog();
 		}
 
 		void ShowActivationDialog_Click( object sender, RoutedEventArgs e )
 		{
-			//	((ViewModelBase)activationDialog.DataContext).DisplayState = this;
 			new ActivationDialog { Owner = this }.ShowDialog();
 		}
 
