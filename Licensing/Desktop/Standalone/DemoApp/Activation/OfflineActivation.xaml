@@ -20,7 +20,7 @@
 				<StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="5,5,5,5">
 					<StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="330" >
 						<TextBlock Text="Please enter your activation key:" Margin="0,0,0,5"/>
-						<TextBox  MaxLength="{Binding ActivationKeyRequiredLength}" HorizontalAlignment="Left" Width="330" Text="{Binding OfflineActivationKey, Mode=TwoWay,
+						<TextBox  MaxLength="{Binding ActivationKeyRequiredLength}" HorizontalAlignment="Left" Width="330" Text="{Binding ActivationKey, Mode=TwoWay,
 							UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"    Margin="0,0,0,5" Name="OfflineActivationKeyTb">
 							<TextBox.Style>
 								<Style TargetType="{x:Type TextBox}">
@@ -54,13 +54,9 @@
 						<Button Content="Copy to Clipboard" Command="{Binding CopyToClipboardCommand}" HorizontalAlignment="Right"></Button>
 					</StackPanel>
 					<StackPanel  Width="330"  HorizontalAlignment="Left" >
-						<TextBlock Text="Select a license file to install:" Margin="0,0,0,5"/>
-						<StackPanel Orientation="Horizontal"  Margin="0,0,0,5">
-							<TextBox Text="{Binding LicenseFilePath}"  Width="275" IsReadOnly="True"/>
-							<Button Margin="5,0,0,0" Command="{Binding BrowseFileSystemCommand}">Browse</Button>
-						</StackPanel>
-						<Button  Content="Install"  Margin="0,0,0,5" ToolTip="Install selected license file." Width="50"
-					Command="{Binding InstallLicenseFileCommand}" CommandParameter="{Binding}" HorizontalAlignment="Right"/>
+						<TextBlock Text="Select a license file to install:" Margin="0,0,0,5"/>					
+						<Button  Content="Install..."  Margin="0,0,0,5" ToolTip="Install selected license file." Width="50"
+					Command="{Binding BrowseAndInstallCommand}" CommandParameter="{Binding}" HorizontalAlignment="Left"/>
 						<TextBlock TextWrapping="Wrap" Text="{Binding LicenseInstallResult}" Width="330" 
                     Margin="0,5,0,5" Foreground="{Binding LastInstallSucceeded,Converter={StaticResource booleanErrorMessageColorConverter}}"></TextBlock>
 					</StackPanel>
@@ -70,4 +66,3 @@
 		<Button Name="closeButton" Content="Close" HorizontalAlignment="Right" VerticalAlignment="Bottom"  ToolTip="Cancel" Command="{Binding CloseCommand}"/>
 	</Grid>
 </UserControl>
-	

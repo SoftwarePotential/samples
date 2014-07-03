@@ -41,8 +41,8 @@ The application uses WPF without any dependency on third party packages (e.g. MV
 * Navigate to [Software Potential service's Manual Activation page](https://srv.softwarepotential.com/Activation.aspx)
 * Paste the license request, load the license and click Activate
 * Download the generated License (.bin) file
-* Back in the demo app click Browse and navigate to the location of the downloaded License file
-* Click install
+* In the DemoApp open the Offline Tab of the activation form (Licenses|Activate on the sample's menu)
+* Click Install and select the downloaded License file
 
 ## Viewing the licenses list
 
