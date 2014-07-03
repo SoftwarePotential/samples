@@ -21,18 +21,17 @@ namespace DemoApp.Activation
 	{
 		public RelayCommand GenerateRequestCommand { get; set; }
 		public RelayCommand CopyToClipboardCommand { get; set; }
-		public RelayCommand BrowseFileSystemCommand { get; set; }
-		public RelayCommand InstallLicenseFileCommand { get; set; }
-		string _activationKey;
+		public RelayCommand BrowseAndInstallCommand { get; set; }
 
-		public string OfflineActivationKey
+		string _activationKey;
+		public string ActivationKey
 		{
 			get { return _activationKey; }
 			set
 			{
 				_activationKey = value;
 				GenerateRequestCommand.RaiseCanExecuteChanged();
-				OnPropertyChanged( "OfflineActivationKey" );
+				OnPropertyChanged( "ActivationKey" );
 			}
 		}
 
@@ -48,17 +47,6 @@ namespace DemoApp.Activation
 			}
 		}
 
-		string _licenseFilePath;
-		public string LicenseFilePath
-		{
-			get { return _licenseFilePath; }
-			set
-			{
-				_licenseFilePath = value;
-				InstallLicenseFileCommand.RaiseCanExecuteChanged();
-				OnPropertyChanged( "LicenseFilePath" );
-			}
-		}
 
 		string _licenseInstallResult;
 		public string LicenseInstallResult
@@ -86,23 +74,22 @@ namespace DemoApp.Activation
 		{
 			GenerateRequestCommand = new RelayCommand( GenerateRequest, CanGenerateRequest );
 			CopyToClipboardCommand = new RelayCommand( CopyToClipboard, CanCopyToClipboard );
-			BrowseFileSystemCommand = new RelayCommand( BrowseFileSystem );
-			InstallLicenseFileCommand = new RelayCommand( InstallLicenseFile, CanInstallLicenseFile );
+			BrowseAndInstallCommand = new RelayCommand( BrowseAndInstallLicense );
 		}
 
 		void GenerateRequest()
 		{
-			ActivationRequest = SpAgent.Product.Activation.Advanced().CreateManualActivationRequest( OfflineActivationKey, null );
+			ActivationRequest = SpAgent.Product.Activation.Advanced().CreateManualActivationRequest( ActivationKey, null );
 		}
 
 		bool CanGenerateRequest()
 		{
-			return !string.IsNullOrEmpty( OfflineActivationKey ) && OfflineActivationKey.Length == ActivationKeyRequiredLength && IsActivationKeyWellFormed();
+			return !string.IsNullOrEmpty( ActivationKey ) && ActivationKey.Length == ActivationKeyRequiredLength && IsActivationKeyWellFormed();
 		}
 
 		void CopyToClipboard()
 		{
-			Clipboard.SetText( ActivationRequest );
+			Clipboard.SetData( DataFormats.Text, ActivationRequest );
 		}
 
 		bool CanCopyToClipboard()
@@ -110,20 +97,22 @@ namespace DemoApp.Activation
 			return !string.IsNullOrEmpty( ActivationRequest );
 		}
 
-		void BrowseFileSystem()
+		void BrowseAndInstallLicense()
 		{
-			var fileDialog = new OpenFileDialog() { DefaultExt = ".bin", Filter = "License Files (*.bin)|*.bin" };
+			var fileDialog = new OpenFileDialog() { DefaultExt = ".bin", Filter = "License Files (*.bin)|*.bin", };
 
 			bool? result = fileDialog.ShowDialog();
 
-			if ( result == true )
-				LicenseFilePath = fileDialog.FileName;
+			if ( result != true)
+				return;		
+
+			var license = File.ReadAllBytes( fileDialog.FileName );
+			InstallLicense( license );
 		}
 
-		void InstallLicenseFile()
+		void InstallLicense( byte[] license )
 		{
-			LastInstallSucceeded = false;			
-			var license = File.ReadAllBytes( LicenseFilePath );
+			LastInstallSucceeded = false;
 			try
 			{
 				SpAgent.Product.Stores.Install( license );
@@ -140,17 +129,9 @@ namespace DemoApp.Activation
 			}
 		}
 
-		bool CanInstallLicenseFile()
-		{
-			if ( string.IsNullOrEmpty( LicenseFilePath ) )
-				return false;
-			var fileInfo = new FileInfo( LicenseFilePath );
-			return fileInfo.Exists;
-		}
-
 		bool IsActivationKeyWellFormed()
 		{
-			return SpAgent.Product.Activation.IsWellFormedKey( OfflineActivationKey );
+			return SpAgent.Product.Activation.IsWellFormedKey( ActivationKey );
 		}
 
 		static int ActivationKeyRequiredLength
@@ -163,11 +144,11 @@ namespace DemoApp.Activation
 			get
 			{
 				string result = null;
-				if ( columnName == "OfflineActivationKey" )
+				if ( columnName == "ActivationKey" )
 				{
-					if ( string.IsNullOrEmpty( OfflineActivationKey ) )
+					if ( string.IsNullOrEmpty( ActivationKey ) )
 						result = "Please enter an activation key";
-					else if ( OfflineActivationKey.Length != ActivationKeyRequiredLength )
+					else if ( ActivationKey.Length != ActivationKeyRequiredLength )
 						result = string.Format( "Activation key should be exactly {0} characters long", ActivationKeyRequiredLength );
 					else if ( !IsActivationKeyWellFormed() )
 						result = "Activation key is not in the correct format";
