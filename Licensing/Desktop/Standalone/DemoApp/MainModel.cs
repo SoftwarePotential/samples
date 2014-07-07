@@ -1,5 +1,8 @@
 ﻿using DemoApp.Common;
 using Sp.Agent;
+using System;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace DemoApp
 {
@@ -12,6 +15,7 @@ namespace DemoApp
 		{
 			Feature1Command = new RelayCommand( Feature1, CanExecuteFeature1 );
 			Feature2Command = new RelayCommand( Feature2, CanExecuteFeature2 );
+			SpAgent.Product.Stores.LicenseInstalled += OnLicenseInstalled;
 		}
 
 		[Demo_10.Features.Feature1]
@@ -34,6 +38,15 @@ namespace DemoApp
 		bool CanExecuteFeature2()
 		{
 			return SpAgent.Product.LocalFeatures.ValidContains( Demo_10.Features.Feature2.Name );
+		}
+
+		void OnLicenseInstalled( object sender, EventArgs e )
+		{
+			((Window)DisplayState).Dispatcher.BeginInvoke( (Action)(() =>
+			{
+				Feature1Command.RaiseCanExecuteChanged();
+				Feature2Command.RaiseCanExecuteChanged();
+			}) );
 		}
 	}
 }
