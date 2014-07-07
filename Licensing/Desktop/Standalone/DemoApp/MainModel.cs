@@ -18,7 +18,8 @@ namespace DemoApp
 			SpAgent.Product.Stores.LicenseInstalled += OnLicenseInstalled;
 		}
 
-		[Demo_10.Features.Feature1]
+		//[Demo_10.Features.Feature1]
+		[Aidansmed_1.Features.Crop]
 		void Feature1()
 		{
 			DisplayState.NotifyUser( "Feature 1 accessed successfully" );
@@ -26,10 +27,12 @@ namespace DemoApp
 
 		bool CanExecuteFeature1()
 		{
-			return SpAgent.Product.LocalFeatures.ValidContains( Demo_10.Features.Feature1.Name );
+		//	return SpAgent.Product.LocalFeatures.ValidContains( Demo_10.Features.Feature1.Name );
+			return SpAgent.Product.LocalFeatures.ValidContains( Aidansmed_1.Features.Crop.Name );
 		}
 
-		[Demo_10.Features.Feature2]
+	//	[Demo_10.Features.Feature2]
+		[Aidansmed_1.Features.Rotate]
 		void Feature2()
 		{
 			DisplayState.NotifyUser( "Feature 2 accessed successfully" );
@@ -37,7 +40,9 @@ namespace DemoApp
 
 		bool CanExecuteFeature2()
 		{
-			return SpAgent.Product.LocalFeatures.ValidContains( Demo_10.Features.Feature2.Name );
+			//return SpAgent.Product.LocalFeatures.ValidContains( Demo_10.Features.Feature2.Name );
+
+			return SpAgent.Product.LocalFeatures.ValidContains( Aidansmed_1.Features.Rotate.Name );
 		}
 
 		void OnLicenseInstalled( object sender, EventArgs e )

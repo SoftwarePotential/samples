@@ -53,8 +53,7 @@
                     Margin="0,5,0,5" Foreground="{Binding LastActivationSucceeded,Converter={StaticResource booleanErrorMessageColorConverter}}"></TextBlock>
 					<Label Style="{StaticResource BusyAnimationStyle}" Visibility="{Binding Path=IsActivationInProgress,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource booleanToVisibilityConverter}}"/>
 				</StackPanel>
-
-				<Button Name="closeButton" Content="Close" HorizontalAlignment="Right" VerticalAlignment="Bottom"  ToolTip="Cancel" Command="{Binding CloseCommand}"/>
+				<Button Name="closeButton" Content="Close" HorizontalAlignment="Right" VerticalAlignment="Bottom"  ToolTip="Close" Command="{Binding CloseCommand}"/>
 			</Grid>
 		</AdornerDecorator>
 	</Border>
