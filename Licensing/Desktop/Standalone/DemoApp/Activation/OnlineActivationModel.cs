@@ -19,10 +19,7 @@ namespace DemoApp.Activation
 	{
 		public RelayCommand ActivationCommand { get; set; }
 		public RelayCommand GenerateManualActivationRequestCommand { get; set; }
-		public RelayCommand CancelCommand { get; set; }
-
-		string _activationKey;
-
+		
 		bool _activationInProgress;
 		public bool IsActivationInProgress
 		{
@@ -57,6 +54,7 @@ namespace DemoApp.Activation
 			}
 		}
 
+		string _activationKey;
 		public string ActivationKey
 		{
 			get { return _activationKey; }
@@ -68,12 +66,11 @@ namespace DemoApp.Activation
 			}
 		}
 
-
 		public OnlineActivationModel()
 		{
 			ActivationCommand = new RelayCommand( ActivateOnline, CanActivate );
 		}
-
+		
 		bool CanActivate()
 		{
 			return !string.IsNullOrEmpty( ActivationKey ) && ActivationKey.Length == ActivationKeyRequiredLength && IsActivationKeyWellFormed() && !IsActivationInProgress;
