@@ -20,6 +20,17 @@ namespace DemoApp
 		/// <summary>Defines Attributes used to mark code for Protection by the Software Potential Code Protector, together with the (string) Names of the features for the purposes of generating custom licensing queries.</summary>
 		public static partial class Features
 		{
+			#region Feature4
+			/// <summary>Require a License for 'Demo' - '1.0' with the 'Name: Feature4' Feature to be present.</summary>
+			[System.AttributeUsage( System.AttributeTargets.Constructor | System.AttributeTargets.Method )]
+			public sealed class @Feature4 : LicensedFeatureAttribute
+			{
+				public const string Name = @"Feature4";
+ 
+				public @Feature4() : base( Name ) {}
+			}
+			#endregion
+
 			#region Feature2
 			/// <summary>Require a License for 'Demo' - '1.0' with the 'Name: Feature2' Feature to be present.</summary>
 			[System.AttributeUsage( System.AttributeTargets.Constructor | System.AttributeTargets.Method )]
