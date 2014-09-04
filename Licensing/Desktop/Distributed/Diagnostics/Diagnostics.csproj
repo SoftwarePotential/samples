@@ -16,7 +16,7 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <SlpsAssemblySigning>Permutation</SlpsAssemblySigning>
-    <NuGetPackageImportStamp>337a6fb2</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>bc444103</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -48,13 +48,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\docopt.net.0.6.1.5\lib\net40\DocoptNet.dll</HintPath>
     </Reference>
-    <Reference Include="Sp.Agent, Version=3.2.1958.14, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
+    <Reference Include="Sp.Agent, Version=3.2.1964.12, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Sp.Agent.3.2.1958\lib\net40\Sp.Agent.dll</HintPath>
+      <HintPath>..\packages\Sp.Agent.3.2.1964\lib\net40\Sp.Agent.dll</HintPath>
     </Reference>
-    <Reference Include="Sp.Agent.Distributor, Version=3.2.1958.14, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
+    <Reference Include="Sp.Agent.Distributor, Version=3.2.1964.12, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Sp.Agent.Distributor.3.2.1958\lib\net40\Sp.Agent.Distributor.dll</HintPath>
+      <HintPath>..\packages\Sp.Agent.Distributor.3.2.1964\lib\net40\Sp.Agent.Distributor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ServiceModel" />
@@ -66,13 +66,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Sp.Agent-62340.3.2.1958.10\build\net40\Sp.Agent-62340.targets" Condition="Exists('..\packages\Sp.Agent-62340.3.2.1958.10\build\net40\Sp.Agent-62340.targets')" />
+  <Import Project="..\packages\Sp.Agent-62340.3.2.1964.12\build\net40\Sp.Agent-62340.targets" Condition="Exists('..\packages\Sp.Agent-62340.3.2.1964.12\build\net40\Sp.Agent-62340.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Sp.Agent-62340.3.2.1958.10\build\net40\Sp.Agent-62340.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Agent-62340.3.2.1958.10\build\net40\Sp.Agent-62340.targets'))" />
-    <Error Condition="!Exists('..\packages\Sp.Agent.Distributor-62340.3.2.1958.10\build\net40\Sp.Agent.Distributor-62340.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Agent.Distributor-62340.3.2.1958.10\build\net40\Sp.Agent.Distributor-62340.targets'))" />
+    <Error Condition="!Exists('..\packages\Sp.Agent-62340.3.2.1964.12\build\net40\Sp.Agent-62340.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Agent-62340.3.2.1964.12\build\net40\Sp.Agent-62340.targets'))" />
+    <Error Condition="!Exists('..\packages\Sp.Agent.Distributor-62340.3.2.1964.12\build\net40\Sp.Agent.Distributor-62340.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Agent.Distributor-62340.3.2.1964.12\build\net40\Sp.Agent.Distributor-62340.targets'))" />
   </Target>
-  <Import Project="..\packages\Sp.Agent.Distributor-62340.3.2.1958.10\build\net40\Sp.Agent.Distributor-62340.targets" Condition="Exists('..\packages\Sp.Agent.Distributor-62340.3.2.1958.10\build\net40\Sp.Agent.Distributor-62340.targets')" />
+  <Import Project="..\packages\Sp.Agent.Distributor-62340.3.2.1964.12\build\net40\Sp.Agent.Distributor-62340.targets" Condition="Exists('..\packages\Sp.Agent.Distributor-62340.3.2.1964.12\build\net40\Sp.Agent.Distributor-62340.targets')" />
 </Project>
