@@ -31,7 +31,11 @@ namespace DemoApp.Checkout
 				if ( Checkout.TryGetCurrent( out checkout ) )
 					Navigate( new CurrentCheckoutPage() );
 				else
-					Navigate( new AvailableCheckoutPage() );
+				{
+					var model = new AvailableCheckoutsModel( this );
+					var availableCheckoutPage = new AvailableCheckoutPage { DataContext = model };
+					Navigate( availableCheckoutPage );
+				}
 			}
 			catch ( DistributorRequestException )
 			{
