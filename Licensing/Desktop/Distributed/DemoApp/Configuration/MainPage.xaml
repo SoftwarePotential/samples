@@ -69,7 +69,7 @@
                 </StackPanel>
                 <StackPanel Margin="0,5,0,0"  Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button  HorizontalAlignment="Left" Content="_Save" Padding="7,2,10,2" Command="{Binding SaveCommand}"/>
-                    <Button Content="Cancel" HorizontalAlignment="Right"  Margin="5,0,0,0" Command="{Binding CloseCommand}" />
+                    <Button Content="Close" HorizontalAlignment="Right"  Margin="5,0,0,0" Command="{Binding CloseCommand}" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>

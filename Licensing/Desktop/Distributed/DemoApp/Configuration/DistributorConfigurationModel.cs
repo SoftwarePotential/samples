@@ -33,32 +33,36 @@ namespace DemoApp.Configuration
 				if ( _distributorUrl != value )
 				{
 					_distributorUrl = value;
+					_isDirty = true;
 					OnPropertyChanged( "DistributorUrl" );
-					TestConnectionCommand.RaiseCanExecuteChanged();
 					SaveCommand.RaiseCanExecuteChanged();
+					TestConnectionCommand.RaiseCanExecuteChanged();
 				}
 			}
 		}
 
-		int _licenseCount;
+		readonly int _licenseCount;
 		public int LicenseCount
 		{
 			get { return _licenseCount; }
-			set
-			{
-				_licenseCount = value;
-				OnPropertyChanged( "LicenseCount" );
-			}
 		}
+
+		bool _isDirty;
 
 		public ConfigurationModel()
 		{
+			_distributorUrl = DistributorConfigurationRepository.Load();
+			_licenseCount = LicenseRepository.LicenseCount( SpAgent.Product );
+
 			TestConnectionCommand = new RelayCommand( TestConnection, HasValidDistributorUrl );
-			SaveCommand = new RelayCommand( Save, HasValidDistributorUrlOrEmpty );
-			DistributorUrl = DistributorConfigurationRepository.Load();
-			LicenseCount = LicenseRepository.LicenseCount( SpAgent.Product );
+			SaveCommand = new RelayCommand( Save, CanSave );
 			ActivationCommand = new RelayCommand( () => DisplayState.Navigate( new ActivationPage() ) );
 			ViewLicensesCommand = new RelayCommand( () => DisplayState.Navigate( new LicenseListPage() ) );
+		}
+
+		bool CanSave()
+		{
+			return _isDirty && HasValidDistributorUrlOrEmpty();
 		}
 
 		bool HasValidDistributorUrlOrEmpty()
@@ -94,6 +98,8 @@ namespace DemoApp.Configuration
 			}
 
 			DistributorConfigurationRepository.Save( this );
+			_isDirty = false;
+			SaveCommand.RaiseCanExecuteChanged();
 			SetFirstRunLicensingConfigurationFinishedIfApplies();
 		}
 
