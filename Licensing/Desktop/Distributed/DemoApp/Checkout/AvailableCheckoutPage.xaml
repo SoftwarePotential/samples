@@ -7,12 +7,9 @@
 			xmlns:checkout="clr-namespace:DemoApp.Checkout"	  	
 			xmlns:common="clr-namespace:DemoApp.Common"	  
 			xmlns:distributor="clr-namespace:Sp.Agent.Distributor;assembly=Sp.Agent.Distributor"
-             mc:Ignorable="d" >
-
-	<Page.DataContext>
-		<checkout:AvailableCheckoutsModel/>
-	</Page.DataContext>
-	<Grid>
+            mc:Ignorable="d"
+            d:DataContext="{d:DesignInstance Type=checkout:AvailableCheckoutsModel, IsDesignTimeCreatable=False}" >
+    <Grid>
 		<DockPanel LastChildFill="False" >
 			<StackPanel DockPanel.Dock="Top"  Margin="0,0,5,0">
 				<StackPanel.Resources>

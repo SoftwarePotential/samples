@@ -62,10 +62,11 @@ namespace DemoApp.Checkout
 			}
 		}
 
-		public AvailableCheckoutsModel()
+		public AvailableCheckoutsModel(IDisplayState displayState)
 		{
 			RefreshCommmand = new RelayCommand( Load );
 			AcquireCheckoutCommand = new RelayCommand( AcquireCheckout, CanAcquireCheckout );
+			DisplayState = displayState;
 			Load();
 		}
 
@@ -83,6 +84,10 @@ namespace DemoApp.Checkout
 			catch ( DistributorIntegrityException )
 			{
 				DisplayState.NotifyUser( "We have detected an integrity issue with your distributor server. Please contact your system administartor." );
+			}
+			catch ( NoDistributorException )
+			{
+				DisplayState.NotifyUser( "There is no distributor server configured. Please configure a server in the configuration dialog." );
 			}
 			catch ( Exception exc )
 			{
