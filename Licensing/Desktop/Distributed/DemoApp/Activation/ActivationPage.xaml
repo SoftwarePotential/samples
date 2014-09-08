@@ -17,7 +17,7 @@
 	</Page.Resources>
 	<Grid>
 		<StackPanel Name="activationPanel" Orientation="Vertical" HorizontalAlignment="Left" >
-			<TextBlock Text="Please enter you activation key:" Margin="0,0,0,5"/>
+			<TextBlock Text="Please enter your activation key:" Margin="0,0,0,5"/>
 			<TextBox Name="activationTextBox" MaxLength="{Binding ActivationKeyRequiredLength}" HorizontalAlignment="Left" Width="330" Text="{Binding ActivationKey, Mode=TwoWay,
 							UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"   
 						 IsEnabled="{Binding Path=IsActivationInProgress,Mode=OneWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource inverseBooleanConverter}}">
