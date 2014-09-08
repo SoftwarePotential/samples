@@ -72,7 +72,7 @@ namespace DemoApp.Activation
 		public ActivationModel()
 		{
 			ActivationCommand = new RelayCommand( ActivateOnline, CanActivate );
-			CancelCommand = new RelayCommand( () => DisplayState.Navigate( new MainPage() ) );
+			CancelCommand = new RelayCommand( () => DisplayState.Navigate( new ConfigurationPage() ) );
 		}
 			
 		bool CanActivate()

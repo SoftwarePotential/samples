@@ -42,7 +42,7 @@ namespace DemoApp.Licenses
 			Licenses = new ObservableCollection<LicenseItemModel>( LicenseRepository.RetrieveAllLicenses( productContext ) );
 			foreach ( var license in Licenses )
 				license.ItemRemoved += RemoveSelectedItem;
-			BackCommand = new RelayCommand( () => DisplayState.Navigate( new MainPage() ) );
+			BackCommand = new RelayCommand( () => DisplayState.Navigate( new ConfigurationPage() ) );
 		}
 
 		public void Reload()
