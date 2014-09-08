@@ -7,17 +7,16 @@
  * 
  */
 
-using System;
-using System.Windows.Input;
-using DemoApp.BusinessLogic;
+using System.Windows.Controls;
 using System.Windows;
+using DemoApp.Common;
 using DemoApp.Properties;
 using DemoApp.Checkout;
 using DemoApp.Configuration;
 
 namespace DemoApp
 {
-	public partial class MainWindow : Window
+	public partial class MainWindow : Window, IDisplayState
 	{
 		public MainWindow()
 		{
@@ -28,35 +27,8 @@ namespace DemoApp
 				var dialog = new ConfigurationDialog();
 				dialog.ShowDialog();
 			}
-		}
 
-		public static RoutedCommand RunFeatureCommand = new RoutedCommand();
-
-		void RunFeatureCommand_Executed( object sender, ExecutedRoutedEventArgs e )
-		{
-			int requestedFeatureNumber = Convert.ToInt32( e.Parameter );
-			RunFeature( requestedFeatureNumber );
-		}
-
-		void RunFeatureCommand_CanExecute( object sender, CanExecuteRoutedEventArgs e )
-		{
-			e.CanExecute = true;
-		}
-
-		static void RunFeature( int featureNumber )
-		{
-			switch ( featureNumber )
-			{
-				case 1: MyAlgorithms.AccessFeature1();
-					break;
-				case 2: MyAlgorithms.AccessFeature2();
-					break;
-				case 3: MyAlgorithms.AccessFeature3();
-					break;
-				default:
-					throw new ArgumentOutOfRangeException( "featureNumber" );
-			}
-			MessageBox.Show( string.Format( "Feature {0} accessed successfully", featureNumber ), "Success", MessageBoxButton.OK, MessageBoxImage.Information );
+			Navigate(new MainPage());
 		}
 
 		void Configure_Click( object sender, RoutedEventArgs e )
@@ -69,6 +41,27 @@ namespace DemoApp
 		{
 			var dialog = new CheckoutDialog { Owner = this };
 			dialog.ShowDialog();
+		}
+
+		public void Navigate( Page page )
+		{
+			((ViewModelBase)page.DataContext).DisplayState = this;
+			TheFrame.Navigate( page );
+		}
+
+		public void NotifyUser( object message )
+		{
+			MessageBox.Show( message.ToString() );
+		}
+
+		public bool Warn( object message )
+		{
+			return MessageBox.Show( message.ToString(), "Please confirm", MessageBoxButton.YesNo ) == MessageBoxResult.Yes;
+		}
+
+		public void Exit()
+		{
+			Close();
 		}
 	}
 }
