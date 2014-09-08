@@ -3,11 +3,11 @@
 namespace DemoApp.Configuration
 {
 	/// <summary>
-	/// Interaction logic for MainPage.xaml
+	/// Interaction logic for ConfigurationPage.xaml
 	/// </summary>
-	public partial class MainPage : Page
+	public partial class ConfigurationPage : Page
 	{
-		public MainPage()
+		public ConfigurationPage()
 		{
 			InitializeComponent();
 		}

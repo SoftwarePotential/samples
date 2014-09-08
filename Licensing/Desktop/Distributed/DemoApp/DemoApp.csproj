@@ -69,8 +69,8 @@
     <Compile Include="Configuration\ConfigurationDialog.xaml.cs">
       <DependentUpon>ConfigurationDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Configuration\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="Configuration\ConfigurationPage.xaml.cs">
+      <DependentUpon>ConfigurationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Licenses\LicenseListDialog.xaml.cs">
       <DependentUpon>LicenseListDialog.xaml</DependentUpon>
@@ -94,7 +94,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Configuration\MainPage.xaml">
+    <Page Include="Configuration\ConfigurationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

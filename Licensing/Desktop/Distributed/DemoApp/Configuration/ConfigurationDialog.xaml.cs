@@ -18,7 +18,7 @@ namespace DemoApp.Configuration
 		public ConfigurationDialog()
 		{
 			InitializeComponent();
-			Navigate( new MainPage() );
+			Navigate( new ConfigurationPage() );
 		}
 		
 		public void Navigate( Page page )
