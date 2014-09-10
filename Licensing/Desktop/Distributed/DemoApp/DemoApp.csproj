@@ -72,7 +72,6 @@
     <Compile Include="Configuration\ConfigurationPage.xaml.cs">
       <DependentUpon>ConfigurationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DisplayStateProviderExtension.cs" />
     <Compile Include="Licenses\LicenseListDialog.xaml.cs">
       <DependentUpon>LicenseListDialog.xaml</DependentUpon>
     </Compile>

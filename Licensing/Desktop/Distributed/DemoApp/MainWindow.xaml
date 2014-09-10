@@ -11,16 +11,19 @@
 					    <MenuItem Header="Checkout..." Click="Checkout_Click"></MenuItem>
 				    </MenuItem>
                 </Menu>
-                <Frame Name="MainFrame" NavigationUIVisibility="Hidden" Navigated="MainFrame_Navigated" Source="MainPage.xaml"></Frame>
+                <Frame Name="MainFrame" Navigated="MainFrame_Navigated" Source="MainPage.xaml" NavigationUIVisibility="Hidden">
+                    <Frame.CommandBindings>
+                        <CommandBinding Command="NavigationCommands.GoToPage" Executed="CommandBinding_OnExecuted" CanExecute="CommandBinding_OnCanExecute" />
+                    </Frame.CommandBindings>
+                </Frame>
                 <StackPanel DockPanel.Dock="Right">
                     <Expander Margin="0,0,0,10" HorizontalAlignment="stretch" Background="sc#1.000000, 0.769689, 0.831936, 1.000000" FocusVisualStyle="{x:Null}" Width="180">
                         <Expander.Header>
                             <TextBlock Margin="10,0,0,0" FontFamily="Calibri" FontWeight="bold" FontSize="10pt">Demo App</TextBlock>
                         </Expander.Header>
                         <ListBox>
-                            <TextBlock Margin="0,5,0,0"><Hyperlink NavigateUri="MainPage.xaml" TargetName="MainFrame" Click="Hyperlink_OnClick">Declarative consumption</Hyperlink></TextBlock>
-                            <TextBlock Margin="0,5,0,0"><Hyperlink NavigateUri="Acquire/AcquirePage.xaml" TargetName="MainFrame" Click="Hyperlink_OnClick">Acquire Demo</Hyperlink></TextBlock>
-                            <!--<TextBlock Margin="0,5,0,0"><Hyperlink Command="NavigationCommands.GoToPage" CommandParameter="Acquire/AcquirePage.xaml" CommandTarget="{Binding ElementName=MainFrame}">Acquire Demo</Hyperlink></TextBlock>-->
+                            <TextBlock Margin="0,5,0,0"><Hyperlink Command="NavigationCommands.GoToPage" CommandTarget="{Binding ElementName=MainFrame}" CommandParameter="MainPage.xaml">Declarative consumption</Hyperlink></TextBlock>
+                            <TextBlock Margin="0,5,0,0"><Hyperlink Command="NavigationCommands.GoToPage" CommandTarget="{Binding ElementName=MainFrame}" CommandParameter="Acquire/AcquirePage.xaml">Acquire Demo</Hyperlink></TextBlock>
                         </ListBox>
                     </Expander>
                 </StackPanel>

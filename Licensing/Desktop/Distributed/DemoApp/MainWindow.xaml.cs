@@ -7,10 +7,10 @@
  * 
  */
 
-using System.Diagnostics;
+using System;
 using System.Windows.Controls;
 using System.Windows;
-using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Navigation;
 using DemoApp.Common;
 using DemoApp.Properties;
@@ -22,10 +22,11 @@ namespace DemoApp
 	public partial class MainWindow : Window, IDisplayState
 	{
 		const string TitlePrefix = "Distributed Demo App";
+
 		public MainWindow()
 		{
 			InitializeComponent();
-			
+
 			if ( !Settings.Default.FirstRunLicensingConfigurationFinished )
 			{
 				var dialog = new ConfigurationDialog();
@@ -66,18 +67,22 @@ namespace DemoApp
 			Close();
 		}
 
-		//TODO - replace with a command (or built-in hyperlink navigation)
-		void Hyperlink_OnClick( object sender, RoutedEventArgs e )
-		{
-			var hyperlink = (Hyperlink) sender;
-			//((ViewModelBase)page.DataContext).DisplayState = this;
-			MainFrame.Navigate( hyperlink.NavigateUri );
-		}
-
 		void MainFrame_Navigated( object sender, NavigationEventArgs e )
 		{
 			var targetPage = (Page)MainFrame.Content;
 			Title = TitlePrefix + " - " + targetPage.Title;
+			((ViewModelBase)targetPage.DataContext).DisplayState = this;
+		}
+
+		void CommandBinding_OnExecuted( object sender, ExecutedRoutedEventArgs e )
+		{
+			var uri = new Uri( (string)e.Parameter, UriKind.Relative );
+			MainFrame.Navigate( uri );
+		}
+
+		void CommandBinding_OnCanExecute( object sender, CanExecuteRoutedEventArgs e )
+		{
+			e.CanExecute = true;
 		}
 	}
 }

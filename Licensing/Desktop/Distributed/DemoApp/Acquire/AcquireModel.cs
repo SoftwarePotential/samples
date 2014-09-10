@@ -29,7 +29,7 @@ namespace DemoApp.Acquire
 				SpAgent.Distributed.Acquire( x =>
 				{
 					var firstAvailablePool = x.FirstOrDefault();
-					return firstAvailablePool != null ? firstAvailablePool.ToArray() : new string[0];
+					return firstAvailablePool != null ? firstAvailablePool.ToArray() : new string[ 0 ];
 				} );
 				_featuresHeld = SpAgent.Distributed.Features;
 			}
@@ -49,6 +49,8 @@ namespace DemoApp.Acquire
 			{
 				RunFeatureCommand.RaiseCanExecuteChanged();
 			}
+			if ( _featuresHeld.Count == 0 )
+				DisplayState.NotifyUser( "No features have been acquired. Please check your Licensing Status." );
 		}
 
 		static void RunFeature( int featureNumber )

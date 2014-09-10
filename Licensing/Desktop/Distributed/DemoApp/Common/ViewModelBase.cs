@@ -9,32 +9,15 @@
 
 using System;
 using System.ComponentModel;
-using System.Windows;
 
 namespace DemoApp.Common
 {
 	public class ViewModelBase : INotifyPropertyChanged
 	{
-		IDisplayState _displayState;
-
-		public IDisplayState DisplayState
-		{
-			get 
-			{ 
-				if(_displayState != null)
-					return _displayState; 
-				else if ( DisplayStateFactory != null )
-					return DisplayStateFactory();
-				else return null;
-			}
-			set { _displayState = value; }
-		}
-
-		public Func<IDisplayState> DisplayStateFactory { get; set; }
-
+		public IDisplayState DisplayState { get; set; }
 		public event PropertyChangedEventHandler PropertyChanged;
 		public RelayCommand CloseCommand { get; set; }
-
+		
 		public ViewModelBase()
 		{
 			CloseCommand = new RelayCommand( () => DisplayState.Exit() );
