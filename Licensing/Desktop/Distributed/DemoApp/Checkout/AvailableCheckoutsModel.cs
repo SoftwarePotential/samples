@@ -89,10 +89,6 @@ namespace DemoApp.Checkout
 			{
 				DisplayState.NotifyUser( "There is no distributor server configured. Please configure a server in the configuration dialog." );
 			}
-			catch ( Exception exc )
-			{
-				DisplayState.NotifyUser( "Error: " + exc.Message );
-			}
 		}
 
 		public void AcquireCheckout()
