@@ -7,8 +7,11 @@
  * 
  */
 
+using System.Diagnostics;
 using System.Windows.Controls;
 using System.Windows;
+using System.Windows.Documents;
+using System.Windows.Navigation;
 using DemoApp.Common;
 using DemoApp.Properties;
 using DemoApp.Checkout;
@@ -18,17 +21,16 @@ namespace DemoApp
 {
 	public partial class MainWindow : Window, IDisplayState
 	{
+		const string TitlePrefix = "Distributed Demo App";
 		public MainWindow()
 		{
 			InitializeComponent();
-
+			
 			if ( !Settings.Default.FirstRunLicensingConfigurationFinished )
 			{
 				var dialog = new ConfigurationDialog();
 				dialog.ShowDialog();
 			}
-
-			Navigate(new MainPage());
 		}
 
 		void Configure_Click( object sender, RoutedEventArgs e )
@@ -46,7 +48,7 @@ namespace DemoApp
 		public void Navigate( Page page )
 		{
 			((ViewModelBase)page.DataContext).DisplayState = this;
-			TheFrame.Navigate( page );
+			MainFrame.Navigate( page );
 		}
 
 		public void NotifyUser( object message )
@@ -62,6 +64,20 @@ namespace DemoApp
 		public void Exit()
 		{
 			Close();
+		}
+
+		//TODO - replace with a command (or built-in hyperlink navigation)
+		void Hyperlink_OnClick( object sender, RoutedEventArgs e )
+		{
+			var hyperlink = (Hyperlink) sender;
+			//((ViewModelBase)page.DataContext).DisplayState = this;
+			MainFrame.Navigate( hyperlink.NavigateUri );
+		}
+
+		void MainFrame_Navigated( object sender, NavigationEventArgs e )
+		{
+			var targetPage = (Page)MainFrame.Content;
+			Title = TitlePrefix + " - " + targetPage.Title;
 		}
 	}
 }

@@ -1,0 +1,20 @@
+﻿<Page x:Class="DemoApp.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:DemoApp"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="Main Page">
+    <Page.DataContext>
+        <local:MainModel/>
+    </Page.DataContext>
+    <Grid>
+        <StackPanel Margin="10 10">
+            <Button x:Name="runFeature1" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0 10" Height="30" Content="Run Feature 1" Command="{Binding RunFeatureCommand}" CommandParameter="1" />
+            <Button x:Name="runFeature2" HorizontalAlignment="Left" Margin="0 10" Height="30" Content="Run Feature 2" Command="{Binding RunFeatureCommand}" CommandParameter="2" />
+            <Button x:Name="runFeature3" HorizontalAlignment="Left" Margin="0 10" Height="30" Content="Run Feature 3" Command="{Binding RunFeatureCommand}" CommandParameter="3" />
+        </StackPanel>
+    </Grid>
+</Page>
