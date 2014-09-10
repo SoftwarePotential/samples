@@ -15,6 +15,22 @@
             <Button x:Name="runFeature1" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0 10" Height="30" Content="Run Feature 1" Command="{Binding RunFeatureCommand}" CommandParameter="1" />
             <Button x:Name="runFeature2" HorizontalAlignment="Left" Margin="0 10" Height="30" Content="Run Feature 2" Command="{Binding RunFeatureCommand}" CommandParameter="2" />
             <Button x:Name="runFeature3" HorizontalAlignment="Left" Margin="0 10" Height="30" Content="Run Feature 3" Command="{Binding RunFeatureCommand}" CommandParameter="3" />
+            <TextBlock Text="{Binding Path=LastSuccessfulFeatureExecutionMessage, NotifyOnTargetUpdated=True,UpdateSourceTrigger=PropertyChanged}" Foreground="Green">
+                <TextBlock.Triggers>
+                    <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="1"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:4" Value="1"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:5" Value="0"/>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </TextBlock.Triggers>
+            </TextBlock>
         </StackPanel>
     </Grid>
 </Page>

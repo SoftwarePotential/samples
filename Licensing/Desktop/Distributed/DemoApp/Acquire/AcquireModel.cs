@@ -11,9 +11,9 @@ namespace DemoApp.Acquire
 {
 	class AcquireModel : ViewModelBase
 	{
-		ISet<string> _featuresHeld = new HashSet<string>();
 		public RelayCommand<int> RunFeatureCommand { get; private set; }
 		public RelayCommand AcquireCommand { get; private set; }
+		ISet<string> _featuresHeld = new HashSet<string>();
 
 		public AcquireModel()
 		{
@@ -53,7 +53,7 @@ namespace DemoApp.Acquire
 				DisplayState.NotifyUser( "No features have been acquired. Please check your Licensing Status." );
 		}
 
-		static void RunFeature( int featureNumber )
+		void RunFeature( int featureNumber )
 		{
 			switch ( featureNumber )
 			{
@@ -66,12 +66,24 @@ namespace DemoApp.Acquire
 				default:
 					throw new ArgumentOutOfRangeException( "featureNumber" );
 			}
-			MessageBox.Show( string.Format( "Feature {0} accessed successfully", featureNumber ), "Success", MessageBoxButton.OK, MessageBoxImage.Information );
+			LastSuccessfulFeatureExecutionMessage = string.Format( "Feature {0} accessed successfully", featureNumber );
 		}
 
 		bool CanRunFeature( int featureNumber )
 		{
 			return _featuresHeld.Contains( "Feature" + featureNumber );
+		}
+
+		string _lastSuccessfulFeatureExecutionMessage;
+
+		public string LastSuccessfulFeatureExecutionMessage
+		{
+			get { return _lastSuccessfulFeatureExecutionMessage; }
+			set
+			{
+				_lastSuccessfulFeatureExecutionMessage = value;
+				OnPropertyChanged( "LastSuccessfulFeatureExecutionMessage" );
+			}
 		}
 	}
 }

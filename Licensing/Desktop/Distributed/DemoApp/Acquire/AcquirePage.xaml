@@ -19,6 +19,22 @@
             <TextBlock>Use the Acquire button to reserve features on Distributor.</TextBlock>
             <TextBlock>Features that are currently held have their respective buttons enabled.</TextBlock>
             <Button Command="{Binding AcquireCommand}" Content="Acquire" HorizontalAlignment="Left" Margin="0,10,10,0" ToolTip="Acquire features" />
+            <TextBlock Text="{Binding Path=LastSuccessfulFeatureExecutionMessage, NotifyOnTargetUpdated=True,UpdateSourceTrigger=PropertyChanged}" Foreground="Green">
+                <TextBlock.Triggers>
+                    <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity">
+                                    <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.25" Value="1"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:4" Value="1"/>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:5" Value="0"/>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </TextBlock.Triggers>
+            </TextBlock>
         </StackPanel>
     </Grid>
 </Page>

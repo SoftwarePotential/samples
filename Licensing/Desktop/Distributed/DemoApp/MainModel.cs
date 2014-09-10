@@ -8,7 +8,6 @@
  */
 
 using System;
-using System.Windows;
 using System.Windows.Input;
 using DemoApp.BusinessLogic;
 using DemoApp.Common;
@@ -24,7 +23,7 @@ namespace DemoApp
 			RunFeatureCommand = new RelayCommand<int>( RunFeature, _ => true, Convert.ToInt32 );
 		}
 
-		static void RunFeature( int featureNumber )
+		void RunFeature( int featureNumber )
 		{
 			switch ( featureNumber )
 			{
@@ -37,7 +36,19 @@ namespace DemoApp
 				default:
 					throw new ArgumentOutOfRangeException( "featureNumber" );
 			}
-			MessageBox.Show( string.Format( "Feature {0} accessed successfully", featureNumber ), "Success", MessageBoxButton.OK, MessageBoxImage.Information );
+			LastSuccessfulFeatureExecutionMessage = string.Format( "Feature {0} accessed successfully", featureNumber );
+		}
+
+		string _lastSuccessfulFeatureExecutionMessage;
+
+		public string LastSuccessfulFeatureExecutionMessage
+		{
+			get { return _lastSuccessfulFeatureExecutionMessage; }
+			set
+			{
+				_lastSuccessfulFeatureExecutionMessage = value;
+				OnPropertyChanged( "LastSuccessfulFeatureExecutionMessage" );
+			}
 		}
 	}
 }
