@@ -19,12 +19,12 @@ namespace DemoApp.Acquire
 
 			// NB - RunFeatureCommand in this model is only available if a given feature is already held in current Distributed Context.
 			// If RunFeatureCommand isn't available for a given feature, the respective 'Feature X' button bound to this command will be disabled. 
-			RunFeatureCommand = new RelayCommand<int>( RunFeature, CanRunFeature, Convert.ToInt32 );
+			RunFeatureCommand = new RelayCommand<string>( RunFeature, CanRunFeature, Convert.ToString );
 		}
 
-		bool CanRunFeature( int featureNumber )
+		bool CanRunFeature( string featureName )
 		{
-			return _featuresHeld.Contains( "Feature" + featureNumber );
+			return _featuresHeld.Contains( featureName );
 		}
 
 		void Acquire()

@@ -15,27 +15,27 @@ namespace DemoApp
 {
 	class DemoFeatureRunningModel : ViewModelBase
 	{
-		public RelayCommand<int> RunFeatureCommand { get; set; }
+		public RelayCommand<string> RunFeatureCommand { get; set; }
 
 		public DemoFeatureRunningModel()
 		{
-			RunFeatureCommand = new RelayCommand<int>( RunFeature, _ => true, Convert.ToInt32 );
+			RunFeatureCommand = new RelayCommand<string>( RunFeature, _ => true, Convert.ToString );
 		}
 
-		public void RunFeature( int featureNumber )
+		public void RunFeature( string featureName )
 		{
-			switch ( featureNumber )
+			switch ( featureName )
 			{
-				case 1: MyAlgorithms.AccessFeature1();
+				case "Feature1": MyAlgorithms.AccessFeature1();
 					break;
-				case 2: MyAlgorithms.AccessFeature2();
+				case "Feature2": MyAlgorithms.AccessFeature2();
 					break;
-				case 3: MyAlgorithms.AccessFeature3();
+				case "Feature3": MyAlgorithms.AccessFeature3();
 					break;
 				default:
-					throw new ArgumentOutOfRangeException( "featureNumber" );
+					throw new ArgumentOutOfRangeException( "featureName" );
 			}
-			LastSuccessfulFeatureExecutionMessage = string.Format( "Feature {0} accessed successfully", featureNumber );
+			LastSuccessfulFeatureExecutionMessage = string.Format( "{0} accessed successfully", featureName );
 		}
 
 		string _lastSuccessfulFeatureExecutionMessage;
