@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DemoApp.Common;
 using Sp.Agent;
@@ -31,13 +32,11 @@ namespace DemoApp.Acquire
 			{
 				SpAgent.Distributed.Acquire( x =>
 				{
-					if ( !x.Any() )
-					{
-						DisplayState.NotifyUser( "No features can been acquired. Please check your Licensing Status." );
-						return new string[ 0 ];
-					}
 					// Acquire the first available set
-					return x.First();
+					var selectedSet = x.First();
+					if ( selectedSet.IsEmpty() )
+						DisplayState.NotifyUser( "No features can been acquired. Please check your Licensing Status." );
+					return selectedSet;
 				} );
 			}
 			catch ( DistributorRequestException )
@@ -58,6 +57,14 @@ namespace DemoApp.Acquire
 				// All 'Feature X' buttons will get enabled/disabled based on the command availability for a given feature.
 				RunFeatureCommand.RaiseCanExecuteChanged();
 			}
+		}
+	}
+
+	static class SetExtensions
+	{
+		public static bool IsEmpty<T>( this ISet<T> that )
+		{
+			return !that.Any();
 		}
 	}
 }
