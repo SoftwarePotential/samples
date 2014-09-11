@@ -1,35 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
-using DemoApp.BusinessLogic;
 using DemoApp.Common;
 using Sp.Agent;
 using Sp.Agent.Distributor;
 
 namespace DemoApp.Acquire
 {
-	class AcquireModel : ViewModelBase
+	class AcquireModel : DemoFeatureRunningModel
 	{
-		public RelayCommand<int> RunFeatureCommand { get; private set; }
 		public RelayCommand AcquireCommand { get; private set; }
 		ISet<string> _featuresHeld = new HashSet<string>();
 
 		public AcquireModel()
 		{
 			_featuresHeld = SpAgent.Distributed.Features;
+			AcquireCommand = new RelayCommand( Acquire );
+
+			// NB - RunFeatureCommand in this model is only available if a given feature is already held in current Distributed Context.
+			// If RunFeatureCommand isn't available for a given feature, the respective 'Feature X' button bound to this command will be disabled. 
 			RunFeatureCommand = new RelayCommand<int>( RunFeature, CanRunFeature, Convert.ToInt32 );
-			AcquireCommand = new RelayCommand( AcquireFirstPool );
 		}
 
-		void AcquireFirstPool()
+		bool CanRunFeature( int featureNumber )
+		{
+			return _featuresHeld.Contains( "Feature" + featureNumber );
+		}
+
+		void Acquire()
 		{
 			try
 			{
 				SpAgent.Distributed.Acquire( x =>
 				{
-					var firstAvailablePool = x.FirstOrDefault();
-					return firstAvailablePool != null ? firstAvailablePool.ToArray() : new string[ 0 ];
+					if ( !x.Any() )
+					{
+						DisplayState.NotifyUser( "No features can been acquired. Please check your Licensing Status." );
+						return new string[ 0 ];
+					}
+					// Acquire the first available set
+					return x.First();
 				} );
 				_featuresHeld = SpAgent.Distributed.Features;
 			}
@@ -47,42 +57,9 @@ namespace DemoApp.Acquire
 			}
 			finally
 			{
+				// Re-evaluates RunFeature command availability for all buttons bound to this command.
+				// All 'Feature X' buttons will get enabled/disabled based on the command availability for a given feature.
 				RunFeatureCommand.RaiseCanExecuteChanged();
-			}
-			if ( _featuresHeld.Count == 0 )
-				DisplayState.NotifyUser( "No features have been acquired. Please check your Licensing Status." );
-		}
-
-		void RunFeature( int featureNumber )
-		{
-			switch ( featureNumber )
-			{
-				case 1: MyAlgorithms.AccessFeature1();
-					break;
-				case 2: MyAlgorithms.AccessFeature2();
-					break;
-				case 3: MyAlgorithms.AccessFeature3();
-					break;
-				default:
-					throw new ArgumentOutOfRangeException( "featureNumber" );
-			}
-			LastSuccessfulFeatureExecutionMessage = string.Format( "Feature {0} accessed successfully", featureNumber );
-		}
-
-		bool CanRunFeature( int featureNumber )
-		{
-			return _featuresHeld.Contains( "Feature" + featureNumber );
-		}
-
-		string _lastSuccessfulFeatureExecutionMessage;
-
-		public string LastSuccessfulFeatureExecutionMessage
-		{
-			get { return _lastSuccessfulFeatureExecutionMessage; }
-			set
-			{
-				_lastSuccessfulFeatureExecutionMessage = value;
-				OnPropertyChanged( "LastSuccessfulFeatureExecutionMessage" );
 			}
 		}
 	}

@@ -8,7 +8,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="Main Page">
     <Page.DataContext>
-        <local:MainModel/>
+        <local:DemoFeatureRunningModel/>
     </Page.DataContext>
     <Grid>
         <StackPanel Margin="10 10">

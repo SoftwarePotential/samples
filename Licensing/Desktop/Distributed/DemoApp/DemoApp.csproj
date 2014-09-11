@@ -78,7 +78,7 @@
     <Compile Include="Licenses\LicenseListModel.cs" />
     <Compile Include="Configuration\DistributorConfigurationModel.cs" />
     <Compile Include="Common\RelayCommand.cs" />
-    <Compile Include="MainModel.cs" />
+    <Compile Include="DemoFeatureRunningModel.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

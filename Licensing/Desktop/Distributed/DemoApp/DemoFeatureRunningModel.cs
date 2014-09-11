@@ -8,22 +8,21 @@
  */
 
 using System;
-using System.Windows.Input;
 using DemoApp.BusinessLogic;
 using DemoApp.Common;
 
 namespace DemoApp
 {
-	class MainModel : ViewModelBase
+	class DemoFeatureRunningModel : ViewModelBase
 	{
-		public ICommand RunFeatureCommand { get; set; }
+		public RelayCommand<int> RunFeatureCommand { get; set; }
 
-		public MainModel()
+		public DemoFeatureRunningModel()
 		{
 			RunFeatureCommand = new RelayCommand<int>( RunFeature, _ => true, Convert.ToInt32 );
 		}
 
-		void RunFeature( int featureNumber )
+		public void RunFeature( int featureNumber )
 		{
 			switch ( featureNumber )
 			{
