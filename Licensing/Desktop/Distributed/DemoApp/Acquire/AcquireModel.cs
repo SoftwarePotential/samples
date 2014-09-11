@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using DemoApp.Common;
 using Sp.Agent;
@@ -10,21 +9,20 @@ namespace DemoApp.Acquire
 	class AcquireModel : DemoFeatureRunningModel
 	{
 		public RelayCommand AcquireCommand { get; private set; }
-		ISet<string> _featuresHeld = new HashSet<string>();
 
 		public AcquireModel()
 		{
-			_featuresHeld = SpAgent.Distributed.Features;
 			AcquireCommand = new RelayCommand( Acquire );
 
-			// NB - RunFeatureCommand in this model is only available if a given feature is already held in current Distributed Context.
+			// NB - RunFeatureCommand in this model is only available if a given feature is already held in current context.
 			// If RunFeatureCommand isn't available for a given feature, the respective 'Feature X' button bound to this command will be disabled. 
 			RunFeatureCommand = new RelayCommand<string>( RunFeature, CanRunFeature, Convert.ToString );
 		}
 
 		bool CanRunFeature( string featureName )
 		{
-			return _featuresHeld.Contains( featureName );
+			// Checks whether a given feature is held in current context (Distributed or Local)
+			return SpAgent.Distributed.Features.Contains( featureName ) || SpAgent.Product.LocalFeatures.ValidContains( featureName );
 		}
 
 		void Acquire()
@@ -41,7 +39,6 @@ namespace DemoApp.Acquire
 					// Acquire the first available set
 					return x.First();
 				} );
-				_featuresHeld = SpAgent.Distributed.Features;
 			}
 			catch ( DistributorRequestException )
 			{
