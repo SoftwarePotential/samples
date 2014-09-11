@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using DemoApp.Common;
 using Sp.Agent;
 using Sp.Agent.Distributor;
 
 namespace DemoApp.Acquire
 {
-	class AcquireModel : DemoFeatureRunningModel
+	class AcquireModel : DemoFeatureRunningModel, IDisposable
 	{
 		public RelayCommand AcquireCommand { get; private set; }
 
@@ -18,6 +19,9 @@ namespace DemoApp.Acquire
 			// NB - RunFeatureCommand in this model is only available if a given feature is already held in current context.
 			// If RunFeatureCommand isn't available for a given feature, the respective 'Feature X' button bound to this command will be disabled. 
 			RunFeatureCommand = new RelayCommand<string>( RunFeature, CanRunFeature, Convert.ToString );
+
+			SpAgent.Product.Stores.LicenseInstalled += OnLicenseInstalled;
+			SpAgent.Distributed.FeaturesUpdated += OnDistributedFeaturesUpdated;
 		}
 
 		bool CanRunFeature( string featureName )
@@ -28,16 +32,17 @@ namespace DemoApp.Acquire
 
 		void Acquire()
 		{
+			if ( SpAgent.Configuration.DistributorBaseUri == null )
+			{
+				DisplayState.NotifyUser( "There is no distributor server configured. Please configure a server in the configuration dialog." );
+				return;
+			}
 			try
 			{
-				SpAgent.Distributed.Acquire( x =>
-				{
-					// Acquire the first available set
-					var selectedSet = x.First();
-					if ( selectedSet.IsEmpty() )
-						DisplayState.NotifyUser( "No features can been acquired. Please check your Licensing Status." );
-					return selectedSet;
-				} );
+				// Acquire the first available set
+				SpAgent.Distributed.Acquire( x => x.First() );
+				if ( SpAgent.Distributed.Features.Count == 0 )
+					DisplayState.NotifyUser( "No features were available. Please check your Licensing Status." );
 			}
 			catch ( DistributorRequestException )
 			{
@@ -45,26 +50,32 @@ namespace DemoApp.Acquire
 			}
 			catch ( DistributorIntegrityException )
 			{
-				DisplayState.NotifyUser( "We have detected an integrity issue with your distributor server. Please contact your system administartor." );
-			}
-			catch ( NoDistributorException )
-			{
-				DisplayState.NotifyUser( "There is no distributor server configured. Please configure a server in the configuration dialog." );
-			}
-			finally
-			{
-				// Re-evaluates RunFeature command availability for all buttons bound to this command.
-				// All 'Feature X' buttons will get enabled/disabled based on the command availability for a given feature.
-				RunFeatureCommand.RaiseCanExecuteChanged();
+				DisplayState.NotifyUser( "We have detected an integrity issue with your distributor server. Please contact your system administrator." );
 			}
 		}
-	}
 
-	static class SetExtensions
-	{
-		public static bool IsEmpty<T>( this ISet<T> that )
+		void OnDistributedFeaturesUpdated( object sender, EventArgs e )
 		{
-			return !that.Any();
+			EvaluateRunFeatureCommandAvailability();
+		}
+
+		void OnLicenseInstalled( object sender, EventArgs e )
+		{
+			EvaluateRunFeatureCommandAvailability();
+		}
+
+		void EvaluateRunFeatureCommandAvailability()
+		{
+			// Re-evaluates RunFeature command availability for all buttons bound to this command.
+			// All 'Feature X' buttons will get enabled/disabled based on the command availability for a given feature.
+			((Window)DisplayState).Dispatcher.BeginInvoke( (Action)(() =>
+				RunFeatureCommand.RaiseCanExecuteChanged()) );
+		}
+
+		public void Dispose()
+		{
+			SpAgent.Product.Stores.LicenseInstalled -= OnLicenseInstalled;
+			SpAgent.Distributed.FeaturesUpdated -= OnDistributedFeaturesUpdated;
 		}
 	}
 }

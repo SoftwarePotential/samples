@@ -7,6 +7,7 @@
  * 
  */
 
+using System;
 using System.Windows.Controls;
 
 namespace DemoApp.Acquire
@@ -19,6 +20,14 @@ namespace DemoApp.Acquire
 		public AcquirePage()
 		{
 			InitializeComponent();
+
+			// NB - AcquireModel subscribes to some SpAgent events; the event handlers in that model need to be unsubscribed when the page gets unloaded
+			Unloaded += ( s, e ) => DisposeViewModel();
+		}
+
+		void DisposeViewModel()
+		{
+			((IDisposable)DataContext).Dispose();
 		}
 	}
 }
