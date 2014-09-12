@@ -1,24 +1,22 @@
 ﻿<Window x:Class="DemoApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:DemoApp"
-        Title="Distributed Demo App" Height="350" Width="525">
+        MinHeight="350" MinWidth="550"
+        Height="350" Width="550">
+    <Window.CommandBindings>
+        <CommandBinding Command="NavigationCommands.GoToPage" Executed="CommandBinding_OnExecuted" CanExecute="CommandBinding_OnCanExecute" />
+    </Window.CommandBindings>
     <Grid>
-        <DockPanel LastChildFill="True">
-            <Menu IsMainMenu="True" DockPanel.Dock="Top">
-                <MenuItem Header="_Licensing"   >
-					<MenuItem Header="Configure..." Click="Configure_Click"></MenuItem>
-					<MenuItem Header="Checkout..." Click="Checkout_Click"></MenuItem>
-				</MenuItem>
-            </Menu>
-            <StackPanel Margin="10 10">
-                <StackPanel.CommandBindings>
-                    <CommandBinding Command="{x:Static local:MainWindow.RunFeatureCommand}" CanExecute="RunFeatureCommand_CanExecute" Executed="RunFeatureCommand_Executed" />
-                </StackPanel.CommandBindings>
-                <Button x:Name="runFeature1" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="0 10" Height="30" Content="Run Feature 1" Command="{x:Static local:MainWindow.RunFeatureCommand}" CommandParameter="1" />
-                <Button x:Name="runFeature2" HorizontalAlignment="Left" Margin="0 10" Height="30" Content="Run Feature 2" Command="{x:Static local:MainWindow.RunFeatureCommand}" CommandParameter="2" />
-                <Button x:Name="runFeature3" HorizontalAlignment="Left" Margin="0 10" Height="30" Content="Run Feature 3" Command="{x:Static local:MainWindow.RunFeatureCommand}" CommandParameter="3" />
-            </StackPanel>
-        </DockPanel>
+        <StackPanel>
+            <DockPanel LastChildFill="True">
+                <Menu IsMainMenu="True" DockPanel.Dock="Top">
+                    <MenuItem Header="_Licensing"   >
+					    <MenuItem Header="Configure..." Click="Configure_Click"></MenuItem>
+					    <MenuItem Header="Checkout..." Click="Checkout_Click"></MenuItem>
+				    </MenuItem>
+                </Menu>
+                <Frame Name="MainFrame" Navigated="MainFrame_Navigated" Source="DemoSelectionMenu.xaml" NavigationUIVisibility="Automatic"/>
+            </DockPanel>
+        </StackPanel>
     </Grid>
 </Window>

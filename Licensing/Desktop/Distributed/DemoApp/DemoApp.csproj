@@ -90,12 +90,23 @@
     <Compile Include="Configuration\ConfigurationPage.xaml.cs">
       <DependentUpon>ConfigurationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DemoSelectionMenu.xaml.cs">
+      <DependentUpon>DemoSelectionMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Licenses\LicenseListDialog.xaml.cs">
       <DependentUpon>LicenseListDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Licenses\LicenseListModel.cs" />
     <Compile Include="Configuration\DistributorConfigurationModel.cs" />
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="DemoFeatureRunningModel.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Acquire\AcquirePage.xaml.cs">
+      <DependentUpon>AcquirePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Acquire\AcquireModel.cs" />
     <Compile Include="SoftwarePotential\Core\SpAgent.CommandLineProcessing.cs" />
     <Compile Include="SoftwarePotential\Core\SpAgent.Configuration.cs" />
     <Compile Include="SoftwarePotential\Core\SpAgent.Configuration.Distributor.AppSettings.cs" />
@@ -133,11 +144,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DemoSelectionMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Licenses\LicenseListDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Configuration\ConfigurationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -157,6 +176,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Acquire\AcquirePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\Settings.Designer.cs">

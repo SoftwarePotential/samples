@@ -83,15 +83,11 @@ namespace DemoApp.Checkout
 			}
 			catch ( DistributorIntegrityException )
 			{
-				DisplayState.NotifyUser( "We have detected an integrity issue with your distributor server. Please contact your system administartor." );
+				DisplayState.NotifyUser( "We have detected an integrity issue with your distributor server. Please contact your system administrator." );
 			}
 			catch ( NoDistributorException )
 			{
 				DisplayState.NotifyUser( "There is no distributor server configured. Please configure a server in the configuration dialog." );
-			}
-			catch ( Exception exc )
-			{
-				DisplayState.NotifyUser( "Error: " + exc.Message );
 			}
 		}
 
@@ -112,7 +108,7 @@ namespace DemoApp.Checkout
 			}
 			catch ( DistributorIntegrityException )
 			{
-				DisplayState.NotifyUser( "We have detected an integrity issue with your distributor server. Please contact your system administartor." );
+				DisplayState.NotifyUser( "We have detected an integrity issue with your distributor server. Please contact your system administrator." );
 			}
 			catch ( Exception exc )
 			{

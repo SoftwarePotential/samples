@@ -17,7 +17,7 @@ namespace DemoApp.Common
 		public IDisplayState DisplayState { get; set; }
 		public event PropertyChangedEventHandler PropertyChanged;
 		public RelayCommand CloseCommand { get; set; }
-
+		
 		public ViewModelBase()
 		{
 			CloseCommand = new RelayCommand( () => DisplayState.Exit() );

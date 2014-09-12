@@ -58,30 +58,42 @@ namespace DemoApp.Common
 	{
 		Action<T> _TargetExecuteMethod;
 		Func<T, bool> _TargetCanExecuteMethod;
+		Func<object, T> _CommandParameterConverter;
 
-		public RelayCommand( Action<T> executeMethod )
-		{
-			_TargetExecuteMethod = executeMethod;
-		}
-
-		public RelayCommand( Action<T> executeMethod, Func<T, bool> canExecuteMethod )
+		public RelayCommand( Action<T> executeMethod, Func<T, bool> canExecuteMethod, Func<object, T> commandParameterConverter )
 		{
 			_TargetExecuteMethod = executeMethod;
 			_TargetCanExecuteMethod = canExecuteMethod;
+			_CommandParameterConverter = commandParameterConverter;
+		}
+
+		public RelayCommand( Action<T> executeMethod, Func<T, bool> canExecuteMethod )
+			: this( executeMethod, canExecuteMethod, x => (T)x )
+		{
+		}
+
+		public RelayCommand( Action<T> executeMethod )
+			: this( executeMethod, x => true )
+		{
 		}
 
 		public void RaiseCanExecuteChanged()
 		{
 			CanExecuteChanged( this, EventArgs.Empty );
 		}
-		#region ICommand Members
 
+		T ConvertParameter( object parameter )
+		{
+			T tparm = _CommandParameterConverter( parameter );
+			return tparm;
+		}
+
+		#region ICommand Members
 		bool ICommand.CanExecute( object parameter )
 		{
 			if ( _TargetCanExecuteMethod != null )
 			{
-				T tparm = (T)parameter;
-				return _TargetCanExecuteMethod( tparm );
+				return _TargetCanExecuteMethod( ConvertParameter( parameter ) );
 			}
 			if ( _TargetExecuteMethod != null )
 			{
@@ -98,7 +110,7 @@ namespace DemoApp.Common
 		{
 			if ( _TargetExecuteMethod != null )
 			{
-				_TargetExecuteMethod( (T)parameter );
+				_TargetExecuteMethod( ConvertParameter( parameter ) );
 			}
 		}
 		#endregion
