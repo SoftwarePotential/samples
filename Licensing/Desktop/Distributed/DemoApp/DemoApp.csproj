@@ -89,19 +89,6 @@
       <DependentUpon>AcquirePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Acquire\AcquireModel.cs" />
-    <Compile Include="SoftwarePotential\Core\SpAgent.CommandLineProcessing.cs" />
-    <Compile Include="SoftwarePotential\Core\SpAgent.Configuration.cs" />
-    <Compile Include="SoftwarePotential\Core\SpAgent.Configuration.Distributor.AppSettings.cs" />
-    <Compile Include="SoftwarePotential\Core\SpAgent.Configuration.Distributor.cs" />
-    <Compile Include="SoftwarePotential\Core\SpAgent.Configuration.Local.cs" />
-    <Compile Include="SoftwarePotential\Core\SpAgent.Configuration.Local.RelativePathSanityCheck.cs" />
-    <Compile Include="SoftwarePotential\Core\SpAgent.Configuration.Local.SingleUser.cs" />
-    <Compile Include="SoftwarePotential\Core\SpAgent.Permutation.cs" />
-    <Compile Include="SoftwarePotential\Core\SpAgent.Product.cs" />
-    <Compile Include="SoftwarePotential\Core\SpProduct.cs" />
-    <Compile Include="SoftwarePotential\SpAgent.DistributorCustomizations.cs" />
-    <Compile Include="SoftwarePotential\SpAgent.ProductCustomizations.cs" />
-    <Compile Include="SoftwarePotential\SpAgent.SingleUserStorageCustomizations.cs" />
     <Page Include="Activation\BusyAnimationStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
