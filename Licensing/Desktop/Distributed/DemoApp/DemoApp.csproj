@@ -72,6 +72,9 @@
     <Compile Include="Configuration\ConfigurationPage.xaml.cs">
       <DependentUpon>ConfigurationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DemoSelectionMenu.xaml.cs">
+      <DependentUpon>DemoSelectionMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Licenses\LicenseListDialog.xaml.cs">
       <DependentUpon>LicenseListDialog.xaml</DependentUpon>
     </Compile>
@@ -120,6 +123,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ControlStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DemoSelectionMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

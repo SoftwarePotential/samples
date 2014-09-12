@@ -70,8 +70,11 @@ namespace DemoApp
 		void MainFrame_Navigated( object sender, NavigationEventArgs e )
 		{
 			var targetPage = (Page)MainFrame.Content;
-			Title = TitlePrefix + " - " + targetPage.Title;
-			((ViewModelBase)targetPage.DataContext).DisplayState = this;
+			Title = string.Format( "{0} - {1}", TitlePrefix, targetPage.Title );
+
+			var viewModel = targetPage.DataContext as ViewModelBase;
+			if ( viewModel != null )
+				viewModel.DisplayState = this;
 		}
 
 		void CommandBinding_OnExecuted( object sender, ExecutedRoutedEventArgs e )
