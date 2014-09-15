@@ -25,10 +25,26 @@ Alternatively you can create an MSI as outlined in the [Installer](https://githu
   * Add a Feature (e.g., `Feature2`)
 * Paste the license key into the activation form (open **Licensing|Configure** on the sample's menu, then click **Activate**)
 
+### Choosing a workflow type
+The sample illustrates 2 different styles of consuming floating licenses with Software Potential Agent. The workflow/integration type can be selected on the Demo App startup screen.
+
+* Declarative consumption - in this scenario feature allocation requests are made implicitly, at the point when the code that requires a license is encountered for the first time (see [Getting Started With Distributor - How it Works](http://docs.softwarepotential.com/Getting-Started-With-Distributor.html)). Licensed features are marked in the code with relevant attributes, the same way as in the [Standalone](https://github.com/SoftwarePotential/samples/tree/master/Licensing/Desktop/Standalone) case; there's no need to use Software Potential Distributor API in the code.
+
+* Acquire - in this scenario licensed features can be reserved up-front in a single request to the Distributor service. UI elements (buttons, menus) can be enabled or disabled based on whether respective features are held in current Software Potential Agent context (either have been obtained from the Distributor service, or from a local license)
+
 ### Running Protected Code
+
+#### Declarative consumption scenario
 * Click the **Run Feature 1** button - this should display a success message (we have a license for this feature in the Distributor Server)
 * Click the **Run Feature 2** button - this should display a success message (we have a license for this feature installed locally)
-* Click the **Run Feature 3** button - this should display a denial message and navigate you to the activation dialog
+* Click the **Run Feature 3** button - this should display a denial message
+
+#### Acquire scenario
+* Initially, only **Run Feature 2** button is enabled (as we have a license for this feature installed locally)
+* Click the **Acquire** button. 
+	* **Run Feature 1** button will get enabled (we have a license for this feature in the Distributor Server).
+	* **Run Feature 3** button will stay disabled
+* Clicking on **Run Feature 1** or **Run Feature 2** buttons should display a success message
 
 ### Checking out
 * Launch the checkout dialog (**Licensing|Checkout** on the menu)
