@@ -1,8 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\SoftwarePotential.Protection-62340.3.2.1951.6\build\SoftwarePotential.Protection-62340.props" Condition="Exists('..\packages\SoftwarePotential.Protection-62340.3.2.1951.6\build\SoftwarePotential.Protection-62340.props')" />
-  <Import Project="..\packages\Sp.Permutation-62340.3.2.1951.6\build\Sp.Permutation-62340.props" Condition="Exists('..\packages\Sp.Permutation-62340.3.2.1951.6\build\Sp.Permutation-62340.props')" />
-  <Import Project="..\packages\Sp.Protector.3.2.1951\build\Sp.Protector.props" Condition="Exists('..\packages\Sp.Protector.3.2.1951\build\Sp.Protector.props')" />
+  <Import Project="..\packages\SoftwarePotential.Protection-62340.3.2.1983.14\build\SoftwarePotential.Protection-62340.props" Condition="Exists('..\packages\SoftwarePotential.Protection-62340.3.2.1983.14\build\SoftwarePotential.Protection-62340.props')" />
+  <Import Project="..\packages\Sp.Permutation-62340.3.2.1983.14\build\Sp.Permutation-62340.props" Condition="Exists('..\packages\Sp.Permutation-62340.3.2.1983.14\build\Sp.Permutation-62340.props')" />
+  <Import Project="..\packages\Sp.Protector.3.2.1983\build\Sp.Protector.props" Condition="Exists('..\packages\Sp.Protector.3.2.1983\build\Sp.Protector.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <NuGetPackageImportStamp>cbd897cf</NuGetPackageImportStamp>
+  </PropertyGroup>
   <Import Project="..\packages\SoftwarePotential.Licensing-Demo_10.1.0.1.0\build\SoftwarePotential.Licensing-Demo_10.props" Condition="Exists('..\packages\SoftwarePotential.Licensing-Demo_10.1.0.1.0\build\SoftwarePotential.Licensing-Demo_10.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -44,11 +61,13 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Sp.Agent">
-      <HintPath>..\packages\Sp.Agent.3.2.1951\lib\net40\Sp.Agent.dll</HintPath>
+    <Reference Include="Sp.Agent, Version=3.2.1983.3, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sp.Agent.3.2.1983\lib\net40\Sp.Agent.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Sp.Agent.Local">
-      <HintPath>..\packages\Sp.Agent.Local.3.2.1951\lib\net40\Sp.Agent.Local.dll</HintPath>
+    <Reference Include="Sp.Agent.Local, Version=3.2.1983.3, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sp.Agent.Local.3.2.1983\lib\net40\Sp.Agent.Local.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -193,7 +212,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
     <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
   </Target>
@@ -216,8 +236,20 @@
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
-  <Import Project="..\packages\Sp.Protector.3.2.1951\build\Sp.Protector.targets" Condition="Exists('..\packages\Sp.Protector.3.2.1951\build\Sp.Protector.targets')" />
-  <Import Project="..\packages\Sp.Agent-62340.3.2.1951.6\build\net40\Sp.Agent-62340.targets" Condition="Exists('..\packages\Sp.Agent-62340.3.2.1951.6\build\net40\Sp.Agent-62340.targets')" />
-  <Import Project="..\packages\Sp.Agent.Local-62340.3.2.1951.6\build\net40\Sp.Agent.Local-62340.targets" Condition="Exists('..\packages\Sp.Agent.Local-62340.3.2.1951.6\build\net40\Sp.Agent.Local-62340.targets')" />
-  <Import Project="..\packages\SoftwarePotential.Configuration.Web-62340.3.2.1951.6\build\net40\SoftwarePotential.Configuration.Web-62340.targets" Condition="Exists('..\packages\SoftwarePotential.Configuration.Web-62340.3.2.1951.6\build\net40\SoftwarePotential.Configuration.Web-62340.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Sp.Protector.3.2.1983\build\Sp.Protector.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Protector.3.2.1983\build\Sp.Protector.props'))" />
+    <Error Condition="!Exists('..\packages\Sp.Protector.3.2.1983\build\Sp.Protector.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Protector.3.2.1983\build\Sp.Protector.targets'))" />
+    <Error Condition="!Exists('..\packages\Sp.Permutation-62340.3.2.1983.14\build\Sp.Permutation-62340.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Permutation-62340.3.2.1983.14\build\Sp.Permutation-62340.props'))" />
+    <Error Condition="!Exists('..\packages\SoftwarePotential.Protection-62340.3.2.1983.14\build\SoftwarePotential.Protection-62340.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SoftwarePotential.Protection-62340.3.2.1983.14\build\SoftwarePotential.Protection-62340.props'))" />
+    <Error Condition="!Exists('..\packages\Sp.Agent-62340.3.2.1983.14\build\net40\Sp.Agent-62340.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Agent-62340.3.2.1983.14\build\net40\Sp.Agent-62340.targets'))" />
+    <Error Condition="!Exists('..\packages\Sp.Agent.Local-62340.3.2.1983.14\build\net40\Sp.Agent.Local-62340.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Agent.Local-62340.3.2.1983.14\build\net40\Sp.Agent.Local-62340.targets'))" />
+    <Error Condition="!Exists('..\packages\SoftwarePotential.Configuration.Web-62340.3.2.1983.14\build\net40\SoftwarePotential.Configuration.Web-62340.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SoftwarePotential.Configuration.Web-62340.3.2.1983.14\build\net40\SoftwarePotential.Configuration.Web-62340.targets'))" />
+  </Target>
+  <Import Project="..\packages\Sp.Protector.3.2.1983\build\Sp.Protector.targets" Condition="Exists('..\packages\Sp.Protector.3.2.1983\build\Sp.Protector.targets')" />
+  <Import Project="..\packages\Sp.Agent-62340.3.2.1983.14\build\net40\Sp.Agent-62340.targets" Condition="Exists('..\packages\Sp.Agent-62340.3.2.1983.14\build\net40\Sp.Agent-62340.targets')" />
+  <Import Project="..\packages\Sp.Agent.Local-62340.3.2.1983.14\build\net40\Sp.Agent.Local-62340.targets" Condition="Exists('..\packages\Sp.Agent.Local-62340.3.2.1983.14\build\net40\Sp.Agent.Local-62340.targets')" />
+  <Import Project="..\packages\SoftwarePotential.Configuration.Web-62340.3.2.1983.14\build\net40\SoftwarePotential.Configuration.Web-62340.targets" Condition="Exists('..\packages\SoftwarePotential.Configuration.Web-62340.3.2.1983.14\build\net40\SoftwarePotential.Configuration.Web-62340.targets')" />
 </Project>

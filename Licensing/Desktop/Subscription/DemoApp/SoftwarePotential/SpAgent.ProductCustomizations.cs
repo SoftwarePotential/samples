@@ -45,7 +45,8 @@ namespace Sp.Agent
 						.WithRetryPolicyDefault()
 						.WithEndpointSelectionPolicyDefault()
 						.BeforeEachAttempt( WhenActivating )
-						.CompleteWithDefaults() )
+						.CompleteWithDefaults() )						
+					.WithDeviceLabelPolicy( SetDeviceLabelPolicy )
 					.CompleteWithDefaults() )
 				.CompleteWithDefaults() );
 		}
@@ -53,12 +54,26 @@ namespace Sp.Agent
 		static void AddActivationTags( IActivationTaggingContext context )
 		{
 			Debug.WriteLine( "State passed to Activate() method: " + context.State );
-			// e.g. context.AddTag("MYKEY"."MYVALUE");
+			// e.g. context.AddTag("MYKEY","MYVALUE");
 		}
 
 		static void WhenActivating( IActivationAttemptContext context )
 		{
 			Debug.WriteLine( "Activation attempt #" + (context.PreviousAttempts + 1) );
+		}
+
+		/// <summary>
+		/// <param name="context">
+		/// <para>Context that allows you to set a custom Device Label</para>
+		/// </param>
+		/// Replace the contents of this method to customize the value of the DeviceLabel sent up on Activation.
+		/// If this method is left unmodified the DeviceLabel will be set to the default value of Environment.MachineName
+		/// </summary>
+		/// <param name="context"></param>
+		static void SetDeviceLabelPolicy( IActivationDeviceLabelContext context )
+		{
+			// e.g. context.SetDeviceLabel("My custom label");
+			Debug.WriteLine( "DeviceLabel passed to Activate() method: " + context.DeviceLabel );
 		}
 
 		/// <summary>

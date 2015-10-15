@@ -119,16 +119,39 @@ namespace Sp.Agent
 		static partial void ConfigureMultipleSpAgentsPerPermutation( Action<bool> configure );
 
 		/// <summary>
-		/// <para>Partial method enabling specification of an appropriate License Storage Policy by a partnering partial class.</para>
-		/// <para>Typically an implementation of this is provided via a SoftwarePotential.Configuration.* package.</para>
+		/// <para>Partial method enabling specification of the policy for all Client side License Storage (both Local-bound and Removable stores) as a whole by a partnering partial class.</para>
+		/// <para>NB using this precludes the use of <code>ConfigureLocalBoundStorage()</code> and/or <code>ConfigureRemovableStorage()</code>. Where possible it is recommended to provide individual overrides of those.</para>
 		/// <para>Failure to provide an implementation of this partial method that correctly invokes the <paramref name="configure"/> 
-		/// callback will result in an <see cref="InvalidOperationException"/> at Application startup.</para>
+		/// callback (or one of <code>ConfigureLocalBoundStorage()</code> and/or <code>ConfigureRemovableStorage()</code>) will result in an <see cref="InvalidOperationException"/> at Application startup.</para>
 		/// </summary>
 		/// <param name="configure">
-		/// <para>delegate that accepts the Store Configuration segment of a <c>IAgentContext.Configure()</c> Fluent Configuration sequence.</para>
+		/// <para>delegate that accepts the Local-bound and Removable Store Configuration segments of a <c>IAgentContext.Configure()</c> Fluent Configuration sequence.</para>
 		/// <para><example>See the code emitted by any of the following <c>SoftwarePotential.Configuration.</c> packages: <c>Local.*</c>, <c>Web</c> or <c>Distributor</c>.</example></para>
 		/// </param>
 		static partial void ConfigureStorage( Action<Func<IAgentCommenceConfigurationPhase, IAgentDistributorsConfigurationPhase>> configure );
+
+		/// <summary>
+		/// <para>Partial method enabling specification of an appropriate License Storage Policy for Local-bound licenses (excluding Removable stores) by a partnering partial class.</para>
+		/// <para>Typically an implementation of this is provided via a SoftwarePotential.Configuration.* package.</para>
+		/// <para>Failure to provide an implementation of this partial method and/or <code>ConfigureRemovableStorage()</code> that correctly invokes the <paramref name="configure"/> 
+		/// callback (or a <code>ConfigureLocalStorage()</code> implementation) will result in an <see cref="InvalidOperationException"/> at Application startup.</para>
+		/// </summary>
+		/// <param name="configure">
+		/// <para>delegate that accepts the Local-bound Store Configuration segment of a <c>IAgentContext.Configure()</c> Fluent Configuration sequence.</para>
+		/// <para><example>See the code emitted by any of the following <c>SoftwarePotential.Configuration.</c> packages: <c>Local.*</c>, <c>Web</c> or <c>Distributor</c>.</example></para>
+		/// </param>
+		static partial void ConfigureLocalBoundStorage( Action<Func<IAgentCommenceConfigurationPhase, IAgentExternalStorageConfigurationPhase>> configure );
+
+		/// <summary>
+		/// <para>Partial method enabling specification of an appropriate License Storage Policy for licenses to be maintained on Removable stores by a partnering partial class.</para>
+		/// <para>Typically this is tailored by the ISV to reflect the particular discovery policies/hardware integration dictated by one's licensing scheme/technological constraints.</para>
+		/// <para>Implementation is optional (assuming you have a <code>ConfigureLocalBoundStorage()</code> implementation). Can NOT be combined with <code>ConfigureLocalStorage()</code>.</para>
+		/// </summary>
+		/// <param name="configure">
+		/// <para>delegate that accepts the Removable Store Configuration segment of a <c>IAgentContext.Configure()</c> Fluent Configuration sequence.</para>
+		/// <para><example>See the code emitted by any of the following <c>SoftwarePotential.Configuration.</c> packages: <c>Local.*</c>, <c>Web</c> or <c>Distributor</c>.</example></para>
+		/// </param>
+		static partial void ConfigureRemovableStorage( Action<Func<IAgentExternalStorageConfigurationPhase, IAgentDistributorsConfigurationPhase>> configure );
 
 		/// <summary>
 		/// <para>Partial method enabling specification of an appropriate Distributor Client Policy by a partnering partial class.</para>
@@ -180,16 +203,44 @@ namespace Sp.Agent
 
 		/// <summary>
 		/// Yields an <c>IAgentConfiguration.Configure()</c> Fluent Configuration Sequence Segment for the 
-		/// Storage Configuration aspect (or throws if a correctly implemented <c>ConfigureStorage()</c> partial method is not in place).
+		/// Storage Configuration aspect (or throws if and incomplete or ambiguous set of <c>ConfigureStorage()</c> / <c>ConfigureLocalBoundStorage()</c> / <c>ConfigureRemovableStorage()</c>c> partial methods are in place).
 		/// </summary>
-		/// <exception cref="InvalidOperationException">Thrown if no <c>ConfigureStorage()</c> method (that correctly invokes its argument) is present.</exception>
+		/// <exception cref="InvalidOperationException">Thrown if none of: <c>ConfigureStorage()</c>, <c>ConfigureLocalBoundStorage()</c> or <c>ConfigureRemovableStorage()</c> (that correctly invoke their argument) are in place.</exception>
+		/// <exception cref="InvalidOperationException">Thrown if both a <c>ConfigureStorage()</c> method and one or more of <c>ConfigureLocalBoundStorage()</c> / <c>ConfigureRemovableStorage()</c> have rendered the configuration ambiguous.</exception>
 		static Func<IAgentCommenceConfigurationPhase, IAgentDistributorsConfigurationPhase> FetchStorageConfigurationSequenceOrThrow()
 		{
+			var configureLocalBoundStorage = default( Func<IAgentCommenceConfigurationPhase, IAgentExternalStorageConfigurationPhase> );
+			ConfigureLocalBoundStorage( configure => configureLocalBoundStorage = configure );
+			var configureRemovableStorage = default( Func<IAgentExternalStorageConfigurationPhase, IAgentDistributorsConfigurationPhase> );
+			ConfigureRemovableStorage( configure => configureRemovableStorage = configure );
 			var configureStorage = default( Func<IAgentCommenceConfigurationPhase, IAgentDistributorsConfigurationPhase> );
 			ConfigureStorage( configure => configureStorage = configure );
-			if ( configureStorage == null )
-				CreateMissingPartialMethodException( "No Storage Configuration provided", "ConfigureStorage" );
+			
+			if ( configureLocalBoundStorage != null || configureRemovableStorage != null )
+				if ( configureStorage != null )
+					throw CreateAmbiguousPartialMethodException();
+				else
+				{
+					if ( configureLocalBoundStorage == null )
+						configureLocalBoundStorage = x => x.DisableLocalBoundStorage();
+					if ( configureRemovableStorage == null )
+						configureRemovableStorage = x => x.DisableRemovableStorage();
+					configureStorage = commence => configureRemovableStorage( configureLocalBoundStorage( commence ) );
+				}
+			else if ( configureStorage == null )
+				throw CreateMissingPartialMethodException( "No Storage Configuration provided", "ConfigureLocalBoundStorage()(with optional ConfigureRemovableStorage()) or ConfigureStorage" );
 			return configureStorage;
+		}
+
+		static Exception CreateAmbiguousPartialMethodException()
+		{
+			return new InvalidOperationException( String.Format( CultureInfo.InvariantCulture,
+				@"Ambiguous Storage Configuration provided; Licensing Storage cannot be successfully initialized.
+Please ensure that exactly one of the following is in place:
+A) an implementation of ConfigureStorage() that invokes its callback correctly
+OR B) implementation(s) of ConfigureLocalBoundStorage() and/or ConfigureRemovableStorage() that invoke their callbacks correctly.
+
+See the documentation for the the relevant partial methods for further information." ) );
 		}
 
 		static Exception CreateMissingPartialMethodException( string preamble, string methodName )
@@ -197,7 +248,7 @@ namespace Sp.Agent
 			return new InvalidOperationException( String.Format( CultureInfo.InvariantCulture,
 				preamble + @" via {0}(); Licensing Storage cannot be successfully initialized.
 Please ensure there is a valid implementation of {0}() that invokes its callback correctly in place.
-See the documentation for the {0}() partial method or further information.", methodName ) );
+See the documentation for the {0}() partial method for further information.", methodName ) );
 		}
 
 		/// <summary>
@@ -239,7 +290,6 @@ See the documentation for the {0}() partial method or further information.", met
 	/// Offers a set of extension methods allowing one to decompose an <c>IAgentContext.Configure()</c> Fluent Configuration 
 	/// Expression Sequence into individual elements yet retain the familiar fluent expression nature.
 	/// </summary>
-	/// <remarks>Equivalent to F#'s built-in |> operator.</remarks>
 	static class AgentConfigurationExtensions
 	{
 		/// <summary>

@@ -35,7 +35,7 @@ namespace Sp.Agent
 		/// partial methods can be adjusted as necessary.</para>
 		/// </remarks>
 		/// <exception cref="Sp.Agent.Storage.StorageInaccessibleException">Thrown at runtime should the supplied <c>basePath</c> not be present and accessible when required.</exception>
-		static partial void ConfigureStorage( Action<Func<IAgentCommenceConfigurationPhase, IAgentDistributorsConfigurationPhase>> configure )
+		static partial void ConfigureLocalBoundStorage( Action<Func<IAgentCommenceConfigurationPhase, IAgentExternalStorageConfigurationPhase>> configure )
 		{
 			var storageArea = ConfiguredBaseAndRelativePathElements();
 			var rootPath = storageArea.Item1;

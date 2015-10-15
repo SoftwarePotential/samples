@@ -25,7 +25,11 @@ namespace Sp.Agent
 
 			static IAgentContext GenerateAgentContext()
 			{
-				return Sp.Agent.Configuration.AgentContext.For( Permutation62340.Identifiers.ShortCode );
+				var currentAssembly = typeof( SpAgent ).Assembly;
+				// Normal search locations for DLLs includes: 1) AppDomain Base dir 2) beside Sp.Agent.dll -- that's sufficient for the bulk of common applications
+				// Hence the following is only strictly necessary if a) permuted DLLs are maintained outside of the AppDomain base directory AND b) there are potentially >1 permutations in a given AppDomain - 
+				var associatedDllProvidingAdditionalPermutedDllSearchLocation = currentAssembly.GlobalAssemblyCache ? null : currentAssembly;
+				return Sp.Agent.Configuration.AgentContext.For( Permutation62340.Identifiers.ShortCode, associatedDllProvidingAdditionalPermutedDllSearchLocation );
 			}
 
 			/// <summary>

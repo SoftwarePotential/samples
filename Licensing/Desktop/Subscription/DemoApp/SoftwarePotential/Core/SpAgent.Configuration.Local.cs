@@ -41,7 +41,7 @@ namespace Sp.Agent
 			var relativePath = default( string );
 			ConfigureStorageRelativePath( SpProduct.Vendor, SpProduct.Name, SpProduct.Version, value => relativePath = value );
 			if ( relativePath == null )
-				throw CreateMissingPartialMethodException( "Storage Location Relative path suffix not correctly configured", "ConfigureStorageBasePath" );
+				throw CreateMissingPartialMethodException( "Storage Location Relative path suffix not correctly configured", "ConfigureStorageRelativePath" );
 			return Tuple.Create( basePath, relativePath );
 		}
 
