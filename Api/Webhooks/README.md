@@ -20,7 +20,13 @@ This solution contains a project illustrating the following:
 * *NB* Keep track of your shared secret using a password manager. This secret is your responsibility and cannot be retrieved from Software Potential.
 
 ## Configure credentials
-* Enter the same shared secret as above
+* Enter the same shared secret as above in the web.config
+
+## Running the sample
+* Deploy the sample to a publically available url
+* While the site is running, perform an issue and reissue of a license in Software Potential
+* The `InMemoryLicenseEventRepository` while contain the basic license details
+* The LicenseRefId and the optional CustomerId can then be used to retrieve more detailed information from Software Potential if required.
 
 ## Further reading
 * https://docs.microsoft.com/en-ie/aspnet/webhooks/
