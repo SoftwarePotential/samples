@@ -14,7 +14,9 @@ This solution contains a project illustrating the following:
 ## Register Webhook
 * Navigate to the [Software Potential service webhook registration page](https://srv.softwarepotential.com/Develop/Webhook)
 * Select Issue and Reissue actions
+
 * Register the notification url `http://<YourRootUrl>/api/webhooks/incoming/custom`
+
 * *NB* the url must be publically accessible in order for Software Potential to contact it with a notification
 * Enter a shared secret, must be between 32 and 64 characters. 
 * *NB* Keep track of your shared secret using a password manager. This secret is your responsibility and cannot be retrieved from Software Potential.
