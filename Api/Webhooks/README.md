@@ -13,7 +13,7 @@ This solution contains a project illustrating the following:
 
 ## Register Webhook
 * Navigate to the [Software Potential service webhook registration page](https://srv.softwarepotential.com/Develop/Webhook)
-* Select Issue and Reissue events
+* Select Issue and Reissue actions
 * Register the notification url `http://<yourdomain>/IssueNotifciation/api/webhooks/incoming/custom`
 * *NB* the url must be publically accessible in order for Software Potential to contact it with a notification
 * Enter a shared secret, must be between 32 and 64 characters. 
@@ -25,7 +25,7 @@ This solution contains a project illustrating the following:
 ## Running the sample
 * Deploy the sample to a publically available url
 * While the site is running, perform an issue and reissue of a license in Software Potential
-* The `InMemoryLicenseEventRepository` while contain the basic license details
+* The `InMemoryLicenseNotificationRepository` will contain the basic license details
 * The LicenseRefId and the optional CustomerId can then be used to retrieve more detailed information from Software Potential if required.
 
 ## Further reading
