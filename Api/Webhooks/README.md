@@ -29,4 +29,4 @@ This solution contains a project illustrating the following:
 * The LicenseRefId and the optional CustomerId can then be used to retrieve more detailed information from Software Potential if required.
 
 ## Further reading
-* https://docs.microsoft.com/en-ie/aspnet/webhooks/
+* [Getting Started - WebHooks](https://support.softwarepotential.com/hc/en-us/articles/115002224485-Getting-Started-WebHooks)
