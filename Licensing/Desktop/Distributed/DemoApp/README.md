@@ -18,7 +18,7 @@ Alternatively you can create an MSI as outlined in the [Installer](https://githu
 * Generate a Distributor license for the Product `Demo` and Version `1.0` via the [Software Potential service](https://srv.softwarepotential.com/Issue.aspx?IssueType=new) 
    * Add a Feature (e.g., `Feature1`)
    * Check **For use with Distributor only** checkbox
-   * See [Getting Started With Distributor](http://docs.softwarepotential.com/Getting-Started-With-Distributor.html) for information how to install the license in the Distributor Server
+   * See [Getting Started With Distributor](https://support.softwarepotential.com/hc/en-us/articles/115001367189-Getting-Started-Distributor) for information how to install the license in the Distributor Server
 
 ### Activating a Local License
 * Generate a license for the Product `Demo` and Version `1.0` via the [Software Potential service](https://srv.softwarepotential.com/Issue.aspx?IssueType=new) 
@@ -28,7 +28,7 @@ Alternatively you can create an MSI as outlined in the [Installer](https://githu
 ### Choosing a workflow type
 The sample illustrates 2 different styles of consuming floating licenses with Software Potential Agent. The workflow/integration type can be selected on the Demo App startup screen.
 
-* Declarative consumption - in this scenario feature allocation requests are made implicitly, at the point when the code that requires a license is encountered for the first time (see [Getting Started With Distributor - How it Works](http://docs.softwarepotential.com/Getting-Started-With-Distributor.html)). Licensed features are marked in the code with relevant attributes, the same way as in the [Standalone](https://github.com/SoftwarePotential/samples/tree/master/Licensing/Desktop/Standalone) case; there's no need to use Software Potential Distributor API in the code.
+* Declarative consumption - in this scenario feature allocation requests are made implicitly, at the point when the code that requires a license is encountered for the first time (see [Getting Started With Distributor - How it Works](https://support.softwarepotential.com/hc/en-us/articles/115001367189-Getting-Started-Distributor)). Licensed features are marked in the code with relevant attributes, the same way as in the [Standalone](https://github.com/SoftwarePotential/samples/tree/master/Licensing/Desktop/Standalone) case; there's no need to use Software Potential Distributor API in the code.
 
 * Acquire - in this scenario licensed features can be reserved up-front in a single request to the Distributor service. UI elements (buttons, menus) can be enabled or disabled based on whether respective features are held in current Software Potential Agent context (either have been obtained from the Distributor service, or from a local license)
 
