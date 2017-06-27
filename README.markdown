@@ -17,9 +17,9 @@ Samples showing consumption of Software Potential Online APIs
 ## Documentation
 READMES within the github repository are only designed to guide you through set up and running of given samples.
 
-For Getting Started Guides and full technical documentation for Software Potential please see [Our Online Technical Documentation](http://docs.softwarepotential.com) 
+For Getting Started Guides and full technical documentation for Software Potential please see [Our Online Technical Documentation](https://support.softwarepotential.com/hc/en-us/categories/200579692-Developer) 
 
 ## Support
-If you run into any issues, join us at http://support.inishtech.com on [the InishTech Support forum](http://www.inishtech.com/Support/Forum.aspx)
+If you run into any issues visit the [Software Potential support page](https://support.softwarepotential.com) for more detailed information or to submit a help request.
 
 Good luck!
