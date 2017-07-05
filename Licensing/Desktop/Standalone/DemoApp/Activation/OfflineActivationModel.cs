@@ -8,12 +8,17 @@
  */
 using DemoApp.Common;
 using Microsoft.Win32;
+using QRCoder;
 using Sp.Agent;
 using Sp.Agent.Licensing;
 using Sp.Agent.Storage;
 using System.ComponentModel;
+using System.Configuration;
+using System.Drawing.Imaging;
 using System.IO;
+using System.Web;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace DemoApp.Activation
 {
@@ -47,6 +52,16 @@ namespace DemoApp.Activation
 			}
 		}
 
+		BitmapImage _qrBitmapImage;
+		public BitmapImage QrBitmapImage
+		{
+			get { return _qrBitmapImage; }
+			set
+			{
+				_qrBitmapImage = value;
+				OnPropertyChanged( "QrBitmapImage" );
+			}
+		}
 
 		string _licenseInstallResult;
 		public string LicenseInstallResult
@@ -80,6 +95,32 @@ namespace DemoApp.Activation
 		void GenerateRequest()
 		{
 			ActivationRequest = SpAgent.Product.Activation.Advanced().CreateManualActivationRequest( ActivationKey, null );
+			QrBitmapImage = CreateQrCodeBitmapImage();
+		}
+
+		BitmapImage CreateQrCodeBitmapImage()
+		{
+			var manualActivationEndpoint = ConfigurationManager.AppSettings.Get( "ManualActivationEndpoint" );
+			var payload = $"{manualActivationEndpoint}request?requeststring={HttpUtility.UrlEncode( ActivationRequest )}&filename={ActivationKey}";
+
+			/* EECLevel is the error correction level. Either L (7%), M (15%), Q (25%) or H (30%).
+			 * Tells how much of the QR Code can get corrupted before the code isn't readable any longer.
+			 * See https://github.com/codebude/QRCoder/wiki/How-to-use-QRCoder. */
+			var qrCodeData = new QRCodeGenerator().CreateQrCode( payload, QRCodeGenerator.ECCLevel.Q );
+			var bitmap = new QRCode( qrCodeData ).GetGraphic( 2 );
+
+			var bitmapImage = new BitmapImage();
+			using ( var stream = new MemoryStream() )
+			{
+				bitmap.Save( stream, ImageFormat.Bmp );
+				stream.Seek( 0, SeekOrigin.Begin );
+				bitmapImage.BeginInit();
+				bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+				bitmapImage.StreamSource = stream;
+				bitmapImage.EndInit();
+			}
+
+			return bitmapImage;
 		}
 
 		bool CanGenerateRequest()

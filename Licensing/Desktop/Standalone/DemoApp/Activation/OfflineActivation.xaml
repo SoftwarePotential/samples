@@ -54,7 +54,8 @@
 							<StackPanel  Margin="0,0,0,15" Width="330" HorizontalAlignment="Left" >
 								<TextBox Text="{Binding ActivationRequest}" Name="ActivationRequestTextBox" Height="70" TextWrapping="Wrap" IsReadOnly="True"  Margin="0,0,0,5" ></TextBox>
 								<Button Content="Copy to Clipboard" Command="{Binding CopyToClipboardCommand}" HorizontalAlignment="Right"></Button>
-							</StackPanel>
+                                <Image Source="{Binding QrBitmapImage}" Stretch="none" Margin="0,10,0,0" />
+                            </StackPanel>
 						</StackPanel>
 					</GroupBox>
 					<GroupBox Header="Step 2" >
