@@ -12,6 +12,7 @@ using QRCoder;
 using Sp.Agent;
 using Sp.Agent.Licensing;
 using Sp.Agent.Storage;
+using System;
 using System.ComponentModel;
 using System.Configuration;
 using System.Drawing.Imaging;
@@ -25,8 +26,13 @@ namespace DemoApp.Activation
 	public class OfflineActivationModel : ViewModelBase, IDataErrorInfo
 	{
 		public RelayCommand GenerateRequestCommand { get; set; }
-		public RelayCommand CopyToClipboardCommand { get; set; }
+		public RelayCommand SaveToFileCommand { get; set; }
 		public RelayCommand BrowseAndInstallCommand { get; set; }
+
+		public string ManualActivationEndpoint
+		{
+			get { return ConfigurationManager.AppSettings.Get( "ManualActivationEndpoint" ); }
+		}
 
 		string _activationKey;
 		public string ActivationKey
@@ -47,7 +53,7 @@ namespace DemoApp.Activation
 			set
 			{
 				_activationRequest = value;
-				CopyToClipboardCommand.RaiseCanExecuteChanged();
+				SaveToFileCommand.RaiseCanExecuteChanged();
 				OnPropertyChanged( "ActivationRequest" );
 			}
 		}
@@ -74,6 +80,28 @@ namespace DemoApp.Activation
 			}
 		}
 
+		string _saveActivationRequestResult;
+		public string SaveActivationRequestResult
+		{
+			get { return _saveActivationRequestResult; }
+			set
+			{
+				_saveActivationRequestResult = value;
+				OnPropertyChanged( "SaveActivationRequestResult" );
+			}
+		}
+
+		bool _lastSaveRequestSucceeded;
+		public bool LastSaveRequestSucceeded
+		{
+			get { return _lastSaveRequestSucceeded; }
+			set
+			{
+				_lastSaveRequestSucceeded = value;
+				OnPropertyChanged( "LastSaveRequestSucceeded" );
+			}
+		}
+
 		bool _lastInstallSucceedeed;
 		public bool LastInstallSucceeded
 		{
@@ -88,7 +116,7 @@ namespace DemoApp.Activation
 		public OfflineActivationModel()
 		{
 			GenerateRequestCommand = new RelayCommand( GenerateRequest, CanGenerateRequest );
-			CopyToClipboardCommand = new RelayCommand( CopyToClipboard, CanCopyToClipboard );
+			SaveToFileCommand = new RelayCommand( SaveActivationRequestToFile, CanCopyToClipboard );
 			BrowseAndInstallCommand = new RelayCommand( BrowseAndInstallLicense );
 		}
 
@@ -100,12 +128,7 @@ namespace DemoApp.Activation
 
 		BitmapImage CreateQrCodeBitmapImage()
 		{
-			var manualActivationEndpoint = ConfigurationManager.AppSettings.Get( "ManualActivationEndpoint" );
-			var payload = $"{manualActivationEndpoint}request?requeststring={HttpUtility.UrlEncode( ActivationRequest )}&filename={ActivationKey}";
-
-			/* EECLevel is the error correction level. Either L (7%), M (15%), Q (25%) or H (30%).
-			 * Tells how much of the QR Code can get corrupted before the code isn't readable any longer.
-			 * See https://github.com/codebude/QRCoder/wiki/How-to-use-QRCoder. */
+			var payload = String.Format( "{0}/request?requeststring={1}&filename={2}", ManualActivationEndpoint, HttpUtility.UrlEncode( ActivationRequest ), ActivationKey );
 			var qrCodeData = new QRCodeGenerator().CreateQrCode( payload, QRCodeGenerator.ECCLevel.Q );
 			var bitmap = new QRCode( qrCodeData ).GetGraphic( 2 );
 
@@ -138,14 +161,43 @@ namespace DemoApp.Activation
 			return !string.IsNullOrEmpty( ActivationRequest );
 		}
 
+		void SaveActivationRequestToFile()
+		{
+			LastSaveRequestSucceeded = false;
+			var initialDirectory = Environment.GetFolderPath( Environment.SpecialFolder.Desktop );
+			var fileName = String.Format( "{0}_{1:yyyy-MM-dd_hh-mm-ss-tt}.txt", ActivationKey, DateTime.Now );
+
+			SaveFileDialog saveFileDialog = new SaveFileDialog()
+			{
+				DefaultExt = ".txt",
+				Filter = "Text Files (*.txt)|*.txt",
+				InitialDirectory = initialDirectory,
+				FileName = fileName
+			};
+
+			bool? result = saveFileDialog.ShowDialog();
+			if ( result != true )
+				return;
+
+			try
+			{
+				File.WriteAllText( saveFileDialog.FileName, ActivationRequest );
+				SaveActivationRequestResult = "Success: The Activation Request has been saved to disk.";
+				LastSaveRequestSucceeded = true;
+			}
+			catch ( IOException )
+			{
+				SaveActivationRequestResult = "Error: The Activation Request couldn't be saved to disk.";
+			}
+		}
+
 		void BrowseAndInstallLicense()
 		{
-			var fileDialog = new OpenFileDialog() { DefaultExt = ".bin", Filter = "License Files (*.bin)|*.bin", };
+			var fileDialog = new OpenFileDialog() { DefaultExt = ".bin", Filter = "License Files (*.bin)|*.bin" };
 
 			bool? result = fileDialog.ShowDialog();
-
-			if ( result != true)
-				return;		
+			if ( result != true )
+				return;
 
 			var license = File.ReadAllBytes( fileDialog.FileName );
 			InstallLicense( license );
