@@ -30,3 +30,4 @@ This solution contains a project illustrating the following:
 
 ## Further reading
 * [Getting Started - WebHooks](https://support.softwarepotential.com/hc/en-us/articles/115002224485-Getting-Started-WebHooks)
+* [ASP.NET WebHooks receivers](https://docs.microsoft.com/en-us/aspnet/webhooks/receiving/receivers)
