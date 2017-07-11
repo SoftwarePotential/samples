@@ -14,7 +14,7 @@ namespace IssueNotification.WebHooks
             if ( action == "LicenseIssue" || action == "LicenseReissue" )
             {
                 var data = context.GetDataOrDefault<WebHookNotification>();
-                InMemoryLicenseEventRepository.LicenseEvents.AddRange( data.Notifications.Where( x => x != null ) );
+                InMemoryLicenseNotificationRepository.LicenseNotifications.AddRange( data.Notifications.Where( x => x != null ) );
             }
             return Task.FromResult( true );
         }

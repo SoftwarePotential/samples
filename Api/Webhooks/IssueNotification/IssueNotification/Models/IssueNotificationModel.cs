@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace IssueNotification.Models
 {
-    public class IssueEventModel
+    public class IssueNotificationModel
     {
         public string Action { get; set; }
         public Guid LicenseRefId { get; set; }
@@ -15,6 +15,6 @@ namespace IssueNotification.Models
     {
         public Guid Id { get; set; }
         public int Attempt { get; set; }
-        public IssueEventModel[] Notifications { get; set; }
+        public IssueNotificationModel[] Notifications { get; set; }
     }
 }

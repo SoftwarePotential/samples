@@ -8,6 +8,7 @@ This solution contains a simple project illustrating the following elements of a
 * Click Once deployable
 
 The application uses WPF without any dependency on third party packages (e.g. MVVM frameworks).
+However the QR code generation for Offline Activation requires the installation of the QRCoder [NuGet package](https://www.nuget.org/packages/QRCoder/).
 
 # Configuring The Sample
 ## Create the product
@@ -16,7 +17,7 @@ The application uses WPF without any dependency on third party packages (e.g. MV
 * Create a product entitled `Demo` with version `1.0` (case-sensitive) in a non-production account
   * Add two Features (`Feature1`,`Feature2`)
 
-## Install the NuGet packages
+## Install the Software Potential NuGet packages
 * Add the SoftwarePotential NuGet feed (`https://srv.softwarepotential.com/NuGet/nuget/`) in your Package Manager settings
 * Add the following package references:
  * `SoftwarePotential.Protection-<PermutationShortCode>` 
@@ -37,10 +38,9 @@ The application uses WPF without any dependency on third party packages (e.g. MV
 ### Offline
 * Paste the license key into the Offline Tab of the activation form (**Licenses|Activate** on the sample's menu)
 * Click Generate
-* Click Copy to Clipboard
-* Navigate to [Software Potential service's Manual Activation page](https://srv.softwarepotential.com/Activation.aspx)
-* Paste the license request, load the license and click Activate
-* Download the generated License (.bin) file
+* EITHER scan the generated QR code to process an activation request automatically 
+* OR click Save to save an activation request as a .txt file to disk. This can then be processed via the [Software Potential Manual Activation page](http://manualactivation.softwarepotential.com)
+* On a successful activation a License (.bin) file will be generated and made available for download.
 * In the DemoApp open the Offline Tab of the activation form (Licenses|Activate on the sample's menu)
 * Click Install and select the downloaded License file
 
@@ -79,12 +79,12 @@ The most common problems reported with the sample are:
 
 Please see below for a list of recommended reading, ranging from Getting Started guides to more detailed technical documentation:
 
-* [Getting Started - Licensing with Software Potential](http://docs.softwarepotential.com/Getting-Started-With-Licensing.html)
-* [Licensing-README](http://docs.softwarepotential.com/Licensing-README.html)
-* [SoftwarePotential.Configuration.Local.SingleUser-README](http://docs.softwarepotential.com/Configuration.Local.SingleUser-README.html)
-* [Software Potential NuGet Feed](http://docs.softwarepotential.com/Adding-SoftwarePotential-NuGet-Feed.html)
+* [Getting Started - Licensing with Software Potential](https://support.softwarepotential.com/hc/en-us/articles/115001354529-Getting-Started-Licensing-with-Software-Potential)
+* [Licensing-README](https://support.softwarepotential.com/hc/en-us/articles/115001358849-Licensing-README)
+* [SoftwarePotential.Configuration.Local.SingleUser-README](https://support.softwarepotential.com/hc/en-us/articles/115001365849--SingleUser-Configuration-README)
+* [Software Potential NuGet Feed](https://support.softwarepotential.com/hc/en-us/articles/115001371425-Getting-Started-Software-Potential-NuGet-Feed)
 
 ## Support
-If you run into any issues, join us at `http://support.inishtech.com` on [the InishTech Support forum](http://www.inishtech.com/Support/Forum.aspx)
+If you run into any issues visit the [Software Potential support page](https://support.softwarepotential.com) for more detailed information or to submit a help request.
 
 Good luck!

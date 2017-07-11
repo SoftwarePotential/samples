@@ -61,13 +61,13 @@ The most common problems reported with the sample are:
 
 Please see below for a list of recommended reading, ranging from Getting Started guides to more detailed technical documentation:
 
-* [Getting Started with Subscription Licneses](http://docs.softwarepotential.com/Getting-Started-With-Subscription-Licenses.html)
-* [Getting Started - Licensing with Software Potential](http://docs.softwarepotential.com/Getting-Started-With-Licensing.html)
-* [Licensing-README](http://docs.softwarepotential.com/Licensing-README.html)
-* [SoftwarePotential.Configuration.Local.SingleUser-README](http://docs.softwarepotential.com/Configuration.Local.SingleUser-README.html)
-* [Software Potential NuGet Feed](http://docs.softwarepotential.com/Adding-SoftwarePotential-NuGet-Feed.html)
+* [Getting Started with Subscription Licenses](https://support.softwarepotential.com/hc/en-us/articles/115001367349-Getting-Started-Subscription-Licenses)
+* [Getting Started - Licensing with Software Potential](https://support.softwarepotential.com/hc/en-us/articles/115001354529-Getting-Started-Licensing-with-Software-Potential)
+* [Licensing-README](https://support.softwarepotential.com/hc/en-us/articles/115001358849-Licensing-README)
+* [SoftwarePotential.Configuration.Local.SingleUser-README](https://support.softwarepotential.com/hc/en-us/articles/115001365849--SingleUser-Configuration-README)
+* [Software Potential NuGet Feed](https://support.softwarepotential.com/hc/en-us/articles/115001371425-Getting-Started-Software-Potential-NuGet-Feed)
 
 ## Support
-If you run into any issues, join us at `http://support.inishtech.com` on [the InishTech Support forum](http://www.inishtech.com/Support/Forum.aspx)
+If you run into any issues visit the [Software Potential support page](https://support.softwarepotential.com) for more detailed information or to submit a help request.
 
 Good luck!

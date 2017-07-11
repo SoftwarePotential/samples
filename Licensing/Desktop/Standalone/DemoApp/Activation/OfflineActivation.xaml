@@ -6,73 +6,76 @@
 		xmlns:presentation="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"	  			 
 		xmlns:converter="clr-namespace:DemoApp.Converter"
         xmlns:activation="clr-namespace:DemoApp.Activation" 
-		mc:Ignorable="d" 
-		d:DesignHeight="330" d:DesignWidth="300">
-	<UserControl.Resources>
-		<converter:InverseBooleanConverter x:Key="inverseBooleanConverter" />
-		<converter:InverseBooleanVisibilityConverter x:Key="inverseBooleanVisibilityConverter" />
-		<converter:BooleanErrorMessageColorConverter x:Key="booleanErrorMessageColorConverter" />
-		<presentation:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
-	</UserControl.Resources>
-	<Grid Margin="10,10,10,10">
-		<Border>
-			<AdornerDecorator>
-				<StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="5,5,5,5">
-					<GroupBox Header="Step 1" >
-						<StackPanel>
-							<StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="330" >
-								<TextBlock Text="Please enter your activation key:" Margin="0,0,0,5"/>
-								<TextBox  MaxLength="{Binding ActivationKeyRequiredLength}" HorizontalAlignment="Left" Width="330" Text="{Binding ActivationKey, Mode=TwoWay,
-									UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"    Margin="0,0,0,5" Name="OfflineActivationKeyTb">
-									<TextBox.Style>
-										<Style TargetType="{x:Type TextBox}">
-											<Setter Property="Validation.ErrorTemplate">
-												<Setter.Value>
-													<ControlTemplate>
-														<DockPanel LastChildFill="True">
-															<Border Background="Red" DockPanel.Dock="Right" Margin="5 0" Width="20" Height="20" CornerRadius="10">
-																<TextBlock Text="!" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" />
-															</Border>
-															<AdornedElementPlaceholder VerticalAlignment="Center">
-																<Border BorderBrush="Red" BorderThickness="1" />
-															</AdornedElementPlaceholder>
-														</DockPanel>
-													</ControlTemplate>
-												</Setter.Value>
-											</Setter>
-											<Style.Triggers>
-												<Trigger Property="Validation.HasError" Value="true">
-													<Setter Property="ToolTip"  Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
-												</Trigger>
-											</Style.Triggers>
-										</Style>
-									</TextBox.Style>
-								</TextBox>
-								<Button Name="generateButton" Content="Generate"  Margin="0,0,0,5"  ToolTip="Generate manual activation request"
+		mc:Ignorable="d"
+        d:DesignHeight="330" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converter:InverseBooleanConverter x:Key="inverseBooleanConverter" />
+        <converter:InverseBooleanVisibilityConverter x:Key="inverseBooleanVisibilityConverter" />
+        <converter:BooleanErrorMessageColorConverter x:Key="booleanErrorMessageColorConverter" />
+        <presentation:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid Margin="10,10,10,10">
+        <Border>
+            <AdornerDecorator>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="5,5,5,5">
+                    <GroupBox Header="Step 1: Generate an Activation Request" >
+                        <StackPanel>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="330" >
+                                <TextBlock Text="Please enter your activation key:" Margin="0,0,0,5"/>
+                                <TextBox  MaxLength="{Binding ActivationKeyRequiredLength}" HorizontalAlignment="Left" Width="330" Text="{Binding ActivationKey, Mode=TwoWay,
+									UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" Margin="0,0,0,5" Name="OfflineActivationKeyTb">
+                                    <TextBox.Style>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="Validation.ErrorTemplate">
+                                                <Setter.Value>
+                                                    <ControlTemplate>
+                                                        <DockPanel LastChildFill="True">
+                                                            <Border Background="Red" DockPanel.Dock="Right" Margin="5 0" Width="20" Height="20" CornerRadius="10">
+                                                                <TextBlock Text="!" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" Foreground="White" />
+                                                            </Border>
+                                                            <AdornedElementPlaceholder VerticalAlignment="Center">
+                                                                <Border BorderBrush="Red" BorderThickness="1" />
+                                                            </AdornedElementPlaceholder>
+                                                        </DockPanel>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="Validation.HasError" Value="true">
+                                                    <Setter Property="ToolTip"  Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
+                                <Button Name="generateButton" Content="Generate"  Margin="0,0,0,5"  ToolTip="Generate Activation Request" Width="60"
 									Command="{Binding GenerateRequestCommand}" CommandParameter="{Binding}" HorizontalAlignment="Right"/>
-							</StackPanel>
-							<StackPanel  Margin="0,0,0,15" Width="330" HorizontalAlignment="Left" >
-								<TextBox Text="{Binding ActivationRequest}" Name="ActivationRequestTextBox" Height="70" TextWrapping="Wrap" IsReadOnly="True"  Margin="0,0,0,5" ></TextBox>
-								<Button Content="Copy to Clipboard" Command="{Binding CopyToClipboardCommand}" HorizontalAlignment="Right"></Button>
-							</StackPanel>
-						</StackPanel>
-					</GroupBox>
-					<GroupBox Header="Step 2" >
-						<TextBlock Text="Paste the copied Activation Request into a text file and send the file to your license supplier. Retrieve the generated license file from your license supplier." TextWrapping="Wrap"></TextBlock>
-					</GroupBox>
-					<GroupBox Header="Step 3" Height="75" >
-						<StackPanel  Width="330"  HorizontalAlignment="Left" >
-							<TextBlock Text="Select the generated license file to install:" Margin="0,0,0,5"/>
-							<Button  Content="Install..."  Margin="0,0,0,5" ToolTip="Install selected license file." Width="50"
-								Command="{Binding BrowseAndInstallCommand}" CommandParameter="{Binding}" HorizontalAlignment="Left"/>
-							<TextBlock TextWrapping="Wrap" Text="{Binding LicenseInstallResult}" Width="330" 
-							 Margin="0,5,0,5" Foreground="{Binding LastInstallSucceeded,Converter={StaticResource booleanErrorMessageColorConverter}}"></TextBlock>
-						</StackPanel>
-
-					</GroupBox>
-				</StackPanel>
-			</AdornerDecorator>
-		</Border>
-		<Button Name="closeButton" Content="Close" HorizontalAlignment="Right" VerticalAlignment="Bottom"  ToolTip="Close" Command="{Binding CloseCommand}"/>
-	</Grid>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Step 2: Download a License File" >
+                        <StackPanel Margin="0,0,0,15" Width="330" HorizontalAlignment="Left" >
+                            <TextBlock Text="A license file can be obtained by submitting the activation request to the online activation service, EITHER by scanning the generated QR code:" TextWrapping="Wrap" />
+                            <Image Source="{Binding QrBitmapImage}" Stretch="none" MinHeight="160" Margin="0,10,0,0" />
+                            <TextBlock Text="OR" TextWrapping="Wrap" />
+                            <TextBlock Text="{Binding ManualActivationEndpoint, StringFormat='saving the Activation Request as a file which can be be uploaded to {0}.'}" TextWrapping="Wrap" Margin="0,5,0,0" />
+                            <Button Content="Save..." ToolTip="Save an Activation Request file" Command="{Binding SaveToFileCommand}" HorizontalAlignment="Right" Width="60" Margin="0,10,0,0" />
+                            <TextBlock TextWrapping="Wrap" Text="{Binding SaveActivationRequestResult}" Margin="0,5,0,0" 
+                                Foreground="{Binding LastSaveRequestSucceeded,Converter={StaticResource booleanErrorMessageColorConverter}}" />
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Step 3: Install the License File" >
+                        <StackPanel  Width="330"  HorizontalAlignment="Left" >
+                            <TextBlock Text="Browse to the generated license file to install:" Margin="0,0,0,5"/>
+                            <Button  Content="Install..."  Margin="0,0,0,5" ToolTip="Install selected license file." Width="60"
+								Command="{Binding BrowseAndInstallCommand}" CommandParameter="{Binding}" HorizontalAlignment="Right"/>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding LicenseInstallResult}" Margin="0,5,0,0" 
+                                Foreground="{Binding LastInstallSucceeded,Converter={StaticResource booleanErrorMessageColorConverter}}" />
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </AdornerDecorator>
+        </Border>
+        <Button Name="closeButton" Content="Close" HorizontalAlignment="Right" VerticalAlignment="Bottom"  ToolTip="Close" Command="{Binding CloseCommand}"/>
+    </Grid>
 </UserControl>

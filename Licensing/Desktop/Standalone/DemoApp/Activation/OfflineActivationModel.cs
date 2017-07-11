@@ -8,20 +8,31 @@
  */
 using DemoApp.Common;
 using Microsoft.Win32;
+using QRCoder;
 using Sp.Agent;
 using Sp.Agent.Licensing;
 using Sp.Agent.Storage;
+using System;
 using System.ComponentModel;
+using System.Configuration;
+using System.Drawing.Imaging;
 using System.IO;
+using System.Web;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace DemoApp.Activation
 {
 	public class OfflineActivationModel : ViewModelBase, IDataErrorInfo
 	{
 		public RelayCommand GenerateRequestCommand { get; set; }
-		public RelayCommand CopyToClipboardCommand { get; set; }
+		public RelayCommand SaveToFileCommand { get; set; }
 		public RelayCommand BrowseAndInstallCommand { get; set; }
+
+		public string ManualActivationEndpoint
+		{
+			get { return ConfigurationManager.AppSettings.Get( "ManualActivationEndpoint" ); }
+		}
 
 		string _activationKey;
 		public string ActivationKey
@@ -42,11 +53,21 @@ namespace DemoApp.Activation
 			set
 			{
 				_activationRequest = value;
-				CopyToClipboardCommand.RaiseCanExecuteChanged();
+				SaveToFileCommand.RaiseCanExecuteChanged();
 				OnPropertyChanged( "ActivationRequest" );
 			}
 		}
 
+		BitmapImage _qrBitmapImage;
+		public BitmapImage QrBitmapImage
+		{
+			get { return _qrBitmapImage; }
+			set
+			{
+				_qrBitmapImage = value;
+				OnPropertyChanged( "QrBitmapImage" );
+			}
+		}
 
 		string _licenseInstallResult;
 		public string LicenseInstallResult
@@ -56,6 +77,28 @@ namespace DemoApp.Activation
 			{
 				_licenseInstallResult = value;
 				OnPropertyChanged( "LicenseInstallResult" );
+			}
+		}
+
+		string _saveActivationRequestResult;
+		public string SaveActivationRequestResult
+		{
+			get { return _saveActivationRequestResult; }
+			set
+			{
+				_saveActivationRequestResult = value;
+				OnPropertyChanged( "SaveActivationRequestResult" );
+			}
+		}
+
+		bool _lastSaveRequestSucceeded;
+		public bool LastSaveRequestSucceeded
+		{
+			get { return _lastSaveRequestSucceeded; }
+			set
+			{
+				_lastSaveRequestSucceeded = value;
+				OnPropertyChanged( "LastSaveRequestSucceeded" );
 			}
 		}
 
@@ -73,13 +116,34 @@ namespace DemoApp.Activation
 		public OfflineActivationModel()
 		{
 			GenerateRequestCommand = new RelayCommand( GenerateRequest, CanGenerateRequest );
-			CopyToClipboardCommand = new RelayCommand( CopyToClipboard, CanCopyToClipboard );
+			SaveToFileCommand = new RelayCommand( SaveActivationRequestToFile, CanCopyToClipboard );
 			BrowseAndInstallCommand = new RelayCommand( BrowseAndInstallLicense );
 		}
 
 		void GenerateRequest()
 		{
 			ActivationRequest = SpAgent.Product.Activation.Advanced().CreateManualActivationRequest( ActivationKey, null );
+			QrBitmapImage = CreateQrCodeBitmapImage();
+		}
+
+		BitmapImage CreateQrCodeBitmapImage()
+		{
+			var payload = String.Format( "{0}/request?requeststring={1}&filename={2}", ManualActivationEndpoint, HttpUtility.UrlEncode( ActivationRequest ), ActivationKey );
+			var qrCodeData = new QRCodeGenerator().CreateQrCode( payload, QRCodeGenerator.ECCLevel.Q );
+			var bitmap = new QRCode( qrCodeData ).GetGraphic( 2 );
+
+			var bitmapImage = new BitmapImage();
+			using ( var stream = new MemoryStream() )
+			{
+				bitmap.Save( stream, ImageFormat.Bmp );
+				stream.Seek( 0, SeekOrigin.Begin );
+				bitmapImage.BeginInit();
+				bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+				bitmapImage.StreamSource = stream;
+				bitmapImage.EndInit();
+			}
+
+			return bitmapImage;
 		}
 
 		bool CanGenerateRequest()
@@ -97,14 +161,43 @@ namespace DemoApp.Activation
 			return !string.IsNullOrEmpty( ActivationRequest );
 		}
 
+		void SaveActivationRequestToFile()
+		{
+			LastSaveRequestSucceeded = false;
+			var initialDirectory = Environment.GetFolderPath( Environment.SpecialFolder.Desktop );
+			var fileName = String.Format( "{0}_{1:yyyy-MM-dd_hh-mm-ss-tt}.txt", ActivationKey, DateTime.Now );
+
+			SaveFileDialog saveFileDialog = new SaveFileDialog()
+			{
+				DefaultExt = ".txt",
+				Filter = "Text Files (*.txt)|*.txt",
+				InitialDirectory = initialDirectory,
+				FileName = fileName
+			};
+
+			bool? result = saveFileDialog.ShowDialog();
+			if ( result != true )
+				return;
+
+			try
+			{
+				File.WriteAllText( saveFileDialog.FileName, ActivationRequest );
+				SaveActivationRequestResult = "Success: The Activation Request has been saved to disk.";
+				LastSaveRequestSucceeded = true;
+			}
+			catch ( IOException )
+			{
+				SaveActivationRequestResult = "Error: The Activation Request couldn't be saved to disk.";
+			}
+		}
+
 		void BrowseAndInstallLicense()
 		{
-			var fileDialog = new OpenFileDialog() { DefaultExt = ".bin", Filter = "License Files (*.bin)|*.bin", };
+			var fileDialog = new OpenFileDialog() { DefaultExt = ".bin", Filter = "License Files (*.bin)|*.bin" };
 
 			bool? result = fileDialog.ShowDialog();
-
-			if ( result != true)
-				return;		
+			if ( result != true )
+				return;
 
 			var license = File.ReadAllBytes( fileDialog.FileName );
 			InstallLicense( license );
