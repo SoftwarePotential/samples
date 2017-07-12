@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="QRCoder, Version=1.2.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.2.9\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
     <Reference Include="Sp.Agent, Version=3.2.1983.3, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
       <HintPath>..\packages\Sp.Agent.3.2.1983\lib\net40\Sp.Agent.dll</HintPath>
       <Private>True</Private>
@@ -59,6 +62,9 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.2.9\lib\net40\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
