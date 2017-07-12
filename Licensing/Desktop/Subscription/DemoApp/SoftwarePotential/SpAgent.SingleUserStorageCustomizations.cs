@@ -1,6 +1,6 @@
 ﻿// NB This file is auto-generated via the SoftwarePotential.Configuration.Local.SingleUser-XXYYY NuGet package.
 //
-// For more details see the README at http://docs.softwarepotential.com/Configuration.Local.SingleUser-README.html
+// For more details see the README at https://support.softwarepotential.com/hc/en-us/articles/115001365849--SingleUser-Configuration-README
 //
 // TODO: IF YOU MODIFY THIS FILE, CONSIDER MOVING ANY MODIFIED METHODS (AND/OR 
 // RENAMING THIS FILE) SO NUGET PACKAGE UPDATES CANNOT RESULT IN YOU INADVERTENTLY 

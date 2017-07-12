@@ -1,5 +1,5 @@
 ﻿// NB This file is auto-added via the SoftwarePotential.Configuration.Local.SingleUser-XXYYY NuGet package.
-// For more details see the README at http://docs.softwarepotential.com/Configuration.Local.SingleUser-README.html
+// For more details see the README at https://support.softwarepotential.com/hc/en-us/articles/115001365849--SingleUser-Configuration-README
 // THE CODE SHOULD BE OVERWRITTEN BY PACKAGE UPDATES - IT IS RECOMMENDED TO DEFINE ANY EXTENSIONS YOU MAY DESIRE ELSEWHERE
 
 using Sp.Agent.Configuration;
@@ -35,7 +35,7 @@ namespace Sp.Agent
 		/// partial methods can be adjusted as necessary.</para>
 		/// </remarks>
 		/// <exception cref="Sp.Agent.Storage.StorageInaccessibleException">Thrown at runtime should the supplied <c>basePath</c> not be present and accessible when required.</exception>
-		static partial void ConfigureLocalBoundStorage( Action<Func<IAgentCommenceConfigurationPhase, IAgentExternalStorageConfigurationPhase>> configure )
+		static partial void ConfigureLocalBoundStorage( Action<Func<IAgentCommenceConfigurationPhase, IAgentHardwareBoundStorageConfigurationPhase>> configure )
 		{
 			var storageArea = ConfiguredBaseAndRelativePathElements();
 			var rootPath = storageArea.Item1;

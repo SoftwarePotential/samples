@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\SoftwarePotential.Protection-62340.3.2.1983.14\build\SoftwarePotential.Protection-62340.props" Condition="Exists('..\packages\SoftwarePotential.Protection-62340.3.2.1983.14\build\SoftwarePotential.Protection-62340.props')" />
-  <Import Project="..\packages\Sp.Permutation-62340.3.2.1983.14\build\Sp.Permutation-62340.props" Condition="Exists('..\packages\Sp.Permutation-62340.3.2.1983.14\build\Sp.Permutation-62340.props')" />
-  <Import Project="..\packages\Sp.Protector.3.2.1983\build\Sp.Protector.props" Condition="Exists('..\packages\Sp.Protector.3.2.1983\build\Sp.Protector.props')" />
+  <Import Project="..\packages\SoftwarePotential.Protection-62340.3.3.1.15\build\SoftwarePotential.Protection-62340.props" Condition="Exists('..\packages\SoftwarePotential.Protection-62340.3.3.1.15\build\SoftwarePotential.Protection-62340.props')" />
+  <Import Project="..\packages\Sp.Permutation-62340.3.3.1.15\build\Sp.Permutation-62340.props" Condition="Exists('..\packages\Sp.Permutation-62340.3.3.1.15\build\Sp.Permutation-62340.props')" />
+  <Import Project="..\packages\Sp.Protector.3.3.1\build\Sp.Protector.props" Condition="Exists('..\packages\Sp.Protector.3.3.1\build\Sp.Protector.props')" />
   <Import Project="..\packages\SoftwarePotential.Licensing-Demo_10.1.0.1.0\build\SoftwarePotential.Licensing-Demo_10.props" Condition="Exists('..\packages\SoftwarePotential.Licensing-Demo_10.1.0.1.0\build\SoftwarePotential.Licensing-Demo_10.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -17,7 +17,8 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <NuGetPackageImportStamp>9a6f3153</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -42,13 +43,11 @@
     <Reference Include="QRCoder, Version=1.2.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\QRCoder.1.2.9\lib\net40\QRCoder.dll</HintPath>
     </Reference>
-    <Reference Include="Sp.Agent, Version=3.2.1983.3, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sp.Agent.3.2.1983\lib\net40\Sp.Agent.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Sp.Agent, Version=3.3.1.1, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sp.Agent.3.3.1\lib\net40\Sp.Agent.dll</HintPath>
     </Reference>
-    <Reference Include="Sp.Agent.Local, Version=3.2.1983.3, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sp.Agent.Local.3.2.1983\lib\net40\Sp.Agent.Local.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Sp.Agent.Local, Version=3.3.1.1, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sp.Agent.Local.3.3.1\lib\net40\Sp.Agent.Local.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -188,16 +187,16 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\SoftwarePotential.Licensing-Demo_10.1.0.1.0\build\SoftwarePotential.Licensing-Demo_10.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SoftwarePotential.Licensing-Demo_10.1.0.1.0\build\SoftwarePotential.Licensing-Demo_10.props'))" />
-    <Error Condition="!Exists('..\packages\Sp.Protector.3.2.1983\build\Sp.Protector.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Protector.3.2.1983\build\Sp.Protector.props'))" />
-    <Error Condition="!Exists('..\packages\Sp.Protector.3.2.1983\build\Sp.Protector.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Protector.3.2.1983\build\Sp.Protector.targets'))" />
-    <Error Condition="!Exists('..\packages\Sp.Permutation-62340.3.2.1983.14\build\Sp.Permutation-62340.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Permutation-62340.3.2.1983.14\build\Sp.Permutation-62340.props'))" />
-    <Error Condition="!Exists('..\packages\SoftwarePotential.Protection-62340.3.2.1983.14\build\SoftwarePotential.Protection-62340.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SoftwarePotential.Protection-62340.3.2.1983.14\build\SoftwarePotential.Protection-62340.props'))" />
-    <Error Condition="!Exists('..\packages\Sp.Agent-62340.3.2.1983.14\build\net40\Sp.Agent-62340.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Agent-62340.3.2.1983.14\build\net40\Sp.Agent-62340.targets'))" />
-    <Error Condition="!Exists('..\packages\Sp.Agent.Local-62340.3.2.1983.14\build\net40\Sp.Agent.Local-62340.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Agent.Local-62340.3.2.1983.14\build\net40\Sp.Agent.Local-62340.targets'))" />
+    <Error Condition="!Exists('..\packages\Sp.Agent-62340.3.3.1.15\build\net40\Sp.Agent-62340.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Agent-62340.3.3.1.15\build\net40\Sp.Agent-62340.targets'))" />
+    <Error Condition="!Exists('..\packages\Sp.Agent.Local-62340.3.3.1.15\build\net40\Sp.Agent.Local-62340.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Agent.Local-62340.3.3.1.15\build\net40\Sp.Agent.Local-62340.targets'))" />
+    <Error Condition="!Exists('..\packages\Sp.Protector.3.3.1\build\Sp.Protector.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Protector.3.3.1\build\Sp.Protector.props'))" />
+    <Error Condition="!Exists('..\packages\Sp.Protector.3.3.1\build\Sp.Protector.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Protector.3.3.1\build\Sp.Protector.targets'))" />
+    <Error Condition="!Exists('..\packages\Sp.Permutation-62340.3.3.1.15\build\Sp.Permutation-62340.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Permutation-62340.3.3.1.15\build\Sp.Permutation-62340.props'))" />
+    <Error Condition="!Exists('..\packages\SoftwarePotential.Protection-62340.3.3.1.15\build\SoftwarePotential.Protection-62340.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SoftwarePotential.Protection-62340.3.3.1.15\build\SoftwarePotential.Protection-62340.props'))" />
   </Target>
-  <Import Project="..\packages\Sp.Protector.3.2.1983\build\Sp.Protector.targets" Condition="Exists('..\packages\Sp.Protector.3.2.1983\build\Sp.Protector.targets')" />
-  <Import Project="..\packages\Sp.Agent-62340.3.2.1983.14\build\net40\Sp.Agent-62340.targets" Condition="Exists('..\packages\Sp.Agent-62340.3.2.1983.14\build\net40\Sp.Agent-62340.targets')" />
-  <Import Project="..\packages\Sp.Agent.Local-62340.3.2.1983.14\build\net40\Sp.Agent.Local-62340.targets" Condition="Exists('..\packages\Sp.Agent.Local-62340.3.2.1983.14\build\net40\Sp.Agent.Local-62340.targets')" />
+  <Import Project="..\packages\Sp.Agent-62340.3.3.1.15\build\net40\Sp.Agent-62340.targets" Condition="Exists('..\packages\Sp.Agent-62340.3.3.1.15\build\net40\Sp.Agent-62340.targets')" />
+  <Import Project="..\packages\Sp.Agent.Local-62340.3.3.1.15\build\net40\Sp.Agent.Local-62340.targets" Condition="Exists('..\packages\Sp.Agent.Local-62340.3.3.1.15\build\net40\Sp.Agent.Local-62340.targets')" />
+  <Import Project="..\packages\Sp.Protector.3.3.1\build\Sp.Protector.targets" Condition="Exists('..\packages\Sp.Protector.3.3.1\build\Sp.Protector.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
