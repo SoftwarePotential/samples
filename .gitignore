@@ -7,4 +7,5 @@ obj
 *.cache
 _Teamcity.*
 NuGet.exe
+.vs
 !**/packages/Sp.Distributor-*/Slps.Distributor.Host/Web/bin/
