@@ -7,9 +7,6 @@ This solution contains a simple project illustrating the following elements of a
 * a diagnostic license list page
 * Click Once deployable
 
-The application uses WPF without any dependency on third party packages (e.g. MVVM frameworks).
-However the QR code generation for Offline Activation requires the installation of the QRCoder [NuGet package](https://www.nuget.org/packages/QRCoder/).
-
 # Configuring The Sample
 ## Create the product
 
@@ -23,6 +20,11 @@ However the QR code generation for Offline Activation requires the installation 
  * `SoftwarePotential.Protection-<PermutationShortCode>` 
  * `SoftwarePotential.Configuration.Local.SingleUser-<PermutationShortCode>`
  * `SoftwarePotential.Licensing-Demo_10`
+
+## Dependencies
+The application uses WPF without any dependency on third party packages (e.g. MVVM frameworks).
+However the QR code generation for Offline Activation requires the installation of the QRCoder [NuGet package](https://www.nuget.org/packages/QRCoder/).
+
 
 # Using The Sample
 ## Activating a license
