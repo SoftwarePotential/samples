@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+  <PropertyGroup>
+
+    <!-- Wire verification that no licenses will be inadvertently deleted into the (intreractive) Publish Dialog flow --> 
+    <MSDeployPublishDependsOn>
+      $(MSDeployPublishDependsOn);
+      _ValidateSkipExtraFilesOnServerProperty;
+    </MSDeployPublishDependsOn>
+
+    <!-- Wire provisioning of skip rules into the Publish(as a package) flow -->
+    <PackageUsingManifestDependsOn>
+      $(PackageUsingManifestDependsOn);
+      _GenerateCustomSkipRulesForAppData;
+    </PackageUsingManifestDependsOn>
+
+  </PropertyGroup>
+
+  <Target Name="_ValidateSkipExtraFilesOnServerProperty" >
+    <!-- 
+      The SkipExtraFilesOnServer property reflects the chosen setting as specified 
+      via the Visual Studio Publish Web dialog when it is used for the actual deployment 
+
+      As direct deploys via this dialog do not honor the skip rules specified below, 
+      we validate that an incorrect value has not crept through in order to prevent 
+      inadvertent deletion of licenses from App_Data\Licenses folder on the destination server -->
+    <Error
+      Condition=" 'true' != '$(SkipExtraFilesOnServer)' "
+      Text="When deploying using the Publish Web dialog from within Visual Studio, you need to ensure that SkipExtraFilesOnServer property is set in order to prevent the deletion of licenses from the App_Data folder on the destination server.
+This option can be adjusted via the following dialog options:
+VS2010: CHECK the 'Leave extra files on destination (do not delete)' option (in the Publish Web dialog) 
+VS2012/2013: UNCHECK the 'Remove additional files at destination' option (in the Publish Web dialog) 
+" />
+  </Target>
+
+  <Target Name="_GenerateCustomSkipRulesForAppData">
+    <!-- 
+      The following skip rules for the App_Data folder are needed to prevent 
+      deletion of licenses from the App_Data\Licenses folder on the destination server -->
+    <!-- 
+      These rules get embedded in {packageName}.deploy.cmd file, which then 
+      passes them as -skip parameters to msdeploy.exe -->
+    <!-- 
+      NB - skip rules are only honored when msdeploy.exe is being used to perform 
+      the actual deployment (and not the built-in Visual Studio Publish Web dialog) -->
+    <ItemGroup>
+      <MsDeploySkipRules Include="SkipDeleteAppData">
+        <SkipAction>Delete</SkipAction>
+        <ObjectName>filePath</ObjectName>
+        <AbsolutePath>$(_Escaped_PackageTempDir)\\App_Data\\Licenses\\.*</AbsolutePath>
+        <XPath>
+        </XPath>
+      </MsDeploySkipRules>
+      <MsDeploySkipRules Include="SkipDeleteAppData">
+        <SkipAction>Delete</SkipAction>
+        <ObjectName>dirPath</ObjectName>
+        <AbsolutePath>$(_Escaped_PackageTempDir)\\App_Data\\Licenses\\.*</AbsolutePath>
+        <XPath>
+        </XPath>
+      </MsDeploySkipRules>
+    </ItemGroup>
+  </Target>
+</Project>
