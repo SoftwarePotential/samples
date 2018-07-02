@@ -30,5 +30,24 @@ This solution contains projects illustrating the following elements of a Distrib
 * Add the following packages to `Diagnostics` project:
 	-	`Sp.Agent.Distributor-<PermutationShortCode>`
 	-	`SoftwarePotential-<PermutationShortCode>`
-* Add the following packages to your solution:
-	- `Sp.Distributor-<PermutationShortCode>` (needed to build the Installer project)
+* Add the following packages to `Installer` project:
+	- `Sp.Distributor-<PermutationShortCode>` 
+
+## Documentation
+
+Please see below for a list of recommended reading, ranging from Getting Started guides to more detailed technical documentation:
+
+* [Getting Started - Licensing with Software Potential](https://support.softwarepotential.com/hc/en-us/articles/115001354529-Getting-Started-Licensing-with-Software-Potential)
+* [Getting Started - Distributor](https://support.softwarepotential.com/hc/en-us/articles/115001367189-Getting-Started-Distributor)
+* [Licensing README](https://support.softwarepotential.com/hc/en-us/articles/115001358849-Licensing-README)
+* [Single User Configuration README](https://support.softwarepotential.com/hc/en-us/articles/115001365849--SingleUser-Configuration-README)
+* [Multi User Configuration README](https://support.softwarepotential.com/hc/en-us/articles/115001380105-Multi-User-Configuration-README)
+* [Sp.Distributor README](https://support.softwarepotential.com/hc/en-us/articles/115001381945-Sp-Distributor-README)
+* [Distributor Client Configuration README](https://support.softwarepotential.com/hc/en-us/articles/115001382105-Distributor-Client-Configuration-README)
+* [Software Potential NuGet Feed](https://support.softwarepotential.com/hc/en-us/articles/115001371425-Getting-Started-Software-Potential-NuGet-Feed)
+* [Software Potential APIs](http://api.softwarepotential.com/index.html)
+
+## Support
+If you run into any issues visit the [Software Potential support page](https://support.softwarepotential.com) for more detailed information or to submit a help request.
+
+Good luck!
