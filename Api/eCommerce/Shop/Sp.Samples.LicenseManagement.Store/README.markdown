@@ -25,3 +25,6 @@ The most common problems reported with the sample are:
 ### License information is not obtained
 * Ensure the user credentials you provide to the application are accurate and for a valid Software Potential account
 * Ensure that the account for which you included user credentials contains valid products and SKUs to make use of the Web APIs
+
+## Documentation
+* [Software Potential APIs](http://api.softwarepotential.com/index.html)
