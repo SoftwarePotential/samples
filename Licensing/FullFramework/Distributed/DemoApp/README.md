@@ -1,4 +1,4 @@
-##Using the Sample
+## Using the Sample
 
 ### Basic Distributor Server setup
 * Open an elevated command prompt

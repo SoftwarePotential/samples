@@ -7,7 +7,7 @@ The MVC sample (see [`Sp.Samples.Agent.Mvc`](https://github.com/SoftwarePotentia
 * showing a list of installed licenses and their status
 * using WebDeploy / Visual Studio's Publish Web dialog to deploy your licensed solution correctly
 
-##Prerequisites
+## Prerequisites
 * .NET 4.0 or later
 * Visual Studio 2010 or later
 * [NuGet Package Manager](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) 2.5 or later
@@ -27,12 +27,27 @@ The MVC sample (see [`Sp.Samples.Agent.Mvc`](https://github.com/SoftwarePotentia
  * `SoftwarePotential.Configuration.Web-<PermutationShortCode>`
  * `SoftwarePotential.Licensing-Demo_10`
 
-##Building and running the sample
+## Building and running the sample
 The sample can be built using Visual Studio and can be hosted either in IIS, or in the built-in VS development server.
 
-##Deploying to IIS
+## Deploying to IIS
 The application is intended to be deployed to an IIS Web Server using WebDeploy. The simplest way to do that is to use Publish Web wizard in Visual Studio.
 
 **NB the application stores licenses under `<application base directory>\App_Data\Licenses`. When (re)deploying, it is critical to ensure that the publish process does not delete any licenses that users may have activated**. To do this:
 * In Visual Studio 2010: Ensure the *`Leave extra files on destination (do not delete)`* option (in Publish Web dialog) is **checked**
 * In Visual Studio 2012 or 2013: Ensure the *`Remove additional files at destination`* option (in Publish Web dialog) is **_un_checked**
+
+## Documentation
+
+Please see below for a list of recommended reading, ranging from Getting Started guides to more detailed technical documentation:
+
+* [Getting Started - Licensing with Software Potential](https://support.softwarepotential.com/hc/en-us/articles/115001354529-Getting-Started-Licensing-with-Software-Potential)
+* [Licensing README](https://support.softwarepotential.com/hc/en-us/articles/115001358849-Licensing-README)
+* [Web Configuration README](https://support.softwarepotential.com/hc/en-us/articles/115001366649-Web-Configuration-README)
+* [Software Potential NuGet Feed](https://support.softwarepotential.com/hc/en-us/articles/115001371425-Getting-Started-Software-Potential-NuGet-Feed)
+* [Software Potential APIs](http://api.softwarepotential.com/index.html)
+
+## Support
+If you run into any issues visit the [Software Potential support page](https://support.softwarepotential.com) for more detailed information or to submit a help request.
+
+Good luck!

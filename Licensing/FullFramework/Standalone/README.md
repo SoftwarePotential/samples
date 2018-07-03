@@ -7,6 +7,11 @@ This solution contains a simple project illustrating the following elements of a
 * a diagnostic license list page
 * Click Once deployable
 
+## Prerequisites
+* .NET 4.0 or later
+* Visual Studio 2010 or later
+* [NuGet Package Manager](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) 2.5 or later
+
 # Configuring The Sample
 ## Create the product
 
@@ -24,7 +29,6 @@ This solution contains a simple project illustrating the following elements of a
 ## Dependencies
 The application uses WPF without any dependency on third party packages (e.g. MVVM frameworks).
 However the QR code generation for Offline Activation requires the installation of the QRCoder [NuGet package](https://www.nuget.org/packages/QRCoder/).
-
 
 # Using The Sample
 ## Activating a license
@@ -85,6 +89,7 @@ Please see below for a list of recommended reading, ranging from Getting Started
 * [Licensing-README](https://support.softwarepotential.com/hc/en-us/articles/115001358849-Licensing-README)
 * [SoftwarePotential.Configuration.Local.SingleUser-README](https://support.softwarepotential.com/hc/en-us/articles/115001365849--SingleUser-Configuration-README)
 * [Software Potential NuGet Feed](https://support.softwarepotential.com/hc/en-us/articles/115001371425-Getting-Started-Software-Potential-NuGet-Feed)
+* [Software Potential APIs](http://api.softwarepotential.com/index.html)
 
 ## Support
 If you run into any issues visit the [Software Potential support page](https://support.softwarepotential.com) for more detailed information or to submit a help request.

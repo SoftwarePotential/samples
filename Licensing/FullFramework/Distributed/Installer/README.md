@@ -1,4 +1,4 @@
-##Using the Sample
+## Using the Sample
 
 ### Customize
 * Change `DistributorVendor` variable in `Variables.wxi` to your company name (`DistributorVendor` combined with `DistributorProductName` compose the Program Name in the Add/Remove Programs list; by default, the full Program Name is _My Company Software Potential Distributor_)
@@ -16,7 +16,7 @@
 * A new version of `DistributorSetup.msi` is generated in the output directory
 * Installing the new version of `DistributorSetup.msi` will perform a complete upgrade of Distributor Server on the target machine
 
-#Troubleshooting
+# Troubleshooting
 ## The Installer project fails to load in Visual Studio
 * Please make sure that the [WiX toolset](http://wixtoolset.org) is installed (including the Visual Studio extension)
 
