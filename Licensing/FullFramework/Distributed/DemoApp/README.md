@@ -5,7 +5,7 @@
 * Navigate to `Sp.Distributor-<PermutationShortCode>` within your NuGet packages folder.
 * Run `.\Slps.Distributor.Host\install.cmd -install`
 
-Alternatively you can create an MSI as outlined in the [Installer](https://github.com/SoftwarePotential/samples/tree/master/Licensing/Desktop/Distributed/Installer) sample.
+Alternatively you can create an MSI as outlined in the [Installer](https://github.com/SoftwarePotential/samples/tree/master/Licensing/FullFramework/Distributed/Installer) sample.
  
 ### Configure Licensing
 * Run `DemoApp` project.
@@ -28,7 +28,7 @@ Alternatively you can create an MSI as outlined in the [Installer](https://githu
 ### Choosing a workflow type
 The sample illustrates 2 different styles of consuming floating licenses with Software Potential Agent. The workflow/integration type can be selected on the Demo App startup screen.
 
-* Declarative consumption - in this scenario feature allocation requests are made implicitly, at the point when the code that requires a license is encountered for the first time (see [Getting Started With Distributor - How it Works](https://support.softwarepotential.com/hc/en-us/articles/115001367189-Getting-Started-Distributor)). Licensed features are marked in the code with relevant attributes, the same way as in the [Standalone](https://github.com/SoftwarePotential/samples/tree/master/Licensing/Desktop/Standalone) case; there's no need to use Software Potential Distributor API in the code.
+* Declarative consumption - in this scenario feature allocation requests are made implicitly, at the point when the code that requires a license is encountered for the first time (see [Getting Started With Distributor - How it Works](https://support.softwarepotential.com/hc/en-us/articles/115001367189-Getting-Started-Distributor)). Licensed features are marked in the code with relevant attributes, the same way as in the [Standalone](https://github.com/SoftwarePotential/samples/tree/master/Licensing/FullFramework/Standalone) case; there's no need to use Software Potential Distributor API in the code.
 
 * Acquire - in this scenario licensed features can be reserved up-front in a single request to the Distributor service. UI elements (buttons, menus) can be enabled or disabled based on whether respective features are held in current Software Potential Agent context (either have been obtained from the Distributor service, or from a local license)
 
