@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../style/main.css">
+    <script>
+        require('./licenseActivation');
+        require('./onlineActivation');
+        require('./offlineActivation');
+    </script>
+</head>
+
+<body>
+    <div class="closeIcon"></div>
+    <h1>Activate A License</h1>
+
+    <div id="messages"></div>
+
+    <div class="tabs">
+        <h2 id="online" class="selected">Online</h2>
+        <h2 id="offline">Offline</h2>
+    </div>
+    <div class="panels">
+        <div id="onlinePanel" class="panel selected">
+            <label for="onlineKey">Please enter your activation key</label>
+            <input id="onlineKey" type="text" required />
+            <button id="activate" disabled>Activate</button>
+            <div id="spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+            </div>
+        </div>
+        <div id="offlinePanel" class="panel">
+            <section class="subPanel">
+                <h3>Step 1: Generate An Activation Request</h3>
+                <label for="offlineKey">Please enter your activation key</label>
+                <input id="offlineKey" required />
+                <button id="generate" disabled>Generate</button>
+            </section>
+            <section class="subPanel">
+                <h3>Step 2: Download A License File</h3>
+                <p>
+                    A license file can be obtained by uploading the generated activation request file to http://manualactivation.softwarepotential.com.
+                </p>
+            </section>
+            <section class="subPanel">
+                <h3>Step 3: Install The License File</h3>
+                <p>
+                    Browse to the generated license file to install.
+                </p>
+                <button id="install">Install</button>
+            </section>
+        </div>
+    </div>
+    <p>
+        <a id="openLicenseStatus">View Licenses</a>
+    </p>
+    <div class="closeButton"></div>
+</body>
+
+</html>
