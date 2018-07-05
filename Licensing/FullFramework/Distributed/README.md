@@ -21,7 +21,7 @@ This solution contains projects illustrating the following elements of a Distrib
   * Add two Features (`Feature1`,`Feature2`)
 
 ### Install the NuGet packages
-* Add the SoftwarePotential NuGet feed (`https://srv.softwarepotential.com/NuGet/nuget/`) in your Package Manager settings (see [Software Potential NuGet Feed](http://docs.softwarepotential.com/Adding-SoftwarePotential-NuGet-Feed.html) for reference)
+* Add the SoftwarePotential NuGet feed (`https://srv.softwarepotential.com/NuGet/nuget/`) in your Package Manager settings (see [Software Potential NuGet Feed](https://support.softwarepotential.com/hc/en-us/articles/115001371425-Getting-Started-Software-Potential-NuGet-Feed) for reference)
 * Add the following packages to `DemoApp` project:
 	-	`SoftwarePotential.Protection-<PermutationShortCode>`
 	-	`SoftwarePotential.Licensing-Demo_10`
