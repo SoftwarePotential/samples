@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../style/main.css">
+    <script>
+        require('./licenseStatus');
+    </script>
+</head>
+
+<body>
+    <div class="closeIcon"></div>
+    <h1>Installed Licenses</h1>
+
+    <div id="licenseList"></div>
+    <p>
+        <a id="openLicenseActivation" href="#">Activate A License Using A License Key</a>
+    </p>
+    <div class="closeButton"></div>
+
+    <template id="noLicenseTemplate">
+        <p>
+            No Licenses installed.
+        </p>
+        <p>
+            Visit DemoVendor.com for help with activating your license.
+        </p>
+    </template>
+
+    <template id="licenseListTemplate">
+        <ul>
+            {{#licenses}}
+            <li>
+                <ul>
+                    <li>
+                        <h3>{{ActivationKey}}</h3>
+                    </li>
+                    <li class="mustacheCsv">
+                        Features: {{#Features}}
+                        <span>{{.}}</span>
+                        {{/Features}}{{^Features}}None{{/Features}}
+                    </li>
+                    <li>
+                        Valid until: {{ValidUntil}}
+                    </li>
+                    <li>
+                        <button class="deleteLicense" data-activation-key="{{ActivationKey}}">Delete</button>
+                    </li>
+                </ul>
+            </li>
+            {{/licenses}}
+        </ul>
+    </template>
+</body>

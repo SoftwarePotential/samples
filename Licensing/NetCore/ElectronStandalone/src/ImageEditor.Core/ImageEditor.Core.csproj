@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="2.8.2" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="Microsoft.DotNet.InternalAbstractions" Version="1.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.1.0" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0004" />
+    <PackageReference Include="SoftwarePotential.Configuration.Local.SingleUser-62340" Version="4.0.2004.16" />
+    <PackageReference Include="SoftwarePotential.Licensing-Demo_10" Version="1.0.1.3" />
+    <PackageReference Include="SoftwarePotential.Protection-62340" Version="4.0.2004.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+     <Reference Include="EdgeJs">
+      <HintPath>..\..\node_modules\electron-edge-js\lib\bootstrap\bin\Release\netcoreapp1.1\EdgeJs.dll</HintPath>
+      <Private>true</Private>
+    </Reference> 
+  </ItemGroup>
+</Project>

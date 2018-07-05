@@ -1,0 +1,53 @@
+{
+  "name": "image-editor-electron",
+  "productName": "Image Editor",
+  "version": "1.0.0",
+  "description": "Demo app for Software Potential licensing",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build-win": "rimraf src/ImageEditor.Core/bin && dotnet publish ./src -r win10-x64 -c Release && rimraf src/ImageEditor.Core/bin/Release/netcoreapp2.1/win10-x64/publish/ImageEditor.Core.deps.json",
+    "package-win": "electron-packager . Demo --platform win32 --arch=x64 asar=true --overwrite --icon=style/camera-retro-32-blue.ico --ignore=\"src\\/ImageEditor\\.Core\\/((?!bin).)*$|.vs|ImageEditor.sln|.vscode|Debug|.gitignore|README.md\""
+  },
+  "keywords": [
+    "Electron",
+    "Software Potential",
+    "demo",
+    "Edge.js"
+  ],
+  "license": "BSD",
+  "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-free-solid": "^5.0.13",
+    "electron": "1.8.4",
+    "electron-edge-js": "8.3.5",
+    "moment": "^2.22.2",
+    "mustache": "^2.3.0"
+  },
+  "devDependencies": {
+    "electron-packager": "^12.1.0",
+    "electron-reload": "^1.2.2",
+    "eslint": "^5.0.1",
+    "rimraf": "^2.6.2"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2017
+    },
+    "rules": {
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ]
+    }
+  }
+}

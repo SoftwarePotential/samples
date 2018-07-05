@@ -1,0 +1,224 @@
+/* Main colour
+    blue #119EDA
+    lightend blue #119EDA
+ */
+
+/* dark theme
+    color: #eee;
+    background:colour: #333;
+*/
+
+body {
+    font-family: "Lucinda Grande", "Segoe UI", Ubuntu, Cantarell, Arial, sans-serif;
+    font-size: 14px;
+    color: #eee;
+    background-color: #333;
+}
+
+a {
+    color: rgba(17, 158, 218, 1);
+    cursor: pointer;
+}
+
+a:hover {
+    color: #7ed1f5;
+}
+
+ul {
+    list-style: none;
+    margin: 0 0 .8rem 0;
+    padding: 0;
+}
+
+li {
+    margin-bottom: .2rem;
+}
+
+/* buttons */
+
+button {
+    background-color: #eee;
+    border: none;
+    color: #333;
+    padding: 3px 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 74px;
+    margin: .4rem 0;
+}
+
+button:hover {
+    background-color: #f8f8f8;
+}
+
+button:disabled {
+    background-color: #ccc;
+    color: #888;
+}
+
+.closeIcon {
+    position: absolute;
+    right: 8px;
+}
+
+.closeIcon,
+.closeButton {
+    color: rgba(128, 128, 128, .8);
+    cursor: pointer;
+}
+
+.closeButton {
+    font-size: 150%;
+}
+
+.closeIcon:hover,
+.closeButton:hover {
+    color: #eee;
+}
+
+.closeIcon::before,
+.closeButton::before {
+    content: '\2715';
+}
+
+.closeButton::after {
+    content: 'Close';
+    margin-left: .6rem;
+}
+
+input {
+    -webkit-box-sizing: border-box;
+}
+
+/* Tabbed panels*/
+
+.tabs {
+    color: rgba(128, 128, 128, .8);
+    margin-bottom: .6rem;
+}
+
+.tabs>h2 {
+    display: inline;
+    padding-right: .6rem;
+    cursor: pointer;
+}
+
+.tabs>h2:hover {
+    color: #d8d8d8;
+}
+
+.tabs>h2.selected {
+    color: rgba(17, 158, 218, 1);
+}
+
+.tabs>h2.selected:hover {
+    color: #7ed1f5;
+}
+
+.tabs+.panels>.panel.selected {
+    display: block;
+}
+
+.tabs+.panels>.panel {
+    display: none;
+}
+
+.panel label {
+    display: inline-block;
+    margin-bottom: .4rem;
+}
+
+.panel input,
+.panel h3 {
+    width: 256px;
+    display: block;
+}
+
+.subPanel {
+    outline: 1px solid rgba(17, 158, 218, 1);
+    padding: .4rem;
+    margin-bottom: .6rem;
+}
+
+/* feedback */
+
+.success {
+    color: greenyellow;
+}
+
+.error {
+    color: red;
+}
+
+.warning::before {
+    content: '\f071';
+    font-family: 'Font Awesome 5 Solid';
+    display: none;
+}
+
+.warning>svg {
+    color: yellow;
+    margin-right: .4rem;
+}
+
+#spinner {
+    display: none;
+}
+
+/* main content  */
+
+.main {
+    position: relative;
+    left: 240px;
+    top: 0;
+    width: 700px;
+}
+
+.scrollWindow,
+#selectedImageInfo {
+    position: relative;
+}
+
+#selectedFilename {
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+#marqueeInfo {
+    height: 53px;
+}
+
+#selectedImageInfo {
+    top: 60px;
+}
+
+.scrollWindow {
+    top: 90px;
+    width: 480px;
+    height: 440px;
+    overflow: auto;
+}
+
+#canvas,
+#selectedImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#canvas {
+    cursor: crosshair;
+    height: 0;
+}
+
+#selectedImage {
+    width: 463px;
+}
+
+.mustacheCsv span:not(:last-of-type)::after {
+    content: ", "
+}
