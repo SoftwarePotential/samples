@@ -7,7 +7,7 @@ Samples for licensing
 
 * Full Framework
     * [Distributed](https://github.com/SoftwarePotential/samples/tree/master/Licensing/FullFramework/Distributed)
-    * [MVC](https://github.com/SoftwarePotential/samples/tree/master/Licensing/FullFramework/Sp.Samples.Agent.Mvc)
+    * [MVC](https://github.com/SoftwarePotential/samples/tree/master/Licensing/FullFramework/MVC)
     * [Standalone](https://github.com/SoftwarePotential/samples/tree/master/Licensing/FullFramework/Standalone)
     * [Subscription](https://github.com/SoftwarePotential/samples/tree/master/Licensing/FullFramework/Subscription)
 * .Net Core
