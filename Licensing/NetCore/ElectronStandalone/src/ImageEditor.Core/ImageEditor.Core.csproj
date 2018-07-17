@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <!-- <VisualStudioVersion>15</VisualStudioVersion> -->
   </PropertyGroup>
 
   <ItemGroup>
