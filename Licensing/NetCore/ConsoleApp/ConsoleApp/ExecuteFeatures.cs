@@ -9,7 +9,7 @@ namespace ConsoleApp
 	{
 		public ExecuteFeatures()
 		{
-			IsCommand( "execute", "Execute licensed feature(s)." );
+			IsCommand( "Execute", "Execute licensed feature(s)." );
 			AllowsAnyAdditionalArguments( "[Feature1] [Feature2]" );
 		}
 
@@ -18,7 +18,7 @@ namespace ConsoleApp
 			var invalidFeatures = remainingArguments.Except( SpAgent.Product.LocalFeatures.Valid() );
 			if ( invalidFeatures.Count() > 0 )
 			{
-				Console.WriteLine( $"Unlicensed or unknown feature(s): {string.Join( ", ", invalidFeatures )}" );
+				Console.WriteLine( $"Not licensed: {string.Join( ", ", invalidFeatures )}" );
 				return 1;
 			}
 

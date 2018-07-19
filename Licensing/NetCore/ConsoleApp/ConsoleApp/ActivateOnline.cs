@@ -9,8 +9,8 @@ namespace ConsoleApp
 	{
 		public ActivateOnline()
 		{
-			IsCommand( "Activate", "Activates a license using the supplied Activation Key." );
-			HasRequiredOption( "k|key=", "E.g. -k <yourActivationKey>", s => _activationKey = s );
+			IsCommand( "Activate", "Activates a Software Potential license." );
+			HasRequiredOption( "k|key=", "The Activation Key for the license to be activated.", s => _activationKey = s );
 		}
 
 		string _activationKey = string.Empty;
@@ -29,7 +29,7 @@ namespace ConsoleApp
 				return;
 			}
 
-			Console.WriteLine( $"Attempting to activate license with activation key {_activationKey}..." );
+			Console.WriteLine( $"Attempting to activate license with Activation Key {_activationKey}..." );
 			SpAgent.Product.Activation.OnlineActivateAsync( _activationKey )
 				.ContinueWith( task => OnActivationComplete( task, _activationKey ) )
 				.Wait();
@@ -40,7 +40,7 @@ namespace ConsoleApp
 			if ( task.IsFaulted ) Console.Error.WriteLine(task.Exception.Flatten().InnerException.Message);
 			else
 			{
-				Console.WriteLine( $"Success: Activated license with activation key {_activationKey}." );
+				Console.WriteLine( $"Success: Activated license with Activation Key {_activationKey}." );
 				_activationKey = string.Empty;
 			}
 		}

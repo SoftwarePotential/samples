@@ -9,7 +9,7 @@ namespace ConsoleApp
 		public DeleteLicense()
 		{
 			IsCommand( "Delete", "Deletes the license corresponding to the supplied Activation Key." );
-			HasRequiredOption( "k|key=", "E.g. -k <activationKey>", s => _activationKey = s );
+			HasRequiredOption( "k|key=", "The Activation Key for the license you wish to delete.", s => _activationKey = s );
 		}
 
 		string _activationKey = string.Empty;

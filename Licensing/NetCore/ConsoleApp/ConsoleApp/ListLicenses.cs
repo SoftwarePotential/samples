@@ -21,18 +21,17 @@ namespace ConsoleApp
 
 		void DisplayLicenses()
 		{
-			var productContext = SpAgent.Product;
 			Console.WriteLine( "Installed licenses:" );
-			RetrieveAllLicenses( productContext )
+
+			var productContext = SpAgent.Product;
+			var licenses = RetrieveAllLicenses( productContext );
+			if ( licenses.Count() < 1 ) Console.WriteLine("None");
+			else licenses
 				.ToList()
-				.ForEach( x => Console.WriteLine( $"{x.ActivationKey} valid until {x.ValidUntil.ToShortDateString()}. Features: {JoinFeaturesOrNone( x.Features.ToArray() )} " ) );
+				.ForEach( x => Console.WriteLine( $"{x.ActivationKey} valid until {x.ValidUntil.ToShortDateString()}. Features: {JoinFeatures( x.Features.ToArray() )} " ) );
 		}
 
-		string JoinFeaturesOrNone( string[] Features )
-		{
-			if ( Features.Count() < 1 ) return "None";
-			return string.Join( ", ", Features );
-		}
+		string JoinFeatures( string[] Features ) => ( Features.Count() > 0 ) ? string.Join( ", ", Features ) : "None";
 
 		public static IEnumerable<LicenseItemModel> RetrieveAllLicenses( IProductContext productContext ) =>
 			from license in productContext.Licenses.All()

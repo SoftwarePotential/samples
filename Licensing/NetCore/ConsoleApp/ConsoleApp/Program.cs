@@ -18,7 +18,7 @@ namespace ConsoleApp
 			}
             catch ( Exception ex )
             {
-                Console.Error.WriteLine( "Error: " + ex );
+                Console.WriteLine( "Error: " + ex );
 				return 1;
             }
         }

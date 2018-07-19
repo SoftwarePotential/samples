@@ -9,12 +9,12 @@ namespace ConsoleApp
 	{
 		public GenerateActivationRequest()
 		{
-			IsCommand( "Generate", "Generates an activation request using the supplied Activation Key." );
-			HasRequiredOption( "k|key=", "E.g. -k <yourActivationKey>", s => _activationKey = s );
+			IsCommand( "Generate", "Generates a Manual Activation Request using the supplied Activation Key and saves it on the current user's Desktop" );
+			HasRequiredOption( "k|key=", "The Activation Key for the desired license.", s => _activationKey = s );
 		}
 
 		string _activationKey = string.Empty;
-		readonly string _requestDir = Environment.GetFolderPath( Environment.SpecialFolder.Desktop ); // make cross platform?
+		readonly string _requestDir = Environment.GetFolderPath( Environment.SpecialFolder.Desktop );
 
 		public override int Run( string[] remainingArguments )
 		{
@@ -25,7 +25,7 @@ namespace ConsoleApp
 		void Generate()
 		{
 			if ( !ActivationKey.IsWellFormed( _activationKey ) ) {
-				Console.WriteLine( $"Error: Activation key is not in the correct format: {_activationKey}." );
+				Console.WriteLine( $"Error: Activation Key is not in the correct format: {_activationKey}." );
 				return;
 			}
 
@@ -38,11 +38,11 @@ namespace ConsoleApp
 			try
 			{
 				File.WriteAllText(  path, request );
-				Console.WriteLine( $"Success: The Activation Request has been saved to disk at {path}.");
+				Console.WriteLine( $"Success: The Manual Activation Request has been saved to disk at {path}.");
 			}
 			catch ( IOException )
 			{
-				Console.Error.WriteLine("Error: The Activation Request couldn't be saved to disk.");
+				Console.WriteLine( "Error: The Manual Activation Request couldn't be saved to disk." );
 			}
 		}
 	}
