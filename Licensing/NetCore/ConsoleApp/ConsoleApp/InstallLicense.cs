@@ -13,7 +13,7 @@ namespace ConsoleApp
 		{
 			IsCommand( "Install", "Installs a Software Potential license." );
 			HasRequiredOption( "f|filename=", "The filename of the license.", s => _licenseFilename = s );
-			HasOption( "d|directory=", "The path to the directory conainting the license. If not specified, the default is the current user's Desktop.", x => _licenseDir = x );
+			HasOption( "d|directory=", "The path to the directory containing the license. If not specified, the default is the current user's Desktop.", x => _licenseDir = x );
 		}
 
 		string _licenseFilename = string.Empty;
