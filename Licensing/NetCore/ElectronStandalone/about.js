@@ -52,8 +52,11 @@ async function setProductVersion() {
 async function setEdition() {
     try {
         const edition = await product.getEdition();
-        if (edition !== 'Unlicensed') {
-            productEdition.innerText = await product.getEdition();
+
+        if (edition === null) {
+            licenseActivationLink.style.display = 'none';
+        } else if (edition !== 'Unlicensed') {
+            productEdition.innerText = `${await product.getEdition()} Edition`;
             licenseActivationLink.style.display = 'none';
         } else {
             licenseStatusLink.style.display = 'none';
