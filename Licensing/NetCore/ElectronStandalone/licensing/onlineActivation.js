@@ -11,6 +11,7 @@ const {
 } = require('electron');
 const Messages = require('../messages');
 const Activation = require('./activationService');
+
 const activation = new Activation();
 
 const fontawesome = require('@fortawesome/fontawesome');
@@ -70,5 +71,6 @@ async function onActivateClicked() {
     } catch (err) {
         messages.updateWithError(err['Message']);
         closeButton.updateWithError();
+        spinner.style.display = 'none';
     }
 }
