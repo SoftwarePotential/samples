@@ -3,7 +3,7 @@ const {
     Menu,
     MenuItem,
     ipcMain
-} = require('electron'); // this has to be after setting EDGE_USE_CORECLR and EDGE_APP_ROOT
+} = require('electron');
 const Product = require('./licensing/product');
 const product = new Product();
 

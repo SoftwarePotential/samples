@@ -1,7 +1,8 @@
 const path = require('path');
-process.env.EDGE_USE_CORECLR = 1;
-process.env.EDGE_APP_ROOT = path.join(__dirname, 'src', 'ImageEditor.Core', 'bin', 'Release', 'netcoreapp2.1', 'win10-x64', 'publish');
 const url = require('url');
+const {
+  platform
+} = require('os');
 const {
   app,
   BrowserWindow,
@@ -21,11 +22,13 @@ ipcMain.on('open-license-activation', () => modalWindow.loadHtml('licensing/lice
 
 function createWindow() {
   // Create the browser window.
+  const extension = platform() === 'win32' ? '.ico' : '.png';
+  const iconFile = 'camera-retro-blue' + extension;
   mainWindow = new BrowserWindow({
     width: 1024,
     height: 768,
     backgroundColor: '#333',
-    icon: path.join(__dirname, 'style/camera-retro-32-blue.ico'),
+    icon: path.join(__dirname, 'style', iconFile),
     show: false
   });
 

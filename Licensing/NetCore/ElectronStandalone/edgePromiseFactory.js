@@ -1,6 +1,9 @@
 const path = require('path');
+const edgeAppRoot = path.join(__dirname, 'dotNetAssemblies');
+
+process.env.EDGE_USE_CORECLR = 1;
+process.env.EDGE_APP_ROOT = edgeAppRoot;
 const edge = require('electron-edge-js');
-const edgeAppRoot = process.env.EDGE_APP_ROOT;
 
 const _assembly = new WeakMap();
 const _typeName = new WeakMap();
