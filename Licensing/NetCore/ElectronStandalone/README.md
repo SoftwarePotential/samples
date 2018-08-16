@@ -32,10 +32,10 @@ Protected features in a .NET assembly are called by Node.js code via [Edge.js](h
 From the command line in the project root:
 
 1. Install the node dependencies: **npm install**.
-2. Publish the .Net assemblies: **npm run build-win**.
+2. Publish the .Net assemblies: **npm run publish-win**.
 3. Start the app: **npm start**.
 
-Note: The build-win script removes `ImageEditor.Core.deps.json` from the published files as it prevents correct composition of Software Potential assemblies on development machines.
+Note: The publish-win script removes `ImageEditor.Core.deps.json` from the published files as it prevents correct composition of Software Potential assemblies on development machines.
 
 ## To Package the app for Windows runtime 
 Use: **npm run package-win**. The output will be written to a directory called `Demo-win32-x64`.
