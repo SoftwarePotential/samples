@@ -1,13 +1,11 @@
 # Electron Standalone Desktop Sample application
 
-This solution contains a simple project illustrating the following elements of a **Licensed** Electron desktop application:
+This sample provides an illustration of the following elements of a **Licensed** Electron desktop application:
 
 * an Online Activation page
 * an Offline Activation page
 * a license list page
-* licensed code execution
-
-In this sample protected features in a .NET assembly are called by Node.js code in an Electron app via the [electron-edge-js](https://github.com/agracio/electron-edge-js) fork of Edge.js.
+* licensed code execution whereby protected features in a .NET assembly are run in an Electron app via the [electron-edge-js](https://github.com/agracio/electron-edge-js) fork of Edge.js.
 
 ## Prerequisites 
 ### All Platforms
@@ -22,26 +20,37 @@ In this sample protected features in a .NET assembly are called by Node.js code 
 * libgtk2.0-dev [GTK](https://www.gtk.org/) development package. 
 
 ## Configuring the sample
-## Create the product
 
-* Navigate to the [Software Potential service product page](https://srv.softwarepotential.com/Products.aspx)
-* Create a product entitled `Demo` with version `1.0` (case-sensitive) in a non-production account
+### Create a Software Potential Product
+  * Navigate to the Software Potential service [Define > Create Products page](https://srv.softwarepotential.com/Products.aspx)
+  * Create a Product entitled `Demo` with version `1.0` (case-sensitive) in a non-production account
   * Add three Features (`Feature1`, `Feature2` and `Feature3`)
 
-## Install the Software Potential NuGet packages for the .NET solution
-* Add the SoftwarePotential NuGet feed (`https://srv.softwarepotential.com/NuGet/nuget/`) in your Package Manager settings
-* Add the following package references:
- * `SoftwarePotential.Protection-<PermutationShortCode>` 
- * `SoftwarePotential.Configuration.Local.SingleUser-<PermutationShortCode>`
- * `SoftwarePotential.Licensing-Demo_10`
+These Product and Feature definitions correspond to selected functionality in the sample source code, and licensing is implemented in the code with the use of declarative Software Potential Protection Attributes. Functions decorated with these attributes will only execute if a valid license which includes a particular defined Feature has been activated (see [Getting Started - Licensing with Software Potential](https://support.softwarepotential.com/hc/en-us/articles/115001354529-Getting-Started-Licensing-with-Software-Potential) for a more detailed guide to Declarative Licensing).
 
-## Build, publish and package the sample.
+In the sample, the functions which execute functionality corresponding to Features defined in the service (i.e. `Feature1`, `Feature2` and `Feature3`) are called `MutateGreyscale`, `MutateRotate` and `MutateCrop`, and are located in `src/ImageEditor.Core/Features.cs`.
+
+To use the sample with a product that you may have already defined in the Software Potential service, see **Using the sample with a pre-existing Product** below.
+
+## Install the Software Potential NuGet packages for the .NET solution
+* Ensure that your permutation version is 4.0.2003 or later on the Software Potential service [Develop > Manage Permutations page](https://srv.softwarepotential.com/Permutations.aspx).
+    *  To update, select the permutation and click **Update**.
+* Add the SoftwarePotential NuGet feed (`https://srv.softwarepotential.com/NuGet/nuget/`) to your NuGet configuration.
+* Add the following package references to the ImageEditor.Core project:
+  * `SoftwarePotential.Protection-<MyPermutationShortCode>` 
+  * `SoftwarePotential.Configuration.Local.SingleUser-<MyPermutationShortCode>`
+  * `SoftwarePotential.Licensing-<MyProduct_Version>` (if you are using a newly created trial product as specified above, this would be `SoftwarePotential.Licensing-Demo_10`)
+ 
+See [Getting Started - Software Potential NuGet Feed](https://support.softwarepotential.com/hc/en-us/articles/115001371425-Getting-Started-Software-Potential-NuGet-Feed)  or [NuGet Package Management Without the Visual Studio Package Manager](https://support.softwarepotential.com/hc/en-us/articles/360007928993) for more detailed guidance on configuring the Software Potential NuGet feed and adding packages.
+
+## Build, publish and package the sample
+The sample can be published, packaged and run on the command line using npm scripts included in the `package.json` file.
 
 ### Specifiying the target platform
-Our sample targets either Windows 10 64 bit or Ubuntu 18.04 64 bit platforms out of the box.
-To specify another target platform:
+The included publish scripts target either Windows 10 64 bit or Ubuntu 18.04 64 bit platforms out of the box.
+If you wish to target different versions of Windows or Linux you should:
 1. Ascertain the target platform's .Net Core [Runtime Identifier](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog) (RID) by running dotnet --info on the command line.
-2. Set the -r argument value to the target platform Runtime Identifier for publish commands specified in `package.json`
+2. Set the -r argument value to the target platform Runtime Identifier for appropriate publish commands run by the `publish-win` and/or `publish-linux` scripts in  `package.json`:
 ```
 "scripts": {
     "start": "electron .",
@@ -66,8 +75,8 @@ AND
 
 Note that:
 1. You must build the sample on the platform you wish to target, as it depends on native assemblies built during Node package installation.
-2. Running either the included publish-win or publish-linux package.json scripts will overwrite platform specific assemblies in `/dotNetAssemblies`.
-3. Whe using the dotnet CLI to build and publish the sample .Net Core project, the `--self-contained` option must be included in the publish command if you wish to deploy to machines that do not have the dotnet framework installed. 
+2. Running either the included `publish-win` or `publish-linux` npm scripts will overwrite platform specific assemblies in `/dotNetAssemblies`.
+3. If using the dotnet CLI to build and publish the sample .Net Core project, the `--self-contained` option must be included in the publish command if you wish to deploy to machines that do not have the dotnet framework installed. 
 
 
 ### Publishing for Windows runtime
@@ -81,7 +90,7 @@ From the command line in the project root run the following commands:
 
 Note: The publish-win script removes `ImageEditor.Core.deps.json` from the published files as it prevents correct composition of Software Potential assemblies on development machines.
 
-#### To package the sample 
+#### To package the sample
 ```
   npm run package-win
 ```
@@ -104,13 +113,13 @@ The output will be written to a directory called `Demo-linux-x64`.
 
 ## Using The Sample
 ### Activating a license
-
-* Generate a license for the Product `Demo` and Version `1.0` via the [Software Potential service](https://srv.softwarepotential.com/Issue.aspx?IssueType=new) 
- * Create a license for product `Demo 1.0` (**Manage Licenses|Issue New Licenses** on the site)
-  * Add a Feature (e.g., `Feature1`)
+* Navigate to the Software Potential service  [Issue > Custom page](https://srv.softwarepotential.com/Issue.aspx?IssueType=new),
+* Create a license for product `Demo 1.0`.
+* Add a Feature (e.g., `Feature1`)
+* If you wish to associate a named software edition (e.g. Image Editor Professional Edition) with your feature set to be displayed in the product description on the **About** page, add a custom tag with the key set to "Edition" and the value set to the edition name (e.g. "Professional"). 
 
 #### Online
-* Select **Help > View Licenses** from the menu and click **Activate A License Using An Activation Key** to  bring up the activation form.menu).
+* Select **Help > View Licenses** from the menu and click **Activate A License Using An Activation Key** to  bring up the activation form.
 * Select the Online tab and Paste the license key into the text box.
 * Click Activate.
 
@@ -131,7 +140,37 @@ The output will be written to a directory called `Demo-linux-x64`.
 Once a license is installed, options to execute features included in the license (**Convert To Greyscale**, **Rotate** or **Crop**) will appear in the menu under the Edit submenu.
 Loading an image into the main window by selecting **File > Open** will enable available features.
 
+## Using the sample with a pre-existing Product
+Out of the box, the sample can be used with a Product called `Demo` version `1.0` with Features `Feature1`, `Feature2` and `Feature3`. However, if you opt to use an existing product you will need to
+1. Edit the Software Potential Protection Attributes in the .Net source code:
+  * Open `src/ImageEditor.Core/Features.cs`.
+  * Replace attributes referencing `Demo_10`, `Feature1`, `Feature2` and `Feature3` with your selected product and features e.g.
+  ```
+  [MyExistingProduct_Version.Features.MyFeature]
+  void MutateGreyscale( Image<Rgba32> image ) => image.Mutate( x => x.Grayscale() );
+  ```
+2. Modify the menu item mapping so that licensed features will be included in the Edit submenu:
+  * Open `menu.js`
+  * Replace `Feature1`, `Feature2` and `Feature3` with your product's features, e.g: 
+  ```
+    _addLicensedMenuItems.set(this, (menu, features) => {
+              const createItem = _createMenuItemFromLabel.get(this);
 
+              const editSubmenu = menu.items[1].submenu;
+              editSubmenu.append(new MenuItem({
+                  type: 'separator'
+              }));
+
+              if (features.includes('<MyFeatureX>')) editSubmenu.append(createItem('Convert To Greyscale'));
+              if (features.includes('<MyFeatureY>')) {
+                  editSubmenu.append(createItem('Rotate CW'));
+                  editSubmenu.append(createItem('Rotate CCW'));
+              }
+              if (features.includes('<MyFeatureZ>')) editSubmenu.append(createItem('Crop'));
+          });
+  ```
+3. Issue a license for the desired Product and Features in the Software Potential Service.
+4. Publish the sample and activate the license as described in **Activating a license** above.
 
 ## Troubleshooting
 
@@ -168,6 +207,7 @@ Please see below for a list of recommended reading, ranging from Getting Started
 * [Software Potential APIs](http://api.softwarepotential.com/index.html)
 * [electron-edge-js](https://github.com/agracio/electron-edge-js)
 * [edge-js](https://github.com/agracio/edge-js)
+* [electron-packager](https://github.com/electron-userland/electron-packager)
 * [Electron Documentation](https://electronjs.org/docs)
 * [.NET Core Guide](https://docs.microsoft.com/en-us/dotnet/core/)
 
