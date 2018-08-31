@@ -6,8 +6,11 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build-win": "rimraf src/ImageEditor.Core/bin && dotnet publish ./src -r win10-x64 -c Release && rimraf src/ImageEditor.Core/bin/Release/netcoreapp2.1/win10-x64/publish/ImageEditor.Core.deps.json",
-    "package-win": "electron-packager . Demo --platform win32 --arch=x64 asar=true --overwrite --icon=style/camera-retro-32-blue.ico --ignore=\"src\\/ImageEditor\\.Core\\/((?!bin).)*$|.vs|ImageEditor.sln|.vscode|Debug|.gitignore|README.md\""
+    "clean": "rimraf src/ImageEditor.Core/bin src/ImageEditor.Core/obj dotNetAssemblies",
+    "publish-win": "npm run clean  && dotnet publish ./src -r win10-x64 -c Release --self-contained -o ../../dotNetAssemblies && rimraf dotNetAssemblies/ImageEditor.Core.deps.json",
+    "publish-linux": "npm run clean && dotnet publish ./src -r ubuntu.18.04-x64 -c Release --self-contained -o ../../dotNetAssemblies",
+    "package-win": "electron-packager . Demo --platform win32 --arch=x64 asar=false --overwrite --icon=style/camera-retro-blue.ico --ignore=\"src|.vs|ImageEditor.sln|.vscode|.gitignore|README.md\"",
+    "package-linux": "electron-packager . Demo --platform linux --arch=x64 asar=true --overwrite --icon=style/camera-retro-blue.png --ignore=\"src|.vs|ImageEditor.sln|.vscode|.gitignore|README.md\""
   },
   "keywords": [
     "Electron",
@@ -15,7 +18,11 @@
     "demo",
     "Edge.js"
   ],
-  "license": "BSD",
+  "license": "SEE LICENSE IN https://github.com/SoftwarePotential/samples/blob/master/License.txt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SoftwarePotential/samples"
+  },
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",

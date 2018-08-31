@@ -61,34 +61,13 @@ namespace ImageEditor.Core
 
         public async Task<object> GetEdition(dynamic input)
         {
-            var edition = CalculateEdition();
-            if (edition == Edition.Unlicensed) return "Unlicensed";
+            var validLicenses = SpAgent.Product.Licenses.Valid();
+            if (!validLicenses.Any()) return "Unlicensed";
 
-            return $"{edition} Edition";
-        }
-
-        Edition CalculateEdition()
-        {
-            var featureSets = new Dictionary<Edition, HashSet<string>>();
-            featureSets[Edition.Community] = new HashSet<string> { "Feature1" };
-            featureSets[Edition.Standard] = new HashSet<string> { "Feature1", "Feature2" };
-            featureSets[Edition.Professional] = new HashSet<string> { "Feature1", "Feature2", "Feature3" };
-
-            var features = SpAgent.Product.LocalFeatures.Valid();
-            if (!features.Any()) return Edition.Unlicensed;
-            if ((featureSets[Edition.Professional]).IsSubsetOf(features)) return Edition.Professional;
-            if ((featureSets[Edition.Standard]).IsSubsetOf(features)) return Edition.Standard;
-            if ((featureSets[Edition.Community]).IsSubsetOf(features)) return Edition.Community;
-            return Edition.Custom;
-        }
-
-        enum Edition
-        {
-            Unlicensed,
-            Community,
-            Standard,
-            Professional,
-            Custom
+            return validLicenses
+               .Where(x => x.Tags.ContainsKey("Edition"))
+               .Select(x => x.Tags["Edition"])
+               .FirstOrDefault();
         }
 
         class License

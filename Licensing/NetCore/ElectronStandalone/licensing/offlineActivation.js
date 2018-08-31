@@ -10,6 +10,7 @@ const moment = require('moment');
 const fs = require('fs');
 const path = require('path');
 const {
+    ipcRenderer,
     remote
 } = require('electron');
 const {
@@ -17,11 +18,9 @@ const {
     dialog,
 } = remote;
 const Activation = require('./activationService');
-const Product = require('./product');
 const Messages = require('../messages');
 
 const activation = new Activation();
-const product = new Product();
 let offlineKey;
 let generateButton;
 let install;
@@ -106,6 +105,7 @@ async function onFileSelected(filenames) {
     try {
         await activation.installLicenseFile(filenames[0]);
         updateMessagesWithSuccess('The license has been successfully installed.');
+        ipcRenderer.send('license-update');
     } catch (err) {
         handleInstallError(err);
     }

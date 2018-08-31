@@ -70,5 +70,6 @@ async function onActivateClicked() {
     } catch (err) {
         messages.updateWithError(err['Message']);
         closeButton.updateWithError();
+        spinner.style.display = 'none';
     }
 }
