@@ -4,8 +4,6 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-  </PropertyGroup>
-
     <RuntimeIdentifiers>win10-x64;ubuntu.18.04-x64</RuntimeIdentifiers>
   </PropertyGroup>
 
