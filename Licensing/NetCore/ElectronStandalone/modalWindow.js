@@ -20,6 +20,7 @@ class ModalWindow {
 
         _window.set(this, new BrowserWindow({
             parent: parent,
+            modal: true,
             frame: false,
             show: false,
             backgroundColor: '#333',
