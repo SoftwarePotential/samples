@@ -4,10 +4,10 @@
 // RENAMING THIS FILE) SO NUGET PACKAGE UPDATES CANNOT RESULT IN YOU INADVERTENTLY 
 // UNDOING CHANGES YOU HAVE MADE
 
-using Sp.Agent;
 using Sp.Agent.Configuration.Product.Activation;
 using System;
 using System.Diagnostics;
+using System.Net;
 
 namespace Sp.Agent
 {
@@ -45,7 +45,8 @@ namespace Sp.Agent
 						.WithRetryPolicyDefault()
 						.WithEndpointSelectionPolicyDefault()
 						.BeforeEachAttempt( WhenActivating )
-						.CompleteWithDefaults() )						
+						.WithProxyConfigurationPolicy( SetProxyConfigurationPolicy )
+						.CompleteWithDefaults() )
 					.WithDeviceLabelPolicy( SetDeviceLabelPolicy )
 					.CompleteWithDefaults() )
 				.CompleteWithDefaults() );
@@ -63,13 +64,40 @@ namespace Sp.Agent
 		}
 
 		/// <summary>
+		/// <param name="activationEndpoint">
+		/// The Activation Service endpoint used to submit Activation Requests.
+		/// </param>
+		/// <para>
+		/// Replace the contents of this method to return a proxy to be used at activation.
+		/// Return null if you do not wish to set a proxy.
+		/// </para>
+		/// </summary>
+		/// <example>
+		/// If targeting full framework, you can detect the address of the default proxy for the activation endpoint
+		/// and return a proxy for this address with default credentials; you return NULL if no proxy assigned:
+		/// <code>
+		/// static IWebProxy SetProxyConfigurationPolicy( Uri activationEndpoint )
+		/// {
+		///		var proxiedAddress = WebRequest.DefaultWebProxy.GetProxy( activationEndpoint );
+		///		if ( !activationEndpoint.Equals( proxiedAddress ) )
+		///			return new WebProxy( proxiedAddress ) { UseDefaultCredentials = true };
+		///		else
+		///			return null;
+		///	}
+		/// </code>
+		/// </example>
+		static IWebProxy SetProxyConfigurationPolicy( Uri activationEndpoint )
+		{
+			return null;
+		}
+
+		/// <summary>
 		/// <param name="context">
 		/// <para>Context that allows you to set a custom Device Label</para>
 		/// </param>
 		/// Replace the contents of this method to customize the value of the DeviceLabel sent up on Activation.
 		/// If this method is left unmodified the DeviceLabel will be set to the default value of Environment.MachineName
 		/// </summary>
-		/// <param name="context"></param>
 		static void SetDeviceLabelPolicy( IActivationDeviceLabelContext context )
 		{
 			// e.g. context.SetDeviceLabel("My custom label");

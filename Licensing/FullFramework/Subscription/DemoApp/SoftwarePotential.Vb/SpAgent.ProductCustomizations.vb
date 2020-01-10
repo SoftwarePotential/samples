@@ -5,6 +5,7 @@ Imports Sp.Agent
 Imports Sp.Agent.Configuration.Product.Activation
 Imports System
 Imports System.Diagnostics
+Imports System.Net
 
 Partial Class SpAgent
     ''' <summary>
@@ -28,9 +29,10 @@ Partial Class SpAgent
                     .WithRetryPolicyDefault() _
                     .WithEndpointSelectionPolicyDefault() _
                     .BeforeEachAttempt(AddressOf WhenActivating) _
-                        .CompleteWithDefaults()) _
-                    .WithDeviceLabelPolicy(AddressOf SetDeviceLabelPolicy ) _                    
+                    .WithProxyConfigurationPolicy(AddressOf SetProxyConfigurationPolicy) _
                     .CompleteWithDefaults()) _
+                .WithDeviceLabelPolicy(AddressOf SetDeviceLabelPolicy) _
+                .CompleteWithDefaults()) _
             .CompleteWithDefaults())
     End Sub
     Shared Sub AddActivationTags(context As IActivationTaggingContext)
@@ -40,19 +42,42 @@ Partial Class SpAgent
     Shared Sub WhenActivating(context As IActivationAttemptContext)
         Debug.WriteLine("Activation attempt #" & CStr(context.PreviousAttempts + 1))
     End Sub
-
-	
-		''' <summary>
-		''' <param name="context">
-		''' <para>Context that allows you to set a custom Device Label</para>
-		''' </param>
-		''' Replace the contents of this method to customize the value of the DeviceLabel sent up on Activation.
-		''' If this method is left unmodified the DeviceLabel will be set to the default value of Environment.MachineName
-		''' </summary>
-		Shared Sub SetDeviceLabelPolicy(context as IActivationDeviceLabelContext  )		
-			' e.g. context.SetDeviceLabel("My custom label")
-			Debug.WriteLine( "DeviceLabel passed to Activate() method: " + context.DeviceLabel )
-		End Sub
+    ''' <summary>
+    ''' <param name="activationEndpoint">
+    ''' The Activation Service endpoint used to submit Activation Requests.
+    ''' </param>
+    ''' <para>
+    ''' Replace the contents of this method to return a proxy to be used at activation.
+    ''' Return <code>Nothing</code> if you do not wish to set a proxy.
+    ''' </para>
+    ''' </summary>
+    ''' <example>
+    ''' If targeting full framework, you can detect the address of the default proxy for the activation endpoint
+    ''' and return a proxy for this address with default credentials; you return <code>Nothing</code> if no proxy assigned:
+    ''' <code>
+    '''    Shared Function SetProxyConfigurationPolicy(activationEndpoint As Uri) As IWebProxy
+    '''    Dim proxiedAddress = WebRequest.DefaultWebProxy.GetProxy(activationEndpoint)
+    '''    If Not activationEndpoint.Equals(proxiedAddress) Then
+    '''    Return New WebProxy(proxiedAddress) With {.UseDefaultCredentials = True}
+    '''    End If
+    '''    Return Nothing
+    '''    End Function '
+    '''</code>
+    ''' </example>
+    Shared Function SetProxyConfigurationPolicy(activationEndpoint As Uri) As IWebProxy
+        Return Nothing
+    End Function
+    ''' <summary>
+    ''' <param name="context">
+    ''' <para>Context that allows you to set a custom Device Label</para>
+    ''' </param>
+    ''' Replace the contents of this method to customize the value of the DeviceLabel sent up on Activation.
+    ''' If this method is left unmodified the DeviceLabel will be set to the default value of Environment.MachineName
+    ''' </summary>
+    Shared Sub SetDeviceLabelPolicy(context As IActivationDeviceLabelContext)
+        ' e.g. context.SetDeviceLabel("My custom label")
+        Debug.WriteLine("DeviceLabel passed to Activate() method: " + context.DeviceLabel)
+    End Sub
 
 End Class
 ' sic - this is not the priumary location of this partial class, so no xmldocs here
