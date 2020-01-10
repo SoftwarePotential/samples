@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\SoftwarePotential.Protection-62340.4.0.2004.16\build\net40\SoftwarePotential.Protection-62340.props" Condition="Exists('..\packages\SoftwarePotential.Protection-62340.4.0.2004.16\build\net40\SoftwarePotential.Protection-62340.props')" />
-  <Import Project="..\packages\Sp.Permutation-62340.4.0.2004.16\build\net40\Sp.Permutation-62340.props" Condition="Exists('..\packages\Sp.Permutation-62340.4.0.2004.16\build\net40\Sp.Permutation-62340.props')" />
-  <Import Project="..\packages\Sp.Protector.4.0.2004\build\net40\Sp.Protector.props" Condition="Exists('..\packages\Sp.Protector.4.0.2004\build\net40\Sp.Protector.props')" />
+  <Import Project="..\packages\SoftwarePotential.Protection-62340.4.0.2022.17\build\net40\SoftwarePotential.Protection-62340.props" Condition="Exists('..\packages\SoftwarePotential.Protection-62340.4.0.2022.17\build\net40\SoftwarePotential.Protection-62340.props')" />
+  <Import Project="..\packages\Sp.Permutation-62340.4.0.2022.17\build\net40\Sp.Permutation-62340.props" Condition="Exists('..\packages\Sp.Permutation-62340.4.0.2022.17\build\net40\Sp.Permutation-62340.props')" />
+  <Import Project="..\packages\Sp.Protector.4.0.2022\build\net40\Sp.Protector.props" Condition="Exists('..\packages\Sp.Protector.4.0.2022\build\net40\Sp.Protector.props')" />
   <Import Project="..\packages\SoftwarePotential.Licensing-Demo_10.1.0.1.3\build\SoftwarePotential.Licensing-Demo_10.props" Condition="Exists('..\packages\SoftwarePotential.Licensing-Demo_10.1.0.1.3\build\SoftwarePotential.Licensing-Demo_10.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -64,17 +64,17 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sp.Agent, Version=4.0.2004.4, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sp.Agent.4.0.2004\lib\net40\Sp.Agent.dll</HintPath>
+    <Reference Include="Sp.Agent, Version=4.0.2022.3, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sp.Agent.4.0.2022\lib\net40\Sp.Agent.dll</HintPath>
     </Reference>
-    <Reference Include="Sp.Agent.62340, Version=4.0.2004.16, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sp.Agent-62340.4.0.2004.16\lib\net40\Sp.Agent.62340.dll</HintPath>
+    <Reference Include="Sp.Agent.62340, Version=4.0.2022.17, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sp.Agent-62340.4.0.2022.17\lib\net40\Sp.Agent.62340.dll</HintPath>
     </Reference>
-    <Reference Include="Sp.Agent.Local, Version=4.0.2004.4, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sp.Agent.Local.4.0.2004\lib\net40\Sp.Agent.Local.dll</HintPath>
+    <Reference Include="Sp.Agent.Local, Version=4.0.2022.3, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sp.Agent.Local.4.0.2022\lib\net40\Sp.Agent.Local.dll</HintPath>
     </Reference>
-    <Reference Include="Sp.Agent.Local.62340, Version=4.0.2004.16, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sp.Agent.Local-62340.4.0.2004.16\lib\net40\Sp.Agent.Local.62340.dll</HintPath>
+    <Reference Include="Sp.Agent.Local.62340, Version=4.0.2022.17, Culture=neutral, PublicKeyToken=5b7832056d5afd0b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sp.Agent.Local-62340.4.0.2022.17\lib\net40\Sp.Agent.Local.62340.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -255,17 +255,17 @@
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
-  <Import Project="..\packages\SoftwarePotential.Configuration.Web-62340.4.0.2004.16\build\net40\SoftwarePotential.Configuration.Web-62340.targets" Condition="Exists('..\packages\SoftwarePotential.Configuration.Web-62340.4.0.2004.16\build\net40\SoftwarePotential.Configuration.Web-62340.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\SoftwarePotential.Configuration.Web-62340.4.0.2004.16\build\net40\SoftwarePotential.Configuration.Web-62340.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SoftwarePotential.Configuration.Web-62340.4.0.2004.16\build\net40\SoftwarePotential.Configuration.Web-62340.targets'))" />
     <Error Condition="!Exists('..\packages\SoftwarePotential.Licensing-Demo_10.1.0.1.3\build\SoftwarePotential.Licensing-Demo_10.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SoftwarePotential.Licensing-Demo_10.1.0.1.3\build\SoftwarePotential.Licensing-Demo_10.props'))" />
-    <Error Condition="!Exists('..\packages\Sp.Protector.4.0.2004\build\net40\Sp.Protector.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Protector.4.0.2004\build\net40\Sp.Protector.props'))" />
-    <Error Condition="!Exists('..\packages\Sp.Protector.4.0.2004\build\net40\Sp.Protector.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Protector.4.0.2004\build\net40\Sp.Protector.targets'))" />
-    <Error Condition="!Exists('..\packages\Sp.Permutation-62340.4.0.2004.16\build\net40\Sp.Permutation-62340.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Permutation-62340.4.0.2004.16\build\net40\Sp.Permutation-62340.props'))" />
-    <Error Condition="!Exists('..\packages\SoftwarePotential.Protection-62340.4.0.2004.16\build\net40\SoftwarePotential.Protection-62340.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SoftwarePotential.Protection-62340.4.0.2004.16\build\net40\SoftwarePotential.Protection-62340.props'))" />
+    <Error Condition="!Exists('..\packages\Sp.Protector.4.0.2022\build\net40\Sp.Protector.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Protector.4.0.2022\build\net40\Sp.Protector.props'))" />
+    <Error Condition="!Exists('..\packages\Sp.Protector.4.0.2022\build\net40\Sp.Protector.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Protector.4.0.2022\build\net40\Sp.Protector.targets'))" />
+    <Error Condition="!Exists('..\packages\Sp.Permutation-62340.4.0.2022.17\build\net40\Sp.Permutation-62340.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Sp.Permutation-62340.4.0.2022.17\build\net40\Sp.Permutation-62340.props'))" />
+    <Error Condition="!Exists('..\packages\SoftwarePotential.Protection-62340.4.0.2022.17\build\net40\SoftwarePotential.Protection-62340.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SoftwarePotential.Protection-62340.4.0.2022.17\build\net40\SoftwarePotential.Protection-62340.props'))" />
+    <Error Condition="!Exists('..\packages\SoftwarePotential.Configuration.Web-62340.4.0.2022.17\build\net40\SoftwarePotential.Configuration.Web-62340.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SoftwarePotential.Configuration.Web-62340.4.0.2022.17\build\net40\SoftwarePotential.Configuration.Web-62340.targets'))" />
   </Target>
-  <Import Project="..\packages\Sp.Protector.4.0.2004\build\net40\Sp.Protector.targets" Condition="Exists('..\packages\Sp.Protector.4.0.2004\build\net40\Sp.Protector.targets')" />
+  <Import Project="..\packages\Sp.Protector.4.0.2022\build\net40\Sp.Protector.targets" Condition="Exists('..\packages\Sp.Protector.4.0.2022\build\net40\Sp.Protector.targets')" />
+  <Import Project="..\packages\SoftwarePotential.Configuration.Web-62340.4.0.2022.17\build\net40\SoftwarePotential.Configuration.Web-62340.targets" Condition="Exists('..\packages\SoftwarePotential.Configuration.Web-62340.4.0.2022.17\build\net40\SoftwarePotential.Configuration.Web-62340.targets')" />
 </Project>

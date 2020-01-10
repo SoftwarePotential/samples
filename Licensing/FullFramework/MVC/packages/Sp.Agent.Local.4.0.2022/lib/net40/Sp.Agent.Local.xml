@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sp.Agent.Local</name>
+    </assembly>
+    <members>
+        <member name="T:Sp.Agent.Configuration.DirectoryInitialization">
+            <summary>
+            Shared across File based License store types that require Initialization. Should not be public so as to not cause clashes
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Configuration.DirectoryInitialization.EnsureExistsAndConfigureAccessFor(System.Security.Principal.SecurityIdentifier,System.IO.DirectoryInfo)">
+            <summary>
+            Configures the specified <paramref name="directory"/> to have an explicit Allow ACL for the indicated <paramref name="sid"/>, and inherit other permissions from the parent.
+            </summary>
+            <param name="sid">The identity to confer the rights on.</param>
+            <param name="directory">The directory on which to apply the ACL entry.</param>
+            <remarks>One can employ <see cref="T:System.Security.Principal.IdentityReference"/><c>.Translate()</c> method to convert from other User/Group name representations to a <seealso cref="T:System.Security.Principal.SecurityIdentifier"/>.
+            <code>var sid = (SecurityIdentifier)new NTAccount( accountNameString ).Translate( typeof( SecurityIdentifier ) );</code></remarks>
+        </member>
+        <member name="T:Sp.Agent.Configuration.LocalStoreConfigurationExtensions">
+            <summary>
+             Provides extension methods for <see cref="T:Sp.Agent.Configuration.IAgentCommenceConfigurationPhase"/> relevant to Machine Locked licensed applications with licenses being stored on the associated machine. 
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Configuration.LocalStoreConfigurationExtensions.WithLocalSharedStore(Sp.Agent.Configuration.IAgentCommenceConfigurationPhase,System.String)">
+            <summary>
+            Please refer to <c>WithExternallyInitializedStore</c> which has identical functionality. This deprecated method will be removed in the future.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Configuration.LocalStoreConfigurationExtensions.WithSingleUserStore(Sp.Agent.Configuration.IAgentCommenceConfigurationPhase,System.String,System.String)">
+            <summary>
+            Configures the Software Potential Agent to maintain its licenses on a machine locked basis in an externally provisioned <paramref name="rootPath"/>. Typically this will apply when you choose (or are restricted to) store data in an area provided implicitly by the OS / hosting environment that is not application specific such as <c>%LOCALAPPDATA%</c>. <para>This is appropriate when an application will be installed/accessible on a 'Just for Me' basis in the User's User Profile Folder (as opposed to in a folder shared across User Profiles, which requires an Administrator/elevated installation process to grant appropriate sharing rights required in that instance).</para>
+            <para>For example, one might employ such a storage mechanism in a ClickOnce-delivered application.</para>
+            </summary>
+            <param name="that">Starting point of Sp.Agent configuration pipeline.</param>
+            <param name="rootPath">
+            <para>License store root directory. Subdirectories will be maintained within this area by the Store. The caller is responsible for ensuring that the Directory exists and is correctly permissioned such that the licensing system will be able to access the directory at runtime.</para>
+            <para>The location must exist prior activating or consuming any licenses.</para>
+            <para><example><c>C:\Users\%USERNAME%\AppData\Local</c></example></para>
+            </param>
+            <param name="applicationSubfolder">
+            <para>Application-specific subfolder portion within <paramref name="rootPath"/>.</para>
+            <para>The <paramref name="rootPath"/> and/or subfolder portion will be created if necessary.</para>
+            <para><example><c>My Company\My Application\1</c></example></para>
+            </param>
+            <returns>A reference to the next phase of the configuration pipeline.</returns>
+            <remarks>
+            <para>As with <see cref="M:Sp.Agent.Configuration.LocalStoreConfigurationExtensions.WithExternallyInitializedStore(Sp.Agent.Configuration.IAgentCommenceConfigurationPhase,System.String)"/>, every combination of Software Potential product sharing a given <paramref name="rootPath"/> will have an isolated store subdirectory within which that set of licenses are maintained. The function of the mandatory <paramref name="applicationSubfolder"/> is to ensure the base path does not get polluted with lots of folders bearing names derived from GUIDs.</para>
+            </remarks>
+        </member>
+        <member name="M:Sp.Agent.Configuration.LocalStoreConfigurationExtensions.WithExternallyInitializedStore(Sp.Agent.Configuration.IAgentCommenceConfigurationPhase,System.String)">
+            <summary>
+            <para>Configures the Software Potential Agent to maintain its licenses on a machine locked basis in an externally provisioned Directory such as <c>%ProgramData%\Your Application\Version</c>. The application will require an external installer to provision the directory correctly prior to any attempts to Activate a License etc.</para>
+            <para>For example, one might use this configuration where you have a WiX-based installer that will create a folder under <c>C:\ProgramData</c> for your application and modify the folders permissions to be shared across the All Users Group.</para>
+            </summary>
+            <param name="that">Starting point of Sp.Agent configuration pipeline.</param>
+            <param name="rootPath">
+            <para>License store root directory. Subdirectories will be maintained within this area by the Store. The caller is responsible for ensuring that the <paramref name="rootPath"/> Directory exists and is correctly permissioned such that the licensing system will be able to access the directory at runtime.</para>
+            <para><example><c>C:\ProgramData\My Application</c></example></para>
+            </param>
+            <returns>A reference to the next phase of the configuration pipeline.</returns>
+            <remarks>
+            <para>The store will generate a folder underneath the designated <paramref name="rootPath"/> with a GUID-based name specific to the Product and Version of the Licenses being stored. Hence one could theoretically use the same base path for all your applications. It is recommended NOT to do this as having the licenses in a folder path that includes the application name and version can simplify manual diagnosis of licensing issues.</para>
+            </remarks>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="rootPath"/> does not exist.</exception>
+        </member>
+        <member name="M:Sp.Agent.Configuration.LocalStoreConfigurationExtensions.WithApplicationInitializedStore(Sp.Agent.Configuration.IAgentCommenceConfigurationPhase,System.String,System.Action{System.IO.DirectoryInfo})">
+            <summary>
+            <para>Configures the Software Potential Agent to maintain its licenses on a machine locked basis in a specified folder with an <c>Action</c> used to initialize the directory when directed to via via <see cref="T:Sp.Agent.Configuration.IInitializeStores">IInitializeStores.Initialize()</see> under the control of an Installer.</para>
+            <para>This configuration is typically used when one is managing the store initialization via an installation process that will call into the Application and/or implement a Managed Installer class (i.e. if you will use <c>installutil.exe</c> against the application/plugin's Assembly or a Installer that has an option to invoke Managed Installers.</para>
+            </summary>
+            <param name="that">Starting point of Sp.Agent configuration pipeline.</param>
+            <param name="rootPath">License store root directory. Should be application specific. <example><c>My Company\My Application\1</c></example></param>
+            <param name="initialize"><c>Action</c> that is passed <paramref name="rootPath"/> when triggered via <see cref="T:Sp.Agent.Configuration.IInitializeStores">IInitializeStores.Initialize()</see>.</param>
+            <returns>A reference to the next phase of the configuration pipeline.</returns>
+        </member>
+        <member name="T:Sp.Agent.Configuration.ExternalStorageObsoletionTrapExtensions">
+            <summary>
+            Provides extension methods for <see cref="T:Sp.Agent.Configuration.IAgentExternalStorageConfigurationPhase"/> with disambiguation guidance to the configuration pipeline as a Removable storage subsystem now precedes the Distributor storage in the license search hierarchy. 
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Configuration.ExternalStorageObsoletionTrapExtensions.DisableDistributor(Sp.Agent.Configuration.IAgentExternalStorageConfigurationPhase)">
+            <summary>
+            <para>This method has been deprecated as the available External License storage mechanisms have been extended to include Removable storage.</para>
+            <para>Please refer to <c>DisableExternalStorage</c>, which has identical functionality if you do not wish to avail of Removable storage. This deprecated method will be removed in the future.</para>
+            </summary>
+        </member>
+        <member name="T:Sp.Agent.Configuration.LocalStoreInitialization">
+            <summary>
+            Provides helper facilities for initializing File-based License Stores.
+            </summary>
+        </member>
+        <member name="M:Sp.Agent.Configuration.LocalStoreInitialization.EnsureExistsAndConfigureAccessFor(System.Security.Principal.SecurityIdentifier,System.IO.DirectoryInfo)">
+            <summary>
+            Configures the specified <paramref name="directory"/> to have an explicit Allow ACL for the indicated <paramref name="sid"/>, and inherit other permissions from the parent.
+            </summary>
+            <param name="sid">The identity to confer the rights on.</param>
+            <param name="directory">The directory on which to apply the ACL entry.</param>
+            <remarks>One can employ <see cref="T:System.Security.Principal.IdentityReference"/><c>.Translate()</c> method to convert from other User/Group name representations to a <seealso cref="T:System.Security.Principal.SecurityIdentifier"/>.
+            <code>var sid = (SecurityIdentifier)new NTAccount( accountNameString ).Translate( typeof( SecurityIdentifier ) );</code></remarks>
+        </member>
+    </members>
+</doc>

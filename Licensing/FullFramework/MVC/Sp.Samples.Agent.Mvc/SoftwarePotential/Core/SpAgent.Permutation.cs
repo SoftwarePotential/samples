@@ -8,12 +8,12 @@ namespace Sp.Agent
 	using System;
 	using System.ComponentModel;
 
-	/// <summary>
-	/// This portion of the partial class provides a PermutationId-neutral way of 
-	/// being able to access SpAgent.AgentContext from anywhere within the Application.
-	/// This is used by other code across the NuGet-based Configuration packages as necessary.
-	/// </summary>
-	static partial class SpAgent
+    /// <summary>
+    /// This portion of the partial class provides a PermutationId-neutral way of 
+    /// being able to access SpAgent.AgentContext from anywhere within the Application.
+    /// This is used by other code across the NuGet-based Configuration packages as necessary.
+    /// </summary>
+    static partial class SpAgent
 	{
 		/// <summary>
 		/// <para>Provides access to APIs relevant to the configuration of Software Potential integration.</para>
