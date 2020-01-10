@@ -5,7 +5,7 @@
     <!-- By default, NuGet stores packages in $(SolutionDir)\packages -->
     <NugetRepositoryFolder>..\packages</NugetRepositoryFolder>
 
-    <!-- Specify a DistributorSourceDirectory iff you want to override the default package discovery based on $(NugetRepositoryFolder) 
+    <!-- Specify a DistributorSourceDirectory if you want to override the default package discovery based on $(NugetRepositoryFolder) 
     <DistributorSourceDirectory/> -->
   </PropertyGroup>
 </Project>
