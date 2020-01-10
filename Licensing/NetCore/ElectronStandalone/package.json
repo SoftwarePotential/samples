@@ -26,7 +26,7 @@
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
-    "electron": "1.8.4",
+    "electron": "7.1.8",
     "electron-edge-js": "8.3.5",
     "moment": "^2.22.2",
     "mustache": "^2.3.0"
