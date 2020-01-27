@@ -16,7 +16,7 @@
   <!-- Attempts to derive DistributorSourceDirectory by searching for an 'Sp.Distributor-XXXXX' package in the standard NuGet packages location -->
   <Target Name="ResolveDistributorSourceDirectoryFromNugetPackagesIfNotSupplied" Condition=" '$(DistributorSourceDirectory)' == '' ">
     <ItemGroup>
-      <_DistributorHostExeFiles Include="$(NugetRepositoryFolder)\Sp.Distributor-*\Slps.Distributor.Host\Slps.Distributor.Host.exe" />
+      <_DistributorHostExeFiles Include="$(NugetRepositoryFolder)\Sp.Distributor-*\Content\Slps.Distributor.Host\Slps.Distributor.Host.exe" />
     </ItemGroup>
 
     <Error 
