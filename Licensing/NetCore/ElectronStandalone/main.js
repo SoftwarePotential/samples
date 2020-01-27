@@ -29,7 +29,10 @@ function createWindow() {
     height: 768,
     backgroundColor: '#333',
     icon: path.join(__dirname, 'style', iconFile),
-    show: false
+    show: false,
+    webPreferences: {
+      nodeIntegration: true
+  }
   });
 
   modalWindow = new ModalWindow(mainWindow);

@@ -45,13 +45,13 @@ function openOfd() {
             name: 'Images',
             extensions: ['jpg', 'jpeg']
         }]
-    }, onFileSelected);
+    }).then(onFileSelected);
 }
 
-function onFileSelected(filenames) {
-    if (filenames === undefined) return;
+function onFileSelected(result) {
+    if (result === undefined) return;
 
-    const path = filenames[0];
+    const path = result.filePath[0];
     fs.readFile(path, (err, data) => {
         if (err) {
             console.log(err);

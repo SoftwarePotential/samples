@@ -30,6 +30,9 @@ class ModalWindow {
             x: parent.getContentBounds().x,
             y: parent.getContentBounds().y,
             height: parent.getContentSize()[1],
+            webPreferences: {
+                nodeIntegration: true
+            }
         }));
 
         let window = _window.get(this);
