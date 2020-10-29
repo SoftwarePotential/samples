@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Microsoft.Licensing.LicenseIssue" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Microsoft.Licensing.LicenseIssue" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="ProductRetrievalOptions">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Basic" />
+          <xs:enumeration value="Features" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="ProductRetrievalOptions" nillable="true" type="tns:ProductRetrievalOptions" />
+  <xs:simpleType name="LicenseStore">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Machine" />
+      <xs:enumeration value="NoLock" />
+      <xs:enumeration value="Memory" />
+      <xs:enumeration value="Challenge" />
+      <xs:enumeration value="Linked" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="LicenseStore" nillable="true" type="tns:LicenseStore" />
+  <xs:simpleType name="SkuRetrievalOptions">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Basic" />
+          <xs:enumeration value="LicenseInfo" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="SkuRetrievalOptions" nillable="true" type="tns:SkuRetrievalOptions" />
+  <xs:simpleType name="LicenseRetrievalOptions">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Basic" />
+          <xs:enumeration value="LicenseInfo" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="LicenseRetrievalOptions" nillable="true" type="tns:LicenseRetrievalOptions" />
+  <xs:simpleType name="ActivationRetrievalOptions">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Basic" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="ActivationRetrievalOptions" nillable="true" type="tns:ActivationRetrievalOptions" />
+  <xs:simpleType name="ActivationMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Online" />
+      <xs:enumeration value="Manual" />
+      <xs:enumeration value="ManualReactivation" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ActivationMode" nillable="true" type="tns:ActivationMode" />
+</xs:schema>

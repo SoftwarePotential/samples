@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright 2013 (c) Inish Technology Ventures Limited.  All rights reserved.
+ * Copyright 2013-2021 (c) Inish Technology Ventures Limited.  All rights reserved.
  * 
  * This code is licensed under the BSD 3-Clause License included with this source
  * 
@@ -33,7 +33,19 @@ namespace Sp.Samples.Consume.CustomerSync
 					customers.Delete( args[ 1 ] );
 					return 0;
 				}
-				else
+                else if (args.Length == 2 && String.Equals(args[0], "GET", StringComparison.OrdinalIgnoreCase))
+                {
+                    var customer = customers.TryGetCustomer(args[1]);
+                    Console.WriteLine($"Got Customer response {DateTime.UtcNow}");
+                    if (customer != null)
+                        DumpCustomer(customer);
+                    else
+                    {
+                        Console.WriteLine($"Customer with ExtId {args[1]} not found");
+                    }
+                    return 0;
+                }
+                else
 				{
 					ShowUsage();
 					return 2;
@@ -45,15 +57,20 @@ namespace Sp.Samples.Consume.CustomerSync
 				return 1;
 			}
 		}
+        private static void DumpCustomer(SpCustomerApi.CustomerSummary customer)
+        {
+            Console.WriteLine($" Name: {customer.Name} \n ExtId: {customer.ExternalId} \n RequestId {customer.RequestId} \n CustomerId: {customer._embedded.Id}\n");
+        }
 
-		static void ShowUsage()
+        static void ShowUsage()
 		{
-			var message = string.Format( @"USAGE: {0} Action ExternalId Name
-Action: CreateOrUpdate|Delete
-ExternalId: The identifier you have assigned the customer within your CRM system
-Name: The Customer Name to be shown within Software Potential",
-					System.Diagnostics.Process.GetCurrentProcess().MainModule.ModuleName );
-			Console.WriteLine( message );
-		}
+            var message = $"USAGE: {System.Diagnostics.Process.GetCurrentProcess().MainModule.ModuleName} Action ExternalId Name \n" +
+                $"Action: CreateOrUpdate <ExternalId> <Name>\n" +
+                $"Action: Delete <ExternalId>\n" +
+                $"Action: Get <ExternalId>\n" +
+                $"<ExternalId>: The identifier you have assigned the customer within your CRM system \n" +
+                $"<Name>: The Customer Name to be shown within Software Potential" ;
+            Console.WriteLine(message);
+        }
 	}
 }

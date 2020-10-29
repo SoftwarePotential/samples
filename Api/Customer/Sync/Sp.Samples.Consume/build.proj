@@ -4,7 +4,7 @@
  This code is licensed under the BSD 3-Clause License included with this source
  ALSO SEE: https://github.com/SoftwarePotential/samples/wiki/License
 -->
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <!--BUILDING-->
 
@@ -40,17 +40,29 @@
   <PropertyGroup>
     <_Instructions>Need to run "./configure.ps1" from the root folder before running the samples.</_Instructions>
 
-    <TestAppConfigUsername Condition=" '' == '$(TestAppConfigUsername)'">INSERT USERNAME HERE - $(_Instructions)</TestAppConfigUsername>
-    <TestAppConfigPassword Condition=" '' == '$(TestAppConfigPassword)'">INSERT PASSWORD HERE - $(_Instructions)</TestAppConfigPassword>
+    <TestAppConfigClientId Condition=" '' == '$(TestAppConfigUsername)'">INSERT CLIENT ID HERE - $(_Instructions)</TestAppConfigClientId>
+    <TestAppConfigClientSecret Condition=" '' == '$(TestAppConfigPassword)'">INSERT CLIENT SECRET HEERE - $(_Instructions)</TestAppConfigClientSecret>
+    <TestAppConfigScope Condition=" '' == '$(TestAppConfigUsername)'">INSERT SCOPE HERE - $(_Instructions)</TestAppConfigScope>
+    <TestAppConfigAuthority Condition=" '' == '$(TestAppConfigPassword)'">INSERT AUTHORITY HERE - $(_Instructions)</TestAppConfigAuthority>
+    <TestAppConfigBaseUrl Condition=" '' == '$(TestAppConfigPassword)'">INSERT BASE URL HERE - $(_Instructions)</TestAppConfigBaseUrl>
 
   </PropertyGroup>
 
   <ItemGroup>
-    <TestAppConfigParam Include="Username">
-      <Value>$(TestAppConfigUsername)</Value>
+    <TestAppConfigParam Include="ClientId">
+      <Value>$(TestAppConfigClientId)</Value>
     </TestAppConfigParam>
-    <TestAppConfigParam Include="Password">
-      <Value>$(TestAppConfigPassword)</Value>
+    <TestAppConfigParam Include="ClientSecret">
+      <Value>$(TestAppConfigClientSecret)</Value>
+    </TestAppConfigParam>
+    <TestAppConfigParam Include="Scope">
+      <Value>$(TestAppConfigScope)</Value>
+    </TestAppConfigParam>
+    <TestAppConfigParam Include="Authority">
+      <Value>$(TestAppConfigAuthority)</Value>
+    </TestAppConfigParam>
+    <TestAppConfigParam Include="BaseUrl">
+      <Value>$(TestAppConfigBaseUrl)</Value>
     </TestAppConfigParam>
   </ItemGroup>
 

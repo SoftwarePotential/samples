@@ -1,9 +1,20 @@
-﻿
+﻿/*
+ * Copyright 2013-2021 (c) Inish Technology Ventures Limited.  All rights reserved.
+ * 
+ * This code is licensed under the BSD 3-Clause License included with this source
+ * 
+ * ALSO SEE: https://github.com/SoftwarePotential/samples/wiki/License
+ * 
+ */
+
+// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+// PARTICULAR PURPOSE.
 
 namespace Sp.Samples.Consume.CustomerSync
 {
 	using RestSharp;
-	using Sp.Samples.Consume.CustomerSync.Wrappers;
 	using System;
 	using System.Collections.Generic;
 
@@ -16,21 +27,21 @@ namespace Sp.Samples.Consume.CustomerSync
 
 		internal IRestResponse<CustomerSummaryPage> GetCustomerList()
 		{
-			var request = new RestRequest( "Consume" );
+			var request = new RestRequest( "consumeapi" );
 			return Execute<CustomerSummaryPage>( request );
 		}
 
 		internal IRestResponse<CustomerSummaryPage> GetCustomerList( string query )
 		{
-			var request = new RestRequest( "Consume/customer?" + query );
+			var request = new RestRequest( "consumeapi/customer?" + query );
 			return Execute<CustomerSummaryPage>( request );
 		}
 
 		internal IRestResponse CreateCustomer( CustomerSummary customer )
 		{
-			var request = new RestRequest( "Consume/customer", Method.POST );
+			var request = new RestRequest( "consumeapi/customer", Method.POST );
 			request.RequestFormat = DataFormat.Json;
-			request.AddBody( customer );
+			request.AddJsonBody( customer );
 			return Execute( request );
 		}
 
@@ -44,7 +55,7 @@ namespace Sp.Samples.Consume.CustomerSync
 		{
 			var request = new RestRequest( href, Method.PUT );
 			request.RequestFormat = DataFormat.Json;
-			request.AddBody( customer );
+			request.AddJsonBody( customer );
 			return Execute( request );
 		}
 

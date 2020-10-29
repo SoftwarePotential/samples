@@ -1,0 +1,42 @@
+﻿/*
+ * Copyright 2013-2021 (c) Inish Technology Ventures Limited.  All rights reserved.
+ * 
+ * This code is licensed under the BSD 3-Clause License included with this source
+ * 
+ * ALSO SEE: https://github.com/SoftwarePotential/samples/wiki/License
+ * 
+ */
+
+// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+// PARTICULAR PURPOSE.
+
+using System.Configuration;
+
+namespace LicenseManagement
+{
+    class SpApiConfiguration
+    {
+        public static string ClientId
+        {
+            get { return ConfigurationManager.AppSettings["ClientId"]; }
+        }
+        public static string ClientSecret
+        {
+            get { return ConfigurationManager.AppSettings["ClientSecret"]; }
+        }
+        public static string Scope
+        {
+            get { return ConfigurationManager.AppSettings["Scope"]; }
+        }
+        public static string Authority
+        {
+            get { return ConfigurationManager.AppSettings["Authority"]; }
+        }
+        public static string BaseUrl
+        {
+            get { return ConfigurationManager.AppSettings["BaseUrl"]; }
+        }
+    }
+}

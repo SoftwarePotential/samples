@@ -47,13 +47,13 @@ namespace ImageEditor.Core
 			}
 		}
 
-		[Demo_10.Features.Feature1]
+		[Demoapp_10.Features.Feature1]
 		void MutateGreyscale( Image<Rgba32> image ) => image.Mutate( x => x.Grayscale() );
 
-		[Demo_10.Features.Feature2]
+		[Demoapp_10.Features.Feature2]
 		void MutateRotate( Image<Rgba32> image, RotateMode rotateMode ) => image.Mutate( x => x.Rotate( rotateMode ) );
 
-		[Demo_10.Features.Feature3]
+		[Demoapp_10.Features.Feature3]
 		void MutateCrop( Image<Rgba32> image, Rectangle rectangle, int w, int h ) => image.Mutate( x => x.Resize( w, h ).Crop( rectangle ) );
 
 		byte[] ToBytes( string base64String ) => Convert.FromBase64String( base64String );

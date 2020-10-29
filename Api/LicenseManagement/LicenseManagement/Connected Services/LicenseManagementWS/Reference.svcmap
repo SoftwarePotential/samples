@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f059d6a9-717a-4e95-94bf-440e79e0ac1e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://srv.testsoftwarepotential.com/SLMServerWS/LicenseManagementBearerWS.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="LicenseManagementBearerWS.wsdl" MetadataType="Wsdl" ID="c36dc5c6-4883-4e4e-8f82-48018579d885" SourceId="1" SourceUrl="http://srv.testsoftwarepotential.com/SLMServerWS/LicenseManagementBearerWS.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="LicenseManagementBearerWS1.wsdl" MetadataType="Wsdl" ID="657cf524-1b11-457c-8051-5d66230883be" SourceId="1" SourceUrl="http://srv.testsoftwarepotential.com/SLMServerWS/LicenseManagementBearerWS.svc?wsdl" />
+    <MetadataFile FileName="LicenseManagementBearerWS.xsd" MetadataType="Schema" ID="767d511a-e2f8-4076-ac6a-c0ea56a36338" SourceId="1" SourceUrl="http://srv.testsoftwarepotential.com/SLMServerWS/LicenseManagementBearerWS.svc?xsd=xsd4" />
+    <MetadataFile FileName="LicenseManagementBearerWS1.xsd" MetadataType="Schema" ID="936b4817-f207-455b-aecf-b64b47638dda" SourceId="1" SourceUrl="http://srv.testsoftwarepotential.com/SLMServerWS/LicenseManagementBearerWS.svc?xsd=xsd1" />
+    <MetadataFile FileName="LicenseManagementBearerWS.disco" MetadataType="Disco" ID="7e2452c5-e1d0-4595-b534-8936754e1a0e" SourceId="1" SourceUrl="http://srv.testsoftwarepotential.com/SLMServerWS/LicenseManagementBearerWS.svc?disco" />
+    <MetadataFile FileName="LicenseManagementBearerWS2.xsd" MetadataType="Schema" ID="141c6c97-6b41-48ae-bbd9-98cac4f27295" SourceId="1" SourceUrl="http://srv.testsoftwarepotential.com/SLMServerWS/LicenseManagementBearerWS.svc?xsd=xsd3" />
+    <MetadataFile FileName="LicenseManagementBearerWS3.xsd" MetadataType="Schema" ID="ea17f7bc-a3c7-4665-aa2d-8b345b350a25" SourceId="1" SourceUrl="http://srv.testsoftwarepotential.com/SLMServerWS/LicenseManagementBearerWS.svc?xsd=xsd2" />
+    <MetadataFile FileName="LicenseManagementBearerWS4.xsd" MetadataType="Schema" ID="42d39293-36c3-4b78-8e9f-8ed73415e2d7" SourceId="1" SourceUrl="http://srv.testsoftwarepotential.com/SLMServerWS/LicenseManagementBearerWS.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

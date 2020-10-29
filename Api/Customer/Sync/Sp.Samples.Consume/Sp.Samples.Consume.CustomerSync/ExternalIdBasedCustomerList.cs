@@ -63,10 +63,12 @@ namespace Sp.Samples.Consume.CustomerSync
 		/// Retrieve a customer by externalId using the oData filter: $filter=ExternalId eq '{0}'
 		/// Assumes externalId's are a unique identifier of an individual customer
 		/// </summary>
-		SpCustomerApi.CustomerSummary TryGetCustomer( string externalId )
+		public SpCustomerApi.CustomerSummary TryGetCustomer( string externalId )
 		{
-			var customer = Retry( () => _customerApi.GetCustomerList( string.Format( "$filter=ExternalId eq '{0}'", externalId ) ) );
-			return customer.Data.results.SingleOrDefault();
+            IRestResponse <SpCustomerApi.CustomerSummaryPage> response = Retry( () => _customerApi.GetCustomerList( string.Format( "$filter=ExternalId eq '{0}'", externalId ) ) );
+            if (response.StatusCode != HttpStatusCode.OK)
+                throw new Exception(string.Format("Error trying to retrieve customer with ExtId {0} - Status Code {1}", externalId, response.StatusCode));
+            return response.Data.results.SingleOrDefault();
 		}
 
 		/// <summary>
@@ -78,9 +80,9 @@ namespace Sp.Samples.Consume.CustomerSync
 			while ( true )
 			{
 				var result = func();
-				if ( result.StatusCode == HttpStatusCode.Accepted || retryCount == 0 )
-					return result;
-				retryCount--;
+                if (result.StatusCode == HttpStatusCode.OK || result.StatusCode == HttpStatusCode.Accepted || result.StatusCode == HttpStatusCode.Unauthorized || retryCount == 0)
+                    return result;
+                retryCount--;
 				Thread.Sleep( 500 );
 			}
 		}

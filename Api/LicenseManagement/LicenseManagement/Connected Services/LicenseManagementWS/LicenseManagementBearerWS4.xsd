@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://www.microsoft.com/slps/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://srv.testsoftwarepotential.com/SLMServerWS/LicenseManagementBearerWS.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Microsoft.Licensing.LicenseIssue" />
+  <xs:import schemaLocation="http://srv.testsoftwarepotential.com/SLMServerWS/LicenseManagementBearerWS.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://srv.testsoftwarepotential.com/SLMServerWS/LicenseManagementBearerWS.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="GetProductById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="productId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://www.microsoft.com/slps/" minOccurs="0" name="GetProductByIdResult" nillable="true" type="q1:Product" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="Product">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://www.microsoft.com/slps/" minOccurs="0" name="Features" nillable="true" type="q2:ArrayOfFeature" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VendorName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Version" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q3="http://www.microsoft.com/slps/" name="Product" nillable="true" type="q3:Product" />
+  <xs:complexType name="ArrayOfFeature">
+    <xs:sequence>
+      <xs:element xmlns:q4="http://www.microsoft.com/slps/" minOccurs="0" maxOccurs="unbounded" name="Feature" nillable="true" type="q4:Feature" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q5="http://www.microsoft.com/slps/" name="ArrayOfFeature" nillable="true" type="q5:ArrayOfFeature" />
+  <xs:complexType name="Feature">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q6="http://www.microsoft.com/slps/" name="Feature" nillable="true" type="q6:Feature" />
+  <xs:complexType name="GeneralErrorException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q7="http://www.microsoft.com/slps/" name="GeneralErrorException" nillable="true" type="q7:GeneralErrorException" />
+  <xs:complexType name="APINotLicensedException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q8="http://www.microsoft.com/slps/" name="APINotLicensedException" nillable="true" type="q8:APINotLicensedException" />
+  <xs:complexType name="InvalidCredentialsException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q9="http://www.microsoft.com/slps/" name="InvalidCredentialsException" nillable="true" type="q9:InvalidCredentialsException" />
+  <xs:element name="GetProducts">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://www.microsoft.com/slps/" minOccurs="0" name="GetProductsResult" nillable="true" type="q10:ArrayOfProduct" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfProduct">
+    <xs:sequence>
+      <xs:element xmlns:q11="http://www.microsoft.com/slps/" minOccurs="0" maxOccurs="unbounded" name="Product" nillable="true" type="q11:Product" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q12="http://www.microsoft.com/slps/" name="ArrayOfProduct" nillable="true" type="q12:ArrayOfProduct" />
+  <xs:element name="GetProductsByFilter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://www.microsoft.com/slps/" minOccurs="0" name="filter" nillable="true" type="q13:ProductFilter" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Microsoft.Licensing.LicenseIssue" minOccurs="0" name="retrievalOption" type="q14:ProductRetrievalOptions" />
+        <xs:element minOccurs="0" name="pageIndex" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ProductFilter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q15="http://www.microsoft.com/slps/" name="ProductFilter" nillable="true" type="q15:ProductFilter" />
+  <xs:element name="GetProductsByFilterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://www.microsoft.com/slps/" minOccurs="0" name="GetProductsByFilterResult" nillable="true" type="q16:ArrayOfProduct" />
+        <xs:element minOccurs="0" name="pageIndex" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IssueLicenseByTemplate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="templateLicenseKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="licenseDescription" nillable="true" type="xs:string" />
+        <xs:element xmlns:q17="http://www.microsoft.com/slps/" minOccurs="0" name="customTags" nillable="true" type="q17:ArrayOfCustomTag" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfCustomTag">
+    <xs:sequence>
+      <xs:element xmlns:q18="http://www.microsoft.com/slps/" minOccurs="0" maxOccurs="unbounded" name="CustomTag" nillable="true" type="q18:CustomTag" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q19="http://www.microsoft.com/slps/" name="ArrayOfCustomTag" nillable="true" type="q19:ArrayOfCustomTag" />
+  <xs:complexType name="CustomTag">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="TagName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TagValue" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q20="http://www.microsoft.com/slps/" name="CustomTag" nillable="true" type="q20:CustomTag" />
+  <xs:element name="IssueLicenseByTemplateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IssueLicenseByTemplateResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateLicense">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://www.microsoft.com/slps/" minOccurs="0" name="licenseInfo" nillable="true" type="q21:LicenseInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="LicenseInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActivationLimit" type="xs:int" />
+      <xs:element xmlns:q22="http://www.microsoft.com/slps/" minOccurs="0" name="CustomTags" nillable="true" type="q22:ArrayOfCustomTag" />
+      <xs:element minOccurs="0" name="CustomerId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="DenyServerOS" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Enabled" type="xs:boolean" />
+      <xs:element xmlns:q23="http://www.microsoft.com/slps/" minOccurs="0" name="Features" nillable="true" type="q23:ArrayOfLicenseFeature" />
+      <xs:element minOccurs="0" name="IsAnchor" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsDistributor" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsRenewable" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsTrial" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IssueDate" nillable="true" type="xs:dateTime" />
+      <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Microsoft.Licensing.LicenseIssue" minOccurs="0" name="LicenseStore" type="q24:LicenseStore" />
+      <xs:element xmlns:q25="http://www.microsoft.com/slps/" minOccurs="0" name="Limitations" nillable="true" type="q25:Limitations" />
+      <xs:element minOccurs="0" name="ProductId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SkuId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VirtualMachinesAllowed" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q26="http://www.microsoft.com/slps/" name="LicenseInfo" nillable="true" type="q26:LicenseInfo" />
+  <xs:complexType name="ArrayOfLicenseFeature">
+    <xs:sequence>
+      <xs:element xmlns:q27="http://www.microsoft.com/slps/" minOccurs="0" maxOccurs="unbounded" name="LicenseFeature" nillable="true" type="q27:LicenseFeature" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q28="http://www.microsoft.com/slps/" name="ArrayOfLicenseFeature" nillable="true" type="q28:ArrayOfLicenseFeature" />
+  <xs:complexType name="LicenseFeature">
+    <xs:sequence>
+      <xs:element xmlns:q29="http://www.microsoft.com/slps/" minOccurs="0" name="Limitations" nillable="true" type="q29:Limitations" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q30="http://www.microsoft.com/slps/" name="LicenseFeature" nillable="true" type="q30:LicenseFeature" />
+  <xs:complexType name="Limitations">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ExpirationDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExpirationPeriod" type="ser:duration" />
+      <xs:element minOccurs="0" name="GatherUsageCount" type="xs:boolean" />
+      <xs:element minOccurs="0" name="GracePeriod" type="ser:duration" />
+      <xs:element minOccurs="0" name="MaxConcurrentUsage" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="MaxTotalUsage" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q31="http://www.microsoft.com/slps/" name="Limitations" nillable="true" type="q31:Limitations" />
+  <xs:element name="CreateLicenseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://www.microsoft.com/slps/" minOccurs="0" name="CreateLicenseResult" nillable="true" type="q32:License" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="License">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActivationKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LicenseId" nillable="true" type="xs:string" />
+      <xs:element xmlns:q33="http://www.microsoft.com/slps/" minOccurs="0" name="LicenseInfo" nillable="true" type="q33:LicenseInfo" />
+      <xs:element minOccurs="0" name="Revision" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q34="http://www.microsoft.com/slps/" name="License" nillable="true" type="q34:License" />
+  <xs:element name="UpdateLicense">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://www.microsoft.com/slps/" minOccurs="0" name="license" nillable="true" type="q35:License" />
+        <xs:element minOccurs="0" name="andReissue" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateLicenseResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLicenseByActivationKey">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="activationKey" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLicenseByActivationKeyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://www.microsoft.com/slps/" minOccurs="0" name="GetLicenseByActivationKeyResult" nillable="true" type="q36:License" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EnableAutoRenewal">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="licenseId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EnableAutoRenewalResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="NotSubscriptionLicenseTypeException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q37="http://www.microsoft.com/slps/" name="NotSubscriptionLicenseTypeException" nillable="true" type="q37:NotSubscriptionLicenseTypeException" />
+  <xs:element name="DisableAutoRenewal">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="licenseId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DisableAutoRenewalResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AuthorizeRenewal">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="licenseId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="numberOfPeriods" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AuthorizeRenewalResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AuthorizeRenewalResult" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetSubscriptionRenewUntil">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="licenseId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="renewUntilDateUtc" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetSubscriptionRenewUntilResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLicenseSummariesByLicenseIds">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="licenseIds" nillable="true" type="q38:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLicenseSummariesByLicenseIdsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q39="http://www.microsoft.com/slps/" minOccurs="0" name="GetLicenseSummariesByLicenseIdsResult" nillable="true" type="q39:ArrayOfLicenseSummary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfLicenseSummary">
+    <xs:sequence>
+      <xs:element xmlns:q40="http://www.microsoft.com/slps/" minOccurs="0" maxOccurs="unbounded" name="LicenseSummary" nillable="true" type="q40:LicenseSummary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q41="http://www.microsoft.com/slps/" name="ArrayOfLicenseSummary" nillable="true" type="q41:ArrayOfLicenseSummary" />
+  <xs:complexType name="LicenseSummary">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActivationCount" type="xs:int" />
+      <xs:element minOccurs="0" name="ActivationLimit" type="xs:int" />
+      <xs:element minOccurs="0" name="ExpirationDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsTrial" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastActivationDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LicenseId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductVersion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q42="http://www.microsoft.com/slps/" name="LicenseSummary" nillable="true" type="q42:LicenseSummary" />
+  <xs:element name="GetLicenseById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="licenseId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLicenseByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q43="http://www.microsoft.com/slps/" minOccurs="0" name="GetLicenseByIdResult" nillable="true" type="q43:License" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSkusByFilter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q44="http://www.microsoft.com/slps/" minOccurs="0" name="filter" nillable="true" type="q44:SkuFilter" />
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/Microsoft.Licensing.LicenseIssue" minOccurs="0" name="retrievalOptions" type="q45:SkuRetrievalOptions" />
+        <xs:element minOccurs="0" name="pageIndex" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="SkuFilter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProductId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SkuName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q46="http://www.microsoft.com/slps/" name="SkuFilter" nillable="true" type="q46:SkuFilter" />
+  <xs:element name="GetSkusByFilterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q47="http://www.microsoft.com/slps/" minOccurs="0" name="GetSkusByFilterResult" nillable="true" type="q47:ArrayOfSku" />
+        <xs:element minOccurs="0" name="pageIndex" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfSku">
+    <xs:sequence>
+      <xs:element xmlns:q48="http://www.microsoft.com/slps/" minOccurs="0" maxOccurs="unbounded" name="Sku" nillable="true" type="q48:Sku" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q49="http://www.microsoft.com/slps/" name="ArrayOfSku" nillable="true" type="q49:ArrayOfSku" />
+  <xs:complexType name="Sku">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element xmlns:q50="http://www.microsoft.com/slps/" minOccurs="0" name="LicenseInfo" nillable="true" type="q50:LicenseInfo" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TemplateLicenseKey" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q51="http://www.microsoft.com/slps/" name="Sku" nillable="true" type="q51:Sku" />
+  <xs:element name="GetSkuById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="skuId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSkuByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q52="http://www.microsoft.com/slps/" minOccurs="0" name="GetSkuByIdResult" nillable="true" type="q52:Sku" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCountOfLicensesByFilter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q53="http://www.microsoft.com/slps/" minOccurs="0" name="filter" nillable="true" type="q53:LicenseFilter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="LicenseFilter">
+    <xs:sequence>
+      <xs:element xmlns:q54="http://www.microsoft.com/slps/" minOccurs="0" name="ActivationDateRange" nillable="true" type="q54:DateRange" />
+      <xs:element minOccurs="0" name="ExcludeCommercial" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ExcludeTrial" type="xs:boolean" />
+      <xs:element xmlns:q55="http://www.microsoft.com/slps/" minOccurs="0" name="ExpirationDateRange" nillable="true" type="q55:DateRange" />
+      <xs:element xmlns:q56="http://www.microsoft.com/slps/" minOccurs="0" name="IssueDateRange" nillable="true" type="q56:DateRange" />
+      <xs:element minOccurs="0" name="ProductId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SkuId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q57="http://www.microsoft.com/slps/" name="LicenseFilter" nillable="true" type="q57:LicenseFilter" />
+  <xs:complexType name="DateRange">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="End" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Start" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q58="http://www.microsoft.com/slps/" name="DateRange" nillable="true" type="q58:DateRange" />
+  <xs:element name="GetCountOfLicensesByFilterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetCountOfLicensesByFilterResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLicensesByFilter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q59="http://www.microsoft.com/slps/" minOccurs="0" name="filter" nillable="true" type="q59:LicenseFilter" />
+        <xs:element xmlns:q60="http://schemas.datacontract.org/2004/07/Microsoft.Licensing.LicenseIssue" minOccurs="0" name="retrievalOptions" type="q60:LicenseRetrievalOptions" />
+        <xs:element minOccurs="0" name="pageIndex" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLicensesByFilterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q61="http://www.microsoft.com/slps/" minOccurs="0" name="GetLicensesByFilterResult" nillable="true" type="q61:ArrayOfLicense" />
+        <xs:element minOccurs="0" name="pageIndex" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfLicense">
+    <xs:sequence>
+      <xs:element xmlns:q62="http://www.microsoft.com/slps/" minOccurs="0" maxOccurs="unbounded" name="License" nillable="true" type="q62:License" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q63="http://www.microsoft.com/slps/" name="ArrayOfLicense" nillable="true" type="q63:ArrayOfLicense" />
+  <xs:element name="GetActivationsByFilter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q64="http://www.microsoft.com/slps/" minOccurs="0" name="filter" nillable="true" type="q64:ActivationFilter" />
+        <xs:element xmlns:q65="http://schemas.datacontract.org/2004/07/Microsoft.Licensing.LicenseIssue" minOccurs="0" name="retrievalOptions" type="q65:ActivationRetrievalOptions" />
+        <xs:element minOccurs="0" name="pageIndex" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ActivationFilter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LicenseId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q66="http://www.microsoft.com/slps/" name="ActivationFilter" nillable="true" type="q66:ActivationFilter" />
+  <xs:element name="GetActivationsByFilterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q67="http://www.microsoft.com/slps/" minOccurs="0" name="GetActivationsByFilterResult" nillable="true" type="q67:ArrayOfActivation" />
+        <xs:element minOccurs="0" name="pageIndex" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfActivation">
+    <xs:sequence>
+      <xs:element xmlns:q68="http://www.microsoft.com/slps/" minOccurs="0" maxOccurs="unbounded" name="Activation" nillable="true" type="q68:Activation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q69="http://www.microsoft.com/slps/" name="ArrayOfActivation" nillable="true" type="q69:ArrayOfActivation" />
+  <xs:complexType name="Activation">
+    <xs:sequence>
+      <xs:element xmlns:q70="http://schemas.datacontract.org/2004/07/Microsoft.Licensing.LicenseIssue" minOccurs="0" name="ActivationMode" type="q70:ActivationMode" />
+      <xs:element minOccurs="0" name="ActivationTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DeviceLabel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LicenseId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StoreId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q71="http://www.microsoft.com/slps/" name="Activation" nillable="true" type="q71:Activation" />
+  <xs:element name="DeactivateLicenseForDevice">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="deviceId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="licenseId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeactivateLicenseForDeviceResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReactivateLicenseForDevice">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="deviceId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="licenseId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReactivateLicenseForDeviceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ReactivateLicenseForDeviceResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ReactivationException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element xmlns:q72="http://www.microsoft.com/slps/" name="ReactivationException" nillable="true" type="q72:ReactivationException" />
+</xs:schema>

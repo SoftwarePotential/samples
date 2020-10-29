@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://www.microsoft.com/slps/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.microsoft.com/slps/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.microsoft.com/slps/Imports">
+      <xsd:import schemaLocation="http://srv.testsoftwarepotential.com/SLMServerWS/LicenseManagementBearerWS.svc?xsd=xsd0" namespace="http://www.microsoft.com/slps/" />
+      <xsd:import schemaLocation="http://srv.testsoftwarepotential.com/SLMServerWS/LicenseManagementBearerWS.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://srv.testsoftwarepotential.com/SLMServerWS/LicenseManagementBearerWS.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://srv.testsoftwarepotential.com/SLMServerWS/LicenseManagementBearerWS.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Microsoft.Licensing.LicenseIssue" />
+      <xsd:import schemaLocation="http://srv.testsoftwarepotential.com/SLMServerWS/LicenseManagementBearerWS.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ILicenseManagementWS_GetProductById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductById" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetProductById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetProductById_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/System" name="detail" element="q1:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetProductById_GeneralErrorExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:GeneralErrorException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetProductById_APINotLicensedExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:APINotLicensedException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetProductById_InvalidCredentialsExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidCredentialsException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetProducts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProducts" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetProducts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetProducts_GeneralErrorExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:GeneralErrorException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetProducts_APINotLicensedExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:APINotLicensedException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetProducts_InvalidCredentialsExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidCredentialsException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetProductsByFilter_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductsByFilter" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetProductsByFilter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductsByFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetProductsByFilter_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/System" name="detail" element="q2:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetProductsByFilter_GeneralErrorExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:GeneralErrorException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetProductsByFilter_APINotLicensedExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:APINotLicensedException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetProductsByFilter_InvalidCredentialsExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidCredentialsException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_IssueLicenseByTemplate_InputMessage">
+    <wsdl:part name="parameters" element="tns:IssueLicenseByTemplate" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_IssueLicenseByTemplate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IssueLicenseByTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_IssueLicenseByTemplate_ArgumentNullExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/System" name="detail" element="q3:ArgumentNullException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_IssueLicenseByTemplate_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/System" name="detail" element="q4:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_IssueLicenseByTemplate_GeneralErrorExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:GeneralErrorException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_IssueLicenseByTemplate_APINotLicensedExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:APINotLicensedException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_IssueLicenseByTemplate_InvalidCredentialsExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidCredentialsException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_CreateLicense_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateLicense" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_CreateLicense_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateLicenseResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_CreateLicense_ArgumentNullExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/System" name="detail" element="q5:ArgumentNullException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_CreateLicense_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/System" name="detail" element="q6:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_CreateLicense_GeneralErrorExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:GeneralErrorException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_CreateLicense_APINotLicensedExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:APINotLicensedException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_CreateLicense_InvalidCredentialsExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidCredentialsException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_UpdateLicense_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLicense" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_UpdateLicense_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLicenseResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_UpdateLicense_ArgumentNullExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/System" name="detail" element="q7:ArgumentNullException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_UpdateLicense_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/System" name="detail" element="q8:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_UpdateLicense_GeneralErrorExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:GeneralErrorException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_UpdateLicense_APINotLicensedExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:APINotLicensedException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_UpdateLicense_InvalidCredentialsExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidCredentialsException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicenseByActivationKey_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLicenseByActivationKey" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicenseByActivationKey_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLicenseByActivationKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicenseByActivationKey_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/System" name="detail" element="q9:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicenseByActivationKey_GeneralErrorExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:GeneralErrorException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicenseByActivationKey_APINotLicensedExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:APINotLicensedException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicenseByActivationKey_InvalidCredentialsExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidCredentialsException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_EnableAutoRenewal_InputMessage">
+    <wsdl:part name="parameters" element="tns:EnableAutoRenewal" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_EnableAutoRenewal_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnableAutoRenewalResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_EnableAutoRenewal_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/System" name="detail" element="q10:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_EnableAutoRenewal_GeneralErrorExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:GeneralErrorException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_EnableAutoRenewal_APINotLicensedExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:APINotLicensedException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_EnableAutoRenewal_NotSubscriptionLicenseTypeExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:NotSubscriptionLicenseTypeException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_EnableAutoRenewal_InvalidCredentialsExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidCredentialsException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_DisableAutoRenewal_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisableAutoRenewal" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_DisableAutoRenewal_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisableAutoRenewalResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_DisableAutoRenewal_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/System" name="detail" element="q11:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_DisableAutoRenewal_GeneralErrorExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:GeneralErrorException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_DisableAutoRenewal_APINotLicensedExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:APINotLicensedException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_DisableAutoRenewal_NotSubscriptionLicenseTypeExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:NotSubscriptionLicenseTypeException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_DisableAutoRenewal_InvalidCredentialsExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidCredentialsException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_AuthorizeRenewal_InputMessage">
+    <wsdl:part name="parameters" element="tns:AuthorizeRenewal" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_AuthorizeRenewal_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AuthorizeRenewalResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_AuthorizeRenewal_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/System" name="detail" element="q12:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_AuthorizeRenewal_GeneralErrorExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:GeneralErrorException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_AuthorizeRenewal_APINotLicensedExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:APINotLicensedException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_AuthorizeRenewal_NotSubscriptionLicenseTypeExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:NotSubscriptionLicenseTypeException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_AuthorizeRenewal_InvalidCredentialsExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidCredentialsException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_SetSubscriptionRenewUntil_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetSubscriptionRenewUntil" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_SetSubscriptionRenewUntil_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetSubscriptionRenewUntilResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_SetSubscriptionRenewUntil_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/System" name="detail" element="q13:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_SetSubscriptionRenewUntil_GeneralErrorExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:GeneralErrorException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_SetSubscriptionRenewUntil_APINotLicensedExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:APINotLicensedException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_SetSubscriptionRenewUntil_NotSubscriptionLicenseTypeExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:NotSubscriptionLicenseTypeException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_SetSubscriptionRenewUntil_InvalidCredentialsExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidCredentialsException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicenseSummariesByLicenseIds_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLicenseSummariesByLicenseIds" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicenseSummariesByLicenseIds_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLicenseSummariesByLicenseIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicenseSummariesByLicenseIds_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/System" name="detail" element="q14:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicenseSummariesByLicenseIds_GeneralErrorExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:GeneralErrorException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicenseSummariesByLicenseIds_ArgumentNullExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/System" name="detail" element="q15:ArgumentNullException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicenseSummariesByLicenseIds_APINotLicensedExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:APINotLicensedException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicenseSummariesByLicenseIds_InvalidCredentialsExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidCredentialsException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicenseById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLicenseById" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicenseById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLicenseByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicenseById_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/System" name="detail" element="q16:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicenseById_GeneralErrorExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:GeneralErrorException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicenseById_APINotLicensedExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:APINotLicensedException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicenseById_InvalidCredentialsExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidCredentialsException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetSkusByFilter_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSkusByFilter" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetSkusByFilter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSkusByFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetSkusByFilter_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/System" name="detail" element="q17:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetSkusByFilter_GeneralErrorExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:GeneralErrorException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetSkusByFilter_APINotLicensedExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:APINotLicensedException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetSkusByFilter_InvalidCredentialsExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidCredentialsException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetSkuById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSkuById" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetSkuById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSkuByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetSkuById_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q18="http://schemas.datacontract.org/2004/07/System" name="detail" element="q18:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetSkuById_GeneralErrorExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:GeneralErrorException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetSkuById_APINotLicensedExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:APINotLicensedException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetSkuById_InvalidCredentialsExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidCredentialsException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetCountOfLicensesByFilter_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCountOfLicensesByFilter" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetCountOfLicensesByFilter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCountOfLicensesByFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetCountOfLicensesByFilter_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q19="http://schemas.datacontract.org/2004/07/System" name="detail" element="q19:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetCountOfLicensesByFilter_ArgumentNullExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/System" name="detail" element="q20:ArgumentNullException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetCountOfLicensesByFilter_GeneralErrorExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:GeneralErrorException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetCountOfLicensesByFilter_APINotLicensedExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:APINotLicensedException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetCountOfLicensesByFilter_InvalidCredentialsExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidCredentialsException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicensesByFilter_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLicensesByFilter" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicensesByFilter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLicensesByFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicensesByFilter_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q21="http://schemas.datacontract.org/2004/07/System" name="detail" element="q21:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicensesByFilter_ArgumentNullExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q22="http://schemas.datacontract.org/2004/07/System" name="detail" element="q22:ArgumentNullException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicensesByFilter_GeneralErrorExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:GeneralErrorException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicensesByFilter_APINotLicensedExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:APINotLicensedException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetLicensesByFilter_InvalidCredentialsExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidCredentialsException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetActivationsByFilter_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetActivationsByFilter" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetActivationsByFilter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetActivationsByFilterResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetActivationsByFilter_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q23="http://schemas.datacontract.org/2004/07/System" name="detail" element="q23:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetActivationsByFilter_ArgumentNullExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q24="http://schemas.datacontract.org/2004/07/System" name="detail" element="q24:ArgumentNullException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetActivationsByFilter_GeneralErrorExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:GeneralErrorException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetActivationsByFilter_APINotLicensedExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:APINotLicensedException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_GetActivationsByFilter_InvalidCredentialsExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidCredentialsException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_DeactivateLicenseForDevice_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeactivateLicenseForDevice" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_DeactivateLicenseForDevice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeactivateLicenseForDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_DeactivateLicenseForDevice_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q25="http://schemas.datacontract.org/2004/07/System" name="detail" element="q25:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_DeactivateLicenseForDevice_GeneralErrorExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:GeneralErrorException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_DeactivateLicenseForDevice_APINotLicensedExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:APINotLicensedException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_DeactivateLicenseForDevice_InvalidCredentialsExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidCredentialsException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_ReactivateLicenseForDevice_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReactivateLicenseForDevice" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_ReactivateLicenseForDevice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReactivateLicenseForDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_ReactivateLicenseForDevice_ArgumentExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q26="http://schemas.datacontract.org/2004/07/System" name="detail" element="q26:ArgumentException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_ReactivateLicenseForDevice_ReactivationExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:ReactivationException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_ReactivateLicenseForDevice_GeneralErrorExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:GeneralErrorException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_ReactivateLicenseForDevice_APINotLicensedExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:APINotLicensedException" />
+  </wsdl:message>
+  <wsdl:message name="ILicenseManagementWS_ReactivateLicenseForDevice_InvalidCredentialsExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InvalidCredentialsException" />
+  </wsdl:message>
+  <wsdl:portType name="ILicenseManagementWS">
+    <wsdl:operation name="GetProductById">
+      <wsdl:input wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetProductById" message="tns:ILicenseManagementWS_GetProductById_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetProductByIdResponse" message="tns:ILicenseManagementWS_GetProductById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetProductByIdArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:ILicenseManagementWS_GetProductById_ArgumentExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetProductByIdGeneralErrorExceptionFault" name="GeneralErrorExceptionFault" message="tns:ILicenseManagementWS_GetProductById_GeneralErrorExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetProductByIdAPINotLicensedExceptionFault" name="APINotLicensedExceptionFault" message="tns:ILicenseManagementWS_GetProductById_APINotLicensedExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetProductByIdInvalidCredentialsExceptionFault" name="InvalidCredentialsExceptionFault" message="tns:ILicenseManagementWS_GetProductById_InvalidCredentialsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProducts">
+      <wsdl:input wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetProducts" message="tns:ILicenseManagementWS_GetProducts_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetProductsResponse" message="tns:ILicenseManagementWS_GetProducts_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetProductsGeneralErrorExceptionFault" name="GeneralErrorExceptionFault" message="tns:ILicenseManagementWS_GetProducts_GeneralErrorExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetProductsAPINotLicensedExceptionFault" name="APINotLicensedExceptionFault" message="tns:ILicenseManagementWS_GetProducts_APINotLicensedExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetProductsInvalidCredentialsExceptionFault" name="InvalidCredentialsExceptionFault" message="tns:ILicenseManagementWS_GetProducts_InvalidCredentialsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductsByFilter">
+      <wsdl:input wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetProductsByFilter" message="tns:ILicenseManagementWS_GetProductsByFilter_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetProductsByFilterResponse" message="tns:ILicenseManagementWS_GetProductsByFilter_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetProductsByFilterArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:ILicenseManagementWS_GetProductsByFilter_ArgumentExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetProductsByFilterGeneralErrorExceptionFault" name="GeneralErrorExceptionFault" message="tns:ILicenseManagementWS_GetProductsByFilter_GeneralErrorExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetProductsByFilterAPINotLicensedExceptionFault" name="APINotLicensedExceptionFault" message="tns:ILicenseManagementWS_GetProductsByFilter_APINotLicensedExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetProductsByFilterInvalidCredentialsExceptionFault" name="InvalidCredentialsExceptionFault" message="tns:ILicenseManagementWS_GetProductsByFilter_InvalidCredentialsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IssueLicenseByTemplate">
+      <wsdl:input wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/IssueLicenseByTemplate" message="tns:ILicenseManagementWS_IssueLicenseByTemplate_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/IssueLicenseByTemplateResponse" message="tns:ILicenseManagementWS_IssueLicenseByTemplate_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/IssueLicenseByTemplateArgumentNullExceptionFault" name="ArgumentNullExceptionFault" message="tns:ILicenseManagementWS_IssueLicenseByTemplate_ArgumentNullExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/IssueLicenseByTemplateArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:ILicenseManagementWS_IssueLicenseByTemplate_ArgumentExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/IssueLicenseByTemplateGeneralErrorExceptionFault" name="GeneralErrorExceptionFault" message="tns:ILicenseManagementWS_IssueLicenseByTemplate_GeneralErrorExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/IssueLicenseByTemplateAPINotLicensedExceptionFault" name="APINotLicensedExceptionFault" message="tns:ILicenseManagementWS_IssueLicenseByTemplate_APINotLicensedExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/IssueLicenseByTemplateInvalidCredentialsExceptionFault" name="InvalidCredentialsExceptionFault" message="tns:ILicenseManagementWS_IssueLicenseByTemplate_InvalidCredentialsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateLicense">
+      <wsdl:input wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/CreateLicense" message="tns:ILicenseManagementWS_CreateLicense_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/CreateLicenseResponse" message="tns:ILicenseManagementWS_CreateLicense_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/CreateLicenseArgumentNullExceptionFault" name="ArgumentNullExceptionFault" message="tns:ILicenseManagementWS_CreateLicense_ArgumentNullExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/CreateLicenseArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:ILicenseManagementWS_CreateLicense_ArgumentExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/CreateLicenseGeneralErrorExceptionFault" name="GeneralErrorExceptionFault" message="tns:ILicenseManagementWS_CreateLicense_GeneralErrorExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/CreateLicenseAPINotLicensedExceptionFault" name="APINotLicensedExceptionFault" message="tns:ILicenseManagementWS_CreateLicense_APINotLicensedExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/CreateLicenseInvalidCredentialsExceptionFault" name="InvalidCredentialsExceptionFault" message="tns:ILicenseManagementWS_CreateLicense_InvalidCredentialsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLicense">
+      <wsdl:input wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/UpdateLicense" message="tns:ILicenseManagementWS_UpdateLicense_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/UpdateLicenseResponse" message="tns:ILicenseManagementWS_UpdateLicense_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/UpdateLicenseArgumentNullExceptionFault" name="ArgumentNullExceptionFault" message="tns:ILicenseManagementWS_UpdateLicense_ArgumentNullExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/UpdateLicenseArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:ILicenseManagementWS_UpdateLicense_ArgumentExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/UpdateLicenseGeneralErrorExceptionFault" name="GeneralErrorExceptionFault" message="tns:ILicenseManagementWS_UpdateLicense_GeneralErrorExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/UpdateLicenseAPINotLicensedExceptionFault" name="APINotLicensedExceptionFault" message="tns:ILicenseManagementWS_UpdateLicense_APINotLicensedExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/UpdateLicenseInvalidCredentialsExceptionFault" name="InvalidCredentialsExceptionFault" message="tns:ILicenseManagementWS_UpdateLicense_InvalidCredentialsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLicenseByActivationKey">
+      <wsdl:input wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicenseByActivationKey" message="tns:ILicenseManagementWS_GetLicenseByActivationKey_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicenseByActivationKeyResponse" message="tns:ILicenseManagementWS_GetLicenseByActivationKey_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicenseByActivationKeyArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:ILicenseManagementWS_GetLicenseByActivationKey_ArgumentExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicenseByActivationKeyGeneralErrorExceptionFault" name="GeneralErrorExceptionFault" message="tns:ILicenseManagementWS_GetLicenseByActivationKey_GeneralErrorExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicenseByActivationKeyAPINotLicensedExceptionFault" name="APINotLicensedExceptionFault" message="tns:ILicenseManagementWS_GetLicenseByActivationKey_APINotLicensedExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicenseByActivationKeyInvalidCredentialsExceptionFault" name="InvalidCredentialsExceptionFault" message="tns:ILicenseManagementWS_GetLicenseByActivationKey_InvalidCredentialsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EnableAutoRenewal">
+      <wsdl:input wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/EnableAutoRenewal" message="tns:ILicenseManagementWS_EnableAutoRenewal_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/EnableAutoRenewalResponse" message="tns:ILicenseManagementWS_EnableAutoRenewal_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/EnableAutoRenewalArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:ILicenseManagementWS_EnableAutoRenewal_ArgumentExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/EnableAutoRenewalGeneralErrorExceptionFault" name="GeneralErrorExceptionFault" message="tns:ILicenseManagementWS_EnableAutoRenewal_GeneralErrorExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/EnableAutoRenewalAPINotLicensedExceptionFault" name="APINotLicensedExceptionFault" message="tns:ILicenseManagementWS_EnableAutoRenewal_APINotLicensedExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/EnableAutoRenewalNotSubscriptionLicenseTypeExceptionFault" name="NotSubscriptionLicenseTypeExceptionFault" message="tns:ILicenseManagementWS_EnableAutoRenewal_NotSubscriptionLicenseTypeExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/EnableAutoRenewalInvalidCredentialsExceptionFault" name="InvalidCredentialsExceptionFault" message="tns:ILicenseManagementWS_EnableAutoRenewal_InvalidCredentialsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DisableAutoRenewal">
+      <wsdl:input wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/DisableAutoRenewal" message="tns:ILicenseManagementWS_DisableAutoRenewal_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/DisableAutoRenewalResponse" message="tns:ILicenseManagementWS_DisableAutoRenewal_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/DisableAutoRenewalArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:ILicenseManagementWS_DisableAutoRenewal_ArgumentExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/DisableAutoRenewalGeneralErrorExceptionFault" name="GeneralErrorExceptionFault" message="tns:ILicenseManagementWS_DisableAutoRenewal_GeneralErrorExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/DisableAutoRenewalAPINotLicensedExceptionFault" name="APINotLicensedExceptionFault" message="tns:ILicenseManagementWS_DisableAutoRenewal_APINotLicensedExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/DisableAutoRenewalNotSubscriptionLicenseTypeExceptionFault" name="NotSubscriptionLicenseTypeExceptionFault" message="tns:ILicenseManagementWS_DisableAutoRenewal_NotSubscriptionLicenseTypeExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/DisableAutoRenewalInvalidCredentialsExceptionFault" name="InvalidCredentialsExceptionFault" message="tns:ILicenseManagementWS_DisableAutoRenewal_InvalidCredentialsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeRenewal">
+      <wsdl:input wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/AuthorizeRenewal" message="tns:ILicenseManagementWS_AuthorizeRenewal_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/AuthorizeRenewalResponse" message="tns:ILicenseManagementWS_AuthorizeRenewal_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/AuthorizeRenewalArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:ILicenseManagementWS_AuthorizeRenewal_ArgumentExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/AuthorizeRenewalGeneralErrorExceptionFault" name="GeneralErrorExceptionFault" message="tns:ILicenseManagementWS_AuthorizeRenewal_GeneralErrorExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/AuthorizeRenewalAPINotLicensedExceptionFault" name="APINotLicensedExceptionFault" message="tns:ILicenseManagementWS_AuthorizeRenewal_APINotLicensedExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/AuthorizeRenewalNotSubscriptionLicenseTypeExceptionFault" name="NotSubscriptionLicenseTypeExceptionFault" message="tns:ILicenseManagementWS_AuthorizeRenewal_NotSubscriptionLicenseTypeExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/AuthorizeRenewalInvalidCredentialsExceptionFault" name="InvalidCredentialsExceptionFault" message="tns:ILicenseManagementWS_AuthorizeRenewal_InvalidCredentialsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetSubscriptionRenewUntil">
+      <wsdl:input wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/SetSubscriptionRenewUntil" message="tns:ILicenseManagementWS_SetSubscriptionRenewUntil_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/SetSubscriptionRenewUntilResponse" message="tns:ILicenseManagementWS_SetSubscriptionRenewUntil_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/SetSubscriptionRenewUntilArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:ILicenseManagementWS_SetSubscriptionRenewUntil_ArgumentExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/SetSubscriptionRenewUntilGeneralErrorExceptionFault" name="GeneralErrorExceptionFault" message="tns:ILicenseManagementWS_SetSubscriptionRenewUntil_GeneralErrorExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/SetSubscriptionRenewUntilAPINotLicensedExceptionFault" name="APINotLicensedExceptionFault" message="tns:ILicenseManagementWS_SetSubscriptionRenewUntil_APINotLicensedExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/SetSubscriptionRenewUntilNotSubscriptionLicenseTypeExceptionFault" name="NotSubscriptionLicenseTypeExceptionFault" message="tns:ILicenseManagementWS_SetSubscriptionRenewUntil_NotSubscriptionLicenseTypeExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/SetSubscriptionRenewUntilInvalidCredentialsExceptionFault" name="InvalidCredentialsExceptionFault" message="tns:ILicenseManagementWS_SetSubscriptionRenewUntil_InvalidCredentialsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLicenseSummariesByLicenseIds">
+      <wsdl:input wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicenseSummariesByLicenseIds" message="tns:ILicenseManagementWS_GetLicenseSummariesByLicenseIds_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicenseSummariesByLicenseIdsResponse" message="tns:ILicenseManagementWS_GetLicenseSummariesByLicenseIds_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicenseSummariesByLicenseIdsArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:ILicenseManagementWS_GetLicenseSummariesByLicenseIds_ArgumentExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicenseSummariesByLicenseIdsGeneralErrorExceptionFault" name="GeneralErrorExceptionFault" message="tns:ILicenseManagementWS_GetLicenseSummariesByLicenseIds_GeneralErrorExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicenseSummariesByLicenseIdsArgumentNullExceptionFault" name="ArgumentNullExceptionFault" message="tns:ILicenseManagementWS_GetLicenseSummariesByLicenseIds_ArgumentNullExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicenseSummariesByLicenseIdsAPINotLicensedExceptionFault" name="APINotLicensedExceptionFault" message="tns:ILicenseManagementWS_GetLicenseSummariesByLicenseIds_APINotLicensedExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicenseSummariesByLicenseIdsInvalidCredentialsExceptionFault" name="InvalidCredentialsExceptionFault" message="tns:ILicenseManagementWS_GetLicenseSummariesByLicenseIds_InvalidCredentialsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLicenseById">
+      <wsdl:input wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicenseById" message="tns:ILicenseManagementWS_GetLicenseById_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicenseByIdResponse" message="tns:ILicenseManagementWS_GetLicenseById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicenseByIdArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:ILicenseManagementWS_GetLicenseById_ArgumentExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicenseByIdGeneralErrorExceptionFault" name="GeneralErrorExceptionFault" message="tns:ILicenseManagementWS_GetLicenseById_GeneralErrorExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicenseByIdAPINotLicensedExceptionFault" name="APINotLicensedExceptionFault" message="tns:ILicenseManagementWS_GetLicenseById_APINotLicensedExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicenseByIdInvalidCredentialsExceptionFault" name="InvalidCredentialsExceptionFault" message="tns:ILicenseManagementWS_GetLicenseById_InvalidCredentialsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSkusByFilter">
+      <wsdl:input wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetSkusByFilter" message="tns:ILicenseManagementWS_GetSkusByFilter_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetSkusByFilterResponse" message="tns:ILicenseManagementWS_GetSkusByFilter_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetSkusByFilterArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:ILicenseManagementWS_GetSkusByFilter_ArgumentExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetSkusByFilterGeneralErrorExceptionFault" name="GeneralErrorExceptionFault" message="tns:ILicenseManagementWS_GetSkusByFilter_GeneralErrorExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetSkusByFilterAPINotLicensedExceptionFault" name="APINotLicensedExceptionFault" message="tns:ILicenseManagementWS_GetSkusByFilter_APINotLicensedExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetSkusByFilterInvalidCredentialsExceptionFault" name="InvalidCredentialsExceptionFault" message="tns:ILicenseManagementWS_GetSkusByFilter_InvalidCredentialsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSkuById">
+      <wsdl:input wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetSkuById" message="tns:ILicenseManagementWS_GetSkuById_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetSkuByIdResponse" message="tns:ILicenseManagementWS_GetSkuById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetSkuByIdArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:ILicenseManagementWS_GetSkuById_ArgumentExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetSkuByIdGeneralErrorExceptionFault" name="GeneralErrorExceptionFault" message="tns:ILicenseManagementWS_GetSkuById_GeneralErrorExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetSkuByIdAPINotLicensedExceptionFault" name="APINotLicensedExceptionFault" message="tns:ILicenseManagementWS_GetSkuById_APINotLicensedExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetSkuByIdInvalidCredentialsExceptionFault" name="InvalidCredentialsExceptionFault" message="tns:ILicenseManagementWS_GetSkuById_InvalidCredentialsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountOfLicensesByFilter">
+      <wsdl:input wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetCountOfLicensesByFilter" message="tns:ILicenseManagementWS_GetCountOfLicensesByFilter_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetCountOfLicensesByFilterResponse" message="tns:ILicenseManagementWS_GetCountOfLicensesByFilter_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetCountOfLicensesByFilterArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:ILicenseManagementWS_GetCountOfLicensesByFilter_ArgumentExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetCountOfLicensesByFilterArgumentNullExceptionFault" name="ArgumentNullExceptionFault" message="tns:ILicenseManagementWS_GetCountOfLicensesByFilter_ArgumentNullExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetCountOfLicensesByFilterGeneralErrorExceptionFault" name="GeneralErrorExceptionFault" message="tns:ILicenseManagementWS_GetCountOfLicensesByFilter_GeneralErrorExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetCountOfLicensesByFilterAPINotLicensedExceptionFault" name="APINotLicensedExceptionFault" message="tns:ILicenseManagementWS_GetCountOfLicensesByFilter_APINotLicensedExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetCountOfLicensesByFilterInvalidCredentialsExceptionFault" name="InvalidCredentialsExceptionFault" message="tns:ILicenseManagementWS_GetCountOfLicensesByFilter_InvalidCredentialsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLicensesByFilter">
+      <wsdl:input wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicensesByFilter" message="tns:ILicenseManagementWS_GetLicensesByFilter_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicensesByFilterResponse" message="tns:ILicenseManagementWS_GetLicensesByFilter_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicensesByFilterArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:ILicenseManagementWS_GetLicensesByFilter_ArgumentExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicensesByFilterArgumentNullExceptionFault" name="ArgumentNullExceptionFault" message="tns:ILicenseManagementWS_GetLicensesByFilter_ArgumentNullExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicensesByFilterGeneralErrorExceptionFault" name="GeneralErrorExceptionFault" message="tns:ILicenseManagementWS_GetLicensesByFilter_GeneralErrorExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicensesByFilterAPINotLicensedExceptionFault" name="APINotLicensedExceptionFault" message="tns:ILicenseManagementWS_GetLicensesByFilter_APINotLicensedExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetLicensesByFilterInvalidCredentialsExceptionFault" name="InvalidCredentialsExceptionFault" message="tns:ILicenseManagementWS_GetLicensesByFilter_InvalidCredentialsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActivationsByFilter">
+      <wsdl:input wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetActivationsByFilter" message="tns:ILicenseManagementWS_GetActivationsByFilter_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetActivationsByFilterResponse" message="tns:ILicenseManagementWS_GetActivationsByFilter_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetActivationsByFilterArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:ILicenseManagementWS_GetActivationsByFilter_ArgumentExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetActivationsByFilterArgumentNullExceptionFault" name="ArgumentNullExceptionFault" message="tns:ILicenseManagementWS_GetActivationsByFilter_ArgumentNullExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetActivationsByFilterGeneralErrorExceptionFault" name="GeneralErrorExceptionFault" message="tns:ILicenseManagementWS_GetActivationsByFilter_GeneralErrorExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetActivationsByFilterAPINotLicensedExceptionFault" name="APINotLicensedExceptionFault" message="tns:ILicenseManagementWS_GetActivationsByFilter_APINotLicensedExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/GetActivationsByFilterInvalidCredentialsExceptionFault" name="InvalidCredentialsExceptionFault" message="tns:ILicenseManagementWS_GetActivationsByFilter_InvalidCredentialsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeactivateLicenseForDevice">
+      <wsdl:input wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/DeactivateLicenseForDevice" message="tns:ILicenseManagementWS_DeactivateLicenseForDevice_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/DeactivateLicenseForDeviceResponse" message="tns:ILicenseManagementWS_DeactivateLicenseForDevice_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/DeactivateLicenseForDeviceArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:ILicenseManagementWS_DeactivateLicenseForDevice_ArgumentExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/DeactivateLicenseForDeviceGeneralErrorExceptionFault" name="GeneralErrorExceptionFault" message="tns:ILicenseManagementWS_DeactivateLicenseForDevice_GeneralErrorExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/DeactivateLicenseForDeviceAPINotLicensedExceptionFault" name="APINotLicensedExceptionFault" message="tns:ILicenseManagementWS_DeactivateLicenseForDevice_APINotLicensedExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/DeactivateLicenseForDeviceInvalidCredentialsExceptionFault" name="InvalidCredentialsExceptionFault" message="tns:ILicenseManagementWS_DeactivateLicenseForDevice_InvalidCredentialsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReactivateLicenseForDevice">
+      <wsdl:input wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/ReactivateLicenseForDevice" message="tns:ILicenseManagementWS_ReactivateLicenseForDevice_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/ReactivateLicenseForDeviceResponse" message="tns:ILicenseManagementWS_ReactivateLicenseForDevice_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/ReactivateLicenseForDeviceArgumentExceptionFault" name="ArgumentExceptionFault" message="tns:ILicenseManagementWS_ReactivateLicenseForDevice_ArgumentExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/ReactivateLicenseForDeviceReactivationExceptionFault" name="ReactivationExceptionFault" message="tns:ILicenseManagementWS_ReactivateLicenseForDevice_ReactivationExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/ReactivateLicenseForDeviceGeneralErrorExceptionFault" name="GeneralErrorExceptionFault" message="tns:ILicenseManagementWS_ReactivateLicenseForDevice_GeneralErrorExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/ReactivateLicenseForDeviceAPINotLicensedExceptionFault" name="APINotLicensedExceptionFault" message="tns:ILicenseManagementWS_ReactivateLicenseForDevice_APINotLicensedExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.microsoft.com/slps/ILicenseManagementWS/ReactivateLicenseForDeviceInvalidCredentialsExceptionFault" name="InvalidCredentialsExceptionFault" message="tns:ILicenseManagementWS_ReactivateLicenseForDevice_InvalidCredentialsExceptionFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
