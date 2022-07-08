@@ -28,7 +28,7 @@
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "electron": "7.1.2",
     "electron-edge-js": "12.8.1",
-    "moment": "^2.22.2",
+    "moment": "^2.29.4",
     "mustache": "^2.3.0"
   },
   "devDependencies": {
